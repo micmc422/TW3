@@ -1,10 +1,9 @@
-import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 
 
-function colorsByPath(path: string) {
+export function colorsByPath(path) {
     if (path?.startsWith("/git")) return [214, 50]
     if (path?.startsWith("/NPM")) return [0, 59]
     if (path?.startsWith("/docker")) return [194, 90]
@@ -14,7 +13,7 @@ function colorsByPath(path: string) {
     return [212, 100] //valeurs par défaut dans theme.config.tsx
 }
 
-export default function MyApp({ Component,pageProps }: AppProps) {
+export default function MyApp({ Component,pageProps }) {
     const { asPath } = useRouter()
     const [hue, setHue] = useState(212);
     const [saturation, setSaturation] = useState(100);

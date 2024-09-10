@@ -66,6 +66,11 @@ const Champollion = () => {
 
 const config: DocsThemeConfig = {
   logo: <Champollion />,
+  useNextSeoProps() {
+    return {
+      titleTemplate: '%s – Champollion'
+    }
+  },
   project: {
     link: 'https://github.com/micmc422/TW3',
   },
