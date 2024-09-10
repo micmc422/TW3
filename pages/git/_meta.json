@@ -11,8 +11,12 @@
   "travail-collaboratif-avec-git": "Travail collaboratif avec Git",
   "fonctionnalitees-avancees-de-git": "Fonctionnalités avancées de Git",
   "introduction-github-gitlab": "Introduction à GitHub / GitLab",
-  "TLDR": "TLDR",
   "---": {
+    "type": "separator"
+  },
+  "TLDR": "TLDR",
+  "quizz": "Quizz",
+  "----": {
     "type": "separator"
   },
   "ressources": "Ressources"

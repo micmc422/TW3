@@ -6,14 +6,12 @@
   "modelisation": "Modélisation",
   "crud": "CRUD",
   "avance": "Avancées",
-  "about": {
-    "title": "À propos",
-    "type": "page"
+  "---": {
+    "type": "separator"
   },
-  "contact": {
-    "title": "Contact ↗",
-    "type": "page",
-    "href": "mailto:michael.bardy@occitaweb.fr"
+  "exercice": "Exercice",
+  "----": {
+    "type": "separator"
   },
   "ressources": "Ressources"
 }

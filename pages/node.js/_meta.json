@@ -7,11 +7,16 @@
     },
     "installation": "Installation",
     "fondamentaux": "Fondamentaux",
-    "resume": "TLDR",
     "plan": {
         "display": "hidden"
     },
     "---": {
+        "type": "separator"
+    },
+    "resume": "TLDR",
+    "quizz": "Quizz",
+    "exercice": "Exercice",
+    "----": {
         "type": "separator"
     },
     "ressources": "Ressources"
