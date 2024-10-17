@@ -1,0 +1,27 @@
+# **Objectifs et intérêt de GraphQL pour les développeurs**
+
+GraphQL est un langage de requête pour les APIs qui offre une approche moderne et flexible par rapport aux technologies de requête traditionnelles comme REST. Son objectif principal est de permettre aux développeurs de demander précisément les données dont ils ont besoin, sans plus ni moins, et de les recevoir dans une structure cohérente et optimisée. Contrairement à REST, où chaque requête API est liée à une ressource unique, GraphQL permet d’interroger plusieurs ressources à la fois, avec une seule requête, ce qui réduit la surcharge réseau et améliore l'efficacité des applications.
+
+## **Pourquoi GraphQL est intéressant pour les développeurs ?**
+
+1. **Contrôle total sur les requêtes**  
+   L’un des plus grands avantages de GraphQL est qu’il donne aux développeurs un contrôle total sur les données qu’ils récupèrent. Ils peuvent définir exactement quels champs ils veulent dans une réponse, ce qui évite le problème de sur-fetching, courant avec les APIs REST où des données inutiles peuvent être renvoyées avec chaque requête.
+
+2. **Réduction du sous-fetching et des multiples appels API**  
+   Avec REST, il est courant de devoir effectuer plusieurs appels API pour récupérer toutes les informations nécessaires à une interface complexe. GraphQL résout ce problème en permettant de récupérer toutes les données nécessaires en une seule requête, même si elles proviennent de différentes sources.
+
+3. **API évolutive sans casser les clients existants**  
+   En GraphQL, les schémas sont versionnés de manière fluide. Cela signifie qu’une API peut évoluer sans rompre les intégrations existantes : les nouveaux champs ou fonctionnalités peuvent être ajoutés au schéma, tandis que les anciennes requêtes restent compatibles.
+
+4. **Documentation automatique et introspection**  
+   L’un des aspects les plus puissants de GraphQL est sa capacité d’introspection. Cela signifie que les développeurs peuvent interroger l'API elle-même pour découvrir quelles données et fonctionnalités sont disponibles. Cette documentation automatique réduit les erreurs et le temps passé à comprendre comment interagir avec une API.
+
+5. **Flexibilité dans le développement front-end**  
+   GraphQL est très populaire dans le développement d'applications front-end modernes, notamment celles utilisant des frameworks comme React. La possibilité de définir précisément la structure des réponses API permet aux développeurs front-end de mieux contrôler les données affichées et d'adapter facilement leur logique d'affichage sans attendre des modifications côté serveur.
+
+6. **Optimisation des performances**  
+   En minimisant le nombre de requêtes et en fournissant uniquement les données nécessaires, GraphQL améliore les performances des applications, notamment dans les environnements mobiles où la bande passante et les ressources peuvent être limitées.
+
+---
+
+En résumé, GraphQL est un outil qui améliore l'expérience des développeurs, en leur offrant plus de contrôle, de flexibilité et en réduisant la complexité des interactions client-serveur. C’est une technologie particulièrement adaptée pour les environnements où les besoins en données évoluent rapidement, et où l’efficacité est primordiale.
