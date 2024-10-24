@@ -1,11 +1,7 @@
 export default {
   "index": {
     "title": "Accueil",
-    "type": "page",
-    "theme": {
-      "breadcrumb": false,
-      "typesetting": "article"
-    }
+    "type": "page"
   },
   "docker": {
     "title": "Docker",
@@ -29,8 +25,9 @@ export default {
   },
   "graphQL": {
     "title": "GraphQL",
-    "type": "page"
-  },
+    "type": "page",
+     "display": "hidden",
+ },
   "react": {
     "title": "REACT",
     "type": "page"

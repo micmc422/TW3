@@ -7,10 +7,6 @@ export default {
   "formulaires": "Formulaires",
   "hooks": "Hooks",
   "deploiement": "Déploiement",
-  "about": {
-    "title": "À propos",
-    "type": "page"
-  },
   "contact": {
     "title": "Contact ↗",
     "type": "page",

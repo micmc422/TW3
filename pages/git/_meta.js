@@ -1,9 +1,6 @@
 export default {
   "index": {
-    "title": "Introduction",
-    "theme": {
-      "breadcrumb": false
-    }
+    "title": "Introduction"
   },
   "installation": "Installation",
   "gestion-locale": "Les bases de Git : Gestion locale",

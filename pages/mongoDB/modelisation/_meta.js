@@ -1,4 +1,4 @@
 export default {
 "modelisation": "Modèle MongoDB",
-"relations": null
+"relations" : "Relations entre les collections",
 }
