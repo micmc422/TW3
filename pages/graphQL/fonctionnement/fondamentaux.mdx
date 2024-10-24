@@ -1,0 +1,70 @@
+# **2.1 Les concepts fondamentaux de GraphQL**
+
+1. **Schéma (Schema)** :
+   - Le schéma est au cœur de GraphQL. Il définit les types de données que l'API peut retourner et les opérations qui peuvent être exécutées. Il sert de contrat entre le client et le serveur.
+   - **Exemple d'un schéma** :
+     ```graphql
+     type Query {
+       user(id: ID!): User
+     }
+
+     type User {
+       id: ID!
+       name: String!
+       email: String!
+     }
+     ```
+   - Ici, la requête (Query) permet de récupérer un utilisateur par son identifiant (ID) et renvoie un type `User` qui contient les champs `id`, `name`, et `email`.
+
+2. **Types dans GraphQL** :
+   - GraphQL propose plusieurs types de base (Scalars) : `Int`, `Float`, `String`, `Boolean`, `ID`.
+   - Il permet aussi de définir des **objets complexes** (comme `User` ci-dessus), des **Enums**, des **Listes**, et d'autres types spécifiques qui peuvent être personnalisés selon les besoins de l'API.
+   - **Exemple d'un Enum** :
+     ```graphql
+     enum Role {
+       ADMIN
+       USER
+       GUEST
+     }
+     ```
+
+3. **Requêtes (Query)** :
+   - Les requêtes en GraphQL permettent au client de demander les données dont il a besoin en précisant les champs.
+   - **Exemple d'une requête simple** :
+     ```graphql
+     {
+       user(id: "1") {
+         name
+         email
+       }
+     }
+     ```
+     Cette requête récupère les informations de l'utilisateur avec l'ID `1`, mais seulement son nom et son email. Le client ne demande que les données dont il a besoin.
+
+4. **Mutations** :
+   - Les mutations sont utilisées pour modifier des données. Contrairement aux requêtes, qui sont généralement en lecture seule, les mutations effectuent des opérations comme la création, la mise à jour ou la suppression de données.
+   - **Exemple de mutation** :
+     ```graphql
+     mutation {
+       createUser(name: "John", email: "john@example.com") {
+         id
+         name
+         email
+       }
+     }
+     ```
+     Cette mutation crée un nouvel utilisateur et retourne ses informations, y compris son `id`.
+
+5. **Subscriptions** :
+   - Les subscriptions permettent de recevoir des mises à jour en temps réel lorsqu'une donnée est modifiée côté serveur. Cela est particulièrement utile pour des applications interactives comme des chats ou des tableaux de bord.
+   - **Exemple d'une subscription** :
+     ```graphql
+     subscription {
+       userUpdated(id: "1") {
+         name
+         email
+       }
+     }
+     ```
+     Cela permet de suivre en direct les changements d'un utilisateur spécifique.
+

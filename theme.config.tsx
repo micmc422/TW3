@@ -1,6 +1,5 @@
 import React from 'react'
 import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
-import { useRouter } from 'next/router';
 
 const Champollion = () => {
   return (
@@ -10,6 +9,7 @@ const Champollion = () => {
       height="52.213"
       version="1.1"
       viewBox="0 0 64 52.213"
+      className='_transition-opacity _duration-700 _ease-in-out'
     >
       <defs>
         <clipPath id="clipPath4152" clipPathUnits="userSpaceOnUse">
@@ -66,11 +66,6 @@ const Champollion = () => {
 
 const config: DocsThemeConfig = {
   logo: <Champollion />,
-  useNextSeoProps() {
-    return {
-      titleTemplate: '%s – Champollion'
-    }
-  },
   project: {
     link: 'https://github.com/micmc422/TW3',
   },
@@ -86,33 +81,71 @@ const config: DocsThemeConfig = {
     error: "Oups petit probléme... réessayez",
     loading: "Recherche en cours..."
   },
-  primaryHue: { dark: 212, light: 212 },
-  primarySaturation: { dark: 100, light: 100 },
-  editLink: { text: null },
+  color: {
+    hue: { dark: 212, light: 212 },
+    saturation: { dark: 100, light: 100 }
+  },
+  editLink: { content: "modifier" },
   toc: { title: "Navigation" },
   feedback: {
     content: "Une question ou un problème ?",
   },
   docsRepositoryBase: 'https://github.com/micmc422/TW3',
-  head: () => {
-    const { asPath, defaultLocale, locale } = useRouter()
-    const { frontMatter } = useConfig()
-    const url =
-      'https://tw-3.vercel.app' +
-      (defaultLocale === locale ? asPath : `/${locale}${asPath}`)
-
+  head: function useHead() {
+    const config = useConfig()
+    const title = `${config.title} – Nextra`
+    const description =
+      config.frontMatter.description || 'Nextra: the Next.js site builder'
+    const image = config.frontMatter.image || 'https://nextra.site/og.jpeg'
     return (
       <>
-        <meta property="og:url" content={url} />
-        <meta
-          property="og:description"
-          content={frontMatter.description || 'Cours sur les technologie du web. Université Champollion Albi'}
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+        <meta name="description" content={description} />
+        <meta property="og:description" content={description} />
+        <meta name="og:image" content={image} />
+
+        <meta name="msapplication-TileColor" content="#fff" />
+        <meta httpEquiv="Content-Language" content="fr" />
+        <meta name="apple-mobile-web-app-title" content="TW3" />
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="https://tw-3.vercel.app" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-icon-180x180.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="/android-icon-192x192.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="/favicon-96x96.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
         />
       </>
     )
   },
   footer: {
-    text: <>Champollion - TW3 -&nbsp;<a href="https://occitaweb.fr" target="_blank">Bardy Michaël</a></>,
+    content: <>Champollion - TW3 -&nbsp;<a href="https://occitaweb.fr" target="_blank">Bardy Michaël</a></>,
   },
   gitTimestamp: ({ timestamp }) => <>Dernière mise à jour {timestamp.toLocaleDateString()}</>
 }

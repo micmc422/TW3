@@ -1,0 +1,27 @@
+## **2.2 Exemple pratique : mise en place d'un serveur GraphQL simple**
+
+1. **Installation et configuration** :
+   - Utilisation d'outils populaires comme `Apollo Server` ou `Express-GraphQL` pour mettre en place un serveur GraphQL.
+   - **Installation d’Apollo Server** :
+     ```bash
+     npm install apollo-server graphql
+     ```
+
+2. **Création d’un schéma et première requête** :
+   - On définit un schéma de base avec une requête `Query` pour récupérer des utilisateurs.
+   - On utilise un outil comme **GraphiQL** ou **Apollo Studio** pour tester la requête et voir comment les données sont récupérées.
+
+3. **Exemple d'une requête pratique** :
+   - Après avoir configuré le serveur, exécutez une requête pour récupérer un utilisateur avec son nom et son email :
+     ```graphql
+     {
+       user(id: "1") {
+         name
+         email
+       }
+     }
+     ```
+
+4. **Mutation pratique** :
+   - Exemple de création d'un utilisateur en testant une mutation via un client GraphQL.
+

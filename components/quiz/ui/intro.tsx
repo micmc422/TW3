@@ -85,10 +85,10 @@ function QuizzResultScore() {
     return (<>
         <div style={{ maxWidth: "480px", margin: "auto", padding: "1rem", userSelect: "none" }}>
             <>
-                <div className="nx-flex nx-justify-center nx-mt-2 nx-text-4xl nx-font-bold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100">
+                <div className="_flex _justify-center _mt-2 _text-4xl _font-bold _tracking-tight _text-slate-900 dark:_text-slate-100">
                     {score} / {totalScore}
                 </div>
-                <div className="nx-bg-primary-100 nx-font-semibold nx-text-white dark:nx-bg-primary-100/10" style={{ width: "100%", height: "2rem", borderRadius: "4px", overflow: "clip" }}>
+                <div className="_bg-primary-100 _font-semibold _text-white dark:_bg-primary-100/10" style={{ width: "100%", height: "2rem", borderRadius: "4px", overflow: "clip" }}>
                     <div style={{
                         backgroundColor: score === 0 ? "rgb(199, 0, 57)" : score > totalScore / 2 ? "rgba(0, 128, 0, .8)" : "rgb(255, 191, 0)",
                         width: percent + "%",

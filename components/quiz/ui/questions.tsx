@@ -42,17 +42,17 @@ export default function Questions() {
                 {answers.map((answer, i) => (
                     <li
                         key={i}
-                        className={`nx-flex nx-rounded nx-px-2 nx-py-1.5 nx-text-sm nx-transition-colors [word-break:break-word] nx-cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:nx-border nx-text-gray-500 hover:nx-bg-gray-100 hover:nx-text-gray-900 dark:nx-text-neutral-400 dark:hover:nx-bg-primary-100/5 dark:hover:nx-text-gray-50 contrast-more:nx-text-gray-900 contrast-more:dark:nx-text-gray-50 contrast-more:node-border-transparent contrast-more:hover:nx-border-gray-900 contrast-more:dark:hover:nx-border-gray-50`}
+                        className={`_flex _rounded _px-2 _py-1.5 _text-sm _transition-colors [word-break:break-word] _cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:_border _text-gray-500 hover:_bg-gray-100 hover:_text-gray-900 dark:_text-neutral-400 dark:hover:_bg-primary-100/5 dark:hover:_text-gray-50 contrast-more:_text-gray-900 contrast-more:dark:_text-gray-50 contrast-more:node-border-transparent contrast-more:hover:_border-gray-900 contrast-more:dark:hover:_border-gray-50`}
                         onClick={() => handleAnswser(i + 1)}
                     >
                         {answer}
                     </li>
                 ))}
             </ul>
-            <div className="nx-flex" style={{ gap: "1rem" }}>
+            <div className="_flex" style={{ gap: "1rem" }}>
                 <QuizNextBtn>Continuer</QuizNextBtn>
                 <QuizResetBtn><Trash2Icon /></QuizResetBtn>
-                <div className="nx-flex nx-justify-end nx-mt-2 nx-text-2xl nx-font-bold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100" style={{alignSelf: "center"}}>
+                <div className="_flex _justify-end _mt-2 _text-2xl _font-bold _tracking-tight _text-slate-900 dark:_text-slate-100" style={{alignSelf: "center"}}>
                     {score} / {totalScore}
                 </div>
             </div>
