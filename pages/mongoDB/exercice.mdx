@@ -130,6 +130,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// URL de MongoDB sur le port 27017, le protocole est mongodb:// l'hôte est localhost utilisez les information de configuration de docker comme référence.
 const mongoUrl = 'mongodb://localhost:27017';
 
 // Utilisez bodyParser pour parser les requêtes JSON
@@ -185,6 +186,18 @@ app.get("/list", async (req, res) => {
     console.error("Error reading data:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
+});
+
+// Route pour récupérer un document depuis l'API
+app.get("/etudiant/:id", async (req, res) => {
+  const { id } = req.params;
+  // à vous de compléter
+});
+
+// Route pour modifier un document depuis l'API
+app.post("/edit/:id", async (req, res) => {
+  const { id } = req.params;
+  // à vous de compléter
 });
 
 // ... (autres routes)
