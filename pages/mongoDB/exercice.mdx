@@ -130,18 +130,19 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const mongoUrl = 'mongodb://mongo:27017/mydatabase';
+const mongoUrl = 'mongodb://localhost:27017';
 
 app.use(bodyParser.json());
 
-app.use(express.static("public"));
+app.use(express.static("src/public"));
 
+// Route pour envoyer des données à l'API
 app.post('/addData', async (req, res) => {
   const dataContent = req.body.data;
 
   try {
     // Établir une connexion avec la base de données
-    const client = new MongoClient(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+    const client = new MongoClient(mongoUrl);
     await client.connect();
 
     // Sélectionner la collection
@@ -159,6 +160,31 @@ app.post('/addData', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+// Route pour récupérer des données depuis l'API
+app.get("/list", async (req, res) => {
+  try {
+    // Établir une connexion avec la base de données
+    const client = new MongoClient(mongoUrl);
+    await client.connect();
+
+    // Sélectionner la collection
+    const collection = client.db("test").collection("ma_collection");
+
+    // Récupérer les données de la collection et les formatter en tableau JSON
+    const list = await collection.find().toArray();
+
+    // Fermer la connexion
+    await client.close();
+
+    // Renvoyer le tableau JSON à l'utilisateur
+    res.json({ list });
+  } catch (error) {
+    console.error("Error reading data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // ... (autres routes)
 ```
 
