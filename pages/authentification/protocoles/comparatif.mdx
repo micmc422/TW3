@@ -1,0 +1,70 @@
+# **Comparaison des Cas d’Utilisation : OAuth 2.0 vs OpenID Connect**
+
+---
+
+## **Authentification Utilisateur : OAuth 2.0 vs OpenID Connect (OIDC)**
+
+Bien qu’OAuth 2.0 et OpenID Connect soient étroitement liés, ils servent des objectifs différents lorsqu’il s’agit de gérer l’authentification utilisateur. Voici une comparaison de leurs utilisations :
+
+| **Aspect**                   | **OAuth 2.0**                                 | **OpenID Connect (OIDC)**                          |
+|------------------------------|-----------------------------------------------|---------------------------------------------------|
+| **Objectif Principal**       | **Autorisation.** Permet à une application tierce d’accéder à une ressource au nom d’un utilisateur. | **Authentification.** Vérifie l’identité d’un utilisateur en plus de l’autoriser. |
+| **Usage Typique**            | Accès délégué à des ressources (par exemple, permettre à une app de lire vos fichiers Google Drive). | Connexion à une application via un fournisseur d’identité (par exemple, "Se connecter avec Google"). |
+| **Jetons utilisés**           | - Jeton d’accès (**Access Token**) pour accéder aux API.  - Aucun moyen intégré de vérifier l’identité de l’utilisateur. | - Jeton d’accès (**Access Token**) pour les ressources.  - **ID Token** (format JWT) pour authentifier l’utilisateur. |
+| **Sécurité utilisateur**     | Dépend de la manière dont l'application gère les jetons. Ne garantit pas directement l’identité de l’utilisateur. | Garantie de l’identité grâce au **ID Token**, contenant des informations vérifiables sur l’utilisateur. |
+| **Complexité d'Implémentation** | Moins complexe, mais nécessite des extensions pour l’authentification. | Plus simple à implémenter pour l’authentification, avec des bibliothèques dédiées. |
+
+---
+
+**Exemple pratique :**  
+1. **OAuth 2.0 :**  
+   Un utilisateur autorise une application (par exemple, une plateforme de gestion de projets) à accéder à ses fichiers Google Drive. L’application reçoit un jeton d’accès qui lui permet d’interagir avec l’API Google Drive.  
+
+2. **OpenID Connect :**  
+   Un utilisateur clique sur "Se connecter avec Google" sur une plateforme. Le fournisseur d’identité (Google) vérifie son identité et renvoie un **ID Token** contenant des informations comme son nom et son email, que l’application peut utiliser pour l’authentifier.
+
+---
+
+## **Intégration avec des Fournisseurs d’Identité (Identity Providers)**
+
+Les fournisseurs d’identité (IdPs) comme **Google**, **Facebook**, ou **Microsoft** permettent de simplifier l’authentification des utilisateurs via des protocoles comme OpenID Connect ou SAML. Voici leurs caractéristiques :
+
+| **Aspect**                  | **OpenID Connect (OIDC)**                        | **SAML**                                         |
+|-----------------------------|-------------------------------------------------|------------------------------------------------|
+| **Type de Protocole**       | API-friendly (conçu pour les applications web modernes et mobiles). | Basé sur XML, adapté aux besoins d’entreprise. |
+| **Fournisseurs courants**   | Google, Facebook, Microsoft, GitHub, Okta, Auth0. | Active Directory, Okta, Ping Identity.         |
+| **Flexibilité**             | Conçu pour les applications web, API REST, et mobiles modernes. | Idéal pour les grandes entreprises, moins flexible pour des applications modernes. |
+| **Exemple d’utilisation**  | Se connecter avec Google, Facebook ou Microsoft dans une application web ou mobile. | Authentification pour des systèmes internes d’entreprise via SSO. |
+
+---
+
+## **Cas d’Utilisation : OAuth 2.0 et OpenID Connect avec des Fournisseurs d’Identité**
+
+**Avantages d’intégrer un fournisseur d’identité :**
+1. **Simplicité pour l’utilisateur :** Pas besoin de créer un nouveau compte ; il peut se connecter avec des identifiants existants (exemple : Google).  
+2. **Sécurité renforcée :** Les fournisseurs d’identité appliquent souvent des mécanismes de sécurité avancés comme la détection des connexions suspectes, le MFA, et les politiques de mot de passe.  
+3. **Gain de temps pour le développeur :** Les flux d’authentification sont déjà standardisés.  
+
+**Limites potentielles :**
+1. **Dépendance à un tiers :** Si le fournisseur d’identité est indisponible, les utilisateurs ne peuvent pas se connecter.  
+2. **Partage de données :** Certains utilisateurs peuvent être réticents à partager leurs données avec une application tierce via un IdP.  
+
+---
+
+## **Choix entre OAuth 2.0 et OpenID Connect selon le Contexte**
+
+| **Contexte**                                       | **Recommandation**                                      |
+|---------------------------------------------------|--------------------------------------------------------|
+| **Accès délégué à une ressource API**              | OAuth 2.0 : idéal pour les autorisations, comme accéder aux fichiers d’un utilisateur. |
+| **Connexion utilisateur (SSO)**                   | OpenID Connect : pour une gestion d’identités utilisateur sécurisée et efficace. |
+| **Environnements d’entreprise (SSO)**             | SAML : pour des systèmes internes complexes.           |
+| **Applications modernes (web et mobile)**         | OpenID Connect : conçu pour être simple et moderne.    |
+
+---
+
+## **Résumé**
+- **OAuth 2.0** est parfait pour les scénarios où l’on souhaite autoriser des applications tierces à accéder aux données d’un utilisateur sans compromettre ses identifiants.  
+- **OpenID Connect** est la solution de choix pour les applications nécessitant une authentification utilisateur simplifiée et sécurisée, comme via un bouton "Se connecter avec Google".  
+- Les **fournisseurs d’identité** simplifient l’intégration des systèmes de gestion d’identité, mais nécessitent une gestion prudente des données et des dépendances.
+
+Dans les travaux pratiques, nous explorerons **l’implémentation d’OAuth 2.0** pour une API et **l’utilisation d’OpenID Connect** pour intégrer une connexion avec un fournisseur d’identité comme Google.

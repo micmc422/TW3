@@ -3,20 +3,23 @@ export default {
     "title": "Introduction"
   },
   "fonctionnement": "Fonctionnement",
- // "avantages-graphQL": "Avantages de GraphQL",
- // "limitations": "Limitations et défis de GraphQL",
-  // "cas-pratique": "Cas pratique",
- // "exercice": "Exercice",
- // "conclusion": "Conclusion",
- /*
-  "---": {
-    "type": "separator"
-  },
+  "avantages": "Avantages de GraphQL",
+  "limitations-defis": "Limitations et défis de GraphQL",
+  "usage-ecosysteme": "Cas d’usage typiques et écosystème GraphQL",
+  "exercice": "Exercice",
   "TLDR": "TLDR",
-  "quizz": "Quizz",
-  "----": {
-    "type": "separator"
-  },
-  "ressources": "Ressources"
-  */
+  "plan": {
+    "display": "hidden",
+  }
+  // "conclusion": "Conclusion",
+  /*
+   "---": {
+     "type": "separator"
+   },
+   "quizz": "Quizz",
+   "----": {
+     "type": "separator"
+   },
+   "ressources": "Ressources"
+   */
 }

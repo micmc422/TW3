@@ -5,7 +5,7 @@ import { Trash2Icon } from "lucide-react"
 
 export default function Questions() {
     const ref = useRef(null)
-    const { currentQuestion, questions, handleAnswser, userAnswers, score, totalScore } = useContext(QuizzContext)
+    const { currentQuestion, questions, handleAnswser, userAnswers, score, totalScore } = useContext(QuizzContext);
     const { question, answers } = questions[currentQuestion - 1] || {}
     useEffect(() => {
         updateSelectedClass()
@@ -13,15 +13,12 @@ export default function Questions() {
     // Fonction pour mettre à jour la classe CSS
     function updateSelectedClass() {
         ref?.current?.querySelectorAll('li').forEach((item, index) => {
-
-           // if (userAnswers[currentQuestion - 1] === 0) return
-            if (index + 1 === userAnswers[currentQuestion - 1]) {
-                if (questions[currentQuestion - 1]?.correctAnswer === index + 1) {
-                    console.log("isCorrect")
+            // if (userAnswers[currentQuestion - 1] === 0) return
+            if (userAnswers[currentQuestion - 1].includes(index + 1)) {
+                if (questions[currentQuestion - 1]?.correctAnswer.includes(index + 1)) {
                     item.style.backgroundColor = "rgba(0, 128, 0, .3)"
                     item.style.border = "solid 1px rgba(0, 128, 0, .8)"
                 } else {
-                    console.log("isIncorrect")
                     item.style.backgroundColor = "rgba(127, 29, 29, .3)";
                     item.style.border = "solid 1px rgba(127, 29, 29, .8)";
                 }
@@ -52,7 +49,7 @@ export default function Questions() {
             <div className="_flex" style={{ gap: "1rem" }}>
                 <QuizNextBtn>Continuer</QuizNextBtn>
                 <QuizResetBtn><Trash2Icon /></QuizResetBtn>
-                <div className="_flex _justify-end _mt-2 _text-2xl _font-bold _tracking-tight _text-slate-900 dark:_text-slate-100" style={{alignSelf: "center"}}>
+                <div className="_flex _justify-end _mt-2 _text-2xl _font-bold _tracking-tight _text-slate-900 dark:_text-slate-100" style={{ alignSelf: "center" }}>
                     {score} / {totalScore}
                 </div>
             </div>

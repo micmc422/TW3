@@ -1,0 +1,54 @@
+# **Concepts de Base**
+
+## **Les fondations de l’IAM**  
+Les concepts d’**Identification**, d’**Authentification** et d’**Autorisation** sont les piliers de la sécurité dans tout système informatique. Ils forment ce que l’on appelle la gestion des identités et des accès (IAM – Identity and Access Management). Voici une distinction claire entre ces notions :  
+
+- **Identification :**  
+  L’identification consiste à déclarer son identité à un système. C’est une étape où l’utilisateur dit qui il prétend être.  
+  **Exemple :** Entrer un nom d’utilisateur ou un email dans un formulaire de connexion.  
+
+- **Authentification () :**  
+  L’authentification sert à vérifier que l’identité déclarée est bien celle de l’utilisateur. Cela passe par un mécanisme de preuve.  
+  **Exemple :** Fournir un mot de passe associé au nom d’utilisateur, un code envoyé par SMS, ou une empreinte digitale.  
+
+- **Autorisation :**  
+  Une fois authentifié, l’autorisation détermine ce que l’utilisateur a le droit de faire ou d’accéder dans le système.  
+  **Exemple :** Un utilisateur standard ne peut pas accéder aux données d’administration d’un site.  
+
+Ces trois étapes sont essentielles pour protéger les ressources d’un système tout en offrant une expérience utilisateur sécurisée et fluide.
+
+---
+
+## **Enjeux de Sécurité sur le Web**
+La sécurité sur le web est confrontée à divers défis, notamment liés à l'authentification. Voici quelques-uns des principaux risques et attaques courantes :
+
+- **Attaques par force brute :**  
+  Les attaquants tentent toutes les combinaisons possibles de mots de passe pour accéder à un compte.
+
+- **Phishing :**  
+  Les utilisateurs sont trompés pour qu’ils divulguent leurs identifiants (ex : via des faux sites ou des emails frauduleux).
+
+- **Vol de sessions :**  
+  Des cookies de session non sécurisés peuvent être interceptés, permettant à un attaquant d'usurper l'identité de l'utilisateur.  
+
+- **Réutilisation des mots de passe :**  
+  Si un utilisateur utilise le même mot de passe sur plusieurs sites et qu’un site est compromis, cela peut compromettre tous ses comptes.  
+
+Ces problèmes montrent l'importance de mécanismes d'authentification solides, tels que la Multi-Factor Authentication (MFA), et des bonnes pratiques comme le stockage sécurisé des mots de passe.
+
+---
+
+## **Introduction à la Gestion des Identités (IAM – Identity and Access Management)**
+La gestion des identités et des accès (IAM) désigne l’ensemble des processus, technologies et politiques utilisés pour gérer les identités numériques et contrôler l’accès aux ressources. Un bon système IAM garantit :  
+1. **La sécurité :** En empêchant les accès non autorisés.  
+2. **La traçabilité :** En enregistrant qui accède à quoi et quand.  
+3. **La scalabilité :** En permettant une gestion efficace des utilisateurs, même à grande échelle.  
+
+**Les composants typiques d’un IAM :**  
+- **Systèmes d’authentification :** Comme les mots de passe, les tokens ou les biométries.  
+- **Gestion des rôles et permissions :** Définir ce que chaque utilisateur ou groupe d’utilisateurs peut faire.  
+- **Intégration des fournisseurs d’identité :** Permet d'utiliser des solutions tierces comme Google ou Microsoft pour gérer l'authentification.  
+
+---
+
+Ces concepts de base posent les fondations nécessaires pour comprendre et développer des systèmes d’authentification sécurisés, que nous explorerons davantage dans les modules suivants. 

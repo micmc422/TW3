@@ -1,0 +1,110 @@
+import Quizz from "@/components/quiz"
+export const quiz = {
+    quizTitle: "Quizz GraphQL",
+    quizSynopsis: <>Ce quiz est conçu pour tester vos connaissances sur GraphQL, une technologie moderne de requête pour les APIs. À travers ces questions, vous allez évaluer votre compréhension des concepts fondamentaux de GraphQL, de son fonctionnement, et de ses cas d’usage typiques.
+        <br />
+        Prenez quelques instants pour répondre aux questions et ainsi vérifier votre maîtrise des bases de GraphQL. Bonne chance !
+    </>,
+    questions: [
+        {
+            question: "Qu'est-ce que GraphQL ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "Un langage de programmation",
+                "Un système de base de données",
+                "Un langage de requête pour les APIs",
+                "Un framework web pour les applications réactives"
+            ],
+            correctAnswer: [3],
+            messageForCorrectAnswer: "Correct ! GraphQL est un langage de requête pour les APIs.",
+            messageForIncorrectAnswer: "Incorrect. GraphQL est un langage de requête pour les APIs.",
+            explanation: "GraphQL est un langage de requête open source, initialement développé par Facebook, qui permet aux clients de demander précisément les données dont ils ont besoin.",
+            point: 20
+        },
+        {
+            question: "Quels sont les principaux types d'opérations dans GraphQL ?",
+            questionType: "text",
+            answerSelectionType: "multiple",
+            answers: [
+                "Query",
+                "Mutation",
+                "Subscription",
+                "Fetch"
+            ],
+            correctAnswer: [1, 2, 3],
+            messageForCorrectAnswer: "Exact ! Les opérations principales de GraphQL sont Query, Mutation, et Subscription.",
+            messageForIncorrectAnswer: "Ces options ne sont pas toutes correctes. Fetch n'est pas une opération GraphQL.",
+            explanation: "GraphQL permet de récupérer des données avec Query, de modifier les données avec Mutation, et de recevoir des mises à jour en temps réel avec Subscription.",
+            point: 20
+        },
+        {
+            question: "Quel est le rôle du schéma (Schema) dans GraphQL ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "Définir la structure des données et les opérations disponibles",
+                "Créer des tables dans la base de données",
+                "Gérer les erreurs et les autorisations",
+                "Générer automatiquement du code côté client"
+            ],
+            correctAnswer: [1],
+            messageForCorrectAnswer: "Exact ! Le schéma définit la structure des données et les opérations disponibles dans une API GraphQL.",
+            messageForIncorrectAnswer: "Incorrect. Le rôle principal du schéma est de définir la structure des données et les opérations disponibles.",
+            explanation: "Le schéma est au cœur de GraphQL. Il définit les types, les relations entre les données, et les opérations que les clients peuvent exécuter.",
+            point: 20
+        },
+        {
+            question: "Quelle est la différence principale entre GraphQL et REST ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "GraphQL utilise un schéma tandis que REST ne le fait pas",
+                "GraphQL permet aux clients de spécifier les données nécessaires, contrairement à REST",
+                "GraphQL est basé sur HTTP, tandis que REST utilise d'autres protocoles",
+                "GraphQL ne supporte pas les bases de données relationnelles, contrairement à REST"
+            ],
+            correctAnswer: [2],
+            messageForCorrectAnswer: "Correct ! GraphQL permet aux clients de spécifier les données nécessaires, ce qui le différencie de REST.",
+            messageForIncorrectAnswer: "Incorrect. La principale différence est que GraphQL permet de demander uniquement les données nécessaires.",
+            explanation: "Avec GraphQL, les clients peuvent demander exactement les données dont ils ont besoin, réduisant ainsi le sur-fetching et le sous-fetching, contrairement à REST.",
+            point: 20
+        },
+        {
+            question: "Quels sont les avantages de GraphQL ?",
+            questionType: "text",
+            answerSelectionType: "multiple",
+            answers: [
+                "Réduction du nombre de requêtes nécessaires",
+                "Structure fixe et rigide des endpoints",
+                "Documentation automatique via introspection",
+                "Prise en charge des mises à jour en temps réel"
+            ],
+            correctAnswer: [1, 3, 4],
+            messageForCorrectAnswer: "Exact ! GraphQL offre des avantages comme la réduction des requêtes, la documentation automatique, et les mises à jour en temps réel.",
+            messageForIncorrectAnswer: "Ces options ne sont pas toutes correctes. GraphQL ne repose pas sur une structure rigide des endpoints.",
+            explanation: "GraphQL améliore la flexibilité des APIs en permettant des requêtes ciblées, une introspection automatique et la gestion du temps réel via Subscription.",
+            point: 20
+        },
+        {
+            question: "Quelle est la syntaxe pour écrire une requête GraphQL ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "{ user { id name email } }",
+                "SELECT id, name, email FROM user",
+                "fetch('/user').then(response => response.json())",
+                "get('/user').data"
+            ],
+            correctAnswer: [1],
+            messageForCorrectAnswer: "Correct ! La syntaxe de GraphQL utilise des accolades et un format déclaratif pour décrire les données demandées.",
+            messageForIncorrectAnswer: "Incorrect. La syntaxe de GraphQL repose sur des accolades et un format déclaratif.",
+            explanation: "Les requêtes GraphQL utilisent un langage déclaratif pour demander uniquement les données nécessaires, par exemple : { user { id name email } }.",
+            point: 20
+        }
+    ]
+};
+
+<Quizz quizData={quiz} />
+
+

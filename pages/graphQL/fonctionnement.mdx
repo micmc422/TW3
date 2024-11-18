@@ -1,9 +1,47 @@
-# **Fonctionnement de base de GraphQL**
+# **Fonctionnement de base de GraphQL**  
 
-Le véritable cœur de GraphQL réside dans sa manière d'organiser et d'exécuter les requêtes entre le client et le serveur. Contrairement aux APIs REST traditionnelles, où chaque requête correspond à une ressource spécifique, GraphQL offre une approche plus flexible : le client décide exactement quelles données il souhaite recevoir et dans quel format.
+GraphQL repose sur une approche déclarative qui permet aux clients de demander précisément les données dont ils ont besoin, tout en laissant au serveur le soin de les fournir selon les spécifications définies dans un schéma.  
 
-Dans ce chapitre, nous allons explorer les principes fondamentaux de GraphQL, à savoir son **schéma**, ses **types**, et la manière dont on effectue des **requêtes** pour obtenir ou modifier des données. Vous découvrirez comment GraphQL permet aux développeurs de structurer leurs échanges de données avec une grande précision, tout en minimisant la surcharge réseau.
+## **Les concepts clés :**  
+GraphQL s’articule autour de plusieurs concepts fondamentaux :  
+1. **Schéma (Schema)** : Le cœur de GraphQL. Il définit la structure des données, leurs types et les opérations disponibles pour les requêtes, mutations et abonnements.  
+2. **Types** : GraphQL repose sur un typage fort, comprenant des types de base (scalars) comme `String`, `Int`, et des types personnalisés pour représenter des objets plus complexes.  
+3. **Requêtes (Query)** : Une méthode pour récupérer les données. Contrairement à REST, vous spécifiez exactement ce que vous voulez et dans quelle structure.  
+4. **Mutations** : Utilisées pour modifier les données (ajouter, mettre à jour, supprimer).  
+5. **Subscriptions** : Permettent de recevoir des mises à jour en temps réel, souvent via WebSockets.  
 
-Nous aborderons également les **mutations**, qui permettent de modifier des données, ainsi que les **subscriptions**, qui offrent des mises à jour en temps réel, deux fonctionnalités puissantes qui distinguent GraphQL des autres technologies de requêtes. À travers des exemples pratiques, nous verrons comment implémenter et interagir avec un serveur GraphQL simple.
+## **Workflow général :**  
+1. **Définir un schéma** : Le développeur crée un schéma décrivant toutes les données disponibles et leurs relations.  
+2. **Faire des requêtes** : Le client construit des requêtes en utilisant le langage de requête GraphQL, clair et auto-documenté.  
+3. **Résoudre les données** : Le serveur utilise des resolvers, des fonctions qui déterminent comment obtenir les données demandées, en interagissant souvent avec une base de données ou une autre API.  
+4. **Recevoir une réponse structurée** : Le serveur retourne les données au client dans un format JSON, selon la structure demandée.  
 
-Ce chapitre vise à vous donner une première maîtrise des concepts et des mécanismes de base de GraphQL, et à comprendre comment il redéfinit l’interaction entre le front-end et le back-end dans une application moderne.
+## **Exemple simplifié :**  
+Imaginons une base de données contenant des utilisateurs. En GraphQL :  
+- Une **requête** pour obtenir le nom et l’e-mail d’un utilisateur pourrait ressembler à :  
+  ```graphql
+  query {
+    user(id: 1) {
+      name
+      email
+    }
+  }
+  ```
+- La réponse JSON :  
+  ```json
+  {
+    "data": {
+      "user": {
+        "name": "Alice",
+        "email": "alice@example.com"
+      }
+    }
+  }
+  ```  
+
+## **Avantages de ce fonctionnement :**  
+- **Précision** : Demander uniquement les champs nécessaires.  
+- **Flexibilité** : Adapter les requêtes sans modifications majeures côté serveur.  
+- **Unification** : Accéder à plusieurs sources de données avec une seule API.  
+
+Dans les sections suivantes, nous explorerons en détail ces concepts pour mieux comprendre comment exploiter GraphQL dans des projets concrets.  

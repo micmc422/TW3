@@ -1,5 +1,4 @@
 import Quizz from "@/components/quiz"
-import { QuizStructure } from "@/components/quiz/type";
 export const quiz = {
   quizTitle: "Quizz Git",
   quizSynopsis: <>Ce quiz est conçu pour tester vos connaissances sur Git, un système de contrôle de version distribué. À travers ces questions, vous allez évaluer votre compréhension des concepts fondamentaux de Git, de ses commandes de base, de la gestion des branches et du travail collaboratif.
@@ -17,7 +16,7 @@ export const quiz = {
         "Un système de contrôle de version distribué",
         "Un langage de programmation"
       ],
-      correctAnswer: 3,
+      correctAnswer: [3],
       messageForCorrectAnswer: "Correct ! Git est bien un système de contrôle de version distribué.",
       messageForIncorrectAnswer: "Ces options sont incorrectes. Git est un outil spécifique pour la gestion de version.",
       explanation: "Git est un système de contrôle de version distribué qui permet de suivre les modifications apportées à un projet au fil du temps.",
@@ -33,7 +32,7 @@ export const quiz = {
         "git setup",
         "git initialize"
       ],
-      correctAnswer: 1,
+      correctAnswer: [1],
       messageForCorrectAnswer: "Correct ! La commande git init initialise un nouveau dépôt Git local.",
       messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
       explanation: "La commande git init crée un nouveau dépôt Git dans le dossier courant. Elle initialise un sous-dossier .git qui contient tous les fichiers nécessaires au suivi de la version.",
@@ -49,7 +48,7 @@ export const quiz = {
         "git state",
         "git condition"
       ],
-      correctAnswer: 1,
+      correctAnswer: [1],
       messageForCorrectAnswer: "Correct ! La commande git status affiche l'état actuel du dépôt.",
       messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
       explanation: "La commande git status affiche l'état actuel du dépôt, montrant les fichiers modifiés, ajoutés ou supprimés.",
@@ -65,7 +64,7 @@ export const quiz = {
         "git prepare",
         "git ready"
       ],
-      correctAnswer: 1,
+      correctAnswer: [1],
       messageForCorrectAnswer: "Correct ! La commande git add ajoute des fichiers à la zone de staging.",
       messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
       explanation: "La commande git add permet d'ajouter des fichiers à la zone de staging. On peut ajouter un fichier spécifique ou tous les fichiers modifiés avec git add .",
@@ -81,7 +80,7 @@ export const quiz = {
         "git switch -c nom_de_la_branche",
         "git create nom_de_la_branche"
       ],
-      correctAnswer: 1,
+      correctAnswer: [1],
       messageForCorrectAnswer: "Correct ! La commande git checkout -b crée une nouvelle branche et s'y déplace.",
       messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
       explanation: "La commande git checkout -b nom_de_la_branche crée une nouvelle branche et s'y déplace immédiatement. C'est une forme courte de git branch nom_de_la_branche puis git checkout nom_de_la_branche.",
@@ -97,7 +96,7 @@ export const quiz = {
         "git combine nom_de_la_branche",
         "git blend nom_de_la_branche"
       ],
-      correctAnswer: 1,
+      correctAnswer: [1],
       messageForCorrectAnswer: "Correct ! La commande git merge fusionne une branche dans la branche active.",
       messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
       explanation: "La commande git merge permet de fusionner une branche dans la branche active. Par exemple, git merge feature fusionnerait la branche 'feature' dans la branche actuelle.",
@@ -113,7 +112,7 @@ export const quiz = {
         "git fetch URL_du_dépôt",
         "git pull URL_du_dépôt"
       ],
-      correctAnswer: 1,
+      correctAnswer: [1],
       messageForCorrectAnswer: "Correct ! La commande git clone permet de cloner un dépôt distant.",
       messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
       explanation: "La commande git clone permet de copier un dépôt existant vers un nouveau dossier. Elle crée une copie complète du dépôt, incluant toute l'histoire des commits.",
@@ -129,7 +128,7 @@ export const quiz = {
         "git upload origin nom_de_la_branche",
         "git sync origin nom_de_la_branche"
       ],
-      correctAnswer: 1,
+      correctAnswer: [1],
       messageForCorrectAnswer: "Correct ! La commande git push envoie vos modifications vers un dépôt distant.",
       messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
       explanation: "La commande git push permet d'envoyer vos commits locaux vers un dépôt distant. Par exemple, git push origin main enverrait vos commits de la branche main vers le dépôt distant nommé 'origin'.",
@@ -145,7 +144,7 @@ export const quiz = {
         "git get origin nom_de_la_branche",
         "git receive origin nom_de_la_branche"
       ],
-      correctAnswer: 1,
+      correctAnswer: [1],
       messageForCorrectAnswer: "Correct ! La commande git pull obtient les dernières modifications depuis un dépôt distant.",
       messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
       explanation: "La commande git pull combine les actions de git fetch et git merge. Elle récupère les changements depuis le dépôt distant et les fusionne dans votre branche locale.",

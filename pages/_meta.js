@@ -26,8 +26,11 @@ export default {
   "graphQL": {
     "title": "GraphQL",
     "type": "page",
-     "display": "hidden",
- },
+  },
+  "authentification": {
+    "title": "Authentification",
+    "type": "page",
+  },
   "react": {
     "title": "REACT",
     "type": "page"

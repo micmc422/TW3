@@ -1,0 +1,71 @@
+# **Types d'Authentification**
+
+## **Authentification Basée sur un Mot de Passe (Classique)**  
+L'authentification par mot de passe est la méthode la plus ancienne et la plus couramment utilisée. Elle consiste à demander à un utilisateur de fournir un identifiant (nom d'utilisateur ou email) accompagné d'un mot de passe connu uniquement de lui.  
+
+**Avantages :**  
+- Simple à implémenter.  
+- Facile pour les utilisateurs qui n’ont pas besoin de matériel ou d’applications supplémentaires.  
+
+**Inconvénients :**  
+- **Faible sécurité** : Les mots de passe peuvent être devinés, volés (phishing) ou forcés (attaques par force brute).  
+- **Réutilisation fréquente des mots de passe** : Les utilisateurs utilisent souvent les mêmes mots de passe sur plusieurs plateformes, augmentant les risques en cas de fuite.  
+- **Gestion complexe** : Besoin de politiques comme la complexité minimale, la rotation périodique des mots de passe, etc.  
+
+**Exemple pratique :** Une page de connexion où l'utilisateur entre son email et son mot de passe pour accéder à un compte.  
+
+---
+
+## **Multi-Factor Authentication (MFA)**  
+La Multi-Factor Authentication (authentification à plusieurs facteurs) combine deux ou plusieurs preuves pour vérifier l’identité de l’utilisateur. Ces facteurs se répartissent généralement en trois catégories :  
+1. **Ce que vous connaissez** (mot de passe, code PIN).  
+2. **Ce que vous possédez** (téléphone, clé USB de sécurité).  
+3. **Ce que vous êtes** (empreinte digitale, reconnaissance faciale).  
+
+**Exemple d'implémentation MFA :**  
+1. L’utilisateur saisit son mot de passe.  
+2. Un code temporaire (OTP) est envoyé sur son téléphone ou généré par une application comme Google Authenticator.  
+3. L’utilisateur entre ce code pour compléter la connexion.  
+
+**Avantages :**  
+- Sécurité renforcée, même si un facteur (comme le mot de passe) est compromis.  
+- Réduction du risque de vol d’identité.  
+
+**Inconvénients :**  
+- Complexité accrue pour l’utilisateur (besoin de plusieurs étapes).  
+- Nécessité d’outils ou de technologies supplémentaires (ex : téléphone).  
+
+---
+
+## **Authentification sans Mot de Passe (Passkeys)**  
+L'authentification sans mot de passe remplace complètement les mots de passe par des mécanismes plus sûrs, souvent basés sur des technologies biométriques ou des clés cryptographiques.  
+
+**Principe de fonctionnement :**  
+- L’utilisateur s’authentifie avec un dispositif qu’il possède (téléphone, clé de sécurité, etc.) et/ou une caractéristique unique (empreinte digitale, reconnaissance faciale).  
+- Les systèmes comme **WebAuthn** permettent de générer une clé publique liée à un appareil pour authentifier l’utilisateur.  
+
+**Exemple :**  
+- Un utilisateur ouvre une application et scanne son empreinte digitale ou utilise Face ID pour se connecter sans avoir à entrer de mot de passe.  
+- Les **passkeys**, introduites par des acteurs comme Apple, Google et Microsoft, permettent un accès sécurisé en utilisant des clés cryptographiques stockées localement.  
+
+**Avantages :**  
+- **Sécurité élevée** : Élimine les risques liés aux mots de passe (phishing, attaques par force brute, etc.).  
+- **Simplicité d’utilisation** : Une seule étape, rapide et conviviale.  
+
+**Inconvénients :**  
+- Dépendance à des technologies spécifiques (dispositifs compatibles).  
+- Problèmes potentiels de récupération en cas de perte du dispositif principal.  
+
+---
+
+## **Comparaison des Types d'Authentification**  
+
+| **Type**                  | **Avantages**                             | **Inconvénients**                          | **Exemples d'utilisation**              |
+|---------------------------|------------------------------------------|-------------------------------------------|----------------------------------------|
+| Basée sur un mot de passe | Simple à implémenter et universelle       | Vulnérable aux attaques, faible sécurité   | Connexion de base à des sites web      |
+| Multi-Factor Authentication (MFA) | Très sécurisée, même en cas de vol d’un facteur | Plus complexe à utiliser                  | Accès aux services bancaires           |
+| Authentification sans mot de passe | Supprime les risques liés aux mots de passe   | Nécessite des technologies avancées        | Connexion aux systèmes modernes (WebAuthn, passkeys) |
+
+---
+
+Ces différents types d'authentification sont adaptés à des besoins variés. Tandis que les mots de passe restent courants, la tendance évolue vers des solutions plus sûres comme le MFA et les systèmes sans mot de passe. Les travaux pratiques vous permettront d'explorer chacune de ces méthodes en détail. 

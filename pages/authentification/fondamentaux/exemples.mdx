@@ -1,0 +1,207 @@
+import { Steps } from 'nextra/components'
+import { FileTree } from 'nextra/components'
+
+# **Activité Pratique : Mise en Place d’une Page Simple de Connexion avec Mot de Passe**
+
+Dans cette activité, nous allons créer une page de connexion simple en utilisant **Node.js** avec Express comme framework. Cette application permettra aux utilisateurs de saisir un nom d'utilisateur et un mot de passe, puis de les authentifier à l'aide d'une vérification simple.
+
+
+<Steps>
+## **Initialiser le Projet Node.js**  
+   Créez un nouveau projet et installez les dépendances nécessaires :
+   ```bash copy
+   mkdir simple-login
+   cd simple-login
+   npm init -y
+   npm install express body-parser bcrypt ejs
+   ```
+
+## **Créer la Structure des Fichiers**  
+   Organisez les fichiers comme suit :
+
+<FileTree>
+  <FileTree.Folder name="simple-login" defaultOpen>
+    <FileTree.File name="app.js" />
+    <FileTree.Folder name="views" defaultOpen>
+      <FileTree.File name="login.ejs" />
+      <FileTree.File name="dashboard.ejs" />
+    </FileTree.Folder>
+    <FileTree.Folder name="public" defaultOpen>
+      <FileTree.File name="styles.css" />
+    </FileTree.Folder>
+    <FileTree.File name="package.json" />
+  </FileTree.Folder>
+</FileTree>
+
+## **Configurer le Serveur (app.js)**  
+   Voici le code du serveur principal :
+   ```javascript copy
+   const express = require('express');
+   const bodyParser = require('body-parser');
+   const bcrypt = require('bcrypt');
+
+   const app = express();
+
+   // Middleware
+   app.use(bodyParser.urlencoded({ extended: true }));
+   app.use(express.static('public'));
+   app.set('view engine', 'ejs');
+
+   // Simuler une base de données
+   const users = [
+       { username: 'testuser', password: '$2b$10$KbQrP7Q9Wq1P6aPA7RzqlujPmbTxF8UgMFCBf4peO0XvZRmkp5B92' } // Password: "password123"
+   ];
+
+   // Page de connexion
+   app.get('/', (req, res) => {
+       res.render('login', { error: null });
+   });
+
+   // Vérification des identifiants
+   app.post('/login', async (req, res) => {
+       const { username, password } = req.body;
+       const user = users.find(u => u.username === username);
+
+       if (!user) {
+           return res.render('login', { error: 'Nom d’utilisateur incorrect.' });
+       }
+
+       const match = await bcrypt.compare(password, user.password);
+       if (!match) {
+           return res.render('login', { error: 'Mot de passe incorrect.' });
+       }
+
+       // Authentification réussie
+       res.render('dashboard', { username });
+   });
+
+   // Lancer le serveur
+   const PORT = 3000;
+   app.listen(PORT, () => {
+       console.log(`Serveur en cours d’exécution sur http://localhost:${PORT}`);
+   });
+   ```
+
+
+## **Créer les Vues (EJS)**  
+
+- **login.ejs** (page de connexion) :
+   ```html copy
+   <!DOCTYPE html>
+   <html lang="fr">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Connexion</title>
+       <link rel="stylesheet" href="/styles.css">
+   </head>
+   <body>
+       <div class="container">
+           <h2>Connexion</h2>
+           <% if (error) { %>
+               <p class="error"><%= error %></p>
+           <% } %>
+           <form action="/login" method="POST">
+               <label for="username">Nom d'utilisateur :</label>
+               <input type="text" id="username" name="username" required>
+               <label for="password">Mot de passe :</label>
+               <input type="password" id="password" name="password" required>
+               <button type="submit">Se connecter</button>
+           </form>
+       </div>
+   </body>
+   </html>
+   ```
+
+- **dashboard.ejs** (page après connexion) :
+   ```html copy
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Tableau de bord</title>
+       <link rel="stylesheet" href="/styles.css">
+   </head>
+   <body>
+       <div class="container">
+           <h2>Bienvenue, <%= username %> !</h2>
+           <p>Vous êtes connecté avec succès.</p>
+       </div>
+   </body>
+   </html>
+   ```
+
+
+## **Ajouter un Fichier CSS Simple (public/styles.css)**  
+   ```css copy
+   body {
+       font-family: Arial, sans-serif;
+       background-color: #f4f4f4;
+       margin: 0;
+       padding: 0;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       height: 100vh;
+   }
+   .container {
+       background: white;
+       padding: 20px;
+       border-radius: 5px;
+       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       width: 300px;
+   }
+   h2 {
+       text-align: center;
+       margin-bottom: 20px;
+   }
+   .error {
+       color: red;
+       text-align: center;
+   }
+   form {
+       display: flex;
+       flex-direction: column;
+   }
+   label {
+       margin-bottom: 5px;
+   }
+   input {
+       margin-bottom: 15px;
+       padding: 8px;
+       border: 1px solid #ccc;
+       border-radius: 3px;
+   }
+   button {
+       background-color: #007bff;
+       color: white;
+       border: none;
+       padding: 10px;
+       border-radius: 3px;
+       cursor: pointer;
+   }
+   button:hover {
+       background-color: #0056b3;
+   }
+   ```
+
+
+## **Tester l’Application**  
+- Lancez le serveur avec la commande :  
+   ```bash copy
+   node app.js
+   ```
+- Accédez à `http://localhost:3000` dans votre navigateur.  
+- Testez la connexion avec :
+  - **Nom d’utilisateur :** `testuser`
+  - **Mot de passe :** `password123`
+
+</Steps>
+
+## **Explications Techniques**
+- **bcrypt :** Utilisé pour sécuriser les mots de passe en les hachant avant de les stocker dans une base de données.  
+- **EJS :** Permet de créer des vues dynamiques en intégrant des variables côté serveur dans des pages HTML.  
+- **Body-parser :** Middleware pour traiter les données soumises via un formulaire HTML.
+
+Ce projet constitue une base pour explorer des systèmes d'authentification plus avancés comme ceux basés sur JWT ou OAuth, que nous verrons dans les prochains modules.

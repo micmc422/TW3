@@ -1,5 +1,4 @@
 import Quizz from "@/components/quiz"
-import { QuizStructure } from "@/components/quiz/type";
 export const quiz = {
     quizTitle: "Quizz Node.js",
     quizSynopsis: <>Ce quiz est conçu pour tester vos connaissances sur Node.js, un environnement d'exécution JavaScript côté serveur. À travers ces questions, vous allez évaluer votre compréhension des bases de Node.js, de son installation, de ses modules, de la programmation asynchrone et de l'utilisation d'Express.js.
@@ -17,7 +16,7 @@ export const quiz = {
                 "Un framework web",
                 "Un compilateur"
             ],
-            correctAnswer: 2,
+            correctAnswer: [2],
             messageForCorrectAnswer: "Correct ! Node.js est bien un environnement d'exécution JavaScript côté serveur.",
             messageForIncorrectAnswer: "Ces options sont incorrectes. Node.js est un environnement d'exécution JavaScript spécifique.",
             explanation: "Node.js est un environnement d'exécution JavaScript qui permet d'exécuter du code JavaScript de manière asynchrone et non bloquante sur le serveur.",
@@ -33,7 +32,7 @@ export const quiz = {
                 "Pour son support natif des bases de données relationnelles comme MySQL",
                 "Toutes les options ci-dessus"
             ],
-            correctAnswer: 1,
+            correctAnswer: [1],
             messageForCorrectAnswer: "Vous avez raison ! Toutes ces options sont correctes.",
             messageForIncorrectAnswer: "Ces options ne sont pas toutes correctes. Node.js offre plusieurs avantages.",
             explanation: "Node.js offre plusieurs avantages : il est non bloquant, utilise un moteur JavaScript, et est relativement facile à utiliser. Ces caractéristiques le rendent particulièrement adapté pour le développement de services backend modernes.",
@@ -49,7 +48,7 @@ export const quiz = {
                 "process, os, util",
                 "Tous les options ci-dessus"
             ],
-            correctAnswer: 4,
+            correctAnswer: [4],
             messageForCorrectAnswer: "Excellent ! Vous avez mentionné tous les modules intégrés de Node.js.",
             messageForIncorrectAnswer: "Ces options ne sont pas toutes correctes. Certains modules sont effectivement intégrés, mais il y en a d'autres aussi.",
             explanation: "Node.js dispose de nombreux modules intégrés, dont http, fs, path, process, os, util, module, buffer, crypto, et bien d'autres. Ces modules offrent des fonctionnalités essentielles pour le développement d'applications Node.js.",
@@ -64,7 +63,7 @@ export const quiz = {
                 "include './nomDuFichier.js'",
                 "use ./nomDuFichier.js"
             ],
-            correctAnswer: 1,
+            correctAnswer: [1],
             messageForCorrectAnswer: "Correct ! La syntaxe correcte pour importer un module personnalisé est require().",
             messageForIncorrectAnswer: "Ces options ne sont pas correctes. La syntaxe correcte est différente de celles-ci.",
             explanation: "Pour importer un module personnalisé dans Node.js, vous devez utiliser la fonction require(). Par exemple : const myModule = require('./monMod.js').",
@@ -80,7 +79,7 @@ export const quiz = {
                 "Un callback peut être synchrone ou asynchrone tandis qu'une Promise gère uniquement l'asynchronisme",
                 "Toutes les options ci-dessus"
             ],
-            correctAnswer: 3,
+            correctAnswer: [3],
             messageForCorrectAnswer: "Bien joué ! Vous avez correctement identifié la différence principale entre callbacks et Promises.",
             messageForIncorrectAnswer: "Ces options ne sont pas toutes correctes. Bien qu'elles soient généralement vraies, elles ne couvrent pas toutes les différences.",
             explanation: "Callbacks et Promises sont utilisés pour la programmation asynchrone en Node.js. Les callbacks sont des fonctions passées en paramètre d'autres fonctions, tandis que les Promises sont des objets représentant la résolution ou le rejet d'une opération asynchrone.",
@@ -96,7 +95,7 @@ export const quiz = {
                 "async function example() { promise.catch(); }",
                 "async function example() { promise.finally(); }"
             ],
-            correctAnswer: 1,
+            correctAnswer: [1],
             messageForCorrectAnswer: "Correct ! La syntaxe correcte pour utiliser async/await est await promise.",
             messageForIncorrectAnswer: "Ces options ne sont pas correctes. La syntaxe correcte est différente de celles-ci.",
             explanation: "Pour utiliser async/await avec une Promise en Node.js, vous devez utiliser la syntaxe await promise. Cela rend le code asynchrone.",

@@ -1,0 +1,109 @@
+# **Les protocoles standards d’authentification**
+
+Les protocoles d’authentification jouent un rôle crucial dans la sécurisation des interactions web. Ils définissent des normes permettant aux systèmes d'authentifier les utilisateurs et de gérer les sessions de manière cohérente et sécurisée. Voici une présentation des principaux protocoles utilisés sur le web.
+
+---
+
+## **1. HTTP basic auth et digest auth**
+
+**HTTP basic auth :**  
+- **Fonctionnement :**  
+  Ce protocole repose sur l'envoi des identifiants utilisateur (nom d’utilisateur et mot de passe) dans l'en-tête HTTP Authorization. Ces informations sont encodées en Base64 mais **non chiffrées**.  
+  Exemple d’en-tête :  
+  ```
+  Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+  ```
+
+- **Avantages :**  
+  - Simple à mettre en œuvre.  
+  - Supporté nativement par les serveurs web et les navigateurs.  
+
+- **Inconvénients :**  
+  - **Pas sécurisé** sans HTTPS (les identifiants peuvent être interceptés).  
+  - Nécessite une gestion prudente des sessions pour éviter les vulnérabilités.
+
+---
+
+**HTTP digest auth :**  
+- **Fonctionnement :**  
+  Une amélioration de Basic Auth où les identifiants ne sont pas transmis directement. Au lieu de cela, le serveur envoie un "challenge" au client, qui retourne un hash (digest) calculé à partir des identifiants, du nonce (valeur aléatoire), et d'autres données.
+
+- **Avantages :**  
+  - Plus sécurisé que Basic Auth (les identifiants ne transitent pas directement).  
+  - Résiste aux attaques par interception dans certains cas.  
+
+- **Inconvénients :**  
+  - Plus complexe à configurer.  
+  - Vulnérable si le serveur n’utilise pas HTTPS.
+
+---
+
+## **2. OAuth 2.0 et OpenID Connect**
+
+**OAuth 2.0 :**  
+- **Fonctionnement :**  
+  OAuth 2.0 est un protocole d'autorisation permettant à une application tierce d'accéder aux ressources d'un utilisateur sans lui demander ses identifiants. L'utilisateur autorise l'accès, et un **jeton d'accès (access token)** est émis pour l'application tierce.  
+
+- **Cas d’utilisation :**  
+  - Connexion à des APIs tierces (ex. : permettre à une application d’accéder à vos photos Google).  
+  - Gestion de permissions pour des services comme GitHub ou Facebook.
+
+- **Avantages :**  
+  - Hautement sécurisé (utilise des jetons temporaires).  
+  - Permet une délégation d’accès sans partager les mots de passe.  
+
+- **Inconvénients :**  
+  - Complexité d’implémentation.  
+  - Les jetons peuvent être volés s’ils ne sont pas correctement protégés.
+
+---
+
+**OpenID Connect (OIDC) :**  
+- **Fonctionnement :**  
+  Une extension d’OAuth 2.0 qui ajoute un mécanisme d’authentification. En plus d’autoriser l’accès aux ressources, OIDC permet de vérifier l’identité de l’utilisateur via un jeton d’identité (ID Token).  
+
+- **Avantages :**  
+  - Combine authentification et autorisation.  
+  - Standard pour les **Single Sign-On (SSO)** : une seule authentification pour accéder à plusieurs services.  
+
+- **Exemple :** Se connecter à une application avec votre compte Google.
+
+---
+
+## **3. SAML (Security Assertion Markup Language)**
+
+**SAML :**  
+- **Fonctionnement :**  
+  SAML est un protocole basé sur XML pour l’authentification et l’autorisation, souvent utilisé dans les environnements d’entreprise pour le Single Sign-On (SSO). Il fonctionne avec des assertions XML échangées entre trois entités :  
+  - **Identity Provider (IdP)** : Fournit l’identité (ex. : Active Directory).  
+  - **Service Provider (SP)** : L’application ou le service auquel l’utilisateur veut accéder.  
+  - **Utilisateur** : Celui qui demande l'accès.  
+
+- **Processus simplifié :**  
+  1. L'utilisateur demande l'accès à un service (SP).  
+  2. Le SP redirige vers l'IdP pour s'authentifier.  
+  3. Une assertion SAML est générée et envoyée au SP pour prouver l'identité.  
+
+- **Avantages :**  
+  - Fortement sécurisé et adapté aux entreprises.  
+  - Supporte SSO sur de nombreuses applications.  
+
+- **Inconvénients :**  
+  - Complexité élevée (XML lourd, gestion des certificats).  
+  - Moins flexible que OAuth ou OpenID Connect pour les API modernes.
+
+---
+
+## **Comparaison des Protocoles**
+
+| **Protocole**         | **Objectif Principal**                | **Cas d’Utilisation**                                | **Avantages**                     | **Inconvénients**                 |
+|------------------------|---------------------------------------|----------------------------------------------------|------------------------------------|-----------------------------------|
+| HTTP Basic Auth        | Authentification simple              | Petits projets ou tests                            | Simple à mettre en œuvre           | Pas sécurisé sans HTTPS           |
+| HTTP Digest Auth       | Authentification améliorée           | Sites web nécessitant plus de sécurité qu’un Basic Auth | Résistance à certaines attaques    | Configuration plus complexe       |
+| OAuth 2.0              | Autorisation                         | Accès délégué aux API (Google, Facebook)           | Sécurisé et flexible               | Complexe à implémenter            |
+| OpenID Connect         | Authentification et autorisation     | SSO et intégration d’identité (Google, Okta)       | Convivial pour les utilisateurs    | Dépend des fournisseurs d’identité |
+| SAML                   | Authentification et autorisation SSO | SSO en entreprise                                  | Sécurisé, adapté aux entreprises   | Complexité du protocole           |
+
+---
+
+Ces protocoles standardisés sont adaptés à des besoins différents. L’utilisation d’un protocole dépend souvent du contexte : par exemple, OAuth 2.0 est idéal pour les API modernes, tandis que SAML reste très utilisé dans les entreprises traditionnelles. Dans nos prochaines activités, nous approfondirons OAuth 2.0 et OpenID Connect pour une implémentation pratique. 

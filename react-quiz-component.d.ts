@@ -5,22 +5,23 @@ declare module 'react-quiz-component' {
 
     type AnswerSelectionType = "single" | "multiple"
 
-    type Question = {
-        question: string
+    export type Question = {
+        question: ReactNode
         questionType: QuestionType
-        answers: string[]
-        correctAnswer: string
+        answers: number[][]
+        correctAnswer: number[]
         answerSelectionType: AnswerSelectionType
-        messageForCorrectAnswer?: string
-        messageForIncorrectAnswer?: string
-        explanation?: string
+        messageForCorrectAnswer?: ReactNode
+        messageForIncorrectAnswer?: ReactNode
+        explanation?: ReactNode
         point?: string
         segment?: string
     }
 
-    type QuizStructure = {
-        quizTitle: string
+    export type QuizStructure = {
+        quizTitle: ReactNode
         questions: question[]
+        quizSynopsis: ReactNode
     }
 
     type QuizProps = {
@@ -36,5 +37,6 @@ declare module 'react-quiz-component' {
     }
 
     const Quiz: (props: QuizProps) => ReactElement;
+
     export default Quiz;
 }

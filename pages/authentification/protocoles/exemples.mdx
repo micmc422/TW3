@@ -1,0 +1,176 @@
+import { Steps } from 'nextra/components'
+
+# **Activité Pratique : Implémentation d’une Authentification OAuth 2.0 avec Google**
+
+Dans cette activité, nous allons mettre en place une authentification OAuth 2.0 en utilisant **Google** comme fournisseur d'identité (IdP). L'application permettra aux utilisateurs de se connecter avec leur compte Google.  
+
+<Steps>
+
+## **Configuration de l’application Google**
+<Steps>
+### **Accéder à la Console Google Cloud :**  
+   Rendez-vous sur [Google Cloud Console](https://console.cloud.google.com/) et connectez-vous avec votre compte Google.
+
+### **Créer un projet :**  
+   - Cliquez sur **"Créer un projet"**. Donnez-lui un nom, puis cliquez sur **"Créer"**.
+
+### **Configurer l’OAuth Consent Screen (écran de consentement OAuth) :**  
+   - Allez dans **"API & Services" → "Consentement OAuth"**.  
+   - Choisissez **type externe** si vous souhaitez permettre à d'autres utilisateurs d'utiliser votre application.  
+   - Remplissez les champs requis, comme le nom de l'application et votre email.  
+   - Enregistrez.
+
+### **Créer des identifiants OAuth 2.0 :**  
+   - Rendez-vous dans **"Identifiants" → "Créer des identifiants" → "Identifiants OAuth 2.0"**.  
+   - Sélectionnez **Application web** comme type.  
+   - Configurez les **URI de redirection** (callback URL) :  
+     Par exemple :  
+     ```
+     http://localhost:3000/auth/google/callback
+     ```
+   - Cliquez sur **Créer** et notez votre **Client ID** et **Client Secret**.
+</Steps>
+
+## **Initialiser le Projet Node.js**
+<Steps>
+### **Créer un projet Node.js :**  
+   ```bash
+   mkdir oauth2-google-auth
+   cd oauth2-google-auth
+   npm init -y
+   npm install express passport passport-google-oauth20 express-session dotenv
+   ```
+
+### **Configurer l’environnement :**  
+   Créez un fichier `.env` pour stocker vos identifiants OAuth :  
+   ```plaintext
+   GOOGLE_CLIENT_ID=<votre_client_id>
+   GOOGLE_CLIENT_SECRET=<votre_client_secret>
+   SESSION_SECRET=<votre_session_secret>
+   CALLBACK_URL=http://localhost:3000/auth/google/callback
+   ```
+</Steps>
+
+## **Écrire le Code de l’Application**
+
+**Créer un fichier `app.js` :**
+
+```javascript
+const express = require('express');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const session = require('express-session');
+require('dotenv').config();
+
+const app = express();
+
+// Configuration de la session
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+}));
+
+// Initialisation de Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Configuration de Passport avec Google OAuth
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: process.env.CALLBACK_URL,
+}, (accessToken, refreshToken, profile, done) => {
+    // Stocker le profil utilisateur
+    return done(null, profile);
+}));
+
+// Sérialiser les données utilisateur dans la session
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+
+// Désérialiser les données utilisateur depuis la session
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
+
+// Route principale
+app.get('/', (req, res) => {
+    res.send(`<h1>Bienvenue</h1><a href="/auth/google">Se connecter avec Google</a>`);
+});
+
+// Route pour démarrer l’authentification avec Google
+app.get('/auth/google', passport.authenticate('google', {
+    scope: ['profile', 'email'],
+}));
+
+// Route de callback après l'authentification
+app.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/' }),
+    (req, res) => {
+        res.redirect('/dashboard');
+    }
+);
+
+// Route protégée : tableau de bord
+app.get('/dashboard', (req, res) => {
+    if (!req.isAuthenticated()) {
+        return res.redirect('/');
+    }
+    res.send(`<h1>Bonjour, ${req.user.displayName}!</h1><a href="/logout">Se déconnecter</a>`);
+});
+
+// Déconnexion
+app.get('/logout', (req, res) => {
+    req.logout(() => {
+        res.redirect('/');
+    });
+});
+
+// Lancer le serveur
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Serveur en cours d’exécution sur http://localhost:${PORT}`);
+});
+```
+
+---
+
+## **Tester l’Application**
+<Steps>
+### **Lancer le serveur :**  
+   ```bash
+   node app.js
+   ```
+
+### **Accéder à l’application :**  
+   Ouvrez votre navigateur et rendez-vous sur [http://localhost:3000](http://localhost:3000).  
+   - Cliquez sur **"Se connecter avec Google"**.
+   - Connectez-vous avec votre compte Google.  
+   - Une fois authentifié, vous serez redirigé vers le tableau de bord qui affichera votre nom.  
+</Steps>
+
+---
+</Steps>
+
+## **Explications Techniques**
+**Passport.js :**  
+   - Un middleware d’authentification pour Node.js.  
+   - La stratégie `passport-google-oauth20` est utilisée pour intégrer OAuth 2.0 avec Google.
+
+**Sessions avec Express :**  
+   - Les informations utilisateur sont stockées dans une session pour persister entre les requêtes.
+
+**Callback URL :**  
+   - Le point d’entrée où Google redirige après l’authentification.  
+   - Cette URL doit être enregistrée dans les paramètres OAuth de Google.
+
+---
+
+## **Allez plus loin**
+- Ajouter une base de données pour stocker les utilisateurs.  
+- Protéger les routes avec des middlewares pour vérifier si un utilisateur est authentifié.  
+- Intégrer d'autres fournisseurs (GitHub, Facebook).  
+
+Cette activité pratique vous permet de comprendre le fonctionnement d’OAuth 2.0 et d’implémenter un flux d’authentification sécurisé et moderne. 
