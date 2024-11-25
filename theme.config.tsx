@@ -69,8 +69,13 @@ const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/micmc422/TW3',
   },
-  chat: {
-    link: 'https://discord.com',
+  banner: {
+    key: 'Utilisez JS efficacement',
+    content: (
+      <a href="/JS">
+        🎉 Utilisez JS efficacement →
+      </a>
+    )
   },
   sidebar: {
     defaultMenuCollapseLevel: 1

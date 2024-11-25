@@ -1,0 +1,129 @@
+# Fonction asynchrone
+
+``` javascript
+
+export default async function getContent(pathArray: string[]) {
+    const filePath = `./${pathArray.join('/')}/`;
+    // Construire le chemin complet du fichier
+
+    try {
+        const { seo }: { seo: Metadata } = await import(`${filePath}seo.ts`);
+        const { cards }: { cards: card[] } = await import(`${filePath}cards.ts`);
+        const { services }: { services: ServicesItem } = await import(`${filePath}services.ts`);
+        const { hero }: { hero: heroType } = await import(`${filePath}hero.ts`);
+        const success = { cards, services, hero, seo }
+        return [success, null];
+
+    } catch (error) {
+        console.error(`Failed to load module at ${filePath}:`, error);
+        return [null, error];
+    }
+}
+```
+
+## **1. Fonctionnement du Code**
+
+### **a) Objectif de la fonction**
+La fonction `getContent` :
+1. **Construit dynamiquement un chemin de fichier** en utilisant les éléments d’un tableau (`pathArray`).
+2. **Charge des modules TypeScript dynamiques** situés dans ce chemin (ex. `seo.ts`, `cards.ts`, etc.).
+3. Renvoie un objet consolidé contenant les données de ces modules sous forme de **promesse**.
+
+---
+
+### **b) Étapes principales**
+
+1. **Construction du chemin dynamique**  
+   Le chemin du fichier est créé en joignant les éléments du tableau `pathArray` avec `/`.  
+   Exemple : 
+   ```typescript
+   const pathArray = ['pages', 'about'];
+   const filePath = `./${pathArray.join('/')}/`; // Résultat : "./pages/about/"
+   ```
+
+2. **Chargement dynamique avec `import()`**
+   Les fichiers suivants sont importés dynamiquement :
+   - `seo.ts` : supposé contenir des métadonnées SEO.
+   - `cards.ts` : supposé contenir une liste de cartes.
+   - `services.ts` : supposé contenir des informations sur les services.
+   - `hero.ts` : supposé contenir des données pour la section héroïque.  
+   Chaque module est importé avec une structure spécifique pour assurer le typage (`Metadata`, `card[]`, etc.).
+
+3. **Gestion des erreurs**
+   Si un des modules ne peut pas être chargé (fichier manquant, erreur de syntaxe, etc.), une erreur est capturée et le code :
+   - Affiche un message dans la console (`console.error`).
+   - Retourne un tableau `[null, error]` pour signaler l’échec.
+
+4. **Résultat consolidé**
+   Si tout se passe bien, un objet nommé `success` est créé contenant toutes les données chargées :  
+   ```typescript
+   const success = { cards, services, hero, seo };
+   ```
+   Et la fonction retourne ce résultat sous forme de tableau `[success, null]`.
+
+---
+
+## **2. Comment l’utiliser**
+
+Voici un exemple pratique d’utilisation de cette fonction dans une application.
+
+### **a) Appeler la fonction**
+```typescript
+import getContent from './getContent';
+
+(async () => {
+    const [data, error] = await getContent(['pages', 'about']);
+
+    if (error) {
+        console.error("Erreur lors du chargement du contenu :", error);
+        return;
+    }
+
+    console.log("Données chargées :", data);
+})();
+```
+
+---
+
+### **b) Explication de l'exemple**
+1. **Appel avec un chemin**  
+   Le tableau `['pages', 'about']` indique que les fichiers se trouvent dans le dossier `./pages/about/`.
+
+2. **Résultat attendu**
+   - Si les fichiers `seo.ts`, `cards.ts`, `services.ts` et `hero.ts` existent, les données des fichiers sont regroupées dans l’objet renvoyé.
+   - Si un fichier est manquant ou une erreur se produit, celle-ci est gérée grâce au second élément de la réponse, `error`.
+
+3. **Structure des données renvoyées**
+   Exemple de données renvoyées si tout fonctionne :
+   ```javascript
+   {
+     seo: { title: "About Page", description: "About us page SEO metadata" },
+     cards: [
+       { id: 1, title: "Card 1", content: "Content for card 1" },
+       { id: 2, title: "Card 2", content: "Content for card 2" }
+     ],
+     services: { id: 123, name: "Service Example" },
+     hero: { title: "Welcome to About Page", subtitle: "Learn more about us" }
+   }
+   ```
+
+4. **Gestion des erreurs**
+   Si un fichier est introuvable, par exemple `seo.ts`, la fonction capture cette erreur et renvoie :
+   ```javascript
+   [null, Error: "Failed to load module at ./pages/about/seo.ts"]
+   ```
+
+---
+
+### **c) Cas d'utilisation**
+Ce type de fonction est utile dans les contextes suivants :
+- **Applications modulaires** : où chaque section ou page a ses propres fichiers de données.
+- **CMS headless** : pour charger dynamiquement du contenu basé sur des routes ou des pages.
+- **Sites statiques ou générateurs de pages** : pour consolider des données au moment du rendu.
+
+---
+
+**Attention** :  
+- Assurez-vous que le dossier cible existe et contient les fichiers nécessaires.  
+- Les fichiers doivent être exportés correctement avec les noms prévus (ex. `export const seo = ...`).  
+- `import()` est une méthode asynchrone, compatible avec ES6+ et certaines versions de Node.js.

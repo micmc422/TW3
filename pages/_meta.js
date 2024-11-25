@@ -35,6 +35,10 @@ export default {
     "title": "REACT",
     "type": "page"
   },
+  "JS": {
+    "title": "JS",
+    "type": "page"
+  },
   "webpack": {
     "display": "hidden",
     "title": "Webpack",
