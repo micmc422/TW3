@@ -1,0 +1,198 @@
+---
+description: "Dans cette activité, nous allons implémenter un système d’authentification utilisant des JSON Web Tokens (JWT) avec Node.js et Express. Ce système permettra aux utilisateurs de s'inscrire, de se connecter et d'accéder à des routes protégées uniquement s'ils sont authentifiés via un JWT."
+---
+# **Activité Pratique : Mise en Place d’un Système d’Authentification Basé sur des JWT**
+
+Dans cette activité, nous allons implémenter un système d’authentification utilisant des **JSON Web Tokens (JWT)** avec Node.js et Express. Ce système permettra aux utilisateurs de s'inscrire, de se connecter et d'accéder à des routes protégées uniquement s'ils sont authentifiés via un JWT.
+
+---
+
+## **Étapes à Suivre**
+
+### **1. Initialisation du Projet**
+
+1. **Créer un nouveau projet Node.js :**  
+   ```bash
+   mkdir jwt-auth
+   cd jwt-auth
+   npm init -y
+   npm install express bcrypt jsonwebtoken body-parser dotenv
+   ```
+
+2. **Configurer l’environnement :**  
+   Créez un fichier `.env` à la racine pour y stocker des variables sensibles :  
+   ```plaintext
+   JWT_SECRET=votre_secret_jwt
+   PORT=3000
+   ```
+
+---
+
+### **2. Structure des Fichiers**
+
+Organisez les fichiers comme suit :  
+```
+jwt-auth/
+├── app.js
+├── .env
+└── package.json
+```
+
+---
+
+### **3. Écriture du Code**
+
+**Fichier `app.js` :**
+```javascript
+const express = require('express');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+const app = express();
+app.use(bodyParser.json());
+
+// Simuler une base de données
+const users = [];
+
+// Middleware pour vérifier les JWT
+function authenticateToken(req, res, next) {
+    const token = req.headers['authorization'] && req.headers['authorization'].split(' ')[1];
+    if (!token) return res.status(401).send('Accès non autorisé : Aucun token fourni.');
+    
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.status(403).send('Token invalide.');
+        req.user = user;
+        next();
+    });
+}
+
+// Route d'inscription
+app.post('/register', async (req, res) => {
+    const { username, password } = req.body;
+    if (!username || !password) return res.status(400).send('Nom d’utilisateur et mot de passe requis.');
+
+    // Vérifier si l'utilisateur existe déjà
+    const existingUser = users.find(user => user.username === username);
+    if (existingUser) return res.status(400).send('Utilisateur déjà existant.');
+
+    // Hacher le mot de passe
+    const hashedPassword = await bcrypt.hash(password, 10);
+    users.push({ username, password: hashedPassword });
+    res.status(201).send('Utilisateur enregistré avec succès.');
+});
+
+// Route de connexion
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    const user = users.find(user => user.username === username);
+    if (!user) return res.status(400).send('Nom d’utilisateur ou mot de passe incorrect.');
+
+    // Vérifier le mot de passe
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) return res.status(400).send('Nom d’utilisateur ou mot de passe incorrect.');
+
+    // Générer un JWT
+    const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.json({ token });
+});
+
+// Route protégée
+app.get('/protected', authenticateToken, (req, res) => {
+    res.send(`Bienvenue ${req.user.username}, vous êtes authentifié.`);
+});
+
+// Démarrer le serveur
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Serveur en cours d’exécution sur http://localhost:${PORT}`);
+});
+```
+
+---
+
+### **4. Tester l’Application**
+
+1. **Démarrer le serveur :**  
+   ```bash
+   node app.js
+   ```
+
+2. **Inscription (POST /register) :**  
+   Utilisez Postman ou curl pour envoyer une requête :  
+   ```json
+   POST http://localhost:3000/register
+   Content-Type: application/json
+
+   {
+       "username": "testuser",
+       "password": "password123"
+   }
+   ```
+
+   **Réponse attendue :**  
+   ```
+   Utilisateur enregistré avec succès.
+   ```
+
+3. **Connexion (POST /login) :**  
+   Envoyez une requête pour obtenir un token JWT :  
+   ```json
+   POST http://localhost:3000/login
+   Content-Type: application/json
+
+   {
+       "username": "testuser",
+       "password": "password123"
+   }
+   ```
+
+   **Réponse attendue :**  
+   ```json
+   {
+       "token": "<votre_jwt>"
+   }
+   ```
+
+4. **Accéder à une route protégée (GET /protected) :**  
+   Ajoutez le token dans les headers de la requête :  
+   ```
+   Authorization: Bearer <votre_jwt>
+   ```
+   **Réponse attendue :**  
+   ```
+   Bienvenue testuser, vous êtes authentifié.
+   ```
+
+5. **Tester un Token Invalide :**  
+   Remplacez le token par un faux ou un expiré, et observez la réponse `401` ou `403`.
+
+---
+
+## **Explications Techniques**
+
+1. **bcrypt :**  
+   Utilisé pour hacher et vérifier les mots de passe afin qu’ils ne soient jamais stockés en clair.  
+
+2. **jsonwebtoken :**  
+   - `jwt.sign` génère un token avec un payload (données utilisateur).  
+   - `jwt.verify` vérifie si un token est valide et non expiré.
+
+3. **Middleware `authenticateToken` :**  
+   Protège les routes sensibles en exigeant un JWT valide dans les headers.
+
+4. **Expiration du Token :**  
+   Le token est configuré pour expirer après 1 heure (`expiresIn: '1h'`). Cela réduit le risque d’abus en cas de vol du token.
+
+---
+
+## **Améliorations Futures**
+- Ajouter une base de données réelle (MongoDB, MySQL) pour stocker les utilisateurs.  
+- Gérer la révocation de tokens via une liste noire.  
+- Chiffrer les données sensibles dans les payloads JWT si nécessaire.  
+- Utiliser `HttpOnly` et `Secure` pour transporter les JWT dans des cookies sécurisés.
+
+---
+
+Ce système vous donne une base solide pour implémenter un mécanisme d'authentification moderne basé sur des JWT, adaptable aux APIs REST ou aux microservices.

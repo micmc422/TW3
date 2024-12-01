@@ -1,0 +1,159 @@
+---
+description: "Pour garantir la sécurité des systèmes d’authentification, il est essentiel d’adopter des pratiques reconnues pour protéger les données sensibles, prévenir les attaques, et renforcer la confiance des utilisateurs."
+---
+# **Bonnes Pratiques de Sécurisation dans les Systèmes d'Authentification**
+
+Pour garantir la sécurité des systèmes d’authentification, il est essentiel d’adopter des pratiques reconnues pour protéger les données sensibles, prévenir les attaques, et renforcer la confiance des utilisateurs. Deux domaines fondamentaux à maîtriser sont le stockage sécurisé des mots de passe et l’utilisation de headers HTTP pour durcir les applications.
+
+---
+
+## **Stockage Sécurisé des Mots de Passe**
+
+Les mots de passe des utilisateurs doivent toujours être protégés, même en cas de compromission du système. Voici les bonnes pratiques pour garantir leur sécurité.
+
+**Pourquoi ne pas stocker les mots de passe en clair ?**  
+Si une base de données contenant des mots de passe non hachés est compromise, les utilisateurs sont directement exposés. Cela peut avoir des conséquences graves, car beaucoup réutilisent les mêmes mots de passe sur plusieurs services.
+
+---
+
+**a. Utiliser des Algorithmes de Hachage Sécurisés**  
+Le hachage consiste à transformer un mot de passe en une chaîne illisible. Toutefois, les algorithmes doivent être adaptés aux exigences de sécurité modernes.
+
+1. **bcrypt :**
+   - Algorithme populaire pour le hachage des mots de passe.
+   - Inclut un **"salt"** (valeur aléatoire ajoutée) pour protéger contre les attaques par tables de hachage pré-calculées (rainbow tables).
+   - Possibilité de configurer le "coût" pour ralentir le calcul du hachage, rendant les attaques par force brute moins efficaces.
+
+   **Exemple (Node.js) :**
+   ```javascript
+   const bcrypt = require('bcrypt');
+   const saltRounds = 10;
+
+   const hashPassword = async (password) => {
+       const hashed = await bcrypt.hash(password, saltRounds);
+       console.log('Mot de passe haché :', hashed);
+   };
+
+   hashPassword('monMotDePasse123');
+   ```
+
+2. **Argon2 :**
+   - Considéré comme l’algorithme le plus sécurisé pour le hachage des mots de passe (vainqueur du Password Hashing Competition en 2015).
+   - Conçu pour être résistant aux attaques matérielles grâce à une consommation élevée de mémoire.
+   - Idéal pour les environnements où la sécurité est une priorité.
+
+   **Exemple (Node.js) :**
+   ```javascript
+   const argon2 = require('argon2');
+
+   const hashPassword = async (password) => {
+       const hashed = await argon2.hash(password);
+       console.log('Mot de passe haché :', hashed);
+   };
+
+   hashPassword('monMotDePasse123');
+   ```
+
+---
+
+**b. Éviter les Algorithmes Obsolètes**
+- **MD5** et **SHA-1** sont considérés comme vulnérables et ne doivent jamais être utilisés pour le hachage des mots de passe.
+
+---
+
+**c. Autres Bonnes Pratiques**
+1. Toujours hacher les mots de passe avant de les stocker en base de données.
+2. Ajouter un **salt unique** pour chaque utilisateur pour empêcher les attaques par tables arc-en-ciel.
+3. Configurer des politiques de rotation et de renforcement des mots de passe.
+
+---
+
+## **Utilisation des Headers de Sécurité**
+
+Les headers HTTP peuvent être configurés pour ajouter une couche supplémentaire de protection contre les attaques courantes.
+
+---
+
+**a. Content Security Policy (CSP)**  
+Le header `Content-Security-Policy` limite les sources de contenu autorisées (scripts, styles, images, etc.) pour prévenir les attaques **XSS** (Cross-Site Scripting).
+
+**Exemple :**
+```http
+Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com
+```
+- **default-src 'self'** : N’autorise que le contenu provenant du même domaine.
+- **script-src 'self' https://apis.google.com** : N’autorise les scripts que depuis le domaine local ou apis.google.com.
+
+**Avantages :**
+- Réduit le risque d'exécution de scripts injectés.
+- Offre une protection contre les attaques par script malveillant.
+
+---
+
+**b. HTTP Strict Transport Security (HSTS)**  
+Le header `Strict-Transport-Security` force le navigateur à n’accepter que des connexions sécurisées (HTTPS), même si l'utilisateur tente d'accéder au site via HTTP.
+
+**Exemple :**
+```http
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+- **max-age=31536000** : Définit une durée de 1 an (en secondes) pour l'obligation d'utiliser HTTPS.
+- **includeSubDomains** : Étend cette règle aux sous-domaines.
+
+**Avantages :**
+- Empêche les attaques par interception sur les connexions non sécurisées (downgrade attacks).
+
+---
+
+**c. X-Content-Type-Options**  
+Ce header empêche le navigateur d’interpréter un fichier en tant que type MIME différent de celui déclaré. Cela protège contre certains types d'attaques.
+
+**Exemple :**
+```http
+X-Content-Type-Options: nosniff
+```
+
+**Avantages :**
+- Prévient l’exécution non désirée de contenu mal interprété.
+
+---
+
+**d. X-Frame-Options**  
+Ce header empêche une page web d’être chargée dans un cadre (iframe), réduisant les risques d’attaques **Clickjacking**.
+
+**Exemple :**
+```http
+X-Frame-Options: DENY
+```
+
+**Options possibles :**
+- `DENY` : Empêche complètement l'affichage dans une iframe.
+- `SAMEORIGIN` : Autorise uniquement les iframes provenant du même domaine.
+
+---
+
+**e. Referrer-Policy**  
+Ce header contrôle les informations envoyées dans l'en-tête `Referer` lorsqu’un utilisateur clique sur un lien.
+
+**Exemple :**
+```http
+Referrer-Policy: no-referrer-when-downgrade
+```
+- `no-referrer-when-downgrade` : Envoie le référent uniquement pour des connexions sécurisées (HTTPS).
+
+---
+
+## **Résumé des Bonnes Pratiques**
+
+| **Pratique**                 | **Outil/Méthode**                          | **Bénéfices**                                      |
+|------------------------------|-------------------------------------------|--------------------------------------------------|
+| **Stockage sécurisé des mots de passe** | bcrypt, Argon2                           | Protection contre les attaques en cas de fuite. |
+| **Limitation des scripts externes**   | Content Security Policy (CSP)            | Protection contre XSS et scripts malveillants.  |
+| **Forcer HTTPS**             | HTTP Strict Transport Security (HSTS)     | Sécurisation des connexions réseau.             |
+| **Éviter le clickjacking**   | X-Frame-Options                           | Empêche les attaques par iframe malveillantes.  |
+| **Limiter les types MIME**   | X-Content-Type-Options                    | Prévention contre les interprétations incorrectes. |
+| **Contrôler les données de référents** | Referrer-Policy                          | Protection de la vie privée et des URL sensibles. |
+
+---
+
+Ces bonnes pratiques, combinées, contribuent à renforcer la sécurité des systèmes d'authentification en minimisant les vulnérabilités. Elles devraient être intégrées dès le début du développement d'une application pour maximiser son niveau de protection.

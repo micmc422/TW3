@@ -2,7 +2,6 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 
-
 export function colorsByPath(path) {
     if (path?.startsWith("/git")) return [214, 50]
     if (path?.startsWith("/NPM")) return [0, 59]

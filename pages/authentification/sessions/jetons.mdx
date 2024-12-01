@@ -1,0 +1,123 @@
+---
+description: "Les JSON Web Tokens (JWT) sont une méthode moderne et populaire pour gérer l’authentification et la transmission sécurisée de données entre différentes parties dans une application web."
+---
+# **Jetons JWT (JSON Web Tokens)**
+
+Les **JSON Web Tokens (JWT)** sont une méthode moderne et populaire pour gérer l’authentification et la transmission sécurisée de données entre différentes parties dans une application web.  
+
+---
+
+## **Structure d’un JWT**
+
+Un JWT est composé de trois parties encodées en base64 et séparées par des points (`.`) :
+1. **Header** (en-tête) :  
+   Contient des métadonnées sur le token, comme le type de token (JWT) et l’algorithme de signature utilisé.  
+   Exemple :  
+   ```json
+   {
+       "alg": "HS256",
+       "typ": "JWT"
+   }
+   ```
+
+2. **Payload** (charge utile) :  
+   Contient les informations ou "claims" à transmettre, comme l'identité de l'utilisateur ou les permissions.  
+   Exemple :  
+   ```json
+   {
+       "sub": "1234567890",
+       "name": "John Doe",
+       "admin": true,
+       "iat": 1516239022
+   }
+   ```
+   - **Claims standards** : `sub` (subject), `iat` (issued at), `exp` (expiration time).  
+   - **Claims personnalisés** : Toute information spécifique à l’application (ex. rôle de l'utilisateur).  
+
+3. **Signature** :  
+   Une signature générée en combinant le header, le payload, et une clé secrète en utilisant un algorithme comme HMAC SHA256.  
+   Exemple :  
+   ```
+   HMACSHA256(
+     base64UrlEncode(header) + "." +
+     base64UrlEncode(payload),
+     secret
+   )
+   ```
+
+**Exemple de JWT complet :**  
+```plaintext
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+
+---
+
+## **Avantages des JWT**
+
+1. **Stateless (sans état) :**  
+   - Les JWT ne nécessitent pas de stockage côté serveur ; toutes les informations sont incluses dans le token.  
+
+2. **Transport facile :**  
+   - Les JWT sont encodés en base64 et peuvent être facilement transmis via les headers HTTP, les URL, ou les cookies.
+
+3. **Interopérabilité :**  
+   - Ils fonctionnent indépendamment des technologies et des langages.  
+
+4. **Sécurisation des échanges :**  
+   - Utilisent des signatures pour garantir l’intégrité et éviter les modifications non autorisées.  
+   - La signature permet de vérifier si le token est valide, mais ne chiffre pas les données (elles restent lisibles).
+
+5. **Expiration intégrée :**  
+   - Les JWT peuvent inclure des informations comme l’expiration (`exp`), ce qui limite leur durée de validité.
+
+---
+
+## **Inconvénients des JWT**
+
+1. **Pas de révocation facile :**  
+   - Une fois émis, un JWT reste valide jusqu’à son expiration, sauf si des mécanismes supplémentaires de révocation (blacklists) sont mis en place.
+
+2. **Taille du token :**  
+   - Les JWT peuvent devenir volumineux, surtout avec de nombreux claims, ce qui peut impacter les performances (surtout pour des headers HTTP).
+
+3. **Données lisibles :**  
+   - Les informations dans le **payload** ne sont pas chiffrées. Toute personne ayant accès au token peut les lire, même si la signature empêche leur altération.
+
+4. **Risques liés au stockage côté client :**  
+   - Si le JWT est stocké de manière non sécurisée (ex. localStorage), il peut être exposé à des attaques XSS.
+
+---
+
+## **Comparaison : Jetons (JWT) vs Cookies pour la Gestion des Sessions**
+
+Les **cookies** et les **JWT** sont utilisés pour maintenir l’état d’un utilisateur dans une application web. Cependant, ils fonctionnent différemment et ont des avantages et inconvénients spécifiques selon les cas d’utilisation.
+
+| **Aspect**                | **Cookies**                                              | **JWT**                                               |
+|---------------------------|---------------------------------------------------------|------------------------------------------------------|
+| **Stockage**              | Côté client, mais gérés automatiquement par le navigateur. | Côté client (stocké dans `localStorage`, `sessionStorage`, ou des cookies). |
+| **Transport**             | Transmis automatiquement via les requêtes HTTP (headers Cookie). | Transmis via headers HTTP (Authorization), cookies, ou directement dans les requêtes. |
+| **Dépendance au Serveur** | Nécessitent un stockage côté serveur pour associer les sessions. | Stateless : toutes les informations sont incluses dans le token. |
+| **Sécurité des Données**  | Les cookies peuvent être protégés par `HttpOnly`, `Secure`, et `SameSite`. | Le payload du JWT n'est pas chiffré par défaut, mais peut être chiffré séparément si nécessaire. |
+| **Revocation**            | Révocation facile via la suppression ou l'invalidation de la session côté serveur. | Révocation difficile : nécessite des listes noires ou une rotation de clés. |
+| **Expiration**            | Non incluse nativement ; nécessite une implémentation côté serveur. | Intégrée dans le token (`exp`). |
+| **Interopérabilité**      | Principalement utilisé pour des applications web traditionnelles. | Fonctionne bien avec des APIs REST, des microservices et des systèmes distribués. |
+
+---
+
+## **Résumé : Quand Utiliser Cookies ou JWT ?**
+
+- **Utiliser les cookies :**  
+  - Pour des applications web où les sessions sont gérées côté serveur.  
+  - Lorsque l’état utilisateur doit être stocké et contrôlé par le serveur.  
+  - Si vous avez besoin d’un contrôle fin sur les sessions (révocation immédiate, etc.).
+
+- **Utiliser les JWT :**  
+  - Pour des APIs REST ou des systèmes décentralisés où le serveur doit rester stateless.  
+  - Lorsque vous voulez transmettre des informations utilisateur directement dans le token.  
+  - Dans les environnements où l'interopérabilité entre différentes plateformes est essentielle.
+
+---
+
+Ces deux mécanismes peuvent également être combinés : les **cookies** peuvent être utilisés pour transporter des **JWT** sécurisés (`HttpOnly`, `Secure`), afin d’améliorer la sécurité tout en conservant les avantages des deux méthodes. 
+
+Nous approfondirons ces concepts dans les activités pratiques, en mettant en œuvre un système basé sur JWT et en comparant son comportement à un système de gestion de sessions classique.

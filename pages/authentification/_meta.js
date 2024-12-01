@@ -1,9 +1,12 @@
 export default {
   "index": {
-    "title": "Authentification"
+    "title": "Introduction à l'authentification",
   },
   "fondamentaux": "Fondamentaux",
   "protocoles": "Les protocoles",
+  "sessions": "Gestion des sessions et des jetons",
+  "securisation": "Sécurisation des systèmes d’authentification",
+  "avancee": "Authentification avancée et cas pratiques",
   // "exercice": "Exercice",
   // "TLDR": "TLDR",
   "plan": {

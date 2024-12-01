@@ -1,5 +1,6 @@
 import React from 'react'
 import { DocsThemeConfig, useConfig } from 'nextra-theme-docs'
+import { useRouter } from 'next/router';
 
 const Champollion = () => {
   return (
@@ -97,14 +98,21 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/micmc422/TW3',
   head: function useHead() {
-    const config = useConfig()
-    const title = `${config.title} – Nextra`
+    const { asPath } = useRouter()
+    const { title, frontMatter, ...config } = useConfig();
+    //  console.log(title);
+    const url =
+      'https://tw-3.vercel.app' +
+      `${asPath}`
     const description =
-      config.frontMatter.description || 'Nextra: the Next.js site builder'
-    const image = config.frontMatter.image || 'https://nextra.site/og.jpeg'
+      frontMatter?.description?.slice(0, 117) + "..." || 'TW3: Technologies du web'
+    const image = frontMatter.image || '/code-html.jpg'
     return (
       <>
-        <title>{title}</title>
+        <title>{`${title} - TW3 - Champollion`}</title>
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href={url} />
+        <meta property="og:url" content={url} />
         <meta property="og:title" content={title} />
         <meta name="description" content={description} />
         <meta property="og:description" content={description} />

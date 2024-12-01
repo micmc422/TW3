@@ -1,0 +1,125 @@
+---
+description: "L'authentification est une cible privilégiée des attaquants, car elle représente la porte d'entrée vers des systèmes et des données sensibles. Voici un aperçu des principales menaces auxquelles les systèmes d'authentification sont confrontés, accompagnées de leurs mécanismes et de conseils pour les prévenir."
+---
+# **Principaux Risques de Sécurité dans l'Authentification Web**
+
+L'authentification est une cible privilégiée des attaquants, car elle représente la porte d'entrée vers des systèmes et des données sensibles. Voici un aperçu des principales menaces auxquelles les systèmes d'authentification sont confrontés, accompagnées de leurs mécanismes et de conseils pour les prévenir.
+
+---
+
+## **Attaques par Force Brute et Dictionnaire**
+
+**Force Brute :**  
+Dans une attaque par force brute, l'attaquant essaie toutes les combinaisons possibles de mots de passe jusqu'à trouver celui qui fonctionne.
+
+**Dictionnaire :**  
+L'attaquant utilise une liste précompilée de mots de passe courants (ex. : `123456`, `password`, etc.) pour deviner celui d’un utilisateur.
+
+**Impact :**  
+- Compromission d’un compte si le mot de passe est faible ou s'il figure dans des bases de données de mots de passe volés.
+
+**Stratégies de Prévention :**
+1. **Politique de mots de passe forts :**  
+   - Exiger un mot de passe avec une longueur minimale et une combinaison de lettres, chiffres et symboles.
+2. **Limitation du nombre de tentatives :**  
+   - Implémenter un verrouillage temporaire après plusieurs tentatives échouées.
+3. **Captchas :**  
+   - Ajouter un captcha pour vérifier si le client est un humain.
+4. **Hashing sécurisé des mots de passe :**  
+   - Utiliser des algorithmes modernes comme **bcrypt** ou **Argon2** pour protéger les mots de passe en cas de fuite.
+5. **Surveillance des activités suspectes :**  
+   - Bloquer ou alerter en cas de nombreuses connexions échouées depuis une même adresse IP.
+
+---
+
+## **Vol de Session (Session Hijacking)**
+
+**Définition :**  
+Le vol de session (Session Hijacking) consiste à s'emparer du **Session ID** d'un utilisateur légitime pour accéder à ses ressources. Ce type d'attaque peut se produire lorsque :
+- Les cookies de session sont interceptés via un réseau non sécurisé (ex. : Wi-Fi public).
+- Une application ne sécurise pas correctement ses cookies ou tokens.
+
+**Impact :**  
+- L’attaquant agit en tant qu’utilisateur authentifié, sans avoir besoin de ses identifiants.
+
+**Stratégies de Prévention :**
+1. **HTTPS obligatoire :**  
+   - Toutes les communications doivent passer par HTTPS pour éviter l’interception des cookies.
+2. **Cookies sécurisés :**  
+   - Utiliser les options `HttpOnly`, `Secure`, et `SameSite` pour protéger les cookies :
+     - **HttpOnly :** Empêche l'accès au cookie via JavaScript (protection contre les attaques XSS).
+     - **Secure :** Envoie le cookie uniquement sur des connexions HTTPS.
+     - **SameSite :** Limite l’envoi des cookies aux requêtes provenant du même domaine.
+3. **Expiration et rotation des sessions :**  
+   - Faire expirer les sessions après un certain temps d’inactivité.
+   - Générer de nouveaux tokens après chaque connexion ou action critique (rotation des sessions).
+4. **Détection de sessions suspectes :**  
+   - Vérifier les changements soudains dans les informations utilisateur (ex. : adresse IP, localisation).
+
+---
+
+## **XSS (Cross-Site Scripting)**
+
+**Définition :**  
+Dans une attaque XSS, l'attaquant injecte un script malveillant dans une application web. Lorsque l'utilisateur visite une page affectée, le script s'exécute dans son navigateur.
+
+**Exemples de conséquences :**
+- Vol de cookies (et donc des sessions) via `document.cookie`.
+- Redirection vers des sites malveillants.
+- Modification de l’interface utilisateur.
+
+**Impact :**  
+- Compromission des données ou des comptes utilisateur.
+
+**Stratégies de Prévention :**
+1. **Validation des entrées utilisateur :**  
+   - Filtrer ou échapper toutes les données saisies par l’utilisateur avant de les afficher dans le navigateur.
+2. **Content Security Policy (CSP) :**  
+   - Restreindre les scripts autorisés à s'exécuter sur le site.
+3. **Cookies HttpOnly :**  
+   - Empêche JavaScript d'accéder aux cookies, même en cas de XSS.
+4. **Frameworks sécurisés :**  
+   - Utiliser des frameworks modernes (comme React ou Angular) qui échappent automatiquement les données affichées.
+
+---
+
+## **CSRF (Cross-Site Request Forgery)**
+
+**Définition :**  
+Une attaque CSRF force un utilisateur authentifié à exécuter des actions non désirées sur un site où il est connecté. Cela se produit en exploitant la session utilisateur active pour envoyer des requêtes malveillantes.
+
+**Exemple :**
+- L’utilisateur est connecté à son compte bancaire.
+- L'attaquant lui envoie un lien contenant une requête malveillante :
+  ```
+  <img src="http://bank.com/transfer?amount=1000&to=attacker_account" />
+  ```
+- Si aucune protection CSRF n’est mise en place, la requête sera traitée comme légitime.
+
+**Impact :**
+- Réalisation d'actions frauduleuses (transferts d'argent, modification de mots de passe, etc.).
+
+**Stratégies de Prévention :**
+1. **Jetons CSRF :**  
+   - Ajouter un token unique et aléatoire dans chaque formulaire ou requête sensible. Le serveur vérifie ce token avant d'exécuter l'action.
+2. **Cookies SameSite :**  
+   - Configurer les cookies avec l’option `SameSite=Strict` pour empêcher leur envoi dans les requêtes intersites.
+3. **Validation des origines :**  
+   - Vérifier l'en-tête `Referer` ou `Origin` des requêtes sensibles.
+4. **Limitation des méthodes HTTP :**  
+   - Autoriser uniquement les requêtes POST pour les actions critiques (ne pas accepter GET pour les actions modifiables).
+
+---
+
+## **Résumé des Risques et des Préventions**
+
+| **Risque**                 | **Mécanisme d’attaque**                           | **Prévention clé**                                       |
+|----------------------------|--------------------------------------------------|---------------------------------------------------------|
+| **Force brute/dictionnaire** | Tentatives répétées de deviner un mot de passe. | Politique de mots de passe forts, limitations des tentatives. |
+| **Vol de session**          | Interception ou usurpation d’un Session ID.      | HTTPS, cookies sécurisés (`HttpOnly`, `Secure`).         |
+| **XSS**                    | Injection de scripts malveillants dans une page. | Validation des entrées, Content Security Policy (CSP).  |
+| **CSRF**                   | Exploitation de la session utilisateur active.   | Jetons CSRF, cookies `SameSite`.                        |
+
+---
+
+La compréhension et la prévention de ces risques sont essentielles pour sécuriser vos systèmes. Ces mesures combinées garantissent une meilleure protection contre les attaques courantes sur les systèmes d'authentification web.

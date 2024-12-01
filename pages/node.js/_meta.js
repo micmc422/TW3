@@ -1,7 +1,5 @@
 export default {
-    "index": {
-        "title": "Introduction à Node.js"
-    },
+    "index":  "Introduction à Node.js",
     "installation": "Installation",
     "fondamentaux": "Fondamentaux",
     "plan": {
