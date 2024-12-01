@@ -1,5 +1,7 @@
 export default {
-  "introduction": "Introduction à React",
+  "introduction": {
+    "title": "Introduction à React",
+  },
   "environnement": "Prérequis",
   "composants": "Composants",
   "donnees": "Données",
@@ -18,10 +20,6 @@ export default {
   "ressources": "Ressources",
   "plan": {
     "title": "Plan",
-    "display": "hidden"
-  },
-  "index": {
-    "title": "accueil",
     "display": "hidden"
   }
 }
