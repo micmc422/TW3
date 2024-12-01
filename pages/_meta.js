@@ -1,8 +1,80 @@
 export default {
   "index": {
     "title": "Accueil",
-    "type": "page"
+    "display": "hidden"
   },
+  /*
+  "ENV": {
+    "title": "ENV",
+    "type": "menu",
+    "items": {
+      "docker": {
+        "title": "Docker",
+        "type": "page",
+        "href": "/docker"
+      },
+      "node.js": {
+        "title": "Node.js",
+        "type": "page",
+        "href": "/node.js"
+      },
+      "git": {
+        "title": "GIT",
+        "type": "page",
+        "href": "/git"
+      },
+      "NPM": {
+        "title": "NPM",
+        "type": "page",
+        "href": "/NPM"
+      }
+    }
+  },
+  "DATA": {
+    "title": "DATA",
+    "type": "menu",
+    "items": {
+      "mongoDB": {
+        "title": "MongoDB",
+        "href": "/mongoDB"
+      },
+      "graphQL": {
+        "title": "GraphQL",
+        "href": "/graphQL"
+      },
+    }
+  },
+  "DYNAMIC": {
+    "title": "DYNAMIC",
+    "type": "menu",
+    "items": {
+      "react": {
+        "title": "Authentification",
+        "href": "/authentification"
+      },
+    }
+  },
+  "FRAMEWORKS": {
+    "title": "FRAMEWORKS",
+    "type": "menu",
+    "items": {
+      "react": {
+        "title": "REACT",
+        "href": "/react"
+      },
+    }
+  },
+  "+": {
+    "title": "+",
+    "type": "menu",
+    "items": {
+      "react": {
+        "title": "JS",
+        "href": "/JS"
+      },
+    }
+  },
+  */
   "docker": {
     "title": "Docker",
     "type": "page"
@@ -44,4 +116,6 @@ export default {
     "title": "Webpack",
     "type": "page"
   }
+  /*
+    */
 }

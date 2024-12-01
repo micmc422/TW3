@@ -79,7 +79,7 @@ const config: DocsThemeConfig = {
     )
   },
   sidebar: {
-    defaultMenuCollapseLevel: 1
+    defaultMenuCollapseLevel: 0
   },
   search: {
     placeholder: "Chercher dans les cours",
