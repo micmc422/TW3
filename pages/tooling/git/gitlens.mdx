@@ -1,0 +1,72 @@
+
+# GitLens
+
+GitLens est une extension populaire pour Visual Studio Code qui enrichit les fonctionnalités Git intégrées. Elle permet de visualiser qui, pourquoi et quand une ligne ou un bloc de code a été modifié.
+
+## Fonctionnalités principales
+
+### Annotations de blame
+GitLens affiche des annotations inline montrant qui a modifié chaque ligne de code:
+
+```js
+function hello() {      // John Doe, il y a 2 jours - Initial commit
+  console.log("Hi!");   // Jane Smith, hier - Ajout du message
+}
+```
+
+### Historique des fichiers
+Visualisez l'historique complet d'un fichier avec:
+- Qui a fait les modifications
+- Les messages de commit
+- Les différences entre versions
+
+### CodeLens
+Des informations Git apparaissent au-dessus des fonctions:
+
+```js
+// 3 modifications depuis 6 mois - Dernière modification par Alice
+function calculateTotal() {
+  // ...
+}
+```
+
+### Comparaison visuelle
+Comparez facilement:
+- Entre branches
+- Entre commits
+- Entre fichiers
+
+### Navigation dans l'historique
+- Explorer les branches
+- Parcourir les commits
+- Voir les modifications par auteur
+
+## Configuration recommandée
+
+```json
+{
+  "gitlens.codeLens.enabled": true,
+  "gitlens.currentLine.enabled": true,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.blame.highlight.enabled": true
+}
+```
+
+## Raccourcis clavier utiles
+
+| Action | Raccourci |
+|--------|-----------|
+| Afficher blame | Alt+B |
+| Historique fichier | Alt+H |
+| Comparer avec précédent | Alt+← |
+| Comparer avec suivant | Alt+→ |
+
+## Astuces
+
+1. Utilisez la palette de commandes (Ctrl+Shift+P) et tapez "GitLens" pour découvrir toutes les commandes disponibles
+
+2. Le mode zen (Ctrl+K Z) désactive temporairement les annotations pour plus de concentration
+
+3. Survolez les annotations pour voir plus de détails sur les commits
+
+4. Utilisez la vue "GitLens" dans la barre latérale pour une exploration approfondie

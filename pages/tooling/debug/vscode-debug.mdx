@@ -1,0 +1,138 @@
+
+# Débogage avec VS Code
+
+Visual Studio Code offre un excellent support pour le débogage des applications Node.js. Voici comment configurer et utiliser le débogueur.
+
+## Configuration initiale
+
+1. Ouvrez votre projet dans VS Code
+2. Créez un fichier `.vscode/launch.json` à la racine de votre projet
+3. Ajoutez la configuration suivante :
+
+```json copy filename=".vscode/launch.json"
+{
+    "version": "0.2.0", 
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Program",
+            "program": "${workspaceFolder}/index.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        }
+    ]
+}
+```
+
+## Utilisation du débogueur
+
+### Points d'arrêt
+
+- Cliquez sur la marge gauche d'une ligne de code pour ajouter un point d'arrêt
+- Les points d'arrêt sont indiqués par un point rouge
+- Vous pouvez aussi ajouter des points d'arrêt conditionnels
+
+### Contrôles du débogueur
+
+- F5 : Démarrer/Continuer
+- F10 : Pas à pas principal
+- F11 : Pas à pas détaillé
+- Shift+F11 : Sortir de la fonction
+- Shift+F5 : Arrêter
+
+### Variables et surveillance
+
+- Le panneau de débogage affiche :
+  - Les variables locales
+  - La pile d'appels
+  - Les points d'arrêt
+  - La console de débogage
+
+### Console de débogage
+
+- Utilisez `console.log()` pour afficher des informations
+- Évaluez des expressions dans la console de débogage
+- Accédez aux variables dans la portée actuelle
+
+## Configurations avancées
+
+### Débogage avec nodemon
+
+Pour déboguer une application Node.js avec nodemon, qui permet le redémarrage automatique lors des modifications de fichiers :
+
+1. Installez nodemon globalement :
+
+```sh npm2yarn copy
+npm install -g nodemon
+```
+
+2. Ajoutez la configuration suivante dans `.vscode/launch.json` :
+
+```json copy filename=".vscode/launch.json"
+{
+    "type": "node",
+    "request": "launch",
+    "name": "Debug with Nodemon",
+    "runtimeExecutable": "nodemon",
+    "program": "${workspaceFolder}/index.js",
+    "restart": true,
+    "console": "integratedTerminal",
+    "internalConsoleOptions": "neverOpen"
+}
+```
+
+Cette configuration permet de :
+- Utiliser nodemon comme exécutable
+- Redémarrer automatiquement le débogueur lors des modifications
+- Afficher la sortie dans le terminal intégré
+- Maintenir les points d'arrêt entre les redémarrages
+
+Vous pouvez personnaliser le comportement avec :
+- `restart`: active/désactive le redémarrage automatique
+- `program`: spécifie le point d'entrée de l'application
+- `args`: ajoute des arguments de ligne de commande
+- `env`: définit des variables d'environnement
+
+
+
+### Débogage des tests
+
+Pour déboguer vos tests unitaires avec VS Code, suivez ces étapes :
+
+1. Si vous utilisez Jest, ajoutez cette configuration dans `.vscode/launch.json` :
+
+```json copy filename=".vscode/launch.json"
+{
+    "type": "node",
+    "request": "launch",
+    "name": "Debug Tests",
+    "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+    "args": ["--runInBand"],
+    "console": "integratedTerminal",
+    "internalConsoleOptions": "neverOpen"
+}
+```
+
+## Astuces
+
+1. Utilisez la commande "Debug: Toggle Auto Attach" pour déboguer automatiquement les scripts Node.js
+2. Ajoutez le mot-clé `debugger` dans votre code pour créer des points d'arrêt programmatiques
+3. Utilisez la vue "CALL STACK" pour comprendre le flux d'exécution
+4. Profitez de la fonction "Watch" pour surveiller des expressions spécifiques
+
+## Résolution des problèmes courants
+
+- Si le débogueur ne s'attache pas :
+  - Vérifiez que le chemin du fichier est correct
+  - Assurez-vous que Node.js est installé
+  - Redémarrez VS Code
+
+- Pour les applications TypeScript :
+  - Activez les source maps
+  - Utilisez `ts-node` comme exécutable
+
+## Conclusion
+
+Le débogueur de VS Code est un outil puissant pour le développement Node.js. Avec une bonne configuration et la maîtrise des fonctionnalités de base, vous pouvez rapidement identifier et résoudre les problèmes dans votre code.

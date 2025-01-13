@@ -1,0 +1,187 @@
+
+# ESLint - Linter JavaScript
+
+## Introduction
+
+ESLint est un outil d'analyse statique de code JavaScript qui permet d'identifier et de corriger les erreurs de programmation, les anti-patterns et les problèmes de style de code.
+
+## Installation
+
+
+### Installation locale au projet
+```sh npm2yarn copy
+npm install eslint --save-dev
+```
+### Installation globale
+```sh npm2yarn copy
+npm install -g eslint
+```
+
+## Configuration
+
+### Initialisation
+
+```sh copy
+npx eslint --init
+```
+Cette commande va créer un fichier `.eslintrc.js` à la racine de votre projet.
+
+### Structure de base du fichier de configuration
+
+``` ts
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    node: true
+  },
+  extends: [
+    'eslint:recommended'
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module'
+  },
+  rules: {
+    // Vos règles personnalisées
+  }
+}
+```
+
+
+## Règles principales
+### Syntaxe des règles
+
+Les règles ESLint suivent une syntaxe spécifique qui permet une grande flexibilité dans leur configuration :
+
+```json
+"nom-de-la-regle": ["niveau", "valeur"]
+```
+
+#### Niveaux de sévérité
+- `"off"` ou `0` : Désactive la règle
+- `"warn"` ou `1` : Déclenche un avertissement
+- `"error"` ou `2` : Déclenche une erreur
+
+### Exemples de règles courantes
+
+```json
+{
+  "rules": {
+    // Indentation
+    "indent": ["error", 2], // Indentation standard
+    "indent": ["error", 4], // Indentation plus large
+    "indent": ["error", "tab"], // Utilisation de tabulations
+    
+    // Points-virgules
+    "semi": ["error", "always"], // Obligatoire
+    "semi": ["error", "never"], // Interdit
+    
+    // Guillemets
+    "quotes": ["error", "single"], // Guillemets simples
+    "quotes": ["error", "double"], // Guillemets doubles
+    "quotes": ["error", "backtick"], // Template literals
+    
+    // Espaces dans les objets
+    "object-curly-spacing": ["error", "always"], // { prop: value }
+    "object-curly-spacing": ["error", "never"], // {prop: value}
+    
+    // Virgules finales
+    "comma-dangle": ["error", "always-multiline"], // Virgule en fin de ligne
+    "comma-dangle": ["error", "never"], // Pas de virgule finale
+    
+    // Variables non utilisées
+    "no-unused-vars": ["warn", { 
+      "vars": "all",
+      "args": "after-used",
+      "ignoreRestSiblings": false
+    }]
+  }
+}
+```
+
+### Configurations avancées
+
+```json
+{
+  "rules": {
+    // Règle avec options multiples
+    "max-len": ["error", {
+      "code": 80,
+      "tabWidth": 2,
+      "ignoreComments": true,
+      "ignoreUrls": true
+    }],
+    
+    // Règle avec exceptions
+    "no-console": ["error", { 
+      "allow": ["warn", "error"] 
+    }],
+    
+    // Règle pour les imports
+    "import/order": ["error", {
+      "groups": ["builtin", "external", "internal"],
+      "newlines-between": "always",
+      "alphabetize": {
+        "order": "asc",
+        "caseInsensitive": true
+      }
+    }]
+  }
+}
+```
+
+```json
+// Indentation
+"indent": ["error", 2], // Définit une indentation stricte de 2 espaces
+                        // "error" signifie que toute violation déclenchera une erreur
+                        // Le "2" spécifie le nombre d'espaces requis
+
+// Points-virgules
+"semi": ["error", "always"], // Force l'utilisation systématique des points-virgules
+
+// Guillemets
+"quotes": ["error", "single"] // Impose l'utilisation des guillemets simples
+````
+## Utilisation
+
+### Vérification du code
+```bash copy
+npx eslint votrefichier.js
+```
+
+### Correction automatique
+```bash copy
+npx eslint votrefichier.js --fix
+```
+
+## Intégration avec les éditeurs
+
+ESLint peut être intégré avec la plupart des éditeurs de code :
+- VS Code : Extension "ESLint"
+- WebStorm : Support natif
+- Sublime Text : Package "SublimeLinter-eslint"
+
+## Bonnes pratiques
+
+1. Utilisez un fichier `.eslintignore` pour exclure certains fichiers
+2. Configurez ESLint dans votre pipeline CI/CD
+3. Combinez avec Prettier pour une meilleure gestion du formatage
+4. Utilisez des configurations prédéfinies (Airbnb, Standard, etc.)
+
+## Extensions populaires
+
+- `eslint-config-airbnb`
+- `eslint-config-google`
+- `eslint-config-standard`
+
+## Scripts NPM utiles
+
+``` json
+{
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  }
+}
+```

@@ -1,0 +1,98 @@
+# NPM
+
+NPM (Node Package Manager) est le gestionnaire de paquets par défaut de Node.js. Il permet d'installer, de partager et de gérer les dépendances des projets Node.js.
+
+## Installation
+
+NPM est installé automatiquement avec Node.js. Pour vérifier son installation :
+
+``` sh npm2yarn copy
+npm -v
+```
+
+## Initialisation d'un projet
+
+Pour créer un nouveau projet Node.js :
+
+``` sh npm2yarn copy
+npm init
+```
+
+Cette commande crée un fichier `package.json` qui contient les métadonnées du projet.
+
+## Gestion des dépendances
+
+### Installation de dépendances
+
+
+``` sh npm2yarn copy filename="dépendances de production"
+npm install <package-name>
+```
+``` sh npm2yarn copy filename="dépendances de développement"
+npm install --save-dev <package-name>
+```
+
+### Désinstallation de dépendances
+
+
+``` sh npm2yarn copy
+npm uninstall <package-name>
+```
+
+### Mise à jour des dépendances
+
+
+``` sh npm2yarn copy
+npm outdated
+```
+``` sh npm2yarn copy
+npm update
+```
+
+## Scripts NPM
+
+Les scripts NPM permettent d'automatiser des tâches courantes. Ils sont définis dans le fichier `package.json` :
+
+``` json
+{
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "build": "webpack"
+  }
+}
+```
+
+Pour exécuter un script :
+
+
+``` sh npm2yarn copy
+npm run <script-name>
+```
+
+## Configuration
+
+### Fichier .npmrc
+
+Le fichier `.npmrc` permet de configurer NPM. Il peut être créé à différents niveaux :
+
+- Par projet
+- Par utilisateur
+- Globalement
+
+### Registry
+
+NPM utilise par défaut le registry public npmjs.com. Pour utiliser un registry privé :
+
+
+``` sh npm2yarn copy
+npm config set registry <registry-url>
+```
+
+## Bonnes pratiques
+
+- Toujours versionner le fichier `package.json`
+- Ne pas versionner le dossier `node_modules`
+- Utiliser le fichier `.npmignore` pour exclure des fichiers du package
+- Définir les versions précises des dépendances
+- Utiliser `npm ci` en production pour une installation déterministe

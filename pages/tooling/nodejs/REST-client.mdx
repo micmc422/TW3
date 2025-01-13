@@ -1,0 +1,72 @@
+# Client REST
+
+Le client REST est un outil qui permet d'effectuer des requêtes HTTP vers des API REST. Il est disponible dans de nombreux environnements de développement et peut être utilisé pour tester et déboguer des API.
+
+## Installation
+
+Pour installer le client REST, vous pouvez utiliser npm :
+
+``` sh npm2yarn copy
+npm install --save-dev rest-client
+```
+
+## Utilisation
+
+Le client REST peut être utilisé de plusieurs façons :
+
+### Dans un fichier .http
+
+Créez un fichier avec l'extension `.http` et écrivez vos requêtes :
+
+``` http
+GET http://api.example.com/users
+Authorization: Bearer token123
+
+POST http://api.example.com/users
+Content-Type: application/json
+
+{
+    "name": "Jean Dupont",
+    "email": "jean@example.com"
+}
+```
+
+### Dans votre code JavaScript
+
+``` js
+const RestClient = require('rest-client');
+
+const client = new RestClient();
+client.get('http://api.example.com/users')
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+
+## Fonctionnalités principales
+
+- Support de toutes les méthodes HTTP (GET, POST, PUT, DELETE, etc.)
+- Gestion des en-têtes personnalisés
+- Support des paramètres de requête
+- Gestion des cookies
+- Support de l'authentification
+- Possibilité d'utiliser des variables d'environnement
+
+## Bonnes pratiques
+
+1. Utilisez des variables d'environnement pour les valeurs sensibles
+2. Organisez vos requêtes dans des fichiers séparés
+3. Commentez vos requêtes pour une meilleure compréhension
+4. Utilisez les séparateurs ### pour séparer les requêtes
+
+## Dépannage
+
+Si vous rencontrez des problèmes :
+
+1. Vérifiez votre connexion Internet
+2. Assurez-vous que l'API est accessible
+3. Vérifiez les en-têtes de requête
+4. Consultez les logs pour plus de détails

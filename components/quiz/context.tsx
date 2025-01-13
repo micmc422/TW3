@@ -23,7 +23,7 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
     const score = useMemo(() => {
         let calculScore = 0;
         quizData.questions.forEach((question, i) => {
-            userAnswers[i]?.map(ans => {
+            userAnswers?.[i]?.map(ans => {
                 if (ans !== 0) {
                     question.correctAnswer.includes(ans) ? (calculScore += question.point / question.correctAnswer.length) : (calculScore -= question.point)
                 }
@@ -34,7 +34,7 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
     const totalScore = useMemo(() => {
         let calculTotal = 0;
         quizData.questions.forEach((question, i) => {
-            calculTotal += question.point
+            calculTotal += Number(question.point)
         })
         return calculTotal
     }, [userAnswers])
@@ -45,14 +45,14 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
 
     async function handleAnswser(num: number) {
         setUserAnswers((prev: number[][]) => {
-            let currentQ = prev[currentQuestion - 1];
+            let currentQ = prev?.[currentQuestion - 1];
 
             if (num === 0) {
                 // Reset : assigne [0]
                 currentQ = [0];
             } else {
                 // Ajoute ou retire num du tableau
-                if (currentQ.includes(num)) {
+                if (currentQ?.includes(num)) {
                     // Retire num si il est déjà présent
                     currentQ = currentQ.filter(n => n !== num);
                     if (currentQ.length === 0) {
@@ -61,7 +61,7 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
                 } else {
                     // Ajoute num si il n'est pas présent
                     // Ajoute num si il n'est pas présent
-                    if (currentQ[0] === 0) {
+                    if (currentQ?.[0] === 0) {
                         currentQ = [num];
                     } else {
                         currentQ = [...currentQ, num];

@@ -1,0 +1,123 @@
+---
+title: Prettier - Formateur de code automatique
+description: Découvrez comment utiliser Prettier pour formater automatiquement votre code
+---
+
+# Prettier
+
+Prettier est un formateur de code automatique qui prend en charge de nombreux langages comme JavaScript, TypeScript, CSS, HTML, JSON et plus encore. Il permet de maintenir un style de code cohérent dans vos projets.
+
+## Installation
+
+Pour installer Prettier dans votre projet :
+
+```sh npm2yarn copy
+npm install --save-dev prettier
+```
+## Configuration
+
+Créez un fichier `.prettierrc` à la racine de votre projet :
+
+``` ts copy
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5"
+}
+```
+
+## Utilisation
+
+### En ligne de commande
+
+Pour formater un fichier :
+``` sh copy
+npx prettier --write src/index.js
+```
+
+Pour formater tous les fichiers :
+``` sh copy
+npx prettier --write "src/**/*.{js,jsx,ts,tsx}"
+```
+
+### Exemples avant/après
+
+Avant formatage :
+``` js copy
+function maFonction(param1,param2)
+{
+return param1+param2;
+}
+
+const obj={a:1,b:2,
+c:3};
+```
+
+Après formatage :
+``` js copy
+function maFonction(param1, param2) {
+  return param1 + param2;
+}
+
+const obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
+```
+
+## Intégration avec l'éditeur
+
+La plupart des éditeurs de code proposent des extensions Prettier :
+
+- VS Code : "Prettier - Code formatter"
+- WebStorm : Support natif
+- Sublime Text : "JsPrettier"
+
+## Avec ESLint
+
+Pour utiliser Prettier avec ESLint, installez :
+
+
+```sh npm2yarn copy
+npm install --save-dev eslint-config-prettier eslint-plugin-prettier
+```
+
+Puis dans votre `.eslintrc` :
+
+``` ts copy
+{
+  "extends": [
+    "prettier"
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
+```
+
+## Git Hooks
+
+Pour formater automatiquement le code avant chaque commit, utilisez husky et lint-staged :
+
+
+```sh npm2yarn copy
+npm install --save-dev husky lint-staged
+```
+
+Dans votre `package.json` :
+
+``` ts copy
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
+  }
+}
+```

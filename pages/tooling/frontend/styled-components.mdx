@@ -1,0 +1,188 @@
+
+# Styled Components
+
+Styled Components est une bibliothèque qui permet d'écrire du CSS dans du JavaScript en utilisant les tagged templates literals. Cette approche permet de créer des composants React avec des styles encapsulés.
+
+## Installation
+
+
+``` sh npm2yarn copy
+npm install styled-components
+```
+
+## Utilisation de base
+
+
+``` js
+import styled from 'styled-components';
+
+// Création d'un bouton stylisé
+const Button = styled.button`
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+// Utilisation du composant
+function App() {
+  return <Button>Cliquez-moi</Button>;
+}
+```
+
+## Props dynamiques
+
+Les styled-components peuvent utiliser des props pour modifier leur style :
+
+
+``` js
+const Button = styled.button`
+  background-color: ${props => props.primary ? '#007bff' : '#6c757d'};
+  color: white;
+  padding: 10px 20px;
+`;
+
+// Utilisation
+<Button primary>Bouton Principal</Button>
+<Button>Bouton Secondaire</Button>
+```
+
+## Extension de styles
+
+On peut étendre les styles d'un composant existant :
+
+
+``` js
+const Button = styled.button`
+  color: white;
+  padding: 10px 20px;
+`;
+
+const LargeButton = styled(Button)`
+  font-size: 20px;
+  padding: 15px 30px;
+`;
+```
+
+## Thèmes
+
+Styled Components supporte le theming :
+
+
+``` js
+import { ThemeProvider } from 'styled-components';
+
+const theme = {
+  colors: {
+    primary: '#007bff',
+    secondary: '#6c757d'
+  }
+};
+
+const ThemedButton = styled.button`
+  background-color: ${props => props.theme.colors.primary};
+`;
+
+// Utilisation
+<ThemeProvider theme={theme}>
+  <ThemedButton>Bouton Thémé</ThemedButton>
+</ThemeProvider>
+```
+
+## Styles globaux
+
+Pour définir des styles globaux :
+
+
+``` js
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+`;
+
+// Utilisation
+function App() {
+  return (
+    <>
+      <GlobalStyle />
+      <div>Contenu de l'app</div>
+    </>
+  );
+}
+```
+
+## Bonnes pratiques
+
+1. **Nommage explicite** : Donnez des noms clairs à vos composants stylisés
+2. **Organisation** : Gardez les styled-components dans des fichiers séparés
+3. **Réutilisation** : Créez des composants de base réutilisables
+4. **Props** : Utilisez des props pour la logique conditionnelle des styles
+
+## Exemple avec variables CSS
+
+``` js
+import styled from 'styled-components';
+
+// Définition des variables CSS dans un thème
+const theme = {
+  colors: {
+    primary: '#007bff',
+    secondary: '#6c757d',
+    success: '#28a745',
+  },
+  spacing: {
+    small: '8px',
+    medium: '16px',
+    large: '24px',
+  },
+  typography: {
+    fontSize: {
+      small: '12px',
+      medium: '16px',
+      large: '20px',
+    }
+  }
+};
+
+const Button = styled.button`
+  padding: ${props => props.theme.spacing.medium};
+  font-size: ${props => props.theme.typography.fontSize.medium};
+  background-color: ${props => props.variant === 'secondary' 
+    ? props.theme.colors.secondary 
+    : props.theme.colors.primary};
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
+const Container = styled.div`
+  margin: ${props => props.theme.spacing.large};
+  padding: ${props => props.theme.spacing.medium};
+`;
+
+// Utilisation avec ThemeProvider
+import { ThemeProvider } from 'styled-components';
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Container>
+        <Button>Bouton Principal</Button>
+        <Button variant="secondary">Bouton Secondaire</Button>
+      </Container>
+    </ThemeProvider>
+  );
+}
+```

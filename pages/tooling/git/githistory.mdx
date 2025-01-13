@@ -1,0 +1,122 @@
+
+# Historique Git
+
+L'historique Git est un outil puissant qui permet de visualiser et d'analyser l'historique des modifications d'un projet. Voici les principales fonctionnalités et commandes pour explorer l'historique Git.
+
+## Afficher l'historique
+
+### Commande de base
+
+```sh copy
+git log
+```
+
+Cette commande affiche l'historique complet des commits avec leurs auteurs, dates et messages.
+
+### Affichage condensé
+ 
+```sh copy
+git log --oneline
+```
+
+Affiche chaque commit sur une seule ligne avec son ID court et son message.
+
+### Visualisation graphique
+
+```sh copy
+git log --graph --oneline --all
+```
+
+Affiche l'historique sous forme d'arbre avec les branches et les fusions.
+
+## Filtrer l'historique
+
+### Par date
+
+```sh copy
+git log --since="2023-01-01" --until="2023-12-31"
+```
+
+
+### Par auteur
+
+```sh copy
+git log --author="nom@email.com"
+```
+
+
+### Par fichier
+
+```sh copy
+git log -- chemin/vers/fichier.txt
+```
+
+
+## Examiner les modifications
+
+### Voir les différences d'un commit
+
+```sh copy
+git show <commit-id>
+```
+
+
+### Comparer deux commits
+
+```sh copy
+git diff commit1..commit2
+```
+
+## Bonnes pratiques
+
+1. **Messages de commit clairs** : Écrire des messages descriptifs qui expliquent le "pourquoi" des modifications
+
+2. **Commits atomiques** : Faire des commits qui regroupent des modifications logiquement liées
+
+3. **Branches organisées** : Utiliser une stratégie de branches cohérente (ex: GitFlow)
+
+## Commandes avancées
+
+### Rechercher dans l'historique
+
+```sh copy
+git log --grep="mot-clé"
+```
+
+
+### Voir qui a modifié une ligne
+
+```sh copy
+git blame fichier.txt
+```
+
+
+### Restaurer une version antérieure
+
+```sh copy
+git checkout <commit-id> -- fichier.txt
+```
+
+
+## Exemples pratiques
+
+### Trouver un bug avec git bisect
+
+```sh copy
+git bisect start
+git bisect bad HEAD
+git bisect good <commit-ancien>
+# Git vous aide à trouver le commit qui a introduit le bug
+git bisect reset
+```
+
+
+### Nettoyer l'historique avec rebase
+
+```sh copy
+git rebase -i HEAD~3
+# Permet de réorganiser, fusionner ou modifier les 3 derniers commits
+```
+
+
+Ces commandes et concepts vous permettront de maîtriser l'historique de vos projets Git et d'en tirer le meilleur parti pour le développement et la maintenance de vos applications.

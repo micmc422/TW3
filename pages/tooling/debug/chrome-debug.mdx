@@ -1,0 +1,66 @@
+import { Callout } from 'nextra/components'
+
+# Déboguer avec Chrome DevTools
+
+Chrome DevTools est un ensemble d'outils de développement web intégrés directement dans le navigateur Google Chrome. Il permet de déboguer efficacement votre application Next.js.
+
+## Ouvrir Chrome DevTools
+
+Pour ouvrir Chrome DevTools :
+
+1. Cliquez droit sur votre page et sélectionnez "Inspecter"
+2. Ou utilisez le raccourci clavier :
+   - Windows/Linux : `Ctrl + Shift + I`
+   - macOS : `Cmd + Option + I`
+
+![Ouvrir Chrome DevTools](/images/chrome-devtools-open.png)
+
+## Console JavaScript
+
+L'onglet Console permet de :
+- Voir les logs et erreurs JavaScript
+- Exécuter du code JavaScript
+- Déboguer avec `console.log()`
+
+![Console Chrome DevTools](/images/chrome-devtools-console.png)
+<Callout type="info" title={`Serveur vs client`}>
+En fonction de l'environement d'éxécution de votre code l'affichage de vos `console.log()` peut s'afficher dans la console JavaScript de chrome ou dans le terminal de VSCode.
+</Callout>
+## Inspecteur d'éléments 
+
+L'onglet Elements permet d'inspecter et modifier le DOM :
+- Visualiser la structure HTML
+- Modifier les styles CSS
+- Voir la disposition des éléments
+
+![Inspecteur d'éléments](/images/chrome-devtools-elements.png)
+
+## Sources et points d'arrêt
+
+L'onglet Sources permet de :
+- Parcourir les fichiers sources
+- Ajouter des points d'arrêt
+- Déboguer pas à pas le code
+- Examiner les variables
+
+![Débogage avec points d'arrêt](/images/chrome-devtools-sources.png)
+
+## Network (Réseau)
+
+L'onglet Network permet d'analyser :
+- Les requêtes réseau
+- Les temps de chargement
+- Les headers et réponses
+- Les performances
+
+![Analyse réseau](/images/chrome-devtools-network.png)
+
+## Performance
+
+L'onglet Performance permet de :
+- Profiler les performances
+- Analyser le rendu
+- Identifier les goulots d'étranglement
+- Optimiser le code
+
+![Analyse des performances](/images/chrome-devtools-performance.png)

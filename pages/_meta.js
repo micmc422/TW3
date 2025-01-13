@@ -103,6 +103,10 @@ export default {
     "title": "Authentification",
     "type": "page",
   },
+  "tooling": {
+    "title": "Tooling",
+    "type": "page",
+  },
   "react": {
     "title": "REACT",
     "type": "page"

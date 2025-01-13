@@ -9,13 +9,14 @@ export default function Questions() {
     const { question, answers } = questions[currentQuestion - 1] || {}
     useEffect(() => {
         updateSelectedClass()
-    }, [userAnswers[currentQuestion - 1], currentQuestion])
+    }, [userAnswers?.[currentQuestion - 1], currentQuestion])
     // Fonction pour mettre à jour la classe CSS
     function updateSelectedClass() {
+        console.log(userAnswers?.[currentQuestion - 1])
         ref?.current?.querySelectorAll('li').forEach((item, index) => {
-            // if (userAnswers[currentQuestion - 1] === 0) return
-            if (userAnswers[currentQuestion - 1].includes(index + 1)) {
-                if (questions[currentQuestion - 1]?.correctAnswer.includes(index + 1)) {
+            if (userAnswers?.[currentQuestion - 1][0] === 0) return
+            if (userAnswers?.[currentQuestion - 1].includes(index + 1)) {
+                if (questions[currentQuestion - 1]?.correctAnswer.includes(Number(index) + 1)) {
                     item.style.backgroundColor = "rgba(0, 128, 0, .3)"
                     item.style.border = "solid 1px rgba(0, 128, 0, .8)"
                 } else {

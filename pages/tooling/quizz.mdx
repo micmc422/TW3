@@ -1,0 +1,316 @@
+---
+description: "Ce quiz est conçu pour tester vos connaissances sur le tooling. À travers ces questions, vous allez évaluer votre compréhension des concepts fondamentaux liés au tooling."
+---
+import Quizz from "@/components/quiz"
+export const quiz = {
+    quizTitle: "Quizz Tooling en Développement Web",
+    quizSynopsis: <>Ce quiz est conçu pour tester vos connaissances sur le tooling.À travers ces questions, vous allez évaluer votre compréhension des concepts fondamentaux liés au tooling.
+        <br />
+        Prenez quelques instants pour répondre aux questions et ainsi vérifier votre maîtrise des bases du tooling. Bonne chance !</>,
+    questions: [
+        {
+            question: "Qu’est-ce que le tooling en développement web ?",
+            questionType: "text",
+            answers: [
+                "Un langage de programmation",
+                "Un ensemble d’outils et d’utilitaires pour optimiser le développement web",
+                "Une méthode de débogage avancée",
+                "Un logiciel pour créer des sites web"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! Le tooling est un ensemble d'outils et d'utilitaires pour optimiser le développement.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Un ensemble d’outils et d’utilitaires pour optimiser le développement web'.",
+            point: "1"
+        },
+        {
+            question: "Quel est l’objectif principal du tooling ?",
+            questionType: "text",
+            answers: [
+                "Ajouter des fonctionnalités complexes aux sites",
+                "Améliorer les performances uniquement",
+                "Optimiser le workflow et maintenir la qualité du code",
+                "Apprendre de nouveaux langages"
+            ],
+            correctAnswer: [3],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! Le tooling optimise le workflow tout en garantissant un code de qualité.",
+            messageForIncorrectAnswer: "Incorrect. La réponse correcte est : 'Optimiser le workflow et maintenir la qualité du code'.",
+            point: "1"
+        },
+        {
+            question: "Quelle extension est utilisée pour formater automatiquement le code dans VSCode ?",
+            questionType: "text",
+            answers: [
+                "ESLint",
+                "Path Intellisense",
+                "Prettier",
+                "Git History"
+            ],
+            correctAnswer: [3],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! Prettier est une extension populaire pour formater automatiquement le code.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Prettier'.",
+            point: "1"
+        },
+        {
+            question: "À quoi sert ESLint ?",
+            questionType: "text",
+            answers: [
+                "Déboguer des applications Node.js",
+                "Vérifier et appliquer des règles de style dans le code",
+                "Gérer les icônes dans l’éditeur",
+                "Surveiller la taille des dépendances"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! ESLint permet de vérifier et appliquer des règles de style.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Vérifier et appliquer des règles de style dans le code'.",
+            point: "1"
+        },
+        {
+            question: "Quelle commande permet d'initialiser un projet Node.js ?",
+            questionType: "text",
+            answers: [
+                "npm start",
+                "node init",
+                "npm init -y",
+                "npm install"
+            ],
+            correctAnswer: [3],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Bien joué ! 'npm init -y' initialise un projet Node.js avec des valeurs par défaut.",
+            messageForIncorrectAnswer: "Faux. La commande correcte est : 'npm init -y'.",
+            point: "1"
+        },
+        {
+            question: "Pourquoi utiliser des snippets dans un éditeur de code ?",
+            questionType: "text",
+            answers: [
+                "Pour réduire le nombre de lignes de code",
+                "Pour insérer rapidement des structures courantes de code",
+                "Pour gérer les erreurs de syntaxe automatiquement",
+                "Pour optimiser les performances des scripts"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! Les snippets permettent d'insérer rapidement des structures courantes.",
+            messageForIncorrectAnswer: "Faux. Les snippets servent à insérer rapidement des structures courantes de code.",
+            point: "1"
+        },
+        {
+            question: "Quel outil permet d'analyser la taille des modules importés ?",
+            questionType: "text",
+            answers: [
+                "SonarLint",
+                "Import Cost",
+                "Chrome DevTools",
+                "Path Intellisense"
+            ],
+            correctAnswer: [1],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! Import Cost analyse la taille des modules directement dans l'éditeur.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Import Cost'.",
+            point: "1"
+        },
+        {
+            question: "Que fait l'extension Path Intellisense ?",
+            questionType: "text",
+            answers: [
+                "Corrige automatiquement les erreurs de chemin",
+                "Ajoute une autocomplétion pour les chemins de fichiers",
+                "Affiche la taille des fichiers importés",
+                "Met en évidence les dépendances inutilisées"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Bien joué ! Path Intellisense propose l’autocomplétion pour les chemins de fichiers.",
+            messageForIncorrectAnswer: "Faux. Path Intellisense propose une autocomplétion pour les chemins de fichiers.",
+            point: "1"
+        },
+        {
+            question: "Quelle bibliothèque pourrait remplacer Moment.js pour réduire la taille des dépendances ?",
+            questionType: "text",
+            answers: [
+                "Lodash",
+                "Day.js",
+                "Axios",
+                "Chalk"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! Day.js est une alternative plus légère à Moment.js.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Day.js'.",
+            point: "1"
+        },
+        {
+            question: "Quelle est la fonction principale de Git ?",
+            questionType: "text",
+            answers: [
+                "Formater automatiquement le code",
+                "Gérer la version du code et la collaboration",
+                "Analyser la performance des applications",
+                "Ajouter des dépendances au projet"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! Git est utilisé pour la gestion des versions et la collaboration.",
+            messageForIncorrectAnswer: "Faux. La bonne réponse est : 'Gérer la version du code et la collaboration'.",
+            point: "1"
+        },
+        {
+            question: "Quelle extension est utilisée pour surligner les erreurs directement dans l'éditeur ?",
+            questionType: "text",
+            answers: [
+                "Error Lens",
+                "ESLint",
+                "TODO Highlight",
+                "Material Icon Theme"
+            ],
+            correctAnswer: [1],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! Error Lens surligne directement les erreurs dans l'éditeur.",
+            messageForIncorrectAnswer: "Faux. La réponse correcte est : 'Error Lens'.",
+            point: "1"
+        },
+        {
+            question: "Quelle commande permet de vérifier la version installée de Node.js ?",
+            questionType: "text",
+            answers: [
+                "node -v",
+                "npm check",
+                "node install",
+                "npm -v"
+            ],
+            correctAnswer: [1],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Bien joué ! 'node -v' affiche la version installée de Node.js.",
+            messageForIncorrectAnswer: "Incorrect. La bonne commande est : 'node -v'.",
+            point: "1"
+        },
+        {
+            question: "Quel outil permet de déboguer un script Node.js dans VSCode ?",
+            questionType: "text",
+            answers: [
+                "Chrome DevTools",
+                "VSCode Debug",
+                "Prettier",
+                "Git History"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! VSCode Debug est utilisé pour déboguer les scripts Node.js.",
+            messageForIncorrectAnswer: "Faux. La réponse correcte est : 'VSCode Debug'.",
+            point: "1"
+        },
+        {
+            question: "Quel outil est idéal pour vérifier les erreurs de qualité de code directement en temps réel ?",
+            questionType: "text",
+            answers: [
+                "Prettier",
+                "SonarLint",
+                "ESLint",
+                "Git History"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Bien joué ! SonarLint identifie les problèmes de qualité en temps réel.",
+            messageForIncorrectAnswer: "Faux. La réponse correcte est : 'SonarLint'.",
+            point: "1"
+        },
+        {
+            question: "Qu'est-ce que Docker apporte au développement web ?",
+            questionType: "text",
+            answers: [
+                "Une amélioration des performances du code",
+                "La capacité de containeriser et isoler les applications",
+                "Une gestion simplifiée des extensions de VSCode",
+                "Une gestion avancée des fichiers JavaScript"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! Docker permet de containeriser et d'isoler les applications.",
+            messageForIncorrectAnswer: "Faux. Docker sert à containeriser et isoler les applications.",
+            point: "1"
+        },
+        {
+            question: "Quel fichier est souvent utilisé pour ignorer certains dossiers ou fichiers dans un projet Git ?",
+            questionType: "text",
+            answers: [
+                ".ignore",
+                ".gitignore",
+                ".npmignore",
+                ".config"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! .gitignore permet d’exclure certains fichiers/dossiers du suivi Git.",
+            messageForIncorrectAnswer: "Faux. La réponse correcte est : '.gitignore'.",
+            point: "1"
+        },
+        {
+            question: "Quelle extension permet de visualiser l'historique des commits dans VSCode ?",
+            questionType: "text",
+            answers: [
+                "Git History",
+                "Pull Requests",
+                "Error Lens",
+                "Bracket Pair Colorizer"
+            ],
+            correctAnswer: [1],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! Git History permet de consulter l’historique des commits.",
+            messageForIncorrectAnswer: "Faux. La bonne réponse est : 'Git History'.",
+            point: "1"
+        },
+        {
+            question: "Que permet d’afficher l’extension Material Icon Theme ?",
+            questionType: "text",
+            answers: [
+                "La taille des imports",
+                "Des icônes spécifiques aux types de fichiers",
+                "Les règles ESLint en surbrillance",
+                "La consommation mémoire des processus Node.js"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! Material Icon Theme affiche des icônes pour les types de fichiers.",
+            messageForIncorrectAnswer: "Faux. La réponse correcte est : 'Des icônes spécifiques aux types de fichiers'.",
+            point: "1"
+        },
+        {
+            question: "Pourquoi utiliser Tailwind CSS ?",
+            questionType: "text",
+            answers: [
+                "Pour gérer les animations CSS avancées",
+                "Pour écrire des CSS rapides, réutilisables et basés sur des classes utilitaires",
+                "Pour analyser les performances des fichiers CSS",
+                "Pour ajouter automatiquement des styles préconçus"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! Tailwind CSS facilite l'écriture de CSS réutilisables.",
+            messageForIncorrectAnswer: "Faux. La réponse correcte est : 'Pour écrire des CSS rapides, réutilisables et basés sur des classes utilitaires'.",
+            point: "1"
+        },
+        {
+            question: "Quelle commande Git permet de cloner un dépôt existant ?",
+            questionType: "text",
+            answers: [
+                "git pull",
+                "git init",
+                "git clone",
+                "git commit"
+            ],
+            correctAnswer: [3],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Bien joué ! 'git clone' permet de cloner un dépôt existant.",
+            messageForIncorrectAnswer: "Faux. La bonne réponse est : 'git clone'.",
+            point: "1"
+        }    ]
+}
+
+
+<Quizz quizData={quiz} />
+
+

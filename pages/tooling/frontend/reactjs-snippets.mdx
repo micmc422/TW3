@@ -1,0 +1,104 @@
+# Snippets React pour VS Code
+
+Cette extension VS Code fournit des snippets React/ReactJS pour accélérer votre développement.
+
+## Installation
+
+1. Ouvrez VS Code
+2. Appuyez sur `Ctrl+P` / `Cmd+P`
+3. Tapez `ext install dsznajder.es7-react-js-snippets`
+
+## Snippets disponibles
+
+### Composants React
+
+| Snippet | Description |
+|---------|-------------|
+| `rfc→` | Crée un composant fonctionnel |
+| `rfce→` | Crée un composant fonctionnel avec export |
+| `rcc→` | Crée une classe composant |
+
+
+``` js
+// rfc
+function MonComposant() {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+// rfce
+function MonComposant() {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+export default MonComposant
+
+// rcc
+class MonComposant extends React.Component {
+  render() {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
+}
+```
+
+### Hooks React
+
+| Snippet | Description |
+|---------|-------------|
+| `useS→` | useState Hook |
+| `useE→` | useEffect Hook |
+| `useR→` | useRef Hook |
+
+
+``` js
+// useState
+const [compteur, setCompteur] = useState(0)
+
+// useEffect
+useEffect(() => {
+  // Code à exécuter
+}, [])
+
+// useRef
+const monRef = useRef(null)
+```
+
+### Props & State
+
+| Snippet | Description |
+|---------|-------------|
+| `pts→` | PropTypes String |
+| `ptn→` | PropTypes Number |
+| `ptf→` | PropTypes Func |
+
+
+``` js
+MonComposant.propTypes = {
+  nom: PropTypes.string,
+  age: PropTypes.number,
+  onClick: PropTypes.func,
+}
+```
+
+### Import/Export
+
+| Snippet | Description |
+|---------|-------------|
+| `imp→` | import |
+| `exp→` | export |
+
+
+``` js
+import { Component } from 'react'
+export default Component
+```

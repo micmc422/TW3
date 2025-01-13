@@ -1,0 +1,82 @@
+
+# Performance Monitor
+
+Le Performance Monitor est un outil essentiel pour surveiller et optimiser les performances de vos applications web. Il permet d'analyser en temps réel différentes métriques cruciales pour garantir une expérience utilisateur optimale.
+
+## Pourquoi utiliser un Performance Monitor ?
+
+- Identifier les goulots d'étranglement
+- Mesurer les temps de chargement
+- Optimiser la consommation des ressources
+- Améliorer l'expérience utilisateur
+
+## Métriques principales à surveiller
+
+### 1. Temps de chargement
+- First Contentful Paint (FCP)
+- Time to Interactive (TTI)
+- Largest Contentful Paint (LCP)
+
+### 2. Performance JavaScript
+- Temps d'exécution
+- Utilisation mémoire
+- Garbage collection
+
+### 3. Performances réseau
+- Temps de réponse serveur
+- Taille des ressources
+- Nombre de requêtes
+
+## Outils recommandés
+
+1. **Chrome DevTools Performance Panel**
+   - Analyse détaillée du runtime
+   - Profiling CPU
+   - Mesure de la mémoire
+
+2. **Lighthouse**
+   - Audit automatisé
+   - Recommandations d'optimisation
+   - Scores de performance
+
+3. **Web Vitals**
+   - Métriques essentielles
+   - Analyse en temps réel
+   - Rapports détaillés
+
+## Bonnes pratiques
+
+1. **Monitoring régulier**
+   - Établir des mesures de référence
+   - Suivre les évolutions
+   - Définir des alertes
+
+2. **Optimisation continue**
+   - Minification des ressources
+   - Compression des images
+   - Mise en cache efficace
+
+3. **Documentation**
+   - Journalisation des performances
+   - Rapports périodiques
+   - Plans d'action
+
+## Mise en place
+
+```js
+// Exemple de monitoring des Web Vitals
+import {onCLS, onFID, onLCP} from 'web-vitals';
+
+function sendToAnalytics({name, value}) {
+  console.log(`Métrique ${name}: ${value}`);
+}
+
+// Monitoring des métriques principales
+onCLS(sendToAnalytics);
+onFID(sendToAnalytics);
+onLCP(sendToAnalytics);
+```
+
+## Conclusion
+
+Un monitoring efficace des performances est crucial pour maintenir et améliorer la qualité de votre application web. Il permet d'identifier rapidement les problèmes et d'optimiser continuellement l'expérience utilisateur.

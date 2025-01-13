@@ -1,0 +1,161 @@
+# Exercice Pratique : Mise en place et exploration d’un environnement de développement avec Tooling
+
+## **Objectif :**
+Configurer un environnement de développement web complet, tester plusieurs outils de tooling, et comprendre leur utilité dans un workflow professionnel.
+
+---
+
+## **Partie 1 : Installation et configuration des outils de base**
+1. **Préparer l’environnement :**
+   - Installez **Visual Studio Code** (si ce n’est pas déjà fait).
+   - Assurez-vous que **Node.js** et **npm** sont correctement installés sur votre machine.
+   - Vérifiez que **Git** est installé et configuré avec votre nom et email :
+     ```bash
+     git config --global user.name "VotreNom"
+     git config --global user.email "VotreEmail"
+     ```
+
+2. **Installer des extensions Visual Studio Code :**
+   - Recherchez et installez les extensions suivantes :
+     - **Prettier - Code Formatter**
+     - **ESLint**
+     - **Path Intellisense**
+     - **Bracket Pair Colorizer 2**
+     - **Material Icon Theme**
+   - Activez et configurez chacune d’elles dans le fichier `settings.json` de VSCode. Exemple :
+     ```json
+     {
+       "editor.formatOnSave": true,
+       "prettier.singleQuote": true,
+       "eslint.format.enable": true,
+       "workbench.iconTheme": "material-icon-theme"
+     }
+     ```
+
+---
+
+## **Partie 2 : Création d’un projet Node.js**
+1. **Initialisation :**
+   - Créez un dossier nommé `tooling-exercice`.
+   - Ouvrez un terminal dans ce dossier et initialisez un projet Node.js :
+     ```bash
+     npm init -y
+     ```
+
+2. **Ajout d’outils Node.js :**
+   - Installez les packages suivants :
+     ```bash
+     npm install lodash axios
+     ```
+   - Installez également ESLint et Prettier comme dépendances de développement :
+     ```bash
+     npm install eslint prettier --save-dev
+     ```
+
+---
+
+## **Partie 3 : Mise en pratique des outils**
+1. **Configurer ESLint et Prettier :**
+   - Créez un fichier `.eslintrc.json` à la racine du projet :
+     ```json
+     {
+       "env": {
+         "node": true,
+         "es2021": true
+       },
+       "extends": "eslint:recommended",
+       "parserOptions": {
+         "ecmaVersion": 12
+       },
+       "rules": {
+         "quotes": ["error", "single"],
+         "semi": ["error", "always"]
+       }
+     }
+     ```
+   - Ajoutez un fichier `.prettierrc` :
+     ```json
+     {
+       "singleQuote": true,
+       "semi": true
+     }
+     ```
+
+2. **Créer un script Node.js simple :**
+   - Ajoutez un fichier `index.js` :
+     ```javascript
+     const _ = require('lodash');
+     const axios = require('axios');
+
+     const data = _.shuffle([1, 2, 3, 4, 5]);
+     console.log('Shuffled data:', data);
+
+     axios.get('https://jsonplaceholder.typicode.com/posts/1')
+       .then((response) => {
+         console.log('API Response:', response.data);
+       })
+       .catch((error) => {
+         console.error('Error fetching API:', error);
+       });
+     ```
+
+3. **Tester ESLint et Prettier :**
+   - Introduisez volontairement des erreurs dans le code (par exemple, oubliez un point-virgule ou utilisez des guillemets doubles).
+   - Laissez ESLint et Prettier détecter et corriger les erreurs.
+
+---
+
+## **Partie 4 : Collaboration avec Git**
+1. **Initialisation :**
+   - Initialisez un dépôt Git :
+     ```bash
+     git init
+     ```
+   - Créez un fichier `.gitignore` et ajoutez :
+     ```
+     node_modules/
+     ```
+   - Faites un premier commit :
+     ```bash
+     git add .
+     git commit -m "Initial commit"
+     ```
+
+2. **Exploration de l’historique Git :**
+   - Installez l’extension **Git History**.
+   - Explorez les modifications apportées dans les différents commits.
+
+---
+
+## **Partie 5 : Debugging et optimisation**
+1. **Configurer Chrome DevTools et VSCode Debug :**
+   - Configurez un fichier `launch.json` pour déboguer le script Node.js :
+     ```json
+     {
+       "version": "0.2.0",
+       "configurations": [
+         {
+           "type": "node",
+           "request": "launch",
+           "name": "Launch Program",
+           "program": "${workspaceFolder}/index.js"
+         }
+       ]
+     }
+     ```
+
+2. **Mesurer la taille du bundle**
+   - Installez **Import Cost** et observez la taille des dépendances importées dans le code.
+
+---
+
+## **Résultats attendus**
+- Un projet Node.js fonctionnel avec des outils configurés pour garantir la qualité du code.
+- Une meilleure compréhension de l’utilisation de Git, ESLint, Prettier, et des extensions VSCode.
+- Une capacité à automatiser les tâches courantes et à collaborer efficacement.
+
+---
+
+## **Bonus : Challenge avancé**
+- Ajoutez un outil de surveillance des performances comme **Performance Monitor**.
+- Intégrez **SonarLint** pour détecter des problèmes plus complexes dans le code.

@@ -1,0 +1,114 @@
+
+# Error Lens
+
+Error Lens est une extension VS Code qui améliore la visibilité des erreurs et avertissements directement dans l'éditeur de code.
+
+## Installation
+
+1. Ouvrez VS Code
+2. Accédez à la section Extensions (Ctrl+Shift+X)
+3. Recherchez "Error Lens"
+4. Cliquez sur "Installer"
+
+## Fonctionnalités principales
+
+### Affichage inline des erreurs
+
+Error Lens affiche les messages d'erreur directement à la fin de la ligne concernée, ce qui permet de :
+- Voir instantanément où se trouvent les problèmes
+- Lire le message d'erreur sans avoir à survoler la ligne
+- Identifier rapidement les erreurs de syntaxe ou de type
+
+```js
+const nombre: string = 42; // Error: Type 'number' is not assignable to type 'string'
+```
+
+### Personnalisation des couleurs
+
+Vous pouvez personnaliser les couleurs utilisées pour différents types de messages :
+
+
+```json
+{
+  "errorLens.errorColor": "#ff0000",
+  "errorLens.warningColor": "#ffa500",
+  "errorLens.infoColor": "#2080ff"
+}
+```
+
+
+### Astuces d'utilisation
+
+1. **Désactiver temporairement** : Utilisez la commande `Error Lens: Toggle` pour activer/désactiver l'extension
+
+2. **Filtrer les messages** : Configurez quels types de messages afficher :
+
+```json
+{
+  "errorLens.enabledDiagnosticLevels": [
+    "error",
+    "warning",
+    "info"
+  ]
+}
+```
+
+
+3. **Mode status bar** : Affichez les erreurs dans la barre de statut plutôt qu'en inline :
+```json
+{
+  "errorLens.messageEnabled": false,
+  "errorLens.statusBarMessageEnabled": true
+}
+```
+
+
+## Configuration recommandée
+
+Voici une configuration optimale pour un bon équilibre entre visibilité et discrétion :
+
+
+```json
+{
+  "errorLens.enabledDiagnosticLevels": [
+    "error",
+    "warning"
+  ],
+  "errorLens.messageBackgroundMode": "message",
+  "errorLens.fontFamily": "Consolas",
+  "errorLens.fontSize": "12",
+  "errorLens.margin": "8",
+  "errorLens.messageMaxLength": 100
+}
+```
+
+
+## Raccourcis clavier utiles
+
+- `Ctrl + Shift + M` : Afficher tous les problèmes
+- `F8` : Naviguer vers l'erreur suivante
+- `Shift + F8` : Naviguer vers l'erreur précédente
+
+## Conseils avancés
+
+1. **Intégration avec ESLint** : Error Lens fonctionne parfaitement avec ESLint pour afficher les erreurs de style et les bonnes pratiques
+
+2. **Performance** : Si vous travaillez sur de très grands fichiers, vous pouvez optimiser les performances avec :
+
+```json
+{
+  "errorLens.delay": 100,
+  "errorLens.scrollbarHackEnabled": false
+}
+```
+
+
+3. **Mode focus** : Pour vous concentrer sur la résolution d'erreurs spécifiques :
+
+```json
+{
+  "errorLens.enabledDiagnosticLevels": ["error"],
+  "errorLens.followCursor": true
+}
+```
+

@@ -1,0 +1,117 @@
+
+# Pull Requests GitHub
+
+Les Pull Requests (PR) sont un élément central de la collaboration sur GitHub. Elles permettent de proposer des modifications de code de manière structurée et de faciliter la revue de code.
+
+## Création d'une Pull Request
+
+1. Créez une nouvelle branche pour vos modifications :
+
+```sh copy
+git checkout -b feature/nouvelle-fonctionnalite
+```
+
+2. Effectuez vos modifications et committez-les :
+
+```sh copy
+git add .
+git commit -m "Ajout de la nouvelle fonctionnalité"
+```
+
+3. Poussez votre branche sur GitHub :
+
+```sh copy
+git push origin feature/nouvelle-fonctionnalite
+```
+
+4. Sur GitHub, cliquez sur "Compare & pull request"
+5. Remplissez le titre et la description de votre PR
+6. Cliquez sur "Create pull request"
+
+## Bonnes pratiques
+
+### Description claire
+
+## Changements proposés
+- Ajout de la fonctionnalité X
+- Correction du bug Y
+- Amélioration des performances de Z
+
+## Tests effectués
+- Test unitaire A
+- Test d'intégration B
+
+## Screenshots
+[Si applicable]
+
+
+### Revue de code
+- Demandez la revue à des personnes pertinentes
+- Répondez aux commentaires de manière constructive
+- Mettez à jour votre code selon les retours
+
+### Mise à jour de la PR
+
+```sh
+# Mettre à jour votre branche avec main
+git checkout main
+git pull
+git checkout feature/nouvelle-fonctionnalite
+git merge main
+
+# Résoudre les conflits si nécessaire
+git add .
+git commit -m "Résolution des conflits"
+git push
+```
+
+## Fusion de la Pull Request
+
+1. Attendez les validations nécessaires
+2. Vérifiez que tous les tests passent
+3. Choisissez la méthode de fusion :
+   - Merge commit : conserve l'historique complet
+   - Squash and merge : combine tous les commits en un seul
+   - Rebase and merge : réapplique les commits sur la branche principale
+
+4. Cliquez sur "Merge pull request"
+5. Supprimez la branche après la fusion
+
+## Commandes Git utiles
+
+```sh copy
+# Voir les différences
+git diff main feature/nouvelle-fonctionnalite
+
+# Récupérer une PR localement
+git fetch origin pull/ID/head:nom-branche
+
+# Nettoyer les branches
+git branch -d feature/nouvelle-fonctionnalite  # local
+git push origin --delete feature/nouvelle-fonctionnalite  # remote
+```
+
+## Automatisation
+
+### GitHub Actions
+
+```jsonl
+name: PR Checks
+on: [pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: |
+          npm install
+          npm test
+```
+
+### Protection de branche
+- Exiger des revues de code
+- Vérifier le statut des tests
+- Empêcher les push directs sur main
+
+Ces pratiques garantissent un processus de développement collaboratif efficace et maintiennent la qualité du code.

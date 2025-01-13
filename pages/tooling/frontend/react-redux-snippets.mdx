@@ -1,0 +1,122 @@
+---
+title: Snippets React/Redux/React Native
+description: Extraits de code et modèles pour React, Redux et React Native
+---
+
+# Snippets React/Redux/React Native
+
+## Installation des snippets
+
+Pour installer les snippets dans votre éditeur :
+
+### VS Code
+1. Ouvrez la palette de commandes (Ctrl+Shift+P)
+2. Tapez "Snippets"
+3. Sélectionnez "Preferences: Configure User Snippets"
+4. Choisissez "javascript.json" ou "javascriptreact.json"
+5. Copiez les snippets ci-dessous
+
+### Utilisation
+Pour utiliser un snippet, tapez son préfixe puis appuyez sur Tab.
+
+Préfixes disponibles :
+- `rfc` : React Functional Component
+- `rcc` : React Class Component
+- `reduxact` : Redux Actions
+
+
+## React
+
+### Composant Fonctionnel
+
+``` js
+const MonComposant = ({ prop1, prop2 }) => {
+  return (
+    <div>
+      <h1>{prop1}</h1>
+      <p>{prop2}</p>
+    </div>
+  );
+};
+```
+
+### Composant Classe
+
+``` js
+class MonComposant extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      donnee: ''
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>{this.props.titre}</h1>
+        <p>{this.state.donnee}</p>
+      </div>
+    );
+  }
+}
+```
+
+## Redux
+
+### Actions
+
+``` js
+// Types d'actions
+export const CHARGER_DONNEES = 'CHARGER_DONNEES';
+export const CHARGER_DONNEES_SUCCES = 'CHARGER_DONNEES_SUCCES';
+export const CHARGER_DONNEES_ERREUR = 'CHARGER_DONNEES_ERREUR';
+
+// Créateurs d'actions
+export const chargerDonnees = () => ({
+  type: CHARGER_DONNEES
+});
+
+export const chargerDonneesSucces = (donnees) => ({
+  type: CHARGER_DONNEES_SUCCES,
+  payload: donnees
+});
+```
+
+### Reducer
+
+
+``` js
+const etatInitial = {
+  donnees: [],
+  chargement: false,
+  erreur: null
+};
+
+const monReducer = (state = etatInitial, action) => {
+  switch (action.type) {
+    case CHARGER_DONNEES:
+      return {
+        ...state,
+        chargement: true
+      };
+    case CHARGER_DONNEES_SUCCES:
+      return {
+        ...state,
+        chargement: false,
+        donnees: action.payload
+      };
+    default:
+      return state;
+  }
+};
+```
+
+## Bonnes Pratiques
+
+- Utilisez des composants fonctionnels avec des hooks quand c'est possible
+- Maintenez une structure de dossiers claire et organisée
+- Commentez votre code de manière pertinente
+- Utilisez la déstructuration pour les props
+- Évitez les effets de bord inutiles
+- Optimisez les performances avec React.memo() et useMemo()

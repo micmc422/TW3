@@ -1,0 +1,116 @@
+
+# Optimisation de la taille du bundle
+
+La taille du bundle est un facteur crucial pour les performances de votre application. Un bundle trop volumineux peut ralentir significativement le chargement initial de votre site.
+
+## Analyser la taille du bundle
+
+Pour analyser la taille de votre bundle, plusieurs outils sont disponibles :
+
+### Webpack Bundle Analyzer
+
+
+```sh npm2yarn
+npm install --save-dev webpack-bundle-analyzer
+```
+
+
+Dans votre configuration webpack :
+
+
+```js
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+module.exports = {
+  plugins: [
+    new BundleAnalyzerPlugin()
+  ]
+}
+```
+
+
+### Next.js Bundle Analyzer
+
+Pour Next.js, utilisez :
+
+
+```sh npm2yarn
+npm install --save-dev @next/bundle-analyzer
+```
+
+
+## Astuces pour réduire la taille
+
+### 1. Code splitting
+
+Utilisez le chargement dynamique :
+
+
+```js
+import dynamic from 'next/dynamic'
+
+const DynamicComponent = dynamic(() => import('../components/Heavy'))
+```
+
+
+### 2. Tree shaking
+
+Assurez-vous d'utiliser des imports nommés :
+
+
+```js
+// ❌ Mauvais - importe tout le module
+import lodash from 'lodash'
+
+// ✅ Bon - importe uniquement la fonction nécessaire
+import { map } from 'lodash'
+```
+
+
+### 3. Compression des images
+
+Utilisez des formats optimisés comme WebP :
+
+
+```js
+import Image from 'next/image'
+
+export default function OptimizedImage() {
+  return (
+    <Image
+      src="/image.webp"
+      width={500}
+      height={300}
+      alt="Image optimisée"
+    />
+  )
+}
+```
+
+
+### 4. Minification des dépendances
+
+Vérifiez régulièrement vos dépendances avec `npm-check` :
+
+
+```sh copy
+npx npm-check
+```
+
+
+## Bonnes pratiques
+
+- Utilisez `import()` pour le code splitting
+- Évitez les dépendances lourdes
+- Optimisez les images et assets
+- Mettez en place un budget de performance
+- Surveillez régulièrement la taille du bundle
+
+## Outils recommandés
+
+- webpack-bundle-analyzer
+- source-map-explorer
+- bundlephobia.com
+- import-cost (extension VSCode)
+
+En suivant ces conseils, vous pourrez maintenir une taille de bundle optimale et améliorer les performances de votre application.

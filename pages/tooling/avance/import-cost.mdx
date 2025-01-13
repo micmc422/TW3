@@ -1,0 +1,68 @@
+
+# Import Cost
+
+L'extension Import Cost est un outil précieux pour les développeurs JavaScript/TypeScript qui permet de visualiser la taille des packages importés directement dans l'éditeur.
+
+## Installation
+
+1. Ouvrez VS Code
+2. Accédez aux extensions (Ctrl+Shift+X)
+3. Recherchez "Import Cost"
+4. Installez l'extension publiée par Wix
+
+## Fonctionnalités
+
+L'extension affiche en temps réel:
+- La taille du package importé
+- La taille compressée (gzip)
+- Un code couleur selon la taille:
+  - 🟢 Vert: < 100 KB
+  - 🟡 Jaune: entre 100 KB et 500 KB
+  - 🔴 Rouge: > 500 KB
+
+## Exemples
+
+```js
+// Petit import (vert)
+🟢import _ from 'lodash-es'; // 24.7KB gzipped
+
+// Import moyen (jaune)
+🟡import moment from 'moment'; // 329KB gzipped
+
+// Gros import (rouge)
+🔴import { Observable } from 'rxjs'; // 622KB gzipped
+```
+
+## Astuces d'optimisation
+
+Utilisez l'import sélectif:
+
+```js
+// À éviter
+import * as lodash from 'lodash'
+
+// Préférer
+import { map, filter } from 'lodash'
+```
+
+
+Privilégiez les alternatives plus légères:
+
+```js
+// Lourd
+import moment from 'moment' // 329KB
+
+// Plus léger
+import dayjs from 'dayjs' // 6.3KB
+```
+
+
+Utilisez les imports dynamiques pour le code splitting:
+
+```js
+// Import dynamique
+const module = await import('./heavy-module')
+```
+
+
+Cette extension vous aide à maintenir une application performante en surveillant la taille de vos dépendances. C'est particulièrement utile pour les applications web où la taille du bundle est critique pour les performances.

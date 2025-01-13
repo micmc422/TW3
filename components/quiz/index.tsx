@@ -26,7 +26,7 @@ export function QuizNextBtn({ children }: { children: ReactNode }) {
     const ref = useRef(null)
     const { nextQuestion, userAnswers, currentQuestion } = useContext(QuizzContext)
     function disabledBtnClass() {
-        if (userAnswers[currentQuestion - 1]?.includes(0)) {
+        if (userAnswers?.[currentQuestion - 1]?.includes(0)) {
             ref.current.style.backgroundColor = "rgba(127, 29, 29, .3)";
             ref.current.style.border = "solid 1px rgba(127, 29, 29, .8)";
             ref.current.style.color = "white"
@@ -41,7 +41,7 @@ export function QuizNextBtn({ children }: { children: ReactNode }) {
     useEffect(() => {
         disabledBtnClass()
     }, [userAnswers, currentQuestion])
-    return <button ref={ref} style={{ userSelect: "none" }} disabled={userAnswers[currentQuestion - 1]?.includes(0)} className="_mt-4 _flex _rounded _px-2 _py-1.5 _text-sm _transition-colors [word-break:break-word] _cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:_border _bg-primary-100 _font-semibold _text-white dark:_bg-primary-100/10 dark:_text-black contrast-more:_border-white contrast-more:dark:_border-white" onClick={nextQuestion}>{children}</button>
+    return <button ref={ref} style={{ userSelect: "none" }} disabled={userAnswers?.[currentQuestion - 1]?.includes(0)} className="_mt-4 _flex _rounded _px-2 _py-1.5 _text-sm _transition-colors [word-break:break-word] _cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:_border _bg-primary-100 _font-semibold _text-white dark:_bg-primary-100/10 dark:_text-black contrast-more:_border-white contrast-more:dark:_border-white" onClick={nextQuestion}>{children}</button>
 }
 export function QuizResetBtn({ children }: { children: ReactNode }) {
     const { handleAnswser, userAnswers, currentQuestion } = useContext(QuizzContext)

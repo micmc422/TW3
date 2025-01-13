@@ -1,0 +1,52 @@
+---
+title: "Path Intellisense - Autocomplétion des chemins"
+description: "Découvrez comment utiliser Path Intellisense pour faciliter la saisie des chemins de fichiers dans VS Code"
+---
+
+# Path Intellisense
+
+Path Intellisense est une extension VS Code qui facilite grandement la saisie des chemins de fichiers en fournissant une autocomplétion intelligente.
+
+## Installation
+
+1. Ouvrez VS Code
+2. Accédez à la section Extensions (Ctrl+Shift+X)
+3. Recherchez "Path Intellisense"
+4. Cliquez sur Install
+
+## Fonctionnalités principales
+
+### Autocomplétion des chemins
+- Suggère automatiquement les fichiers et dossiers disponibles lors de la saisie d'un chemin
+- Fonctionne avec les chemins relatifs et absolus
+- Supporte les imports JavaScript/TypeScript
+- Compatible avec les chemins dans les fichiers HTML, CSS, etc.
+
+### Exemple d'utilisation
+``` ts
+import { Component } from '../    // Affiche la liste des dossiers/fichiers disponibles
+```
+
+### Configuration personnalisée
+Vous pouvez personnaliser le comportement dans les paramètres VS Code :
+
+``` ts
+{
+  "path-intellisense.extensionOnImport": true,
+  "path-intellisense.showHiddenFiles": true,
+  "path-intellisense.autoSlashAfterDirectory": true
+}
+```
+
+## Avantages
+- Gain de temps considérable
+- Réduction des erreurs de frappe
+- Navigation plus fluide dans l'arborescence du projet
+- Meilleure productivité lors du développement
+
+## Astuces
+- Utilisez Tab pour compléter rapidement les suggestions
+- Le caractère "/" déclenche automatiquement les suggestions
+- Fonctionne également avec les chemins des images dans les balises HTML
+
+Path Intellisense est un outil indispensable pour tout développeur utilisant VS Code, permettant d'accélérer significativement la saisie des chemins de fichiers tout en réduisant les erreurs.

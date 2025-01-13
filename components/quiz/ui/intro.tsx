@@ -11,7 +11,7 @@ import PACHA from "@/public/Pacha_Infobox.webp"
 
 export default function QuizzIntro() {
     const { quizTitle, quizSynopsis, currentQuestion, userAnswers, score, totalScore } = useContext(QuizzContext);
-    const isCompleted = userAnswers[userAnswers.length - 1][0] !== 0;
+    const isCompleted = userAnswers?.[userAnswers?.length - 1][0] !== 0;
     // userAnswers.map((answers) => answers(ans => ans !==))
     if (currentQuestion !== 0) return <></>
     if (isCompleted) {

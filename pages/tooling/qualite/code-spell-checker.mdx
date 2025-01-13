@@ -1,0 +1,83 @@
+
+# Code Spell Checker
+
+Code Spell Checker est une extension VS Code qui permet de vérifier l'orthographe dans votre code source. Elle est particulièrement utile pour détecter les fautes de frappe dans les noms de variables, les commentaires et les chaînes de caractères.
+
+## Installation
+
+1. Ouvrez VS Code
+2. Accédez à la section Extensions (Ctrl+Shift+X)
+3. Recherchez "Code Spell Checker"
+4. Installez l'extension proposée par Street Side Software
+
+## Configuration
+
+Par défaut, l'extension vérifie l'orthographe en anglais. Pour ajouter le support du français :
+
+1. Installez l'extension "French - Code Spell Checker"
+2. Ouvrez les paramètres VS Code (Ctrl+,)
+3. Recherchez "cSpell.language"
+4. Ajoutez "fr" à la liste des langages
+
+
+```json
+{
+  "cSpell.language": "en,fr"
+}
+```
+
+## Utilisation
+
+L'extension souligne automatiquement les mots mal orthographiés :
+
+
+```js
+// Exemple avec une faute
+const mesage = "Bonjour"; // 'mesage' sera souligné car mal orthographié
+const message = "Bonjour"; // Correct
+
+// Dans les commentaires aussi
+// Cette phrasee contient une fote // 'phrasee' et 'fote' seront soulignés
+```
+
+### Actions disponibles
+
+- Clic droit sur un mot souligné pour voir les suggestions
+- Quick Fix (Ctrl+.) pour corriger rapidement
+- Ajouter un mot au dictionnaire utilisateur
+
+### Ignorer des mots
+
+Pour ignorer certains mots spécifiques, ajoutez-les dans les paramètres :
+
+```json
+{
+  "cSpell.words": [
+    "vuepress",
+    "nuxt",
+    "vuex"
+  ]
+}
+```
+
+## Fichier de configuration
+
+Vous pouvez créer un fichier `cspell.json` à la racine de votre projet :
+
+```json
+{
+  "version": "0.2",
+  "language": "en,fr",
+  "words": [
+    "vuejs",
+    "nuxt",
+    "pinia"
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    "dist/**"
+  ]
+}
+```
+
+Cette configuration sera partagée avec toute l'équipe du projet.

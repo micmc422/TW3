@@ -1,0 +1,55 @@
+---
+title: "Bracket Pair Colorizer"
+description: "Extension VSCode pour coloriser les paires de parenthèses, crochets et accolades"
+---
+
+# Bracket Pair Colorizer
+
+Bracket Pair Colorizer est une extension très utile pour Visual Studio Code qui permet de coloriser les paires de parenthèses, crochets et accolades correspondantes dans votre code. Cela facilite grandement la lecture et le débogage, particulièrement dans les structures de code imbriquées.
+
+## Installation
+
+1. Ouvrez VSCode
+2. Accédez à la section Extensions (Ctrl+Shift+X)
+3. Recherchez "Bracket Pair Colorizer"
+4. Cliquez sur Installer
+
+## Fonctionnalités principales
+
+### Coloration automatique
+- Chaque paire de brackets est colorée de manière unique
+- Les couleurs alternent automatiquement pour les niveaux d'imbrication
+- Fonctionne avec (), [], et {}
+
+### Personnalisation
+Vous pouvez personnaliser :
+- Les couleurs utilisées
+- Les types de brackets à colorier
+- L'épaisseur des lignes de liaison
+
+### Configuration recommandée
+
+``` json
+{
+    "bracket-pair-colorizer-2.colors": [
+        "#fafafa",
+        "#9F51B6",
+        "#F7C244",
+        "#F07850",
+        "#9CDD29",
+    ],
+    "bracket-pair-colorizer-2.forceUniqueOpeningColor": true,
+    "bracket-pair-colorizer-2.forceIterationColorCycle": true
+}
+```
+
+## Utilisation
+
+L'extension fonctionne automatiquement dès son installation. Vous verrez :
+- Les paires correspondantes colorées de la même couleur
+- Une ligne reliant les brackets correspondantes
+- Des couleurs différentes pour chaque niveau d'imbrication
+
+## Note importante
+
+Depuis Visual Studio Code 1.60, la coloration des paires de brackets est intégrée nativement. Si vous utilisez une version récente de VSCode, vous n'avez plus besoin de cette extension.

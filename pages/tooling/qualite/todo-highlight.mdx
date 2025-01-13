@@ -1,0 +1,84 @@
+
+# TODO Highlight
+
+L'extension TODO Highlight est un outil pratique pour Visual Studio Code qui permet de mettre en évidence les commentaires contenant certains mots-clés comme TODO, FIXME, NOTE, etc.
+
+## Installation
+
+1. Ouvrez VS Code
+2. Allez dans l'onglet Extensions (Ctrl+Shift+X)
+3. Recherchez "TODO Highlight"
+4. Installez l'extension publiée par Wayou Liu
+
+## Utilisation
+
+L'extension reconnaît par défaut les mots-clés suivants dans les commentaires :
+
+```js
+// TODO: Implémenter la fonction de validation
+// FIXME: Corriger le bug d'affichage 
+// NOTE: Cette partie pourrait être optimisée
+```
+
+## Configuration personnalisée
+
+Vous pouvez personnaliser les mots-clés et leurs couleurs dans settings.json :
+
+```json
+{
+  "todohighlight.keywords": [
+    {
+      "text": "TODO:",
+      "color": "#fff",
+      "backgroundColor": "#ffbd2a"
+    },
+    {
+      "text": "FIXME:",
+      "color": "#fff", 
+      "backgroundColor": "#f06292"
+    },
+    {
+      "text": "NOTE:",
+      "color": "#fff",
+      "backgroundColor": "#2196f3"
+    }
+  ]
+}
+```
+
+## Exemples d'utilisation
+
+### JavaScript
+```js
+// TODO: Ajouter la validation des entrées
+function validateForm() {
+  // FIXME: La regex n'est pas assez stricte
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // NOTE: Penser à ajouter des tests unitaires
+}
+```
+
+### Python
+
+```python
+# TODO: Implémenter la gestion des erreurs
+def process_data(data):
+    # FIXME: Optimiser cette boucle
+    for item in data:
+        # NOTE: Possible amélioration avec map()
+        pass
+```
+
+## Avantages
+
+- Meilleure visibilité des tâches à faire
+- Organisation plus efficace du code
+- Facilite la collaboration entre développeurs
+- Permet de repérer rapidement les parties du code nécessitant une attention particulière
+
+## Bonnes pratiques
+
+1. Utilisez des commentaires descriptifs après les mots-clés
+2. Évitez de laisser des TODOs trop longtemps dans le code
+3. Revoyez régulièrement les TODOs et FIXME
+4. Assignez des priorités si nécessaire (ex: TODO[HIGH])
