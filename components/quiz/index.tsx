@@ -1,3 +1,4 @@
+"use client"
 import { ReactNode, useContext, useEffect, useRef } from "react";
 import QuizzRoot, { QuizzContext } from "./context";
 import QuizzIntro from "./ui/intro";

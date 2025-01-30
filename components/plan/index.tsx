@@ -1,4 +1,5 @@
-import { ArrowBigRightIcon, ArrowRightCircleIcon } from 'lucide-react';
+"use client"
+
 import Link from 'next/link';
 import { useConfig } from 'nextra-theme-docs'
 import { Steps } from 'nextra/components'

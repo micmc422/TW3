@@ -1,3 +1,4 @@
+"use client"
 import { createContext, ReactNode, useMemo, useState } from "react";
 import { Question, QuizStructure } from "react-quiz-component";
 

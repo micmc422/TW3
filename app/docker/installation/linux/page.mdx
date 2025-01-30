@@ -1,0 +1,25 @@
+---
+title: "Installation de Docker sur Linux."
+---
+# Installation de Docker
+
+*Les postes de l’université sont déjà configurés avec docker et Ubuntu.*
+
+## Prérequis pour Linux (Ubuntu)
+
+- **Système d'exploitation :** Ubuntu est l'une des distributions Linux les plus populaires pour Docker. Assurez-vous d'utiliser une version prise en charge d'Ubuntu.
+- **Droits d'administration :** Vous devez avoir des droits d'administration (sudo) sur votre système pour installer Docker.
+- **Espace disque :** Assurez-vous d'avoir suffisamment d'espace disque disponible pour les images Docker et les conteneurs. Au moins 10 Go d'espace disque libre sont recommandés.
+- **Architecture :** Vérifiez que votre système utilise une architecture prise en charge par Docker (par exemple, x86\_64/amd64).
+
+Assurez-vous de vérifier la documentation officielle de Docker pour obtenir les prérequis les plus récents et les plus précis en fonction de la version de Docker que vous prévoyez d'installer.
+
+https://docs.docker.com/engine/install/
+
+## Installation de Docker
+
+```bash copy
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt install docker.io systemctl start docker systemctl enable docker
+```
