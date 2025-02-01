@@ -1,4 +1,4 @@
-## Hooks Natifs
+## **Hooks Natifs**
 
 Voici des exemples fonctionnels pour chaque Hook natif de React :
 
@@ -6,23 +6,101 @@ Voici des exemples fonctionnels pour chaque Hook natif de React :
 
 Le Hook `useState` permet d'ajouter un état local à un composant fonctionnel. Il retourne un tableau avec deux éléments : la valeur actuelle de l'état et une fonction pour la mettre à jour.
 
-```jsx
+```jsx twoslash
 import React, { useState } from 'react';
 
 function Counter() {
  const [count, setCount] = useState(0);
-
  return (
    <div>
-     <p>You clicked {count} times</p>
+     <p>Vous avez cliqué {count} fois</p>
      <button onClick={() => setCount(count + 1)}>
-       Click me
+       Click
      </button>
    </div>
  );
 }
 ```
 
+#### Les bénéfices de la syntaxe `setCount(count => count + 1)`
+```jsx
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0); 
+
+  return (
+    <div>
+      <p>Vous avez cliqué {count} fois</p>
+      <button onClick={() => setCount(count => count + 1)}>Click</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+   **Elle garantit que l'on travaille toujours avec la valeur la plus récente de l'état.**  
+   - React **n'applique pas immédiatement** les mises à jour d'état.  
+   - Plusieurs mises à jour peuvent être **groupées** pour optimiser les performances.  
+   - Si une mise à jour dépend de l'état précédent, il faut utiliser la **fonction de mise à jour** pour éviter des erreurs.  
+
+   ✅ **Exemple où cette syntaxe est indispensable** :  
+   ```jsx
+   function Counter() {
+     const [count, setCount] = useState(0);
+
+     const incrementThreeTimes = () => {
+       setCount(count + 1); // ❌ Ne prend pas en compte les mises à jour groupées
+       setCount(count + 1);
+       setCount(count + 1);
+     };
+
+     return (
+       <div>
+         <p>Compteur : {count}</p>
+         <button onClick={incrementThreeTimes}>+3</button>
+       </div>
+     );
+   }
+   ```
+   🔴 **Problème :**  
+   - Tu t'attends à ce que `count` augmente de 3, mais en réalité, il **n'augmente que de 1**.  
+   - Chaque `setCount(count + 1)` lit la même valeur de `count` (celle du rendu actuel).  
+   - Les mises à jour sont **écrasées** car React ne met pas à jour immédiatement `count`.  
+
+   ✅ **Correction avec la fonction de mise à jour** :  
+   ```jsx
+   const incrementThreeTimes = () => {
+     setCount(prevCount => prevCount + 1);
+     setCount(prevCount => prevCount + 1);
+     setCount(prevCount => prevCount + 1);
+   };
+   ```
+   🎯 **Résultat :** `count` augmente bien de 3, car chaque `setCount` reçoit la **valeur mise à jour** de l'état.  
+
+---
+
+2. **Elle fonctionne mieux avec les effets (`useEffect`) et les mises à jour asynchrones.**  
+   ```jsx
+   useEffect(() => {
+     setTimeout(() => {
+       setCount(prevCount => prevCount + 1);
+     }, 1000);
+   }, []);
+   ```
+   ✅ **Pourquoi ?**  
+   - Si `setTimeout` s'exécute après plusieurs secondes, `prevCount` garantit qu'on **utilise bien la dernière valeur de l'état**, peu importe les autres mises à jour.  
+   - Avec `setCount(count + 1)`, on risquerait d'utiliser une **valeur périmée** si d'autres mises à jour ont eu lieu entre-temps.
+
+---
+
+#### Résumé des bénéfices
+✅ **Sécurisé contre les mises à jour groupées** (évite l'écrasement d'état).  
+✅ **Indispensable pour les mises à jour successives (`+1` plusieurs fois d'affilée).**  
+✅ **Fiable avec des effets (`useEffect`) et les mises à jour asynchrones.**  
+
+➡️ **Bonne pratique :** Toujours utiliser `setCount(prev => prev + 1)` quand la mise à jour dépend de l'état précédent ! 🔥
 ### useEffect
 
 Le Hook `useEffect` permet d'effectuer des effets secondaires dans les composants fonctionnels. Il peut être utilisé pour des opérations telles que les requêtes réseau, les abonnements, les manipulations du DOM, etc.
@@ -30,38 +108,160 @@ Le Hook `useEffect` permet d'effectuer des effets secondaires dans les composant
 ```jsx
 import React, { useState, useEffect } from 'react';
 
-function Example() {
- const [count, setCount] = useState(0);
+function Exemple() {
+  const [count, setCount] = useState(0);
 
- // Similar to componentDidMount and componentDidUpdate:
- useEffect(() => {
-   // Update the document title using the browser API
-   document.title = `You clicked ${count} times`;
- });
+  // Similaire à componentDidMount et componentDidUpdate :
+  useEffect(() => {
+    // Met à jour le titre du document en utilisant l'API du navigateur
+    document.title = `Vous avez cliqué ${count} fois`;
+  });
 
- return (
-   <div>
-     <p>You clicked {count} times</p>
-     <button onClick={() => setCount(count + 1)}>
-       Click me
-     </button>
-   </div>
- );
+  return (
+    <div>
+      <p>Vous avez cliqué {count} fois</p>
+      <button onClick={() => setCount(count + 1)}>
+        Cliquez-moi
+      </button>
+    </div>
+  );
 }
+
+export default Exemple;
+
+```
+#### **L’utilité du `return` dans `useEffect`**  
+
+Le `return` dans `useEffect` est utilisé pour **nettoyer les effets secondaires** lorsqu’un composant est démonté ou avant la prochaine exécution de l’effet. C’est ce qu’on appelle une **fonction de nettoyage** (*cleanup function*).  
+
+---
+
+#### **Exemple sans `return` (effet simple)**
+```jsx
+import React, { useState, useEffect } from 'react';
+
+function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Le composant est monté ou mis à jour.");
+  });
+
+  return (
+    <div>
+      <p>Compteur : {count}</p>
+      <button onClick={() => setCount(count + 1)}>+1</button>
+    </div>
+  );
+}
+
+export default Timer;
+```
+✅ Ici, `useEffect` est exécuté à **chaque rendu**, mais il n’y a **pas de nettoyage**.  
+
+---
+
+#### **Pourquoi utiliser un `return` dans `useEffect` ?**
+La fonction de nettoyage est utile dans plusieurs cas :
+1. **Éviter les fuites de mémoire** (ex. `setInterval`, `setTimeout`).
+2. **Désabonner un écouteur d’événement (`addEventListener`).**
+3. **Annuler une requête HTTP ou une WebSocket.**
+
+---
+
+#### **Exemple avec nettoyage (`return`)**
+```jsx
+import React, { useState, useEffect } from 'react';
+
+function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Démarrage du timer...");
+    const interval = setInterval(() => {
+      setCount(prevCount => prevCount + 1);
+    }, 1000);
+
+    // Fonction de nettoyage
+    return () => {
+      console.log("Arrêt du timer !");
+      clearInterval(interval);
+    };
+  }, []); // Exécuter une seule fois au montage
+
+  return <p>Compteur : {count}</p>;
+}
+
+export default Timer;
 ```
 
+✅ **Explication :**  
+- Quand le composant est **monté**, on démarre un `setInterval()`.  
+- Quand le composant est **démonté**, la fonction retournée s’exécute et **arrête le timer** (`clearInterval`).  
+- **Sans le `return`**, le timer continuerait à tourner même après que le composant soit retiré du DOM, causant une **fuite de mémoire**.  
+
+---
+
+#### **Exemple avec `addEventListener`**
+Si on ajoute un écouteur d’événement sans le retirer, il peut continuer à exister après le démontage du composant :
+
+❌ **Mauvais exemple (pas de nettoyage)**
+```jsx
+useEffect(() => {
+  window.addEventListener("resize", () => {
+    console.log("Fenêtre redimensionnée !");
+  });
+}, []); // Ajout une seule fois, mais jamais retiré !
+```
+🔴 **Problème** :  
+- L’événement `resize` reste actif même après le démontage du composant.  
+
+✅ **Solution avec un `return` pour le supprimer :**
+```jsx
+useEffect(() => {
+  const handleResize = () => {
+    console.log("Fenêtre redimensionnée !");
+  };
+
+  window.addEventListener("resize", handleResize);
+
+  return () => {
+    console.log("Suppression de l'écouteur !");
+    window.removeEventListener("resize", handleResize);
+  };
+}, []);
+```
+👉 **Résultat :** L’écouteur est supprimé quand le composant est démonté, **évite les bugs et les fuites mémoire**.
+
+---
+
+#### **Résumé :**
+1. **Le `return` dans `useEffect` sert à nettoyer les effets secondaires** avant le démontage du composant ou avant l’exécution du prochain effet.  
+2. Il est indispensable pour :
+   - **`setInterval()` / `setTimeout()`** → (`clearInterval()` / `clearTimeout()`)
+   - **Écouteurs d’événements (`addEventListener`)** → (`removeEventListener`)
+   - **WebSockets ou requêtes API** → (`abort()`)
+3. **Sans ce nettoyage, on risque des fuites mémoire ou des comportements indésirables.**  
+
+➡️ **Règle d’or :** **Si un effet met en place quelque chose de persistant (timer, écouteur...), il doit être nettoyé avec `return` !** 🚀
 ### useContext
 
 Le Hook `useContext` permet d'accéder à la valeur actuelle d'un contexte. Il est souvent utilisé avec le Context API pour partager des données globales entre plusieurs composants.
 
 ```jsx
 import React, { useContext } from 'react';
+
+// Création d'un contexte avec une valeur par défaut "light"
 const ThemeContext = React.createContext('light');
 
-function ThemedButton() {
- const theme = useContext(ThemeContext);
- return <button theme={theme}>I am styled by theme context!</button>;
+function BoutonThème() {
+  // Utilisation du contexte pour récupérer la valeur actuelle du thème
+  const theme = useContext(ThemeContext);
+
+  return <button theme={theme}>Je suis stylisé par le contexte du thème !</button>;
 }
+
+export default BoutonThème;
 ```
 
 ### useReducer
@@ -71,29 +271,35 @@ Le Hook `useReducer` est une alternative à `useState` qui est plus adaptée pou
 ```jsx
 import React, { useReducer } from 'react';
 
-const initialState = {count: 0};
+// État initial du compteur
+const étatInitial = { count: 0 };
 
-function reducer(state, action) {
- switch (action.type) {
-   case 'increment':
-     return {count: state.count + 1};
-   case 'decrement':
-     return {count: state.count - 1};
-   default:
-     throw new Error();
- }
+// Fonction réductrice (reducer) pour gérer les actions
+function réducteur(état, action) {
+  switch (action.type) {
+    case 'incrementer':
+      return { count: état.count + 1 };
+    case 'decrementer':
+      return { count: état.count - 1 };
+    default:
+      throw new Error('Action non reconnue');
+  }
 }
 
-function Counter() {
- const [state, dispatch] = useReducer(reducer, initialState);
- return (
-   <>
-     Count: {state.count}
-     <button onClick={() => dispatch({type: 'decrement'})}>-</button>
-     <button onClick={() => dispatch({type: 'increment'})}>+</button>
-   </>
- );
+function Compteur() {
+  // useReducer permet de gérer l'état avec un reducer
+  const [état, dispatch] = useReducer(réducteur, étatInitial);
+
+  return (
+    <>
+      <p>Compteur : {état.count}</p>
+      <button onClick={() => dispatch({ type: 'decrementer' })}>-</button>
+      <button onClick={() => dispatch({ type: 'incrementer' })}>+</button>
+    </>
+  );
 }
+
+export default Compteur;
 ```
 
 ### useRef

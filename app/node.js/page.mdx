@@ -2,6 +2,7 @@
 description: "Node.js est un environnement d'exécution permettant d'exécuter du code JavaScript côté serveur. Contrairement à son utilisation traditionnelle dans les navigateurs web, Node.js permet d'utiliser JavaScript pour des tâches côté serveur, telles que le développement d'API, la gestion de bases de données, et l'interaction avec les fichiers. Node.js utilise le moteur JavaScript V8 de Google pour exécuter du code JavaScript avec une grande performance."
 ---
 import { Callout } from 'nextra/components'
+import ListOfChild from "@/components/list-of-child"
 
 # **Introduction à Node.js**
 
@@ -37,3 +38,5 @@ Dans un environnement traditionnel, lorsqu'une requête est effectuée, le serve
 Les serveurs traditionnels, tels que ceux utilisant **PHP**, sont généralement **bloquants**, ce qui signifie que chaque requête doit être terminée avant que le serveur ne passe à la suivante. Cette approche est suffisante pour des charges modérées, mais devient inefficace lorsque le serveur est confronté à un grand nombre de connexions simultanées.
 
 Node.js, en revanche, gère les connexions de manière asynchrone. Plutôt que de créer un nouveau thread pour chaque requête (comme le fait PHP), Node.js utilise un **seul thread principal** pour toutes les requêtes et délègue les opérations lourdes (telles que les lectures de fichiers ou les accès réseau) à des **workers** internes. Cela permet à Node.js de gérer efficacement des milliers de connexions simultanées tout en minimisant l'utilisation des ressources serveur.
+
+<ListOfChild path={"/node.js"} />

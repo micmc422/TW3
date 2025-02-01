@@ -24,8 +24,9 @@ export default function Questions() {
                     item.style.border = "solid 1px rgba(127, 29, 29, .8)";
                 }
                 item.style.color = "white"
+
             } else {
-                item.style.backgroundColor = ""
+                item.style.backgroundColor = "unset";
                 item.style.color = ""
                 item.style.border = ""
             }
@@ -40,17 +41,17 @@ export default function Questions() {
                 {answers.map((answer, i) => (
                     <li
                         key={i}
-                        className={`_flex _rounded _px-2 _py-1.5 _text-sm _transition-colors [word-break:break-word] _cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:_border _text-gray-500 hover:_bg-gray-100 hover:_text-gray-900 dark:_text-neutral-400 dark:hover:_bg-primary-100/5 dark:hover:_text-gray-50 contrast-more:_text-gray-900 contrast-more:dark:_text-gray-50 contrast-more:node-border-transparent contrast-more:hover:_border-gray-900 contrast-more:dark:hover:_border-gray-50`}
+                        className={`x:flex x:rounded x:px-2 x:py-1.5 x:text-sm x:transition-colors [word-break:break-word] x:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] x:contrast-more:border x:text-gray-500 x:hover:bg-gray-100 x:hover:text-gray-900 x:dark:text-neutral-400 x:dark:hover:bg-primary-100/5 x:dark:hover:text-gray-50 x:contrast-more:text-gray-900 x:contrast-more:dark:text-gray-50 x:contrast-more:node-border-transparent x:contrast-more:hover:border-gray-900 x:contrast-more:dark:hover:border-gray-50`}
                         onClick={() => handleAnswser(i + 1)}
                     >
                         {answer}
                     </li>
                 ))}
             </ul>
-            <div className="_flex" style={{ gap: "1rem" }}>
+            <div className="x:flex" style={{ gap: "1rem" }}>
                 <QuizNextBtn>Continuer</QuizNextBtn>
                 <QuizResetBtn><Trash2Icon /></QuizResetBtn>
-                <div className="_flex _justify-end _mt-2 _text-2xl _font-bold _tracking-tight _text-slate-900 dark:_text-slate-100" style={{ alignSelf: "center" }}>
+                <div className="x:flex x:justify-end x:mt-2 x:text-2xl x:font-bold x:tracking-tight x:text-slate-900 x:dark:text-slate-100" style={{ alignSelf: "center" }}>
                     {score} / {totalScore}
                 </div>
             </div>

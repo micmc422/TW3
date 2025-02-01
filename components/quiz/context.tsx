@@ -19,7 +19,7 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
     // currentQuestion est 0 pour permettre de savoir quand le quizz est commencé (0 == false)
     const questions = quizData.questions || []
     const [currentQuestion, setCurrentQuestion] = useState<number>(0)
-   // const [questions, setQuestions] = useState(quizData.questions || [])
+    // const [questions, setQuestions] = useState(quizData.questions || [])
     const [userAnswers, setUserAnswers] = useState<number[][]>(new Array(quizData.questions.length).fill([0]))
     const score = useMemo(() => {
         let calculScore = 0;
@@ -46,7 +46,7 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
 
     async function handleAnswser(num: number) {
         setUserAnswers((prev: number[][]) => {
-            let currentQ = prev?.[currentQuestion - 1];
+            let currentQ = prev?.[currentQuestion - 1] || [0];
 
             if (num === 0) {
                 // Reset : assigne [0]
@@ -61,7 +61,6 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
                     }
                 } else {
                     // Ajoute num si il n'est pas présent
-                    // Ajoute num si il n'est pas présent
                     if (currentQ?.[0] === 0) {
                         currentQ = [num];
                     } else {
@@ -70,7 +69,7 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
                 }
 
                 // Remplace la valeur précédente par la nouvelle
-                return [...prev.slice(0, currentQuestion - 1), currentQ, ...prev.slice(currentQuestion)];
+                return [...prev?.slice(0, currentQuestion - 1), currentQ, ...prev?.slice(currentQuestion)];
             }
         });
     } return (

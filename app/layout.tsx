@@ -1,6 +1,6 @@
 /* eslint-env node */
 import { Footer, Layout, Navbar } from 'nextra-theme-docs'
-import { Banner, Head } from 'nextra/components'
+import { Banner, Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
 import "./globals.css"
@@ -148,7 +148,9 @@ export default async function RootLayout({ children }) {
           docsRepositoryBase="https://github.com/micmc422/TW3"
           sidebar={{ defaultMenuCollapseLevel: 1 }}
           pageMap={await getPageMap()}
-          feedback={{ content: "Une question ?" }}
+          feedback={{ content: "Une question ?", labels: "Question" }}
+          toc={{title: "Sur cette page" }}
+          search={<Search placeholder='Rechercher dans les cours' emptyResult={"Aucun résultat :s"} errorText={"Oups une erreur est survenue."} loading={"Recherche..."} />}
         >
           {children}
         </Layout>

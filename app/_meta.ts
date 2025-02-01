@@ -3,6 +3,7 @@ import type { MetaRecord } from 'nextra'
 const meta: MetaRecord = {
   "index": {
     "title": "Introduction aux technologies du web",
+    display: "hidden"
   },
   "docker": {
     "title": "Docker",

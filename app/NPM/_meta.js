@@ -1,6 +1,6 @@
 export default {
     "index": {
-        "title": "Introduction à NPM"
+        "title": "Introduction à NPM",
     },
     "qu-est-ce-que-npm": "Qu'est-ce que NPM ?",
     "l-installation-de-npm": "L’installation de NPM",
