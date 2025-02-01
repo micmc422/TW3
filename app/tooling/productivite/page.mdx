@@ -1,0 +1,18 @@
+
+# **Productivité Générale**  
+
+
+import { Cards } from 'nextra/components'
+import { MDXRemote } from 'nextra/mdx-remote'
+import { createIndexPage, getPageMap } from 'nextra/page-map'
+ 
+<MDXRemote
+  compiledSource={
+    await createIndexPage(
+      await getPageMap('/tooling/productivite')
+    )
+  }
+  components={{
+    Cards,
+  }}
+/>

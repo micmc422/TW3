@@ -14,7 +14,7 @@
     "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -30,12 +30,13 @@
     }
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "content/_meta.js",
+    "next-env.d.ts",
     "theme.config.tsx",
-    "pages/_meta.js"
-  ],
+    ".next/types/**/*.ts"
+, "app/_meta.ts"  ],
   "exclude": [
     "node_modules"
   ]

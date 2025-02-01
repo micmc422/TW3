@@ -1,0 +1,37 @@
+# Comprendre les Composants React
+
+Voici un exemple minimaliste d'un composant fonctionnel React :
+
+```jsx filename="mon-composant.js"
+import React from 'react';
+
+function HelloWorld(props) {
+ return <h1>Hello, world!</h1>;
+}
+
+export default HelloWorld;
+```
+
+Dans cet exemple, nous avons défini un composant fonctionnel appelé `HelloWorld`. Ce composant retourne un élément JSX qui représente un titre de niveau 1 (`<h1>`) avec le texte "Hello, world!".
+
+Ensuite, nous exportons le composant `HelloWorld` pour pouvoir l'utiliser dans d'autres parties de notre application.
+```jsx filename="utilisation-du-composant.js"
+import React from 'react';
+
+function Page(props) {
+
+ const variables = "test"
+
+ return <div>
+  <p>Pour utiliser le composant précédemment créé :</p>
+  <HelloWorld params={variables} />
+ </div>;
+}
+
+export default Page;
+```
+
+Notez que les composants React doivent toujours retourner un seul élément racine. Dans cet exemple, l'élément racine est `<h1>`. Si vous voulez retourner plusieurs éléments, vous pouvez les envelopper dans un élément parent, comme un `<div>` ou un `<React.Fragment>`.
+
+De plus, tous les composants React doivent être importés depuis le module 'react'. C'est pourquoi nous avons la ligne `import React from 'react';` en haut de notre fichier.
+

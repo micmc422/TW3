@@ -1,0 +1,38 @@
+---
+title: "Installation de Docker sur MacOs."
+---
+# Installation de Docker
+
+*Les postes de l’université sont déjà configurés avec docker et Ubuntu.*
+
+Les prérequis pour l'installation de Docker varient en fonction du système d'exploitation. Voici les prérequis pour macOS :
+
+## Prérequis pour macOS
+
+    - **Système d'exploitation :** Docker Desktop pour macOS nécessite macOS Yosemite
+    - ou supérieur, avec la virtualisation matérielle activée.
+    - **Processeur :** Votre Mac doit être équipé d'un processeur Intel avec prise en charge de la virtualisation matérielle.
+    - **Mémoire :** Au moins 4 Go de RAM sont recommandés.
+    - **Espace disque :** Vous avez besoin d'au moins 20 Go d'espace disque disponible pour les images Docker et les conteneurs.
+    - **Système d'exploitation Hôte :** Vous devez également vous assurer que votre Mac exécute une version prise en charge du système d'exploitation hôte, car Docker Desktop s'appuie sur les fonctionnalités de virtualisation de macOS.
+
+Assurez-vous de vérifier la documentation officielle de Docker pour obtenir les prérequis les plus récents et les plus précis en fonction de la version de Docker que vous prévoyez d'installer.
+
+https://docs.docker.com/engine/install/
+
+## macOS (utilisation de Docker Desktop )
+
+    - Téléchargez Docker Desktop pour macOS depuis le site Web officiel de Docker.
+    - Double-cliquez sur le fichier téléchargé pour monter l'image disque Docker.
+    - Glissez Docker dans le dossier Applications.
+    - Ouvrez Docker depuis le dossier Applications.
+
+Assurez-vous de suivre ces étapes spécifiques à votre plateforme pour installer Docker avec succès.
+
+## Vérification de l'installation.
+
+Exécution de la commande :
+```bash copy
+docker --version
+docker -v // version courte
+```
