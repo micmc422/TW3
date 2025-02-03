@@ -18,7 +18,7 @@ npm i -D react-router-dom@latest
 
 Ensuite, nous définissons nos `<Routes>`. Une application peut avoir plusieurs `<Routes>`. Notre exemple de base n'utilise qu'une seule. Les `<Route>` peuvent être imbriquées. La première `<Route>` a un chemin de `/` et rend le composant `Layout`. Les `<Route>` imbriquées héritent et ajoutent au chemin parent. Donc le chemin `blogs` est combiné avec le parent et devient `/blogs`. Le composant `Home` route n'a pas de chemin mais a un attribut index. Cela spécifie cette route comme la route par défaut pour la route parent, qui est `/`. Définir le chemin à `*` agira comme un attrape-tout pour toute URL non définie. C'est super pour une page d'erreur 404.
 
-```jsx
+```jsx copy
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
