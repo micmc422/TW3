@@ -1,7 +1,6 @@
 "use client"
 import { usePathname } from 'next/navigation'
-import { useConfig } from 'nextra-theme-docs'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 export function colorsByPath(path) {
     if (path?.startsWith("/git")) return [214, 50]

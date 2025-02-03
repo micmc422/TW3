@@ -8,7 +8,8 @@ import "./globals.css"
 export const metadata = {
   metadataBase: new URL('https://tw-3.vercel.app'),
   title: {
-    template: '%s - TW3'
+    template: '%s - TW3',
+    default: "Introduction aux technologies du web"
   },
   description: 'Dans le cadre de vos études à l’Université Champollion à Albi, ce programme de cours vous permettra de maîtriser les technologies essentielles au développement web moderne.',
   applicationName: 'TW3',
@@ -22,7 +23,26 @@ export const metadata = {
   },
   twitter: {
     site: 'https://tw-3.vercel.app'
-  }
+  },
+  openGraph: {
+    title: {
+      template: '%s - TW3',
+      description: 'Dans le cadre de vos études à l’Université Champollion à Albi, ce programme de cours vous permettra de maîtriser les technologies essentielles au développement web moderne.',
+    },
+    
+  },
+  locale: "fr_FR",
+  type: "website",
+  images: [
+    {
+      url: '/code-html.jpg',
+      width: 3543,
+      height: 2365,
+      type: 'image/jpeg'}
+  ],
+  alternates: {
+    canonical: '/',
+  },
 }
 
 const Champollion = () => {
@@ -149,7 +169,7 @@ export default async function RootLayout({ children }) {
           sidebar={{ defaultMenuCollapseLevel: 1 }}
           pageMap={await getPageMap()}
           feedback={{ content: "Une question ?", labels: "Question" }}
-          toc={{title: "Sur cette page" }}
+          toc={{ title: "Sur cette page" }}
           search={<Search placeholder='Rechercher dans les cours' emptyResult={"Aucun résultat :s"} errorText={"Oups une erreur est survenue."} loading={"Recherche..."} />}
         >
           {children}
