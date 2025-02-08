@@ -1,4 +1,5 @@
 "use client"
+
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
@@ -11,6 +12,7 @@ export function colorsByPath(path) {
     if (path?.startsWith("/react")) return [189, 100]
     return [212, 100] //valeurs par défaut dans theme.config.tsx
 }
+
 
 export default function MyApp({ children }) {
     const pathname = usePathname()

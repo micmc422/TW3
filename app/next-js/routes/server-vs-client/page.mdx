@@ -1,0 +1,122 @@
+# 🚀 **Server Components vs Client Components dans Next.js**  
+
+Avec l’introduction du **App Router (`app/`)**, Next.js 13+ repose sur une architecture hybride basée sur **Server Components** et **Client Components**. Cette approche optimise le rendu, améliore les performances et réduit la quantité de JavaScript envoyée au client.  
+
+---
+
+## **1️⃣ Qu’est-ce qu’un Server Component ?**  
+
+📌 **Les Server Components (par défaut)** sont **rendus côté serveur** et **envoyés sous forme de HTML** au navigateur.  
+📌 ✅ **Avantages** :  
+- **Aucun JavaScript côté client** → améliore la performance.  
+- **Accès direct aux bases de données et API** → sans exposer de code sensible.  
+- **Optimisé pour le streaming** → le rendu peut être progressif.  
+
+📍 **Exemple de Server Component (par défaut)**  
+
+```tsx filename="app/page.tsx" copy
+async function getData() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+  const data = await res.json();
+  return data;
+}
+
+export default async function Home() {
+  const post = await getData();
+
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+    </div>
+  );
+}
+```
+✅ **Ce composant est exécuté uniquement sur le serveur** et le client **ne charge aucun JavaScript** pour afficher le contenu.  
+
+---
+
+## **2️⃣ Qu’est-ce qu’un Client Component ? (`'use client'`)**  
+
+📌 Un **Client Component** est un composant React classique qui s’exécute dans le navigateur.  
+📌 ⚡ **Nécessaire si** :  
+- Le composant utilise un **state (`useState`)** ou un effet (`useEffect`).  
+- Il y a des **interactions utilisateur** (clicks, formulaires…).  
+- Il utilise des **events handlers** (`onClick`, `onChange`, etc.).  
+
+📍 **Exemple de Client Component**  
+
+```tsx filename="app/components/Counter.tsx" copy
+"use client"; // Obligatoire pour un Client Component
+
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Compteur : {count}</p>
+      <button onClick={() => setCount(count + 1)}>Incrémenter</button>
+    </div>
+  );
+}
+```
+✅ **Ce composant fonctionne uniquement côté client** et peut être utilisé dans un **Server Component**.  
+
+---
+
+## **3️⃣ Comment mélanger Server et Client Components ?**  
+
+📌 **On peut insérer un Client Component dans un Server Component**, mais **pas l’inverse** !  
+
+📍 **Exemple : Un Server Component qui intègre un Client Component**  
+
+```tsx filename="app/page.tsx" copy
+import Counter from "./components/Counter"; // Client Component
+
+export default function Home() {
+  return (
+    <div>
+      <h1>Bienvenue</h1>
+      <Counter />
+    </div>
+  );
+}
+```
+✅ **Seul `Counter.tsx` est chargé côté client**, **tout le reste est statique** et optimisé par Next.js.  
+
+---
+
+## **4️⃣ Différences entre Server et Client Components**  
+
+| ⚡ **Critère** | 🌍 **Server Components (par défaut)** | 🖥 **Client Components (`use client`)** |
+|--------------|--------------------------------|----------------------------|
+| Exécuté sur | **Serveur** | **Navigateur** |
+| Envoi du JS au client ? | ❌ Non | ✅ Oui |
+| Peut utiliser `useState` et `useEffect` ? | ❌ Non | ✅ Oui |
+| Peut appeler directement une base de données ? | ✅ Oui | ❌ Non |
+| Peut contenir des events (`onClick`, `onChange`) ? | ❌ Non | ✅ Oui |
+| Rendu optimisé | ✅ Oui (SSR & streaming) | ❌ Non (hydration côté client) |
+
+---
+
+## **5️⃣ Cas d’usage : Quand utiliser l’un ou l’autre ?**  
+
+✅ **Utiliser des Server Components quand** :  
+- On veut **éviter d’envoyer du JavaScript au client**.  
+- On récupère des **données dynamiques** (API, base de données).  
+- On veut bénéficier du **streaming** pour afficher progressivement le contenu.  
+
+✅ **Utiliser des Client Components quand** :  
+- On a **des états (`useState`)** ou des **effets (`useEffect`)**.  
+- On a des **événements utilisateur (`onClick`, `onChange`)**.  
+- On utilise des **bibliothèques interactives** comme **Framer Motion, Recharts**…  
+
+---
+
+## **🎯 Conclusion : Pourquoi cette approche hybride ?**  
+
+✅ **Meilleure performance** → Moins de JavaScript côté client.  
+✅ **Meilleure UX** → Rendu rapide et progressif (streaming).  
+✅ **Plus de sécurité** → Les appels API et base de données restent **cachés** du client.  

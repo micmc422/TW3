@@ -1,0 +1,133 @@
+# 🚀 **Ajout de Métadonnées Dynamiques avec `generateMetadata` dans Next.js**  
+
+Dans Next.js 13+, `generateMetadata` permet de **générer dynamiquement** les métadonnées d’une page en fonction de paramètres (ex : un `slug` d’article de blog) ou d’une requête à une API.  
+
+---
+
+## **📌 1️⃣ Pourquoi utiliser `generateMetadata` ?**  
+
+✅ **SEO dynamique** : Permet d’adapter le `title`, `description` et `og:image` à chaque page.  
+✅ **Performance** : Métadonnées générées **côté serveur**, avant le rendu de la page.  
+✅ **Optimisation des réseaux sociaux** : Chaque page peut avoir une **image de partage unique**.  
+
+---
+
+## **📌 2️⃣ Exemples d’utilisation**  
+
+### **📝 Cas 1 : Métadonnées basées sur un `slug`**  
+
+📍 **But** : Chaque page d’article de blog aura ses propres métadonnées (`title`, `description`, `og:image`).  
+
+```tsx filename="app/blog/[slug]/page.tsx"
+import { Metadata } from "next";
+
+type Props = {
+  params: { slug: string };
+};
+
+// Simulation de récupération des données d’un article (via API ou base de données)
+async function getArticle(slug: string) {
+  const articles = {
+    "nextjs-guide": {
+      title: "Guide Next.js 13+ : Tout savoir",
+      description: "Découvrez toutes les nouveautés de Next.js 13 avec App Router.",
+      image: "/nextjs-guide.jpg",
+    },
+    "seo-optimization": {
+      title: "SEO en 2025 : Les bonnes pratiques",
+      description: "Optimisez votre site pour les moteurs de recherche avec ces conseils.",
+      image: "/seo-2025.jpg",
+    },
+  };
+
+  return articles[slug] || { title: "Article introuvable", description: "", image: "" };
+}
+
+// Générer dynamiquement les métadonnées
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const article = await getArticle(params.slug);
+
+  return {
+    title: article.title,
+    description: article.description,
+    openGraph: {
+      title: article.title,
+      description: article.description,
+      images: [{ url: article.image }],
+    },
+  };
+}
+
+export default function BlogPost({ params }: Props) {
+  return (
+    <div>
+      <h1>Article : {params.slug}</h1>
+      <p>Contenu de l’article...</p>
+    </div>
+  );
+}
+```
+✅ **Effet** :  
+- Si on visite `/blog/nextjs-guide`, la page aura :  
+  - **title** : *Guide Next.js 13+ : Tout savoir*  
+  - **description** : *Découvrez toutes les nouveautés de Next.js 13 avec App Router.*  
+  - **og:image** : `/nextjs-guide.jpg`  
+
+---
+
+### **🔍 Cas 2 : Métadonnées basées sur une API externe**  
+
+📍 **But** : Récupérer les métadonnées d’un produit depuis une API.  
+
+```tsx filename="app/product/[id]/page.tsx"
+import { Metadata } from "next";
+
+type Props = {
+  params: { id: string };
+};
+
+async function fetchProduct(id: string) {
+  const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+  const product = await res.json();
+  return product;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const product = await fetchProduct(params.id);
+
+  return {
+    title: product.title,
+    description: product.description,
+    openGraph: {
+      title: product.title,
+      description: product.description,
+      images: [{ url: product.image }],
+    },
+  };
+}
+
+export default async function ProductPage({ params }: Props) {
+  const product = await fetchProduct(params.id);
+
+  return (
+    <div>
+      <h1>{product.title}</h1>
+      <p>{product.description}</p>
+      <img src={product.image} alt={product.title} width={300} />
+    </div>
+  );
+}
+```
+✅ **Effet** :  
+- Pour `/product/1`, la page affiche les métadonnées du produit récupérées via API.  
+- Optimisation SEO et réseaux sociaux (`og:title`, `og:image`).  
+
+---
+
+## **🎯 Conclusion : Pourquoi utiliser `generateMetadata` ?**  
+
+✅ **SEO dynamique et performant** (côté serveur).  
+✅ **Personnalisation des métadonnées** par page.  
+✅ **Optimisé pour le partage sur les réseaux sociaux** (Open Graph, Twitter Card).  
+
+🔥 **Prochaine étape ?** Tester avec **Vercel Analytics** ou **Google Search Console** pour analyser l’impact SEO ! 🚀

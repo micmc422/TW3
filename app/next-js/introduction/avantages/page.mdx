@@ -1,0 +1,134 @@
+import { Callout } from 'nextra/components'
+
+# **🚀 Avantages de l’architecture `app/` (Next.js 13+)**  
+
+L’architecture `app/` de Next.js 13+ repose sur plusieurs améliorations majeures, notamment **les Server Components**, qui optimisent le rendu et les performances globales des applications web. Voici un aperçu des principaux avantages :  
+
+---
+
+## **1️⃣ Server Components : Moins de JavaScript côté client**  
+📌 **Concept clé** : Dans `app/`, les composants sont **par défaut des Server Components**, ce qui signifie qu’ils sont exécutés sur le serveur et **ne sont pas envoyés au navigateur**.  
+
+✅ **Moins de JavaScript à charger** → améliore le **Time to Interactive (TTI)**.  
+✅ **Pas besoin de gérer des états client inutiles** → moins de re-renders.  
+✅ **Accès direct aux bases de données et API** **(sans besoin d’API routes)**.  
+
+Exemple d’un Server Component (par défaut) dans `app/` :  
+
+```tsx filename="app/dashboard/page.tsx" copy
+import db from "@/lib/db"; // Connexion directe à une base de données
+
+export default async function Dashboard() {
+  const users = await db.getUsers(); // Pas besoin d’API externe
+
+  return (
+    <div>
+      <h1>Liste des utilisateurs</h1>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+<Callout emoji="💡" type='info'>
+ **Avec `pages/`, cette logique aurait nécessité une API Route (`/api/users`) pour récupérer les données côté client !**  
+</Callout>
+
+---
+
+## **2️⃣ Une meilleure performance et gestion du rendu**  
+
+| Fonctionnalité           | Pages Router (`pages/`) | App Router (`app/`) |
+|-------------------------|------------------------|----------------------|
+| **JavaScript envoyé au client** | Plus important | Réduit grâce aux Server Components |
+| **Re-renders client**  | Plus fréquents | Moins fréquents |
+| **Gestion des données** | Nécessite API Routes | Fetching natif dans Server Components |
+| **Streaming**          | Complexe | Facile via React Suspense |
+
+✅ **Optimisation automatique** : Next.js ne charge que le JavaScript nécessaire.  
+✅ **Streaming** : Permet d’afficher progressivement le contenu, améliorant l’expérience utilisateur.  
+✅ **Prefetching plus intelligent** : Next.js charge les pages en arrière-plan avant même que l’utilisateur ne clique sur un lien.  
+
+---
+
+## **3️⃣ Un système de routing et de layouts plus efficace**  
+
+📌 **Dans `app/`, on peut structurer l’application avec des `layout.tsx` à différents niveaux** pour partager des composants sans les recharger inutilement.  
+
+### **Exemple : Un Layout partagé pour un tableau de bord**  
+```tsx filename="app/dashboard/layout.tsx" copy
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div>
+      <nav>Menu</nav>  {/* Gardé en mémoire entre les pages */}
+      <main>{children}</main>
+    </div>
+  );
+}
+```
+<Callout emoji="💡">
+ **Contrairement à `_app.js`, le `layout.tsx` ne recharge pas l’ensemble de l’application à chaque navigation !**  
+</Callout>
+
+
+## **4️⃣ Métadonnées et SEO intégrés (`generateMetadata`)**  
+
+✅ Plus besoin d’utiliser `<Head>` partout comme dans `pages/`.  
+✅ Gestion **simplifiée et dynamique** des balises SEO.  
+
+Exemple d’une métadonnée dynamique dans `app/` : 
+
+```tsx filename="app/blog/[slug]/page.tsx" copy
+export async function generateMetadata({ params }) {
+  return {
+    title: `Article : ${params.slug}`,
+    description: `Découvrez notre article sur ${params.slug}.`,
+  };
+}
+```
+<Callout emoji="➡">
+ **Avec `pages/`, cela nécessitait `next/head` dans chaque fichier** !
+</Callout>
+
+## **5️⃣ Server Actions : API Routes simplifiées**  
+
+📌 Dans `app/`, plus besoin de créer des **API routes (`pages/api/*`)**.  
+✅ On peut directement appeler des fonctions serveur depuis un composant.  
+
+Exemple : **Un formulaire qui enregistre des données en base**  
+
+```tsx filename="app/contact/page.tsx" copy
+"use server";
+
+async function sendMessage(formData) {
+  await db.messages.create({ text: formData.get("message") });
+}
+
+export default function ContactPage() {
+  return (
+    <form action={sendMessage}>
+      <textarea name="message" />
+      <button type="submit">Envoyer</button>
+    </form>
+  );
+}
+```
+<Callout emoji="💡">
+ **Avec `pages/`, on aurait dû créer une API Route (`/api/send-message`) pour gérer ça !**  
+</Callout>
+
+
+---
+
+## **🚀 Conclusion : Pourquoi adopter `app/` ?**  
+
+✅ **Moins de JavaScript côté client** → site plus rapide.  
+✅ **Gestion du rendu plus performante** → grâce aux Server Components.  
+✅ **Système de routing plus flexible et intelligent** → layouts imbriqués.  
+✅ **SEO natif** → plus facile à gérer avec `generateMetadata()`.  
+✅ **Moins d’API routes** → remplacées par les Server Actions.  
+
+💡 **L’App Router de Next.js 13+ offre une approche plus moderne et performante pour les applications React.** Si tu crées un **nouveau projet**, `app/` est la meilleure option ! 🚀

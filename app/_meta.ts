@@ -41,6 +41,10 @@ const meta: MetaRecord = {
     "title": "REACT",
     "type": "page"
   },
+  "next-js": {
+    "title": "Next.js",
+    "type": "page"
+  },
   "JS": {
     "title": "JS",
     "type": "page"

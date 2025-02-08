@@ -1,0 +1,93 @@
+# 🚀 **Mise en place de Layouts (`layout.tsx`) pour une structuration globale dans Next.js**  
+
+L’un des grands avantages du **App Router (`app/`)** est la gestion des **layouts imbriqués** grâce aux fichiers `layout.tsx`. Cela permet de structurer l’interface sans recharger les éléments communs (ex: navigation, footer).  
+
+---
+
+## **1️⃣ Qu'est-ce qu'un `layout.tsx` ?**  
+
+📌 Un `layout.tsx` est un composant **persistant** qui englobe les pages enfants.  
+📌 Chaque dossier dans `app/` peut avoir son propre `layout.tsx`.  
+📌 Un layout peut être **imbriqué** pour organiser les sous-sections d’un site.  
+
+**🛠 Exemple d’architecture avec des layouts :**  
+```
+app/
+├── layout.tsx        → Layout principal (Header, Footer)
+├── page.tsx          → Page d’accueil "/"
+├── dashboard/
+│   ├── layout.tsx    → Layout spécifique au dashboard
+│   ├── page.tsx      → Page "/dashboard"
+│   ├── settings/
+│   │   ├── page.tsx  → Page "/dashboard/settings"
+```
+📍 **Chaque page utilise son layout parent sans recharger les composants communs !**  
+
+---
+
+## **2️⃣ Exemple : Création d’un `layout.tsx` global**  
+
+```tsx filename="app/layout.tsx" copy
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="fr">
+      <body>
+        <header>
+          <nav>
+            <ul>
+              <li><a href="/">Accueil</a></li>
+              <li><a href="/dashboard">Dashboard</a></li>
+            </ul>
+          </nav>
+        </header>
+        <main>{children}</main>
+        <footer>© 2025 Mon Site</footer>
+      </body>
+    </html>
+  );
+}
+```
+💡 **Explication :**  
+- ✅ Le `layout.tsx` entoure chaque page avec une **structure HTML complète**.  
+- ✅ La balise `<main>{children}</main>` affiche le contenu des pages enfants.  
+- ✅ Le `<header>` et `<footer>` sont **partagés** sur toutes les pages !  
+
+---
+
+## **3️⃣ Exemple : Layout spécifique pour le dashboard**  
+
+```tsx filename="app/dashboard/layout.tsx" copy
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <section>
+      <aside>
+        <ul>
+          <li><a href="/dashboard">Accueil</a></li>
+          <li><a href="/dashboard/settings">Paramètres</a></li>
+        </ul>
+      </aside>
+      <div className="content">{children}</div>
+    </section>
+  );
+}
+```
+💡 **Ce layout s’applique uniquement aux pages dans `/dashboard`**.  
+
+---
+
+## **4️⃣ Différence avec `_app.tsx` dans `pages/`**  
+
+| 🛠️ **Feature** | 🏗 **`_app.tsx` (`pages/`)** | 🚀 **`layout.tsx` (`app/`)** |
+|---------------|----------------------|----------------------|
+| Gestion du layout | Un seul `_app.tsx` global | Un `layout.tsx` par section |
+| Rechargement | Rechargement complet du layout | ✅ Layout persistant |
+| Performance | Moins optimisé | ✅ Moins de JS envoyé côté client |
+| Flexibilité | Difficile d’imbriquer | ✅ Imbriqué et modulaire |
+
+---
+
+## **🎯 Conclusion : Pourquoi utiliser `layout.tsx` ?**  
+
+✔ **Meilleures performances** → Le layout **ne se recharge pas** à chaque changement de page.  
+✔ **Structure claire et modulaire** → Permet d’organiser l’interface facilement.  
+✔ **Facilité d’extension** → Possibilité d’avoir plusieurs layouts pour différentes sections du site.  

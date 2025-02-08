@@ -1,0 +1,168 @@
+# 🎯 **Gestion des Open Graph & Twitter Cards dans Next.js 13+**  
+
+Next.js 13+ permet une gestion native des **métadonnées sociales** (Open Graph & Twitter Cards) grâce à l'API `metadata`. Ces métadonnées optimisent **le partage sur les réseaux sociaux** (Facebook, Twitter, LinkedIn, etc.), améliorant ainsi le **SEO et la visibilité** du site.
+
+---
+
+## **📌 1️⃣ Open Graph : Qu'est-ce que c'est ?**  
+
+Open Graph (OG) est un protocole utilisé par Facebook, LinkedIn et d'autres plateformes pour afficher des **prévisualisations enrichies** des pages web partagées.
+
+🔹 **Balises principales :**  
+- `og:title` → Titre de la page  
+- `og:description` → Description affichée  
+- `og:image` → Image utilisée dans l’aperçu  
+- `og:url` → URL de la page  
+- `og:type` → Type de contenu (`website`, `article`, etc.)  
+
+Exemple de rendu sur Facebook :  
+![Open Graph Preview](https://developers.facebook.com/docs/sharing/webmasters/images/og-example.jpg)  
+
+---
+
+## **📌 2️⃣ Twitter Cards : Présentation rapide**  
+
+Twitter utilise ses propres balises pour afficher des cartes riches lors du partage d’un lien.  
+
+🔹 **Types de cartes Twitter :**  
+- `summary` → Petite carte avec un titre et une description.  
+- `summary_large_image` → Grande image avec titre et description.  
+- `player` → Carte pour vidéos/audio.  
+
+🔹 **Balises principales :**  
+- `twitter:title` → Titre affiché  
+- `twitter:description` → Description  
+- `twitter:image` → Image de la carte  
+- `twitter:card` → Type de carte  
+
+Exemple de rendu sur Twitter :  
+![Twitter Card Preview](https://developer.twitter.com/content/dam/developer-twitter/cards-image-template.png)  
+
+---
+
+## **📌 3️⃣ Implémentation dans Next.js (Globale & Dynamique)**  
+
+### **🌍 Définir les Open Graph & Twitter Cards globalement (`layout.tsx`)**  
+
+```tsx filename="app/layout.tsx"
+export const metadata = {
+  title: "Mon Site Next.js",
+  description: "Découvrez toutes les fonctionnalités de Next.js 13+ avec App Router.",
+  openGraph: {
+    title: "Mon Site Next.js",
+    description: "Un site moderne utilisant Next.js 13+",
+    url: "https://monsite.com",
+    siteName: "Mon Site",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Bannière de Mon Site Next.js",
+      },
+    ],
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mon Site Next.js",
+    description: "Découvrez toutes les fonctionnalités de Next.js 13+ avec App Router.",
+    images: ["/og-image.jpg"],
+  },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="fr">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+✅ **Effet** :  
+- Toutes les pages héritent des métadonnées définies ici.  
+- **SEO et partages optimisés** sur Facebook, LinkedIn, Twitter, etc.  
+
+---
+
+### **📝 Ajouter des Open Graph & Twitter Cards dynamiques (`generateMetadata`)**  
+
+📍 **But** : Générer des métadonnées spécifiques pour une page d’article.  
+
+```tsx filename="app/blog/[slug]/page.tsx"
+import { Metadata } from "next";
+
+type Props = {
+  params: { slug: string };
+};
+
+async function fetchArticle(slug: string) {
+  const articles = {
+    "nextjs-guide": {
+      title: "Guide Next.js 13+ : Tout savoir",
+      description: "Découvrez toutes les nouveautés de Next.js 13 avec App Router.",
+      image: "/nextjs-guide.jpg",
+    },
+    "seo-optimization": {
+      title: "SEO en 2025 : Les bonnes pratiques",
+      description: "Optimisez votre site pour les moteurs de recherche avec ces conseils.",
+      image: "/seo-2025.jpg",
+    },
+  };
+
+  return articles[slug] || { title: "Article introuvable", description: "", image: "" };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const article = await fetchArticle(params.slug);
+
+  return {
+    title: article.title,
+    description: article.description,
+    openGraph: {
+      title: article.title,
+      description: article.description,
+      url: `https://monsite.com/blog/${params.slug}`,
+      images: [{ url: article.image, width: 1200, height: 630 }],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.description,
+      images: [article.image],
+    },
+  };
+}
+
+export default function BlogPost({ params }: Props) {
+  return (
+    <div>
+      <h1>{params.slug}</h1>
+      <p>Contenu de l’article...</p>
+    </div>
+  );
+}
+```
+✅ **Effet** :  
+- Chaque article a son propre **titre, description et image** dans les **prévisualisations sociales**.  
+- Amélioration du **partage et du trafic organique** sur les réseaux.  
+
+---
+
+## **📌 4️⃣ Tester et valider les métadonnées**  
+
+🔍 **Facebook Open Graph Debugger** :  
+👉 [https://developers.facebook.com/tools/debug/](https://developers.facebook.com/tools/debug/)  
+
+🔍 **Twitter Card Validator** :  
+👉 [https://cards-dev.twitter.com/validator](https://cards-dev.twitter.com/validator)  
+
+---
+
+## **🎯 Conclusion : Pourquoi utiliser Open Graph & Twitter Cards ?**  
+
+✅ **Améliore le SEO** → Meilleure indexation et visibilité.  
+✅ **Optimise le partage sur les réseaux sociaux** → Aperçus attractifs.  
+✅ **Facile à gérer dans Next.js** → Grâce à `metadata` et `generateMetadata`.  

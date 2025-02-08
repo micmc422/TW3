@@ -1,0 +1,168 @@
+---
+---
+# 🚀 **Déploiement d’une application Next.js 13+ sur Vercel, OVH et autres plateformes**  
+
+Une fois votre projet Next.js prêt, il est temps de le mettre en ligne ! Voici comment déployer votre application sur **Vercel**, **OVH**, et d'autres solutions d'hébergement.
+
+---
+
+## **1️⃣ Déploiement sur Vercel (Recommandé 🚀)**  
+**Vercel** est la plateforme officielle de Next.js, offrant un **déploiement simple et optimisé**.  
+
+### **🔹 Étape 1 : Installer Vercel CLI**  
+Assurez-vous d’avoir [Vercel CLI](https://vercel.com/docs/cli) installé :  
+```sh copy
+npm install -g vercel
+```
+
+### **🔹 Étape 2 : Se connecter à Vercel**  
+Dans le terminal, exécutez :  
+```sh copy
+vercel login
+```
+Suivez les instructions pour vous authentifier avec GitHub, GitLab ou Email.
+
+### **🔹 Étape 3 : Déployer le projet**  
+Dans le dossier du projet Next.js, lancez :  
+```sh copy
+vercel
+```
+Vercel détecte automatiquement le projet et vous pose quelques questions :  
+- Nom du projet  
+- Lien avec un dépôt Git  
+- Configuration de l’environnement (`.env.local`)  
+
+### **🔹 Étape 4 : Configuration des variables d’environnement**  
+Si votre projet utilise des **variables d’environnement** (`.env.local`), configurez-les sur Vercel :  
+```sh copy
+vercel env add VARIABLE_NAME "valeur"
+```
+Ou via l’interface web de Vercel : **Settings → Environment Variables**.
+
+✅ **Avantages de Vercel** :  
+- Déploiement **automatique depuis GitHub**.  
+- Optimisé pour **Next.js** (SSR, ISR, etc.).  
+- **Domaines gratuits** en `.vercel.app`.  
+
+---
+
+## **2️⃣ Déploiement sur OVH (VPS ou Hébergement Web mutualisé)**  
+
+Si vous préférez **OVH**, plusieurs options sont possibles :  
+- **Hébergement mutualisé** (non recommandé pour Next.js)  
+- **VPS** (Virtual Private Server, plus flexible)  
+- **Bare Metal** (serveur dédié)  
+
+### **🔹 Solution 1 : OVH Hébergement mutualisé (via Node.js en mode Static Export)**  
+Les hébergements OVH **mutualisés** ne supportent pas SSR (Server-Side Rendering). Vous devez **générer un site statique** :  
+
+```sh copy
+npm run build
+npm run export
+```
+
+Ensuite, transférez le contenu du dossier `out/` via **FTP** ou **SFTP** sur OVH.  
+Mais ⚠️ : **Pas de SSR, pas d’API routes, uniquement du statique !**  
+
+---
+
+### **🔹 Solution 2 : OVH VPS (Recommandé pour SSR et API routes)**  
+Sur un **VPS OVH**, vous pouvez déployer une instance complète de Next.js.
+
+### **📌 Étape 1 : Choisir un VPS**  
+📌 **Prérequis** : Un serveur avec **Ubuntu 22.04** et **Node.js** installé.  
+Si Node.js n'est pas installé :  
+```sh copy
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
+### **📌 Étape 2 : Déployer le projet sur le VPS**  
+Connectez-vous au serveur via SSH :  
+```sh copy
+ssh user@votre-ip-ovh
+```
+Clonez le projet depuis GitHub ou transférez les fichiers avec **scp** ou **rsync**.
+
+### **📌 Étape 3 : Installer les dépendances et construire le projet**  
+```sh copy
+cd mon-projet
+npm install
+npm run build
+```
+
+### **📌 Étape 4 : Exécuter Next.js avec PM2**  
+Pour garantir que Next.js tourne en arrière-plan, utilisez **PM2** :  
+```sh copy
+npm install -g pm2
+pm2 start "npm run start" --name "nextjs-app"
+pm2 save
+pm2 startup
+```
+
+**L’application tourne sur le port 3000 !** 🎉  
+Pour un accès via un domaine, configurez un **reverse proxy Nginx**.
+
+---
+
+## **3️⃣ Déploiement sur un serveur dédié / autre plateforme (DigitalOcean, AWS, etc.)**  
+
+Si vous utilisez un **serveur dédié** ou une **autre plateforme (DigitalOcean, AWS, Render...)**, voici les étapes générales :
+
+### **🔹 Étape 1 : Installer Node.js et Next.js**  
+```sh copy
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
+### **🔹 Étape 2 : Installer et lancer l’application**  
+```sh copy
+git clone https://github.com/user/mon-projet.git
+cd mon-projet
+npm install
+npm run build
+npm start
+```
+
+### **🔹 Étape 3 : Configurer un reverse proxy avec Nginx**  
+Si votre serveur a un domaine, configurez Nginx :  
+
+```nginx copy filename="/etc/nginx/sites-available/nextjs"
+server {
+  server_name mon-site.com;
+
+  location / {
+    proxy_pass http://localhost:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
+```
+Activez le site et redémarrez Nginx :  
+```sh copy
+sudo ln -s /etc/nginx/sites-available/nextjs /etc/nginx/sites-enabled/
+sudo systemctl restart nginx
+```
+
+🚀 **Votre site est maintenant en ligne avec un domaine !** 🎉  
+
+---
+
+## **🎯 Conclusion**  
+
+📌 **Quelle solution choisir ?**  
+
+| Hébergement | Recommandé pour | ⚡ Avantages | ⚠️ Inconvénients |
+|------------|---------------|-------------|---------------|
+| **Vercel** | Sites Next.js SSR & API routes | Déploiement ultra-simple 🚀 | Dépendant de Vercel |
+| **OVH Mutualisé** | Site statique (pas de SSR) | Facile et économique | Pas d’API, pas de SSR 😕 |
+| **OVH VPS / Serveur dédié** | Next.js complet avec API routes | Plus de contrôle, performances | Configuration plus complexe |
+| **AWS / DigitalOcean** | Projets complexes et scalables | Évolutif et puissant | Gestion plus technique |
+
+✅ **Vercel** est idéal pour la plupart des projets **Next.js**.  
+✅ **OVH VPS ou DigitalOcean** offrent plus de **flexibilité** si vous avez besoin de personnalisation.  
+
+📌 **Prochaine étape ?** Ajouter un **nom de domaine** et un **SSL** pour sécuriser votre application ! 🔥

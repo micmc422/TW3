@@ -1,0 +1,127 @@
+# 🚀 **Routing basé sur le système de fichiers dans Next.js (`app/` vs `pages/`)**  
+
+Next.js propose deux systèmes de routing basés sur l’arborescence des fichiers :  
+-  **Le Pages Router (`pages/`)** (jusqu'à Next.js 12 et optionnel dans Next.js 13+).  
+-  **Le App Router (`app/`)** (introduit dans Next.js 13 et par défaut à partir de Next.js 14).  
+
+Voyons les différences et avantages de ces deux approches.  
+
+---
+
+## **1️⃣ Routing dans `pages/` (Pages Router - Ancienne méthode)**  
+
+📌 Dans `pages/`, chaque fichier `.js` ou `.tsx` dans `pages/` définit une **route unique**.  
+📌 Le fichier `pages/_app.js` sert de layout global pour toutes les pages.  
+
+### ** Exemple d’architecture `pages/` :**  
+```
+pages/
+├── index.tsx        → Route "/"
+├── about.tsx        → Route "/about"
+├── contact.tsx      → Route "/contact"
+├── blog/
+│   ├── index.tsx    → Route "/blog"
+│   ├── [id].tsx     → Route "/blog/:id" (dynamic routing)
+├── api/
+│   ├── hello.ts     → API route "/api/hello"
+├── _app.tsx         → Layout global
+├── _document.tsx    → Personnalisation du document HTML
+```
+
+### **✅ Avantages de `pages/` :**  
+✔ **Facile à comprendre et rapide à mettre en place**.  
+✔ **Compatible avec Next.js 12 et inférieur**.  
+✔ **Fonctionne bien avec les API Routes (`pages/api/`)**.  
+
+### **❌ Inconvénients de `pages/` :**  
+❌ **Layouts difficiles à gérer** → il faut dupliquer le code ou utiliser `_app.js`.  
+❌ **Moins optimisé** → toutes les pages sont des Client Components par défaut.  
+❌ **Gestion du rendu moins performante** → nécessite des API Routes pour récupérer des données serveur.  
+
+---
+
+## **2️⃣ Routing dans `app/` (App Router - Nouvelle méthode)**  
+
+📌 **Chaque dossier dans `app/` devient une route** (au lieu d'un fichier `.tsx`).  
+📌 **Chaque page est définie par un fichier `page.tsx`**.  
+📌 **Les layouts (`layout.tsx`) permettent de structurer l’interface** sans recharger les composants communs.  
+
+### ** Exemple d’architecture `app/` :**  
+```
+app/
+├── layout.tsx        → Layout global
+├── page.tsx          → Route "/"
+├── about/
+│   ├── page.tsx      → Route "/about"
+│   ├── layout.tsx    → Layout spécifique à "/about"
+├── blog/
+│   ├── page.tsx      → Route "/blog"
+│   ├── [id]/         → Route dynamique "/blog/:id"
+│   │   ├── page.tsx  → Contenu d’un article
+├── api/              → (Déprécié, remplacé par Server Actions)
+├── loading.tsx       → Animation de chargement globale
+├── error.tsx         → Gestion des erreurs globale
+```
+
+### **✅ Avantages de `app/` :**  
+✔ **Layouts imbriqués (`layout.tsx`)** → évite de recharger des parties inutiles de l’UI.  
+✔ **Server Components par défaut** → réduit le JavaScript envoyé au client.  
+✔ **Gestion native des métadonnées (`generateMetadata()`)** → plus besoin de `<Head>`.  
+✔ **Server Actions** → permet de gérer des actions côté serveur sans API Routes.  
+
+### **❌ Inconvénients de `app/` :**  
+❌ **Changement de paradigme** → nécessite d’apprendre de nouvelles conventions.  
+❌ **Moins de compatibilité avec certains anciens outils** (ex: API Routes).  
+
+---
+
+## **3️⃣ Comparaison entre `pages/` et `app/`**  
+
+| Fonctionnalité           | Pages Router (`pages/`) | App Router (`app/`) |
+|-------------------------|------------------------|----------------------|
+| **Définition des routes** | Basé sur les fichiers | Basé sur les dossiers |
+| **Layouts** | `_app.tsx` pour tout | `layout.tsx` par dossier |
+| **Rendu par défaut** | Client Components | Server Components |
+| **Gestion des métadonnées** | `<Head>` dans chaque page | `generateMetadata()` natif |
+| **API Routes** | `pages/api/` | Remplacé par Server Actions |
+| **Streaming et Suspense** | Complexe à gérer | Intégré nativement |
+| **Performance** | Moins optimisé | Moins de JS côté client |
+
+---
+
+## **4️⃣ Exemple pratique : Route dynamique avec `pages/` vs `app/`**  
+
+### **📌 Dans `pages/` (Ancienne méthode)**  
+```tsx filename="pages/blog/[id].tsx" copy
+import { useRouter } from "next/router";
+
+export default function BlogPost() {
+  const router = useRouter();
+  const { id } = router.query;
+
+  return <h1>Article {id}</h1>;
+}
+```
+💡 **Utilisation de `useRouter()` pour récupérer l’ID de l’URL**.  
+
+---
+
+### **📌 Dans `app/` (Nouvelle méthode)**  
+```tsx filename="app/blog/[id]/page.tsx" copy
+export default function BlogPost({ params }: { params: { id: string } }) {
+  return <h1>Article {params.id}</h1>;
+}
+```
+💡 **Les paramètres (`params.id`) sont passés directement dans la fonction, sans `useRouter()`** !  
+
+---
+
+## **🎯 Conclusion : Quelle approche choisir ?**  
+
+| **Si vous travaillez sur...** | **Recommandation** |
+|-----------------------------|-------------------|
+| **Un projet Next.js 12 ou antérieur** | Utilisez `pages/` |
+| **Un projet existant en `pages/`** | Continuez en `pages/` sauf si besoin d’optimisation |
+| **Un nouveau projet en Next.js 13+** | **Utilisez `app/` pour profiter des nouvelles fonctionnalités** |
+
+💡 **Le App Router (`app/`) est la meilleure option pour un projet moderne**, grâce à ses **performances améliorées, Server Components et layouts flexibles**. 🚀  

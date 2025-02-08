@@ -1,0 +1,190 @@
+# 🔑 **Authentification avec NextAuth.js et gestion des sessions dans Next.js 13+**  
+
+NextAuth.js est une solution d’authentification **simple et sécurisée** pour Next.js. Il prend en charge plusieurs fournisseurs (**OAuth, Credentials, JWT, etc.**) et s’intègre parfaitement avec l’architecture **App Router (`app/`)** de Next.js 13+.  
+
+---
+
+## **1️⃣ Installation de NextAuth.js**  
+
+Avant de commencer, installons la bibliothèque :  
+
+```sh
+npm install next-auth
+```
+
+---
+
+## **2️⃣ Configuration de NextAuth.js avec un fournisseur (Google)**  
+
+### **📌 Définition du routeur d’authentification (`/app/api/auth/[...nextauth]/route.ts`)**  
+
+NextAuth.js fonctionne via une API route qui gère l’authentification.  
+
+```tsx filename="app/api/auth/[...nextauth]/route.ts" copy
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+
+export const authOptions = {
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+  ],
+  secret: process.env.NEXTAUTH_SECRET, // Clé secrète pour sécuriser les sessions
+  callbacks: {
+    async session({ session, token }) {
+      session.user.id = token.sub; // Ajout de l'ID utilisateur à la session
+      return session;
+    },
+  },
+};
+
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };
+```
+
+✅ **Explication** :  
+- Déclare **Google** comme fournisseur OAuth.  
+- Utilise `callbacks.session` pour stocker l'ID utilisateur dans la session.  
+- Définit l'API route `auth/` qui gère la connexion et la déconnexion.  
+
+---
+
+## **3️⃣ Ajout des variables d’environnement (`.env.local`)**  
+
+Créez un fichier `.env.local` à la racine du projet et ajoutez :  
+
+```env
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+NEXTAUTH_SECRET=your-random-secret-key
+NEXTAUTH_URL=http://localhost:3000
+```
+
+Remplacez `your-google-client-id` et `your-google-client-secret` par vos clés Google OAuth (disponibles dans [Google Cloud Console](https://console.cloud.google.com/)).  
+
+---
+
+## **4️⃣ Interface utilisateur : Connexion & Déconnexion**  
+
+Maintenant, créons un bouton de connexion/déconnexion pour gérer les sessions.  
+
+```tsx filename="components/AuthButton.tsx"
+"use client";
+
+import { signIn, signOut, useSession } from "next-auth/react";
+
+export default function AuthButton() {
+  const { data: session } = useSession();
+
+  if (session) {
+    return (
+      <div>
+        <p>Connecté en tant que {session.user?.email}</p>
+        <button onClick={() => signOut()} className="bg-red-500 text-white px-4 py-2 rounded">
+          Se déconnecter
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <button onClick={() => signIn("google")} className="bg-blue-500 text-white px-4 py-2 rounded">
+      Se connecter avec Google
+    </button>
+  );
+}
+```
+
+✅ **Explication** :  
+- **`useSession()`** : Récupère l’état de l’utilisateur connecté.  
+- **`signIn("google")`** : Démarre l’authentification avec Google.  
+- **`signOut()`** : Déconnecte l’utilisateur.  
+
+---
+
+## **5️⃣ Protection des pages (Middleware & Server Components)**  
+
+### **🔹 Middleware : Protéger l’ensemble du site**  
+Si vous voulez restreindre l’accès aux pages aux utilisateurs connectés, utilisez un **middleware**.  
+
+🛠 **Fichier : `middleware.ts`**  
+```ts filename="middleware.ts" copy
+import { withAuth } from "next-auth/middleware";
+
+export default withAuth({
+  pages: {
+    signIn: "/login", // Redirection si l'utilisateur n'est pas authentifié
+  },
+});
+```
+
+Ce middleware empêche les utilisateurs non authentifiés d’accéder à certaines pages.  
+
+### **🔹 Protection des pages avec Server Components**  
+Vous pouvez également protéger une page spécifique en récupérant la session côté serveur.  
+
+```tsx filename="app/dashboard/page.tsx"
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+
+export default async function Dashboard() {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return <p>Accès refusé. Veuillez vous connecter.</p>;
+  }
+
+  return <h1>Bienvenue sur le Dashboard, {session.user?.name} !</h1>;
+}
+```
+
+✅ **Explication** :  
+- **`getServerSession(authOptions)`** récupère la session côté serveur.  
+- Si l’utilisateur n’est pas connecté, un message d’erreur s’affiche.  
+
+---
+
+## **6️⃣ Gérer la session dans un Layout global**  
+
+Vous pouvez afficher l’état de l’authentification dans un **layout** global.  
+
+```tsx filename="app/layout.tsx"
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import AuthButton from "@/components/AuthButton";
+
+export default async function RootLayout({ children }) {
+  const session = await getServerSession(authOptions);
+
+  return (
+    <html lang="fr">
+      <body>
+        <nav>
+          {session ? (
+            <p>Bienvenue, {session.user?.name}!</p>
+          ) : (
+            <p>Vous n'êtes pas connecté.</p>
+          )}
+          <AuthButton />
+        </nav>
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+✅ **Avantage** : La session est accessible partout dans l’application.  
+
+---
+
+## **🎯 Conclusion**  
+
+🚀 Avec **NextAuth.js**, l’authentification dans Next.js 13+ devient **simple et sécurisée** :  
+✅ Gestion native des sessions avec **`useSession()`** et **`getServerSession()`**.  
+✅ Support de plusieurs fournisseurs OAuth (Google, GitHub, etc.).  
+✅ Sécurité renforcée avec **JWT et cookies sécurisés**.  
+
+📌 **Prochaine étape ?** Ajouter une base de données pour gérer les utilisateurs avec **Prisma** ! 🔥

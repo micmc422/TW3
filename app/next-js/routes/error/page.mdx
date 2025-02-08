@@ -1,0 +1,111 @@
+# 🚀 **Gestion des erreurs (`error.tsx`) dans Next.js**  
+
+Dans **Next.js 13+ avec l’App Router**, il est possible de gérer les erreurs de manière **native** grâce au fichier `error.tsx`.  
+Contrairement à `pages/_error.js` utilisé dans l'ancien système, `error.tsx` est un **React Client Component** qui intercepte les erreurs sur une page ou une section spécifique.  
+
+---
+
+## **1️⃣ Qu'est-ce que `error.tsx` ?**  
+
+📌 **Un fichier `error.tsx`** permet d'afficher une interface alternative lorsqu'une erreur survient dans une page ou un layout.  
+📌 Il remplace la gestion manuelle des erreurs avec `try/catch` ou `Error Boundaries`.  
+📌 Il est **spécifique à un dossier** :  
+- `app/error.tsx` → S’applique à **tout le site**.  
+- `app/dashboard/error.tsx` → S’applique uniquement aux erreurs dans `/dashboard`.  
+
+---
+
+## **2️⃣ Exemple d’un `error.tsx` global**  
+
+📍 **Ajout d’une gestion d’erreur pour tout le site**  
+
+```tsx filename="app/error.tsx" copy
+"use client"; // Obligatoire pour un error boundary
+
+import { useEffect } from "react";
+
+export default function ErrorPage({ error, reset }: { error: Error; reset: () => void }) {
+  useEffect(() => {
+    console.error("Erreur détectée :", error);
+  }, [error]);
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-2xl font-bold text-red-600">Une erreur est survenue</h1>
+      <p className="mb-4">{error.message}</p>
+      <button
+        className="px-4 py-2 bg-blue-500 text-white rounded"
+        onClick={() => reset()} // Recharge la page
+      >
+        Réessayer
+      </button>
+    </div>
+  );
+}
+```
+💡 **Explication :**  
+- ✅ **`use client` est obligatoire**, car `error.tsx` est un **Client Component**.  
+- ✅ `reset()` permet de **réessayer** en rechargeant la page.  
+- ✅ **`useEffect` pour loguer les erreurs** dans la console.  
+
+---
+
+## **3️⃣ Exemple : Gestion des erreurs uniquement pour `/dashboard`**  
+
+📍 **Ajout d’un `error.tsx` spécifique pour `/dashboard`**  
+
+```tsx filename="app/dashboard/error.tsx" copy
+"use client";
+
+export default function DashboardError({ error, reset }: { error: Error; reset: () => void }) {
+  return (
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-2xl font-bold text-red-600">Erreur dans le dashboard</h1>
+      <p className="mb-4">{error.message}</p>
+      <button
+        className="px-4 py-2 bg-orange-500 text-white rounded"
+        onClick={() => reset()}
+      >
+        Réessayer
+      </button>
+    </div>
+  );
+}
+```
+📍 **Ce fichier interceptera uniquement les erreurs dans `/dashboard`**.
+
+---
+
+## **4️⃣ Démonstration avec une page qui génère une erreur**  
+
+📍 **Créons une page qui lève une erreur volontairement**  
+
+```tsx filename="app/dashboard/page.tsx" copy
+export default function DashboardPage() {
+  throw new Error("Erreur simulée dans le dashboard !");
+  return <h1>Tableau de bord</h1>;
+}
+```
+📍 **Résultat :**  
+- 🚨 Lorsqu’un utilisateur visite `/dashboard`, Next.js affichera **`app/dashboard/error.tsx`** au lieu d’une erreur serveur.  
+- 🔁 L’utilisateur pourra cliquer sur **"Réessayer"** pour tenter de recharger la page.  
+
+---
+
+## **5️⃣ Différence avec `_error.js` dans `pages/`**  
+
+| **Méthode** | ❌ **`pages/_error.js` (Ancien)** | ✅ **`error.tsx` (App Router)** |
+|-------------|---------------------------------|---------------------------------|
+| Gestion automatique des erreurs | ❌ Non | ✅ Oui |
+| Besoin d’un `try/catch` dans chaque page | ✅ Oui | ❌ Non |
+| Scope de l’erreur | 🌍 Global uniquement | ✅ Global + Sections |
+| Capacité de réessayer (`reset()`) | ❌ Non | ✅ Oui |
+| Meilleure expérience utilisateur | ⚠️ Moyen | ✅ Oui |
+
+---
+
+## **🎯 Conclusion : Pourquoi utiliser `error.tsx` ?**  
+
+✔ **Facile à implémenter** → Plus besoin de `try/catch` partout.  
+✔ **Modulaire** → Peut être défini globalement ou par section.  
+✔ **Expérience utilisateur améliorée** → L’utilisateur peut **réessayer** facilement.  

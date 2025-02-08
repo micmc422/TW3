@@ -1,0 +1,125 @@
+import { Callout } from 'nextra/components'
+
+# 🚀 Installation et configuration d’un projet Next.js (`create-next-app`)
+
+Next.js est un framework basé sur React qui permet de créer des applications modernes et performantes avec un rendu hybride **(SSR, SSG, ISR, CSR)**. L’installation est simple grâce à l’outil `create-next-app`.  
+
+---
+
+## **📌 1. Installer un projet Next.js**  
+
+La manière la plus simple de démarrer est d'utiliser la commande suivante :  
+
+```bash copy
+npx create-next-app@latest my-next-app
+```
+Ou avec **Yarn** :  
+```bash copy
+yarn create next-app my-next-app
+```
+Ou avec **pnpm** :  
+```bash copy
+pnpm create next-app my-next-app
+```
+
+🔹 **Options disponibles** (demandées lors de l'installation) :  
+- TypeScript : ✅ ou ❌  
+- ESLint : ✅ ou ❌  
+- Tailwind CSS : ✅ ou ❌  
+- `src/` directory : ✅ ou ❌  
+- App Router (`app/`) : ✅ ou ❌  
+- Import alias (`@/*`) : ✅ ou ❌  
+
+💡 **Recommandé** : Activer **TypeScript**, **ESLint**, **Tailwind CSS** et **App Router (`app/`)** pour tirer parti des dernières fonctionnalités.  
+
+---
+
+## **📂 2. Structure du projet**  
+
+Après l'installation, on obtient une structure comme celle-ci :  
+
+```
+my-next-app/
+├── app/                   # Nouveau système de routing basé sur les dossiers
+│   ├── layout.tsx         # Layout global
+│   ├── page.tsx           # Page d'accueil "/"
+│   ├── about/             # Dossier pour la page "/about"
+│   │   ├── page.tsx       # Page about
+│   ├── api/               # API Routes (si nécessaire)
+│   ├── loading.tsx        # Indicateur de chargement (optionnel)
+│   ├── error.tsx          # Gestion des erreurs (optionnel)
+├── public/                # Fichiers statiques (images, favicon...)
+├── styles/                # Styles globaux (CSS, Tailwind...)
+├── next.config.js         # Configuration Next.js
+├── package.json           # Dépendances et scripts
+├── tsconfig.json          # Config TypeScript (si activé)
+```
+
+---
+
+## **🚀 3. Lancer le serveur de développement**  
+
+Une fois le projet installé, allez dans le dossier :  
+```bash copy
+cd my-next-app
+```
+Et démarrez le serveur :  
+```bash copy npm2yarn
+npm run dev  # ou yarn dev / pnpm dev
+```
+📍 **L’application est accessible sur** :  
+👉 `http://localhost:3000`  
+
+---
+
+## **⚙️ 4. Configurer le projet (`next.config.js`)**  
+
+Le fichier `next.config.js` permet d’activer certaines options avancées :  
+
+```js filename="next.config.js"
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true, // Active le mode strict React
+  swcMinify: true, // Optimisation des performances
+  images: {
+    domains: ["example.com"], // Autoriser des domaines pour les images
+  },
+  experimental: {
+    serverActions: true, // Activer les Server Actions
+  },
+};
+
+module.exports = nextConfig;
+```
+<Callout type='warning' emoji={"💡"}>
+ **Les Server Actions** doivent être activées manuellement dans Next.js 15- (`experimental.serverActions`). 
+ A partir de la version 15 la Fonctionnalité est intégré nativement. 
+</Callout>
+
+## **📌 5. Déploiement sur Vercel (Facultatif)**  
+
+Vercel est la plateforme idéale pour héberger une application Next.js.  
+
+1️⃣ **Installer Vercel CLI**  
+```bash copy
+npm install -g vercel
+```
+  
+2️⃣ **Se connecter à Vercel**  
+```bash copy
+vercel login
+```
+  
+3️⃣ **Déployer l’application**  
+```bash copy
+vercel
+```
+<Callout type='info' emoji={"📍"}>
+ **Une URL est générée automatiquement** et chaque push sur GitHub déclenche un nouveau déploiement.  
+</Callout>
+
+
+---
+
+### **🎯 Conclusion**  
+🚀 **Next.js permet d'installer rapidement un projet prêt à l’emploi** avec une configuration optimisée. Grâce au **App Router (`app/`)**, au **support de TypeScript** et aux **Server Components**, le développement est plus performant et plus flexible.

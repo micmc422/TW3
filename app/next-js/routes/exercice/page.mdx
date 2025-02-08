@@ -1,0 +1,111 @@
+# 🚀 **Exercice : Exploration de l’App Router dans Next.js**  
+
+## **📌 Objectifs**  
+1️⃣ Créer un **layout global** (`layout.tsx`) avec un **header** et un **footer**.  
+2️⃣ Ajouter une **page `about.tsx`** pour tester le **routing basé sur le système de fichiers**.  
+3️⃣ Implémenter un **loading state (`loading.tsx`)** simulant un **chargement asynchrone**.  
+
+---
+
+## **1️⃣ Création du `layout.tsx` (Structure Globale)**  
+
+📍 **But** : Définir une structure réutilisable pour toutes les pages avec un header et un footer.  
+
+```tsx filename="app/layout.tsx" copy
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="fr">
+      <body className="flex flex-col min-h-screen">
+        <header className="bg-blue-600 text-white p-4">
+          <h1 className="text-xl font-bold">Mon Site Next.js</h1>
+        </header>
+
+        <main className="flex-1 p-4">{children}</main>
+
+        <footer className="bg-gray-800 text-white text-center p-4">
+          © 2025 - Tous droits réservés
+        </footer>
+      </body>
+    </html>
+  );
+}
+```
+✅ **Effet** : Toutes les pages auront un **header et un footer fixes**.  
+
+---
+
+## **2️⃣ Création de la page `about.tsx`**  
+
+📍 **But** : Observer le fonctionnement du **routing basé sur le système de fichiers** (`app/about/page.tsx` → `/about`).  
+
+```tsx filename="app/about/page.tsx" copy
+export default function AboutPage() {
+  return (
+    <div>
+      <h2 className="text-2xl font-bold">À propos de nous</h2>
+      <p>Bienvenue sur notre site Next.js 13+ !</p>
+    </div>
+  );
+}
+```
+✅ **Effet** :  
+- En visitant `http://localhost:3000/about`, la page **s'affiche automatiquement** sans besoin de configuration supplémentaire.  
+- Grâce au `layout.tsx`, elle **inclut le header et le footer** sans duplication de code.  
+
+---
+
+## **3️⃣ Ajout d’un `loading.tsx` pour simuler un chargement**  
+
+📍 **But** : Afficher un **écran de chargement** lorsqu’une page met du temps à charger.  
+
+```tsx filename="app/loading.tsx" copy
+export default function Loading() {
+  return (
+    <div className="flex flex-col items-center justify-center h-screen">
+      <p className="text-lg font-semibold">Chargement en cours...</p>
+      <div className="animate-spin rounded-full border-t-4 border-blue-500 border-solid h-12 w-12"></div>
+    </div>
+  );
+}
+```
+✅ **Effet** :  
+- Si une page **prend du temps à charger**, le `loading.tsx` s'affiche automatiquement.  
+
+---
+
+## **4️⃣ Test avec une page simulant un délai (`dashboard/page.tsx`)**  
+
+📍 **But** : Vérifier que `loading.tsx` s’affiche bien quand une page charge lentement.  
+
+```tsx filename="app/dashboard/page.tsx" copy
+async function fetchData() {
+  await new Promise((resolve) => setTimeout(resolve, 3000)); // Simule un délai de 3s
+  return { message: "Données chargées avec succès !" };
+}
+
+export default async function DashboardPage() {
+  const data = await fetchData();
+
+  return (
+    <div>
+      <h2 className="text-2xl font-bold">Tableau de bord</h2>
+      <p>{data.message}</p>
+    </div>
+  );
+}
+```
+✅ **Effet** :  
+1️⃣ L’utilisateur visite `/dashboard`.  
+2️⃣ **`loading.tsx` s’affiche** pendant 3 secondes.  
+3️⃣ Ensuite, la page `/dashboard` se charge avec les données.  
+
+---
+
+## **🎯 Résumé des acquis**  
+✔ Création d’un **layout global** avec un **header** et un **footer**.  
+✔ Ajout d’une **page dynamique** en utilisant le **système de fichiers** (`app/about/page.tsx`).  
+✔ Implémentation d’un **état de chargement** (`loading.tsx`) pour une meilleure expérience utilisateur.  
+
+---
+
+🔥 **Prochaine étape ?** Ajouter une **gestion des erreurs (`error.tsx`)** pour intercepter les erreurs de chargement ! 😊

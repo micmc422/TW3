@@ -41,7 +41,7 @@ export const metadata = {
       type: 'image/jpeg'}
   ],
   alternates: {
-    canonical: '/',
+    canonical: './',
   },
 }
 

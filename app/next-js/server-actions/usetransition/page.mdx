@@ -1,0 +1,209 @@
+# 🚀 **Gestion des mutations avec `useTransition()` dans Next.js 13+**  
+
+Lorsqu'on effectue des mutations (ajout, suppression, mise à jour de données), il est crucial d'assurer une bonne **expérience utilisateur** sans ralentir l'interface.  
+👉 C’est là que **`useTransition()`** entre en jeu !  
+
+---
+
+## **📌 1️⃣ Pourquoi utiliser `useTransition()` ?**  
+
+✅ **Avantages** :  
+- Empêche le **blocage de l’interface** lors des mutations.  
+- Permet d'afficher un **état de chargement léger**.  
+- Optimisé pour **les interactions non critiques** (ex: soumission d'un formulaire).  
+- Compatible avec **les Server Actions**.  
+
+❌ **Sans `useTransition()`** :  
+- **L’UI se fige** lors d’une action lourde (ex: envoi d’un formulaire).  
+- L’expérience utilisateur est dégradée sur des réseaux lents.  
+
+---
+
+## **📌 2️⃣ Exemple : Ajouter une tâche avec `useTransition()`**  
+
+Nous allons implémenter un formulaire d'ajout de tâche qui :  
+1️⃣ Empêche le blocage du bouton lors de l'envoi.  
+2️⃣ Affiche un **état de chargement** temporaire.  
+
+---
+
+### **🌍 Étape 1 : Mise à jour de l’action serveur**  
+
+🛠 **Fichier : `app/actions/todos.ts`**  
+```tsx
+"use server";
+
+import { db } from "@/lib/db";
+import { revalidatePath } from "next/cache";
+
+export async function addTodo(title: string) {
+  if (!title) return { error: "Le titre est requis" };
+
+  await new Promise((resolve) => setTimeout(resolve, 1000)); // Simule un délai réseau
+  
+  await db.todo.create({ data: { title } });
+
+  revalidatePath("/todos"); // Rafraîchit la page
+  return { success: "Tâche ajoutée !" };
+}
+```
+
+✅ **Ajout d’un `setTimeout()`** pour simuler une requête lente.  
+
+---
+
+### **📌 Étape 2 : Utilisation de `useTransition()` dans le formulaire**  
+
+🛠 **Fichier : `app/todos/AddTodoForm.tsx`**  
+```tsx
+"use client";
+
+import { useState, useTransition } from "react";
+import { addTodo } from "@/app/actions/todos";
+
+export default function AddTodoForm() {
+  const [title, setTitle] = useState("");
+  const [isPending, startTransition] = useTransition(); // 🔥 useTransition
+
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    
+    startTransition(async () => {
+      const result = await addTodo(title);
+      if (result?.success) setTitle(""); // Réinitialise le champ en cas de succès
+    });
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="mt-4 space-y-3">
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Nouvelle tâche"
+        className="w-full p-2 border rounded"
+        required
+      />
+      <button 
+        type="submit"
+        disabled={isPending} 
+        className={`w-full py-2 rounded ${isPending ? "bg-gray-400" : "bg-green-500 text-white"}`}
+      >
+        {isPending ? "Ajout..." : "Ajouter"}
+      </button>
+    </form>
+  );
+}
+```
+
+✅ **Explication** :  
+- `useTransition()` crée un état **`isPending`** qui devient `true` pendant la mutation.  
+- `startTransition(callback)` exécute **la mutation sans bloquer l'interface**.  
+- Le bouton devient **désactivé (`disabled`)** et affiche `"Ajout..."` pendant le traitement.  
+
+---
+
+## **📌 3️⃣ Comparaison : `useTransition()` vs `useState()`**  
+
+| 🔹 Méthode | `useTransition()` | `useState()` |
+|------------|----------------|----------------|
+| 🎯 **Effet** | Laisse l'UI réactive | Peut bloquer l'UI |
+| ⚡ **Performance** | Mutation non bloquante | Risque de lag |
+| 🔄 **Utilisation idéale** | Formulaires, interactions légères | Chargement global, mises à jour fréquentes |
+
+---
+
+## **📌 4️⃣ Exemple avancé : Combiner `useOptimistic` et `useTransition()`**  
+
+On peut **combiner** `useOptimistic()` et `useTransition()` pour une UX **fluide et instantanée** !  
+
+🛠 **Fichier : `app/todos/page.tsx`**  
+```tsx
+"use client";
+
+import { useOptimistic, useTransition, useState } from "react";
+import { getTodos, addTodo } from "@/app/actions/todos";
+
+export default function TodosPage() {
+  const [todos, setTodos] = useState(await getTodos());
+  const [isPending, startTransition] = useTransition();
+
+  const [optimisticTodos, setOptimisticTodos] = useOptimistic(
+    todos,
+    (currentTodos, newTodo) => [...currentTodos, newTodo] // Ajout instantané
+  );
+
+  function handleAdd(title: string) {
+    const newTodo = { id: Date.now().toString(), title }; // Ajout optimiste
+
+    setOptimisticTodos(newTodo); // Mise à jour instantanée
+
+    startTransition(async () => {
+      await addTodo(title); // Envoi réel
+    });
+  }
+
+  return (
+    <div className="max-w-md mx-auto p-4 border rounded-lg shadow-lg">
+      <h1 className="text-xl font-bold mb-4">Liste des tâches</h1>
+      <ul>
+        {optimisticTodos.map((todo) => (
+          <li key={todo.id} className="border-b py-2">{todo.title}</li>
+        ))}
+      </ul>
+      <AddTodoForm onAdd={handleAdd} isPending={isPending} />
+    </div>
+  );
+}
+```
+
+🛠 **Fichier : `app/todos/AddTodoForm.tsx`**  
+```tsx
+"use client";
+
+import { useState } from "react";
+
+export default function AddTodoForm({ onAdd, isPending }: { onAdd: (title: string) => void, isPending: boolean }) {
+  const [title, setTitle] = useState("");
+
+  function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    onAdd(title);
+    setTitle("");
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="mt-4 space-y-3">
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Nouvelle tâche"
+        className="w-full p-2 border rounded"
+        required
+      />
+      <button 
+        type="submit"
+        disabled={isPending} 
+        className={`w-full py-2 rounded ${isPending ? "bg-gray-400" : "bg-green-500 text-white"}`}
+      >
+        {isPending ? "Ajout..." : "Ajouter"}
+      </button>
+    </form>
+  );
+}
+```
+
+✅ **Effet combiné** :  
+- `useOptimistic()` affiche **instantanément** la nouvelle tâche.  
+- `useTransition()` évite de **bloquer l’interface** pendant l’envoi réel.  
+
+---
+
+## **🎯 Conclusion : Pourquoi utiliser `useTransition()` ?**  
+
+🚀 **Avec `useTransition()`, l'expérience utilisateur est optimisée** :  
+✅ **Mutation fluide** → Aucune latence perçue.  
+✅ **Interface toujours réactive** → Pas de blocage des boutons.  
+✅ **Facile à intégrer avec `useOptimistic()`** → Interactions instantanées.  
+

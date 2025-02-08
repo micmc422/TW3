@@ -1,0 +1,121 @@
+# 🌍 **Utilisation des `metadata` dans Next.js 13+**  
+
+Next.js 13+ introduit une API native pour gérer les **métadonnées** (`title`, `description`, `og:image`, etc.) directement dans les pages et layouts. Cela **améliore le SEO et l’accessibilité** sans nécessiter de bibliothèques comme `next/head`.  
+
+---
+
+## **📌 1️⃣ Ajouter des métadonnées dans `layout.tsx`**  
+
+📍 **But** : Définir des métadonnées globales pour l’ensemble du site.  
+
+```tsx filename="app/layout.tsx"
+export const metadata = {
+  title: "Mon Site Next.js",
+  description: "Un site web performant avec Next.js 13+",
+  keywords: ["Next.js", "SEO", "Performance"],
+  openGraph: {
+    title: "Mon Site Next.js",
+    description: "Découvrez Next.js et ses fonctionnalités avancées",
+    url: "https://monsite.com",
+    siteName: "Mon Site",
+    images: [
+      {
+        url: "/og-image.jpg", // Image affichée sur les réseaux sociaux
+        width: 1200,
+        height: 630,
+        alt: "Bannière de Mon Site Next.js",
+      },
+    ],
+    locale: "fr_FR",
+    type: "website",
+  },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="fr">
+      <body>
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+✅ **Effet** :  
+- **Toutes les pages héritent des métadonnées** définies ici.  
+- **SEO amélioré** avec des balises optimisées (`title`, `description`, `og:image`, etc.).  
+
+---
+
+## **📌 2️⃣ Ajouter des métadonnées spécifiques à une page (`page.tsx`)**  
+
+📍 **But** : Personnaliser les métadonnées par page.  
+
+```tsx filename="app/about/page.tsx"
+export const metadata = {
+  title: "À propos - Mon Site",
+  description: "Découvrez qui nous sommes et notre mission.",
+};
+
+export default function AboutPage() {
+  return (
+    <div>
+      <h2 className="text-2xl font-bold">À propos de nous</h2>
+      <p>Nous sommes passionnés par Next.js et le développement web.</p>
+    </div>
+  );
+}
+```
+✅ **Effet** :  
+- La page `/about` aura un **titre unique** `"À propos - Mon Site"`.  
+- **Priorité aux métadonnées locales** si elles existent, sinon celles du `layout.tsx` s’appliquent.  
+
+---
+
+## **📌 3️⃣ Générer dynamiquement des métadonnées (`generateMetadata`)**  
+
+📍 **But** : Générer des métadonnées en fonction d’un **contenu dynamique** (ex : article de blog).  
+
+```tsx filename="app/blog/[slug]/page.tsx"
+import { Metadata } from "next";
+
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const article = await fetch(`https://api.monsite.com/articles/${params.slug}`).then((res) =>
+    res.json()
+  );
+
+  return {
+    title: article.title,
+    description: article.excerpt,
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      images: [{ url: article.image }],
+    },
+  };
+}
+
+export default function BlogPost({ params }: Props) {
+  return (
+    <div>
+      <h1>Article : {params.slug}</h1>
+      <p>Contenu de l’article...</p>
+    </div>
+  );
+}
+```
+✅ **Effet** :  
+- **SEO dynamique** : Chaque article a ses propres métadonnées.  
+- **Optimisation pour le partage** sur les réseaux sociaux (`og:title`, `og:image`).  
+
+---
+
+## **🎯 Conclusion : Pourquoi utiliser les `metadata` de Next.js ?**  
+
+✅ **Facilité** → Plus besoin de `next/head`, tout est intégré dans `metadata`.  
+✅ **Performance** → Métadonnées gérées directement au niveau du serveur.  
+✅ **SEO optimal** → Personnalisation des balises `title`, `description`, `og:image`.  

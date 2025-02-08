@@ -1,0 +1,68 @@
+import { Callout } from 'nextra/components'
+
+# **Présentation de Next.js : Un Framework React Full-Stack**  
+
+Next.js est un framework basé sur **React** qui facilite le développement d’applications web modernes, en combinant le rendu côté serveur (**SSR**), le rendu statique (**SSG**) et les fonctionnalités full-stack. Développé par **Vercel**, il est conçu pour offrir des performances optimales, un bon SEO et une expérience utilisateur fluide.  
+
+## **Pourquoi utiliser Next.js ?**  
+
+✅ **Performance améliorée** : grâce au Server Side Rendering (SSR) et au Static Site Generation (SSG), les pages se chargent rapidement.  
+✅ **SEO optimisé** : contrairement aux applications React traditionnelles (SPA), Next.js génère du contenu indexable par les moteurs de recherche.  
+✅ **Expérience utilisateur fluide** : avec la **navigation instantanée** et le **prefetching** des pages.  
+✅ **Full-stack** : possibilité de créer des API Routes et d'utiliser des **Server Actions** pour gérer les données sans serveur externe.  
+✅ **Flexibilité du rendu** : supporte **SSR, SSG, ISR (Incremental Static Regeneration)** et **Client-side Rendering (CSR)**.  
+
+---
+
+## **📌 Initialiser un projet Next.js**  
+
+La manière la plus simple de démarrer un projet Next.js est d’utiliser **create-next-app** :  
+
+```bash
+npx create-next-app@latest my-next-app
+```
+Ou avec **yarn** :  
+```bash
+yarn create next-app my-next-app
+```
+Ou encore avec **pnpm** :  
+```bash
+pnpm create next-app my-next-app
+```
+<Callout emoji="👉" type='info'>
+Cette commande crée un projet avec une configuration prête à l’emploi, incluant TypeScript (optionnel), ESLint, Tailwind CSS (optionnel) et d’autres outils.  
+</Callout>
+
+Ensuite, rendez-vous dans le dossier du projet et démarrez le serveur local :  
+
+```bash
+cd my-next-app
+npm run dev
+```
+L’application sera disponible sur **http://localhost:3000**.  
+
+---
+
+## **🚀 Déploiement sur Vercel**  
+
+Vercel est la plateforme idéale pour héberger une application Next.js, car elle optimise automatiquement les performances et gère le déploiement en continu.  
+
+### **1️⃣ Installer Vercel CLI**  
+```bash npm2yarn
+npm install -g vercel
+```
+  
+### **2️⃣ Se connecter à Vercel**  
+```bash
+vercel login
+```
+  
+### **3️⃣ Déployer l’application**  
+```bash
+vercel
+```
+Vercel détecte automatiquement Next.js et génère une URL publique. À chaque modification poussée sur **GitHub**, **GitLab** ou **Bitbucket**, un déploiement est automatiquement généré.  
+
+---
+
+Next.js simplifie considérablement le développement et le déploiement d’applications modernes, offrant une solution performante et complète pour les développeurs front-end et full-stack. 🔥

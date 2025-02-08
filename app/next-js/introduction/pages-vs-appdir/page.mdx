@@ -1,0 +1,74 @@
+import { Callout } from 'nextra/components'
+
+# **Comparatif entre `app/` et `pages/` dans Next.js**  
+
+Depuis Next.js 13, un **nouveau système de routage** appelé **App Router (`app/`)** est introduit, en remplacement progressif du **Pages Router (`pages/`)**. Voici un comparatif détaillé entre ces deux approches, basé sur la gestion des fichiers et des fonctionnalités.  
+
+---
+
+## 📁 **Structure des fichiers : Pages Router (`pages/`) vs App Router (`app/`)**  
+
+La structure des fichiers entre ces deux approches diffère principalement dans l’organisation des routes et la gestion des layouts.  
+
+### 👎 **Ancienne approche (`pages/`)**  
+
+Dans le système `pages/`, chaque fichier correspondait directement à une route :  
+
+```
+/pages
+ ├── index.js         // Page d'accueil ("/")
+ ├── about.js         // Page "/about"
+ ├── contact.js       // Page "/contact"
+ ├── _app.js          // Layout global (appliqué partout)
+ ├── _document.js     // Personnalisation de la structure HTML
+ ├── api/             // API Routes
+ │   ├── hello.js     // API: "/api/hello"
+```
+
+### 👍 **Nouvelle approche (`app/`)**  
+
+Avec `app/`, le routing est **basé sur les dossiers**, et l’utilisation des **Server Components** optimise les performances :  
+
+```
+/app
+ ├── layout.tsx       // Layout global
+ ├── page.tsx         // Page d'accueil ("/")
+ ├── about/
+ │   ├── page.tsx     // Page "/about"
+ │   ├── legal.md     // Exemple de contenu markdown
+ ├── contact/
+ │   ├── page.tsx     // Page "/contact"
+ ├── api/             // API Routes remplacées par Server Actions
+```
+<Callout emoji="➡" type='info'>
+ **Remarque :** `layout.tsx` est appliqué automatiquement aux sous-pages sans avoir besoin de `_app.js` comme dans `pages/`.  
+</Callout>
+
+## 🛠️ **Principales différences entre `pages/` et `app/`**  
+
+| Fonctionnalité           | Pages Router (`pages/`) | App Router (`app/`) |
+|-------------------------|------------------------|----------------------|
+| **Routing**             | Basé sur les fichiers  | Basé sur les dossiers |
+| **Layouts**            | `_app.js` global       | `layout.tsx` par dossier |
+| **Data Fetching**      | `getStaticProps`, `getServerSideProps` | Fetching natif dans Server Components |
+| **Composants par défaut** | Client Components    | Server Components (par défaut) |
+| **Gestion des API**    | API Routes (`/api/*`)  | Server Actions (via formulaires et mutations) |
+| **SEO (Metadata)**     | `next/head`            | `generateMetadata()` |
+
+---
+
+## 🚀 **Avantages de l’App Router (`app/`)**  
+
+✅ **Meilleures performances** grâce aux **Server Components** (moins de JavaScript envoyé au client).  
+✅ **Layouts plus flexibles** (possibilité d’avoir des layouts imbriqués par dossier).  
+✅ **SEO et métadonnées simplifiés** avec `generateMetadata()`.  
+✅ **Suppression des API Routes** au profit des **Server Actions**, qui permettent d’interagir directement avec une base de données depuis un composant.  
+✅ **Gestion simplifiée des erreurs et du chargement** (`loading.tsx` et `error.tsx` par dossier).  
+
+---
+
+### 🎯 **Conclusion**  
+
+Si vous démarrez un projet aujourd’hui, **l’App Router (`app/`) est recommandé** pour bénéficier des dernières avancées en termes de performance et d’architecture. Toutefois, **le Pages Router (`pages/`) reste toujours supporté** et peut être utile pour une transition progressive.  
+
+Tu veux un exemple de code concret pour mieux illustrer la différence entre les deux ? 😊

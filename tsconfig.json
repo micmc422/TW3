@@ -36,7 +36,7 @@
     "next-env.d.ts",
     "theme.config.tsx",
     ".next/types/**/*.ts"
-, "app/_meta.ts"  ],
+, "app/_meta.ts", "app/next-js/optimisations/auth-session/page.mdx"  ],
   "exclude": [
     "node_modules"
   ]

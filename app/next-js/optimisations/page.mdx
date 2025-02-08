@@ -1,0 +1,179 @@
+### 🚀 **Amélioration des performances avec Next.js 13+**  
+
+Next.js 13+ introduit des fonctionnalités avancées pour optimiser les performances de votre application :  
+
+✅ **Mise en cache automatique des Server Components**  
+✅ **Streaming des données pour un rendu progressif**  
+✅ **Optimisation des requêtes côté serveur**  
+
+---
+
+## **1️⃣ Mise en cache des Server Components**  
+
+Les **Server Components** sont par défaut **mémorisés** et réutilisés pour éviter des rendus inutiles.  
+
+### **📌 Exemple : Mise en cache d’une requête API**  
+🛠 **Fichier : `app/products/page.tsx`**  
+```tsx
+async function getProducts() {
+  const res = await fetch("https://fakestoreapi.com/products", {
+    next: { revalidate: 3600 }, // Revalide les données toutes les heures
+  });
+  return res.json();
+}
+
+export default async function ProductsPage() {
+  const products = await getProducts();
+
+  return (
+    <div>
+      <h1>Produits</h1>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>{product.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+✅ **Explication** :  
+- `fetch()` avec `{ next: { revalidate: 3600 } }` met en cache la requête pendant **1 heure**.  
+- **Pas de rechargement inutile** des données tant qu’elles restent valides.  
+
+📌 **Alternatives** :  
+- `force-cache` pour stocker en cache indéfiniment.  
+- `no-store` pour désactiver totalement la mise en cache.  
+
+---
+
+## **2️⃣ Streaming des données avec React Suspense**  
+
+Grâce au **streaming**, on peut afficher **progressivement** les parties d’une page au fur et à mesure du chargement.  
+
+### **📌 Exemple : Affichage progressif des données**  
+🛠 **Fichier : `app/products/page.tsx`**  
+```tsx
+import { Suspense } from "react";
+import ProductList from "@/app/products/ProductList";
+
+export default function ProductsPage() {
+  return (
+    <div>
+      <h1>Produits</h1>
+      <Suspense fallback={<p>Chargement des produits...</p>}>
+        <ProductList />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+🛠 **Fichier : `app/products/ProductList.tsx`**  
+```tsx
+async function getProducts() {
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // Simule un délai réseau
+  const res = await fetch("https://fakestoreapi.com/products", { cache: "no-store" });
+  return res.json();
+}
+
+export default async function ProductList() {
+  const products = await getProducts();
+
+  return (
+    <ul>
+      {products.map((product) => (
+        <li key={product.id}>{product.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+✅ **Explication** :  
+- **Le titre s’affiche immédiatement** pendant que les produits se chargent.  
+- `Suspense` permet de **remplacer temporairement** le contenu par un message.  
+- **Améliore l’expérience utilisateur** en affichant progressivement la page.  
+
+---
+
+## **3️⃣ Rendu progressif des Server Components**  
+
+Next.js permet de **charger progressivement** les composants d’une page au lieu d’attendre que tout soit prêt.  
+
+### **📌 Exemple : Chargement d’une page avec plusieurs composants**  
+🛠 **Fichier : `app/dashboard/page.tsx`**  
+```tsx
+import { Suspense } from "react";
+import Stats from "@/app/dashboard/Stats";
+import RecentActivity from "@/app/dashboard/RecentActivity";
+
+export default function DashboardPage() {
+  return (
+    <div>
+      <h1>Tableau de bord</h1>
+      
+      <Suspense fallback={<p>Chargement des statistiques...</p>}>
+        <Stats />
+      </Suspense>
+
+      <Suspense fallback={<p>Chargement des activités récentes...</p>}>
+        <RecentActivity />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+✅ **Explication** :  
+- Chaque composant **se charge indépendamment**.  
+- `Stats` et `RecentActivity` sont affichés **dès qu’ils sont prêts**.  
+- **Aucun blocage** du rendu global.  
+
+---
+
+## **4️⃣ Optimisation des requêtes avec Parallel Fetching**  
+
+Next.js permet d’**exécuter plusieurs requêtes en parallèle** pour un rendu plus rapide.  
+
+### **📌 Exemple : Chargement parallèle de plusieurs API**  
+🛠 **Fichier : `app/dashboard/page.tsx`**  
+```tsx
+async function getUser() {
+  return fetch("https://jsonplaceholder.typicode.com/users/1").then((res) => res.json());
+}
+
+async function getPosts() {
+  return fetch("https://jsonplaceholder.typicode.com/posts?userId=1").then((res) => res.json());
+}
+
+export default async function Dashboard() {
+  const [user, posts] = await Promise.all([getUser(), getPosts()]); // Exécute les requêtes en parallèle
+
+  return (
+    <div>
+      <h1>Bonjour, {user.name}</h1>
+      <h2>Vos articles :</h2>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+✅ **Explication** :  
+- `Promise.all()` exécute **deux requêtes simultanément**.  
+- **Gagne du temps** par rapport à des requêtes **séquentielles**.  
+
+---
+
+## **🎯 Conclusion**  
+
+🚀 **Avec Next.js 13+, on améliore les performances avec** :  
+✅ **Mise en cache avancée** pour limiter les requêtes inutiles.  
+✅ **Streaming & rendu progressif** pour un chargement fluide.  
+✅ **Exécution parallèle des requêtes** pour un affichage plus rapide.  

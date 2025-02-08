@@ -1,0 +1,166 @@
+import { Callout } from 'nextra/components'
+
+# 🎨 **Gestion des polices avec `next/font` dans Next.js 13+**  
+
+Next.js 13+ simplifie l’intégration des polices grâce à `next/font`. Cette API optimise les polices pour de meilleures performances :  
+
+✅ Chargement optimisé des polices (lazy loading, sous-ensembles automatiques).  
+✅ Hébergement local sans dépendance externe.  
+✅ Moins de FOUT (Flash of Unstyled Text).  
+
+---
+
+## **1️⃣ Installer et utiliser une Google Font**  
+
+### **📌 Installation de la police avec `@next/font/google`**  
+Next.js propose un chargement optimisé des Google Fonts sans passer par un `<link>` externe.  
+
+```tsx filename="app/layout.tsx" copy
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="fr">
+      <body className={inter.className}>{children}</body>
+    </html>
+  );
+}
+```
+
+✅ **Explication** :  
+- **`Inter({ subsets: ["latin"] })`** : Charge la police `Inter` en local avec le sous-ensemble `latin`.  
+- **`inter.className`** : Ajoute la classe CSS optimisée pour la police.  
+
+---
+
+## **2️⃣ Charger plusieurs polices Google**  
+
+Si vous utilisez plusieurs polices, importez-les séparément.  
+
+```tsx filename="app/layout.tsx" copy
+import { Roboto, Lora } from "next/font/google";
+
+const roboto = Roboto({ weight: ["400", "700"], subsets: ["latin"] });
+const lora = Lora({ weight: ["400"], subsets: ["latin"] });
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="fr">
+      <body className={`${roboto.className} bg-gray-100`}>
+        <header className={lora.className}>Titre en Lora</header>
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+✅ **Explication** :  
+- `Roboto` avec plusieurs poids (`400`, `700`).  
+- `Lora` pour styliser les titres sans affecter le texte global.  
+
+---
+
+## **3️⃣ Utiliser des polices locales (`next/font/local`)**  
+
+Pour héberger des polices personnalisées en local sans dépendance externe.  
+
+### **📌 Ajouter une police locale**  
+
+```tsx filename="app/fonts.ts" copy
+import localFont from "next/font/local";
+
+export const myFont = localFont({
+  src: [
+    { path: "./fonts/MyFont-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/MyFont-Bold.woff2", weight: "700", style: "bold" },
+  ],
+  variable: "--font-myfont", // Ajout d'une variable CSS
+});
+```
+
+### **📌 Appliquer la police dans le layout**  
+
+```tsx filename="app/layout.tsx" copy
+import { myFont } from "./fonts";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="fr" className={myFont.variable}>
+      <body className="bg-white text-gray-900"> {children} </body>
+    </html>
+  );
+}
+```
+
+✅ **Explication** :  
+- Les fichiers de police sont stockés localement (`./fonts/`).  
+- `variable: "--font-myfont"` permet d’utiliser la police via **CSS variables** (`var(--font-myfont)`).  
+
+---
+
+## **4️⃣ Appliquer une police via Tailwind CSS**  
+
+Si vous utilisez Tailwind, ajoutez la police dans `tailwind.config.js` :  
+
+```js filename="tailwind.config.js" copy
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
+module.exports = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-myfont)", ...fontFamily.sans],
+      },
+    },
+  },
+};
+```
+
+✅ **Explication** :  
+- `var(--font-myfont)` utilise la police locale définie dans `fonts.ts`.  
+- S'intègre directement dans Tailwind (`font-sans`).  
+<Callout type="warning">
+### **Intégration des polices avec Tailwind CSS v4**  
+
+Avec Tailwind CSS v4.0, publié peu avant la rédaction de ce cours, l’intégration des polices est encore plus simple. Il suffit de :  
+
+1️⃣ **Définir une variable CSS pour la police** avec `--font-{nomDeLaPolice}`.  
+2️⃣ **Utiliser directement la classe `font-{nomDeLaPolice}`** dans le code.  
+
+### **📌 Exemple avec une Google Font**  
+
+```tsx filename="app/fonts.ts" copy
+import { Inter } from "next/font/google";
+
+export const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+```
+
+
+```tsx filename="app/layout.tsx" copy
+import { inter } from "./fonts";
+
+export default function RootLayout({ children }) {
+  return <html lang="fr" className={inter.variable}><body>{children}</body></html>;
+}
+```
+
+🛠 **Utilisation dans un composant**  
+```tsx filename="monCoponent.tsx" copy
+export default function Home() {
+  return <h1 className="font-inter">Bienvenue sur Next.js</h1>;
+}
+```
+
+✅ **Avantages** : Plus besoin de modifier `tailwind.config.ts`, tout est natif et optimisé ! 🚀
+</Callout>
+
+## **🎯 Conclusion**  
+
+🚀 **Avec `next/font`, on bénéficie de** :  
+✅ Un **chargement rapide** et sans dépendances externes.  
+✅ Une **intégration simplifiée** pour Google Fonts et polices locales.  
+✅ Moins de **FOUT (Flash of Unstyled Text)** pour une meilleure UX.  
+

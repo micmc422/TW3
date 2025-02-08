@@ -1,0 +1,94 @@
+# 🚀 **Utilisation des Loading States (`loading.tsx`) dans Next.js**  
+
+L'App Router de Next.js permet d'afficher des **états de chargement** (`loading.tsx`) de manière **native et optimisée**, sans avoir besoin de gérer manuellement un `useState` ou `useEffect` côté client.  
+
+---
+
+## **1️⃣ Qu'est-ce que `loading.tsx` ?**  
+
+📌 `loading.tsx` est un **React Server Component** utilisé pour afficher un **squelette de chargement** pendant que les données de la page sont en cours de récupération.  
+📌 Il est utile pour les pages qui chargent des données via des **fetch côté serveur** (`async/await`).  
+📌 Il est **automatiquement affiché** lorsqu'une page est en attente de données !  
+
+---
+
+## **2️⃣ Exemple simple d’un `loading.tsx` global**  
+
+📍 **Ajout d’un état de chargement global pour toutes les pages**  
+
+```tsx filename="app/loading.tsx" copy
+export default function Loading() {
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <p className="text-lg font-semibold">Chargement en cours...</p>
+    </div>
+  );
+}
+```
+💡 **Ce composant est automatiquement affiché** lorsque **n'importe quelle page** met du temps à charger.  
+
+---
+
+## **3️⃣ Exemple : Loading spécifique pour une section (`dashboard/loading.tsx`)**  
+
+📍 **Ajout d’un état de chargement uniquement pour `/dashboard`**  
+
+```tsx filename="app/dashboard/loading.tsx" copy
+export default function DashboardLoading() {
+  return (
+    <div className="flex flex-col items-center justify-center h-screen">
+      <p className="text-lg font-semibold">Chargement du tableau de bord...</p>
+      <div className="animate-spin rounded-full border-t-4 border-blue-500 border-solid h-12 w-12"></div>
+    </div>
+  );
+}
+```
+💡 **Ce composant s’affichera uniquement lors du chargement des pages dans `/dashboard`**.  
+
+---
+
+## **4️⃣ Démonstration avec une page utilisant un `fetch` côté serveur**  
+
+📍 **Créons une page qui charge des données avec un délai artificiel**  
+
+```tsx filename="app/dashboard/page.tsx" copy
+async function fetchData() {
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // Simule un délai
+  return { message: "Données chargées avec succès !" };
+}
+
+export default async function DashboardPage() {
+  const data = await fetchData();
+
+  return (
+    <div>
+      <h1 className="text-2xl font-bold">Tableau de bord</h1>
+      <p>{data.message}</p>
+    </div>
+  );
+}
+```
+📍 **Lorsqu'un utilisateur accède à `/dashboard` :**  
+1️⃣ **Le fichier `loading.tsx` s'affiche** immédiatement.  
+2️⃣ **Après 2 secondes, les données sont affichées** sur la page.  
+
+---
+
+## **5️⃣ Différence avec un `useState` côté client ?**  
+
+| **Méthode** | ✅ **`loading.tsx` (Server)** | ❌ `useState` (Client) |
+|------------|-----------------------------|------------------------|
+| Gestion automatique du state | ✅ Oui | ❌ Non |
+| Optimisé pour le SSR | ✅ Oui | ❌ Non |
+| Bloque le rendu côté serveur | ✅ Oui | ❌ Non |
+| Besoin de gérer `useState` / `useEffect` | ❌ Non | ✅ Oui |
+
+💡 **Avec `loading.tsx`, plus besoin de gérer manuellement des loaders côté client !**  
+
+---
+
+## **🎯 Conclusion : Pourquoi utiliser `loading.tsx` ?**  
+
+✔ **Plus simple** → Pas besoin de gérer `useState` et `useEffect`.  
+✔ **Plus rapide** → Intégré directement dans le Server Rendering.  
+✔ **Meilleure UX** → Evite les pages blanches lors du chargement des données.  

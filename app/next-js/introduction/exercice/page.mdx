@@ -1,0 +1,103 @@
+import { Steps } from 'nextra/components'
+
+# **📌 Installer un projet Next.js 13+ et explorer la structure `app/`**  
+
+Dans cet exercice, vous allez :  
+✅ Installer un projet Next.js 13+ avec le système `app/`.  
+✅ Lancer l’application en local.  
+✅ Explorer la structure de fichiers et comprendre son organisation.  
+
+---
+<Steps>
+
+## **1️⃣ Installer un projet Next.js 13+**  
+
+Ouvrez un terminal et exécutez la commande suivante :  
+
+```bash copy
+npx create-next-app@latest my-next-app
+```
+Ou avec **Yarn** :  
+```bash copy
+yarn create next-app my-next-app
+```
+Ou avec **pnpm** :  
+```bash copy
+pnpm create next-app my-next-app
+```
+
+👉 **Lors de l’installation, sélectionnez** :  
+- ✅ **App Router (`app/`)**
+- ✅ **TypeScript** (optionnel mais recommandé)
+- ✅ **ESLint** (optionnel)
+- ✅ **Tailwind CSS** (optionnel)
+
+---
+
+## **💻 Naviguer dans le projet**  
+```bash copy
+cd my-next-app
+```
+
+## **💻 Démarrer le serveur de développement**  
+```bash npm2yarn copy
+npm run dev
+```
+📍 **L’application est accessible sur** :  
+👉 `http://localhost:3000`
+
+---
+
+## **💻 Explorer la structure du projet (`app/`)**  
+
+Ouvrez le projet dans votre éditeur de code (ex: VS Code) et observez la structure des fichiers :  
+
+```
+my-next-app/
+├── app/                   # Nouveau système de routing basé sur les dossiers
+│   ├── layout.tsx         # Layout global (header, footer…)
+│   ├── page.tsx           # Page d'accueil "/"
+│   ├── about/             # Dossier pour la page "/about"
+│   │   ├── page.tsx       # Page about
+│   ├── api/               # API Routes (si nécessaire)
+│   ├── loading.tsx        # Indicateur de chargement (optionnel)
+│   ├── error.tsx          # Gestion des erreurs (optionnel)
+├── public/                # Fichiers statiques (images, favicon...)
+├── styles/                # Styles globaux (CSS, Tailwind...)
+├── next.config.js         # Configuration Next.js
+├── package.json           # Dépendances et scripts
+├── tsconfig.json          # Config TypeScript (si activé)
+```
+
+## **🚀 Comprendre les fichiers importants**  
+
+| 📁 Dossier/Fichier | 🔍 Rôle |
+|-----------------|---------|
+| `app/page.tsx` | Contenu de la page d’accueil (`/`) |
+| `app/layout.tsx` | Layout global partagé (ex: Header/Footer) |
+| `app/about/page.tsx` | Page `/about` (chaque dossier est une route) |
+| `app/loading.tsx` | Affiche un écran de chargement pour les pages |
+| `app/error.tsx` | Gère les erreurs sur une route spécifique |
+| `app/api/` | API Routes remplacées par les Server Actions |
+| `public/` | Images et fichiers statiques |
+| `next.config.js` | Configuration avancée de Next.js |
+
+---
+
+## **🎯 Objectif de l’exercice**  
+
+1️⃣ **Accéder à `http://localhost:3000`** et observer la page d’accueil.  
+2️⃣ **Créer une nouvelle page** en ajoutant un fichier `app/contact/page.tsx` avec ce contenu :  
+
+```tsx filename="app/contact/page.tsx" copy
+export default function ContactPage() {
+  return <h1>Page Contact</h1>;
+}
+```
+
+**Aller sur `http://localhost:3000/contact`** et voir si la page fonctionne.  
+
+---
+
+## ✅ **Bravo !** Vous avez installé un projet Next.js et exploré la structure `app/`.  
+</Steps>

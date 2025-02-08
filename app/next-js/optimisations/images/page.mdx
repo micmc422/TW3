@@ -1,0 +1,131 @@
+# 📷 **Gestion des images avec `next/image` dans Next.js 13+**  
+
+Next.js propose un composant **optimisé** pour l’affichage des images : [`next/image`](https://nextjs.org/docs/pages/api-reference/components/image). Il améliore les performances en :  
+
+✅ **Optimisant automatiquement** les images (compression, WebP/AVIF).  
+✅ **Lazy-loading** natif (chargement différé pour améliorer le temps de rendu).  
+✅ **Redimensionnement dynamique** selon la taille de l’écran.  
+
+---
+
+## **1️⃣ Afficher une image avec `next/image`**  
+
+Le composant `next/image` remplace la balise `<img>` standard.  
+
+🛠 **Exemple :**  
+```tsx copy
+import Image from "next/image";
+
+export default function Home() {
+  return (
+    <div>
+      <h1>Bienvenue</h1>
+      <Image 
+        src="/images/photo.jpg" 
+        alt="Photo optimisée" 
+        width={500} 
+        height={300} 
+        priority 
+      />
+    </div>
+  );
+}
+```
+
+✅ **Explication** :  
+- `src="/images/photo.jpg"` : Chemin de l’image dans le dossier **`public/`**.  
+- `width` & `height` : Dimensions optimisées par Next.js.  
+- `priority` : Charge l’image immédiatement (utile pour les images critiques).  
+
+---
+
+## **2️⃣ Utiliser des images distantes**  
+
+Par défaut, Next.js bloque les images provenant d’autres domaines. Il faut les autoriser dans `next.config.js`.  
+
+```js filename="next.config.js" copy
+module.exports = {
+  images: {
+    domains: ["cdn.example.com"], // Autorise les images de ce domaine
+  },
+};
+```
+
+🛠 **Utilisation d’une image distante**  
+```tsx copy
+<Image 
+  src="https://cdn.example.com/image.jpg" 
+  alt="Image distante"
+  width={800} 
+  height={600} 
+/>
+```
+
+✅ **Avantage** : Next.js optimise aussi les images distantes via son système de proxy.  
+
+---
+
+## **3️⃣ Gestion des images responsives (`fill`)**  
+
+Next.js permet d’adapter automatiquement les images à la taille du conteneur.  
+
+🛠 **Exemple avec `fill` et un conteneur en `relative`**  
+```tsx copy
+<div className="relative w-64 h-64">
+  <Image 
+    src="/images/photo.jpg"
+    alt="Image responsive"
+    fill 
+    className="object-cover"
+  />
+</div>
+```
+
+✅ **Explication** :  
+- `fill` : L’image **remplit** son parent (`w-64 h-64`).  
+- `object-cover` (avec Tailwind) : Garde le ratio de l’image sans déformation.  
+
+---
+
+## **4️⃣ Formats d’images optimisés**  
+
+Next.js convertit automatiquement les images en **WebP** ou **AVIF** (formats plus légers).  
+
+🔹 **Si le navigateur supporte WebP → Next.js sert WebP**.  
+🔹 **Sinon, il garde le format d’origine**.  
+
+Aucune configuration n’est nécessaire ! 🎉  
+
+---
+
+## **5️⃣ Charger dynamiquement une image (`loader`)**  
+
+Pour des cas spécifiques (CDN externe, transformations d’image...), on peut utiliser un **loader personnalisé**.  
+
+🛠 **Exemple avec Cloudinary**  
+```tsx copy
+const cloudinaryLoader = ({ src, width, quality }) => {
+  return `https://res.cloudinary.com/demo/image/upload/w_${width},q_${quality || 75}/${src}`;
+};
+
+<Image 
+  loader={cloudinaryLoader} 
+  src="sample.jpg" 
+  alt="Image optimisée Cloudinary"
+  width={800} 
+  height={600} 
+/>
+```
+
+✅ **Explication** :  
+- Transforme dynamiquement les images via **Cloudinary** (compression, redimensionnement).  
+- `q_${quality || 75}` ajuste la qualité de l’image.  
+
+---
+
+## **🎯 Conclusion**  
+
+🚀 **Avec `next/image`, on obtient** :  
+✅ Des images **compressées et optimisées automatiquement**.  
+✅ Un **lazy loading** natif pour de meilleures performances.  
+✅ Une **gestion facile** des images locales et distantes.  
