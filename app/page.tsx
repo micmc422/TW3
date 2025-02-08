@@ -1,4 +1,5 @@
 import ListOfChild from '@/components/list-of-child'
+import Plan from "@/components/plan"
 
 export const metadata = {
     title: 'Introduction aux technologies du web',
@@ -15,5 +16,8 @@ export default async function HomePage() {
             <li className='x:my-2'>Maîtrise pratique et théorique des technologies actuelles du web.</li>
             <li className='x:my-2'>Capacité à créer et gérer des projets web complets, du serveur à l'interface utilisateur.</li>
         </ul>
+        <h2 className='x:tracking-tight x:text-slate-900 x:dark:text-slate-100 x:font-semibold x:target:animate-[fade-in_1.5s] x:mt-10 x:border-b x:pb-1 x:text-3xl nextra-border'>Plan</h2>
+        <Plan />
+
     </section>
 }

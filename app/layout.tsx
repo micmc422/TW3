@@ -1,5 +1,5 @@
 /* eslint-env node */
-import { Footer, Layout, Navbar } from 'nextra-theme-docs'
+import { Footer, LastUpdated, Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
@@ -117,6 +117,7 @@ export default async function RootLayout({ children }) {
       chatLink="https://discord.gg/hEM84NMkRv"
     />
   )
+
   return (
     <html lang="fr" dir="ltr" suppressHydrationWarning>
       <Head faviconGlyph="✦">
@@ -166,11 +167,12 @@ export default async function RootLayout({ children }) {
           footer={<Footer>Champollion - TW3 -&nbsp;<a href="https://occitaweb.fr" target="_blank">Bardy Michaël</a></Footer>}
           editLink="Modifier sur GitHub"
           docsRepositoryBase="https://github.com/micmc422/TW3"
+          lastUpdated={<LastUpdated locale='fr'>mis à jour le </LastUpdated>}
           sidebar={{ defaultMenuCollapseLevel: 1 }}
           pageMap={await getPageMap()}
           feedback={{ content: "Une question ?", labels: "Question" }}
           toc={{ title: "Sur cette page" }}
-          search={<Search placeholder='Rechercher dans les cours' emptyResult={"Aucun résultat :s"} errorText={"Oups une erreur est survenue."} loading={"Recherche..."} />}
+          search={<Search placeholder='Rechercher dans les cours' emptyResult={"Aucun résultat 🚧"} errorText={"⁉ une erreur est survenue."} loading={"Recherche..."} />}
         >
           {children}
         </Layout>

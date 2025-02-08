@@ -1,3 +1,6 @@
+---
+icon: "🔍"
+---
 # 🌍 **Utilisation des `metadata` dans Next.js 13+**  
 
 Next.js 13+ introduit une API native pour gérer les **métadonnées** (`title`, `description`, `og:image`, etc.) directement dans les pages et layouts. Cela **améliore le SEO et l’accessibilité** sans nécessiter de bibliothèques comme `next/head`.  
@@ -20,7 +23,9 @@ export const metadata = {
     siteName: "Mon Site",
     images: [
       {
-        url: "/og-image.jpg", // Image affichée sur les réseaux sociaux
+        url: "/og-image.jpg", 
+        // Image affichée sur les réseaux sociaux
+        // à placer dans le dossier "/public"
         width: 1200,
         height: 630,
         alt: "Bannière de Mon Site Next.js",
@@ -28,6 +33,10 @@ export const metadata = {
     ],
     locale: "fr_FR",
     type: "website",
+    alternates: {
+      canonical: './',
+      // Défini l'url de la page en cours préférable à "/"
+    },
   },
 };
 
