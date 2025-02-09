@@ -174,7 +174,7 @@ export default async function RootLayout({ children }) {
           toc={{ title: "Sur cette page" }}
           search={<Search placeholder='Rechercher dans les cours' emptyResult={"Aucun résultat 🚧"} errorText={"⁉ une erreur est survenue."} loading={"Recherche..."} />}
         >
-          {children}
+          <main>{children}</main>
         </Layout>
       </body>
     </html>
