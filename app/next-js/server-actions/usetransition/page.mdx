@@ -5,7 +5,7 @@ Lorsqu'on effectue des mutations (ajout, suppression, mise à jour de données),
 
 ---
 
-## **📌 1️⃣ Pourquoi utiliser `useTransition()` ?**  
+## **1️⃣ Pourquoi utiliser `useTransition()` ?**  
 
 ✅ **Avantages** :  
 - Empêche le **blocage de l’interface** lors des mutations.  
@@ -19,7 +19,7 @@ Lorsqu'on effectue des mutations (ajout, suppression, mise à jour de données),
 
 ---
 
-## **📌 2️⃣ Exemple : Ajouter une tâche avec `useTransition()`**  
+## **2️⃣ Exemple : Ajouter une tâche avec `useTransition()`**  
 
 Nous allons implémenter un formulaire d'ajout de tâche qui :  
 1️⃣ Empêche le blocage du bouton lors de l'envoi.  
@@ -27,10 +27,9 @@ Nous allons implémenter un formulaire d'ajout de tâche qui :
 
 ---
 
-### **🌍 Étape 1 : Mise à jour de l’action serveur**  
+### **📌 Étape 1 : Mise à jour de l’action serveur**  
 
-🛠 **Fichier : `app/actions/todos.ts`**  
-```tsx
+```tsx filename="app/actions/todos.ts" copy
 "use server";
 
 import { db } from "@/lib/db";
@@ -54,8 +53,7 @@ export async function addTodo(title: string) {
 
 ### **📌 Étape 2 : Utilisation de `useTransition()` dans le formulaire**  
 
-🛠 **Fichier : `app/todos/AddTodoForm.tsx`**  
-```tsx
+```tsx filename="app/todos/AddTodoForm.tsx" copy
 "use client";
 
 import { useState, useTransition } from "react";
@@ -103,7 +101,7 @@ export default function AddTodoForm() {
 
 ---
 
-## **📌 3️⃣ Comparaison : `useTransition()` vs `useState()`**  
+## **3️⃣ Comparaison : `useTransition()` vs `useState()`**  
 
 | 🔹 Méthode | `useTransition()` | `useState()` |
 |------------|----------------|----------------|
@@ -113,12 +111,11 @@ export default function AddTodoForm() {
 
 ---
 
-## **📌 4️⃣ Exemple avancé : Combiner `useOptimistic` et `useTransition()`**  
+## **4️⃣ Exemple avancé : Combiner `useOptimistic` et `useTransition()`**  
 
 On peut **combiner** `useOptimistic()` et `useTransition()` pour une UX **fluide et instantanée** !  
 
-🛠 **Fichier : `app/todos/page.tsx`**  
-```tsx
+```tsx filename="app/todos/page.tsx" copy
 "use client";
 
 import { useOptimistic, useTransition, useState } from "react";
@@ -157,8 +154,7 @@ export default function TodosPage() {
 }
 ```
 
-🛠 **Fichier : `app/todos/AddTodoForm.tsx`**  
-```tsx
+```tsx filename="app/todos/AddTodoForm.tsx" copy
 "use client";
 
 import { useState } from "react";

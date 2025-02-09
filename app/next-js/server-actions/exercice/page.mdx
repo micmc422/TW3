@@ -10,7 +10,7 @@
 
 ### **📌 Étape 1 : Création de la Server Action**  
 
-```tsx filename="app/actions/contact.ts"
+```tsx filename="app/actions/contact.ts" copy
 "use server";
 
 import { revalidatePath } from "next/cache";
@@ -43,7 +43,7 @@ export async function sendContactMessage(formData: FormData) {
 
 ### **📌 Étape 2 : Création du formulaire côté client**  
 
-```tsx filename="app/contact/page.tsx"
+```tsx filename="app/contact/page.tsx" copy
 "use client";
 
 import { useState, useTransition } from "react";
@@ -101,7 +101,7 @@ export default function ContactPage() {
 
 ### **📌 Étape 1 : Création de la Server Action**  
 
-```tsx filename="app/actions/likes.ts"
+```tsx filename="app/actions/likes.ts" copy
 "use server";
 
 import { revalidatePath } from "next/cache";

@@ -20,7 +20,7 @@ export default async function ListOfChild({ path }: { path?: string }) {
 
     return <Cards>
         {items?.map(({ title, route, frontMatter, children }, i) => {
-            const icon = (children.find(({ name }) => name === "index")?.frontMatter.icon)
+            const icon = (children?.find(({ name }) => name === "index")?.frontMatter.icon)
             return <Cards.Card key={i} href={route} title={title} icon={<>{icon}</>} />
         })}
     </Cards>

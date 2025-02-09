@@ -4,7 +4,7 @@ Next.js 13+ permet une gestion native des **métadonnées sociales** (Open Graph
 
 ---
 
-## **📌 1️⃣ Open Graph : Qu'est-ce que c'est ?**  
+## **1️⃣ Open Graph : Qu'est-ce que c'est ?**  
 
 Open Graph (OG) est un protocole utilisé par Facebook, LinkedIn et d'autres plateformes pour afficher des **prévisualisations enrichies** des pages web partagées.
 
@@ -16,11 +16,11 @@ Open Graph (OG) est un protocole utilisé par Facebook, LinkedIn et d'autres pla
 - `og:type` → Type de contenu (`website`, `article`, etc.)  
 
 Exemple de rendu sur Facebook :  
-![Open Graph Preview](https://developers.facebook.com/docs/sharing/webmasters/images/og-example.jpg)  
+![Open Graph Preview](/images/opengraph-facebook.png)  
 
 ---
 
-## **📌 2️⃣ Twitter Cards : Présentation rapide**  
+## **2️⃣ Twitter Cards : Présentation rapide**  
 
 Twitter utilise ses propres balises pour afficher des cartes riches lors du partage d’un lien.  
 
@@ -36,11 +36,11 @@ Twitter utilise ses propres balises pour afficher des cartes riches lors du part
 - `twitter:card` → Type de carte  
 
 Exemple de rendu sur Twitter :  
-![Twitter Card Preview](https://developer.twitter.com/content/dam/developer-twitter/cards-image-template.png)  
+![Twitter Card Preview](/images/twittercard.png)  
 
 ---
 
-## **📌 3️⃣ Implémentation dans Next.js (Globale & Dynamique)**  
+## **3️⃣ Implémentation dans Next.js (Globale & Dynamique)**  
 
 ### **🌍 Définir les Open Graph & Twitter Cards globalement (`layout.tsx`)**  
 
@@ -151,7 +151,7 @@ export default function BlogPost({ params }: Props) {
 
 ---
 
-## **📌 4️⃣ Tester et valider les métadonnées**  
+## **4️⃣ Tester et valider les métadonnées**  
 
 🔍 **Facebook Open Graph Debugger** :  
 👉 [https://developers.facebook.com/tools/debug/](https://developers.facebook.com/tools/debug/)  

@@ -1,31 +1,32 @@
+import { Callout } from 'nextra/components'
+
 # 🚀 **Utilisation des Server Actions avec les React Server Components (RSC)**  
 
 Les **React Server Components (RSC)** sont un élément clé de l’architecture de Next.js 13+ avec le dossier `app/`.  
 Ils permettent d'exécuter du code **côté serveur** par défaut, réduisant le JavaScript envoyé au client et améliorant les performances.  
-
-👉 **Les Server Actions sont parfaitement intégrées aux RSC**, offrant une interaction fluide entre le serveur et le client.  
-
+<Callout type='info' emoji={"👉"}>
+**Les Server Actions sont parfaitement intégrées aux RSC**, offrant une interaction fluide entre le serveur et le client.  
+</Callout>
 ---
 
-## **📌 1️⃣ Rappel : Server Components vs Client Components**  
+## **1️⃣ Rappel : Server Components vs Client Components**  
 
-🔹 **React Server Components (RSC)**  
+**React Server Components (RSC)**  
 - ⚡ Exécutés **uniquement** côté serveur.  
 - ❌ Pas d’accès à `useState`, `useEffect`, ni aux événements comme `onClick`.  
 - ✅ Idéal pour **récupérer et afficher des données sans surcharge côté client**.  
 
-🔹 **Client Components (`"use client"`)**  
+**Client Components (`"use client"`)**  
 - ✅ Utilisés pour l’interactivité (formulaires, boutons, animations).  
 - ⚡ Peuvent **appeler des Server Actions** pour exécuter du code côté serveur.  
 
 ---
 
-## **📌 2️⃣ Utilisation des Server Actions dans un Server Component**  
+## **2️⃣ Utilisation des Server Actions dans un Server Component**  
 
 Nous allons créer une page **Server Component** qui affiche des données venant d’une base et permet d'ajouter un élément via une **Server Action**.  
 
-🛠 **Fichier : `app/actions/todos.ts`**  
-```tsx
+```tsx filename="app/actions/todos.ts" copy
 "use server";
 
 import { db } from "@/lib/db";
@@ -46,10 +47,9 @@ export async function addTodo(formData: FormData) {
 
 ---
 
-### **🌍 Étape 1 : Afficher les tâches avec un Server Component**  
+### **📌 Étape 1 : Afficher les tâches avec un Server Component**  
 
-🛠 **Fichier : `app/todos/page.tsx`**  
-```tsx
+```tsx filename="app/todos/page.tsx" copy
 import { getTodos } from "@/app/actions/todos";
 
 export default async function TodosPage() {
@@ -77,12 +77,11 @@ export default async function TodosPage() {
 ---
 
 ### **📌 Étape 2 : Ajouter un formulaire avec une Server Action**  
-
-🚨 **Un Server Component ne peut pas gérer `onSubmit`.**  
+<Callout type="warning" emoji="🚨">
+**Un Server Component ne peut pas gérer `onSubmit`.**  
 Nous devons utiliser un **Client Component** pour gérer le formulaire.  
-
-🛠 **Fichier : `app/todos/AddTodoForm.tsx`**  
-```tsx
+</Callout>
+```tsx filename="app/todos/AddTodoForm.tsx" copy
 "use client";
 
 import { useState } from "react";
@@ -122,13 +121,12 @@ export default function AddTodoForm() {
 
 ---
 
-## **📌 3️⃣ Rafraîchir automatiquement la liste après ajout**  
+## **3️⃣ Rafraîchir automatiquement la liste après ajout**  
 
 Actuellement, l’ajout fonctionne mais **la liste ne se met pas à jour automatiquement**.  
 Nous pouvons utiliser **Server Actions avec `revalidatePath()`** pour forcer la mise à jour des données.  
 
-🛠 **Mise à jour de `app/actions/todos.ts`**  
-```tsx
+```tsx filename="app/actions/todos.ts" copy
 "use server";
 
 import { db } from "@/lib/db";
@@ -154,7 +152,7 @@ Dès qu’une tâche est ajoutée, **Next.js rafraîchit automatiquement la page
 
 ---
 
-## **📌 4️⃣ Comparaison avec une API Route**  
+## **4️⃣ Comparaison avec une API Route**  
 
 | 🔹 Méthode | Server Actions (`use server`) | API Route (`app/api/todos/route.ts`) |
 |------------|----------------|----------------|
@@ -174,4 +172,4 @@ Dès qu’une tâche est ajoutée, **Next.js rafraîchit automatiquement la page
 - Code **plus simple** et optimisé.
 - **Moins de JavaScript côté client**, meilleur SEO et performances.
 - **Pas besoin d’API Routes ou de `fetch()`** pour charger les données.
-- **Mise à jour automatique** avec `revalidatePath()`.  
+- **Mise à jour automatique** avec `revalidatePath()`.

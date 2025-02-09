@@ -4,7 +4,7 @@ Les **Server Actions** permettent d’envoyer directement des données à un ser
 
 ---  
 
-## **📌 1️⃣ Objectif : Formulaire de contact avec Server Actions**  
+## **1️⃣ Objectif : Formulaire de contact avec Server Actions**  
 
 Nous allons créer un **formulaire de contact** qui envoie les données à une **Server Action** et affiche un message de confirmation.  
 
@@ -15,10 +15,9 @@ Nous allons créer un **formulaire de contact** qui envoie les données à une *
 
 ---
 
-## **📌 2️⃣ Création de la Server Action**  
+## **2️⃣ Création de la Server Action**  
 
-🛠 **Fichier : `app/actions/contact.ts`**  
-```tsx
+```tsx filename="app/actions/contact.ts" copy
 "use server";
 
 export async function sendMessage(formData: FormData) {
@@ -46,10 +45,9 @@ export async function sendMessage(formData: FormData) {
 
 ---
 
-## **📌 3️⃣ Création du formulaire avec appel à la Server Action**  
+## **3️⃣ Création du formulaire avec appel à la Server Action**  
 
-🛠 **Fichier : `app/contact/page.tsx`**  
-```tsx
+```tsx filename="app/contact/page.tsx" copy
 "use client";
 
 import { useState } from "react";
@@ -109,7 +107,7 @@ export default function ContactPage() {
 
 ---
 
-## **📌 4️⃣ Test et Validation**  
+## **4️⃣ Test et Validation**  
 
 - 📌 Démarrer le projet :  
   ```bash
@@ -121,12 +119,11 @@ export default function ContactPage() {
 
 ---
 
-## **📌 5️⃣ Aller plus loin : Stocker les messages en base de données**  
+## **5️⃣ Aller plus loin : Stocker les messages en base de données**  
 
 Si on utilise **Prisma** avec une base de données SQLite ou PostgreSQL :  
 
-🛠 **Fichier : `app/actions/contact.ts` (avec Prisma)**  
-```tsx
+```tsx filename="app/actions/contact.ts (avec Prisma)" copy
 "use server";
 
 import { db } from "@/lib/db"; // Connexion à la base
@@ -152,7 +149,7 @@ export async function sendMessage(formData: FormData) {
 
 ---
 
-## **📌 6️⃣ Comparaison avec une API Route**  
+## **6️⃣ Comparaison avec une API Route**  
 
 | 🔹 Méthode | Server Action (`"use server"`) | API Route (`app/api/contact/route.ts`) |
 |------------|----------------|----------------|

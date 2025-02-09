@@ -7,7 +7,7 @@ Avec l’introduction de **Server Actions** dans Next.js 13+, on assiste à un *
 
 ---
 
-## **📌 1️⃣ Qu'est-ce qu'une Server Action ?**  
+## **1️⃣ Qu'est-ce qu'une Server Action ?**  
 
 Les **Server Actions** permettent d’exécuter des **fonctions côté serveur directement depuis les composants React** sans avoir besoin de créer une route API distincte.  
 
@@ -27,16 +27,15 @@ Les **Server Actions** permettent d’exécuter des **fonctions côté serveur d
 
 ---
 
-## **📌 2️⃣ Comment utiliser les Server Actions ?**  
+## **2️⃣ Comment utiliser les Server Actions ?**  
 
-### **🌍 Définir une Server Action**  
+### **Définir une Server Action**  
 
 Next.js introduit le mot-clé **`"use server"`** pour déclarer une fonction exécutée côté serveur.  
 
 🔹 **Exemple : Ajouter un commentaire à une base de données**  
 
-🛠 **Fichier : `app/comments/page.tsx`**  
-```tsx
+```tsx filename="app/comments/page.tsx" copy
 "use client";
 
 import { useState } from "react";
@@ -75,8 +74,7 @@ export default function CommentsPage() {
   );
 }
 ```
-🛠 **Fichier : `app/actions/addComment.ts`**  
-```tsx
+```tsx filename="app/actions/addComment.ts" copy
 "use server";
 
 import { db } from "@/lib/db"; // Supposons une connexion à une base de données
@@ -98,14 +96,13 @@ export async function addComment(formData: FormData) {
 
 ---
 
-## **📌 3️⃣ Exécution sans `fetch` (Appels directs)**  
+## **3️⃣ Exécution sans `fetch` (Appels directs)**  
 
 Dans un formulaire **sans état client**, on peut directement passer la Server Action dans `action={maFonction}`.  
 
 🔹 **Exemple : Formulaire d’inscription**  
 
-🛠 **Fichier : `app/signup/page.tsx`**  
-```tsx
+```tsx filename="app/signup/page.tsx" copy
 import { registerUser } from "@/app/actions/register";
 
 export default function SignupPage() {
@@ -118,8 +115,7 @@ export default function SignupPage() {
   );
 }
 ```
-🛠 **Fichier : `app/actions/register.ts`**  
-```tsx
+```tsx filename="app/actions/register.ts" copy
 "use server";
 
 import { db } from "@/lib/db";
@@ -143,14 +139,13 @@ export async function registerUser(formData: FormData) {
 
 ---
 
-## **📌 4️⃣ Server Actions avec Authentification et Sécurité**  
+## **4️⃣ Server Actions avec Authentification et Sécurité**  
 
 Les Server Actions permettent aussi d’interagir avec l’authentification.  
 
 🔹 **Exemple : Authentification avec NextAuth**  
 
-🛠 **Fichier : `app/actions/login.ts`**  
-```tsx
+```tsx filename="app/actions/login.ts" copy
 "use server";
 
 import { auth } from "@/lib/auth"; // NextAuth
@@ -172,7 +167,7 @@ export async function loginUser(formData: FormData) {
 
 ---
 
-## **📌 5️⃣ Comparaison avec les API Routes**  
+## **5️⃣ Comparaison avec les API Routes**  
 
 | Fonctionnalité | Server Actions (`use server`) | API Routes (`app/api/*`) |
 |----------------|----------------|----------------|
@@ -184,7 +179,7 @@ export async function loginUser(formData: FormData) {
 
 ---
 
-## **📌 6️⃣ Quand utiliser Server Actions vs API Routes ?**  
+## **6️⃣ Quand utiliser Server Actions vs API Routes ?**  
 
 ✅ **Utiliser les Server Actions** quand :
 - Vous avez une interaction **directe** avec le serveur.

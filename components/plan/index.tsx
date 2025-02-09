@@ -23,7 +23,7 @@ export default function Plan({ rootFolder }: { rootFolder?: string }) {
 }
 function MenuItem({ title, route, children, isRoot }: { title: string, route: string, children?: Item[], isRoot?: boolean }) {
     const Tag = isRoot ? 'h3' : 'li';
-    if(title.toLowerCase() ==="ressources") return
+    if(title?.toLowerCase() === "ressources") return
     if (children?.length > 0) {
         return <>
             <Tag><Link href={route || "#"} className={['flex items-center '].join(' ')}><strong>{title}</strong></Link></Tag>

@@ -16,8 +16,8 @@ Next.js 13+ introduit des fonctionnalités avancées pour optimiser les performa
 Les **Server Components** sont par défaut **mémorisés** et réutilisés pour éviter des rendus inutiles.  
 
 ### **📌 Exemple : Mise en cache d’une requête API**  
-🛠 **Fichier : `app/products/page.tsx`**  
-```tsx
+
+```tsx filename="app/products/page.tsx" copy
 async function getProducts() {
   const res = await fetch("https://fakestoreapi.com/products", {
     next: { revalidate: 3600 }, // Revalide les données toutes les heures
@@ -56,8 +56,8 @@ export default async function ProductsPage() {
 Grâce au **streaming**, on peut afficher **progressivement** les parties d’une page au fur et à mesure du chargement.  
 
 ### **📌 Exemple : Affichage progressif des données**  
-🛠 **Fichier : `app/products/page.tsx`**  
-```tsx
+
+```tsx filename="app/products/page.tsx" copy
 import { Suspense } from "react";
 import ProductList from "@/app/products/ProductList";
 
@@ -73,8 +73,7 @@ export default function ProductsPage() {
 }
 ```
 
-🛠 **Fichier : `app/products/ProductList.tsx`**  
-```tsx
+```tsx filename="app/products/ProductList.tsx" copy
 async function getProducts() {
   await new Promise((resolve) => setTimeout(resolve, 2000)); // Simule un délai réseau
   const res = await fetch("https://fakestoreapi.com/products", { cache: "no-store" });
@@ -106,8 +105,8 @@ export default async function ProductList() {
 Next.js permet de **charger progressivement** les composants d’une page au lieu d’attendre que tout soit prêt.  
 
 ### **📌 Exemple : Chargement d’une page avec plusieurs composants**  
-🛠 **Fichier : `app/dashboard/page.tsx`**  
-```tsx
+
+```tsx filename="app/dashboard/page.tsx"
 import { Suspense } from "react";
 import Stats from "@/app/dashboard/Stats";
 import RecentActivity from "@/app/dashboard/RecentActivity";
@@ -141,8 +140,8 @@ export default function DashboardPage() {
 Next.js permet d’**exécuter plusieurs requêtes en parallèle** pour un rendu plus rapide.  
 
 ### **📌 Exemple : Chargement parallèle de plusieurs API**  
-🛠 **Fichier : `app/dashboard/page.tsx`**  
-```tsx
+
+```tsx filename="app/dashboard/page.tsx" copy
 async function getUser() {
   return fetch("https://jsonplaceholder.typicode.com/users/1").then((res) => res.json());
 }

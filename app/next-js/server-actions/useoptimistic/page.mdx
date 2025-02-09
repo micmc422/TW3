@@ -5,7 +5,7 @@ Dans Next.js 13+, on utilise **`useOptimistic`** pour gérer ces mutations côt�
 
 ---
 
-## **📌 1️⃣ Pourquoi utiliser `useOptimistic` ?**  
+## **1️⃣ Pourquoi utiliser `useOptimistic` ?**  
 
 ✅ **Avantages** :  
 - Affichage **instantané** des mises à jour sans attendre la réponse serveur.  
@@ -18,7 +18,7 @@ Dans Next.js 13+, on utilise **`useOptimistic`** pour gérer ces mutations côt�
 
 ---
 
-## **📌 2️⃣ Exemple : Liste de tâches avec mise à jour optimiste**  
+## **2️⃣ Exemple : Liste de tâches avec mise à jour optimiste**  
 
 Nous allons créer une application de gestion de tâches avec :  
 1️⃣ Un affichage **en temps réel** des tâches.  
@@ -26,10 +26,9 @@ Nous allons créer une application de gestion de tâches avec :
 
 ---
 
-### **🌍 Étape 1 : Server Actions pour récupérer et supprimer une tâche**  
+### **📌 Étape 1 : Server Actions pour récupérer et supprimer une tâche**  
 
-🛠 **Fichier : `app/actions/todos.ts`**  
-```tsx
+```tsx filename="app/actions/todos.ts" copy
 "use server";
 
 import { db } from "@/lib/db";
@@ -57,8 +56,7 @@ export async function deleteTodo(id: string) {
 
 ### **📌 Étape 2 : Affichage avec `useOptimistic`**  
 
-🛠 **Fichier : `app/todos/page.tsx`**  
-```tsx
+```tsx filename="app/todos/page.tsx" copy
 "use client";
 
 import { useOptimistic, useState } from "react";
@@ -109,7 +107,7 @@ export default function TodosPage() {
 
 ---
 
-## **📌 3️⃣ Comparaison : `useOptimistic` vs `revalidatePath`**  
+## **3️⃣ Comparaison : `useOptimistic` vs `revalidatePath`**  
 
 | 🔹 Méthode | `useOptimistic` | `revalidatePath` |
 |------------|----------------|----------------|
@@ -120,13 +118,12 @@ export default function TodosPage() {
 
 ---
 
-## **📌 4️⃣ Gérer les erreurs (rollback en cas d’échec)**  
+## **4️⃣ Gérer les erreurs (rollback en cas d’échec)**  
 
 Que se passe-t-il si la suppression échoue ?  
 On peut ajouter une gestion d’erreur avec un rollback.  
 
-🛠 **Mise à jour de `handleDelete()`**  
-```tsx
+```tsx filename="handleDelete()" copy
 async function handleDelete(id: string) {
   const previousTodos = optimisticTodos; // Sauvegarde
   
@@ -149,4 +146,4 @@ async function handleDelete(id: string) {
 🚀 **Avec `useOptimistic`**, l’UI devient ultra-fluide :  
 ✅ **Moins de latence perçue** → meilleures performances UX.  
 ✅ **Moins de re-rendering** inutile.  
-✅ **Gestion fine des mutations** sans bloquer l’interface.  
+✅ **Gestion fine des mutations** sans bloquer l’interface.
