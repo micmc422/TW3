@@ -1,13 +1,15 @@
-@import "tailwindcss" source("../components/");
+@import "tailwindcss" source("../{components,app}/");
 
 @utility container {
     max-width: 58rem;
     margin: 0 auto;
-
 }
+
 @layer base {
+
     :root {
         --color-primary: 24.6 95% 53.1%;
+        @apply selection:text-amber-50 selection:!bg-black/75 selection:dark:!bg-amber-50/75 selection:dark:text-black;
     }
 
     .dark {

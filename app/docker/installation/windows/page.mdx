@@ -1,62 +1,103 @@
 ---
 title: "Installation de Docker sur Windows."
 ---
-# Installation de Docker
+Voici une version améliorée et attrayante de l'installation de Docker sur Windows, avec des icônes et un format visuellement plus agréable :
 
-*Les postes de l’université sont déjà configurés avec docker et Ubuntu.*
+---
 
-Les prérequis pour l'installation de Docker varient en fonction du système d'exploitation. Voici les prérequis pour Linux, Windows et macOS :
+# 🚀 **Installation de Docker sur Windows**
 
-## Prérequis pour Windows
+*Les postes de l’université sont déjà configurés avec Docker et Ubuntu.*
 
-    - **Système d'exploitation :** Docker Desktop pour Windows nécessite Windows 10 64-bit : Pro, Enterprise ou Education avec la virtualisation matérielle activée. Si vous utilisez une édition familiale de Windows, vous pouvez utiliser Docker Toolbox.
-    - **Processeur :** Assurez-vous que votre processeur prend en charge la virtualisation matérielle et que cette fonctionnalité est activée dans le BIOS/UEFI.
-    - **Mémoire :** Au moins 4 Go de RAM sont recommandés.
-    - **Espace disque :** Vous avez besoin d'au moins 20 Go d'espace disque disponible pour les images Docker et les conteneurs.
+Les prérequis pour l'installation de Docker varient selon le système d'exploitation. Voici les informations pour **Windows**, **macOS** et **Linux** :
 
-Assurez-vous de vérifier la documentation officielle de Docker pour obtenir les prérequis les plus récents et les plus précis en fonction de la version de Docker que vous prévoyez d'installer.
+---
 
-https://docs.docker.com/engine/install/
+## 🖥️ **Prérequis pour Windows**
 
-## Windows (utilisation WSL2)
+Avant de commencer l'installation de Docker sur Windows, assurez-vous que votre système respecte ces prérequis :
 
-### Activez WSL
-- Ouvrez PowerShell en tant qu'administrateur.
-- Exécutez la commande suivante pour activer la fonctionnalité WSL :
+- **Système d'exploitation :**  
+  Docker Desktop pour Windows nécessite **Windows 10 64-bit** (Pro, Enterprise ou Education) avec la virtualisation matérielle activée.  
+  Si vous avez une édition **familiale**, vous pouvez utiliser **Docker Toolbox**. ⚙️
 
-```bash copy
-dism.exe /online /enable-feature
-/featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+- **Processeur :**  
+  Assurez-vous que votre processeur prend en charge **la virtualisation matérielle** et que cette fonctionnalité est activée dans le **BIOS/UEFI**. 🧠
+
+- **Mémoire :**  
+  Il est recommandé d'avoir **au moins 4 Go de RAM** pour une expérience fluide. 💻
+
+- **Espace disque :**  
+  Docker nécessite **20 Go d'espace disque** pour stocker les images et les conteneurs. 📦
+
+> ℹ️ **Note importante :**  
+> Consultez la [documentation officielle de Docker](https://docs.docker.com/engine/install/) pour les prérequis les plus récents.
+
+---
+
+## ⚙️ **Installation de Docker sur Windows (utilisation de WSL2)**
+
+### 1️⃣ **Activez WSL (Windows Subsystem for Linux)**
+
+- Ouvrez **PowerShell** en tant qu'administrateur.
+- Exécutez cette commande pour activer la fonctionnalité **WSL** :
+
+```bash
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
 
-### Activez la virtualisation
-    - Assurez-vous que la virtualisation est activée dans le BIOS de votre ordinateur. Cette étape peut varier en fonction du fabricant de votre ordinateur, alors consultez le manuel de votre matériel si nécessaire.
-### Installez une distribution Linux
-    - Ouvrez Microsoft Store depuis votre menu Démarrer.
-    - Recherchez une distribution Linux de votre choix (par exemple, **Ubuntu**, Debian, ou Alpine) et installez-la. Suivez les instructions pour la configuration initiale de la distribution Linux.
-### Mettez à jour WSL 2
-    - Assurez-vous que vous utilisez WSL 2, car Docker fonctionne mieux avec cette version. Vous pouvez mettre à jour WSL en exécutant ces commandes dans PowerShell en tant qu'administrateur :
+### 2️⃣ **Activez la virtualisation dans le BIOS**
 
-```bash copy
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform
-/all /norestart
+- Redémarrez votre ordinateur et entrez dans le **BIOS**.  
+  Assurez-vous que la **virtualisation matérielle** est activée. 📉  
+  Cette étape peut varier en fonction du fabricant de votre PC. Consultez le manuel de votre matériel si nécessaire.
+
+### 3️⃣ **Installez une distribution Linux**
+
+- Ouvrez le **Microsoft Store**.
+- Recherchez et installez une distribution Linux de votre choix (comme **Ubuntu**, **Debian** ou **Alpine**). 🐧
+- Suivez les instructions pour configurer votre distribution Linux.
+
+### 4️⃣ **Mettez à jour WSL 2**
+
+- Assurez-vous que **WSL 2** est activé, car Docker fonctionne mieux avec cette version.  
+  Exécutez cette commande dans PowerShell pour activer WSL 2 :
+
+```bash
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
 
-### Installez le noyau WSL 2
-    - Téléchargez et installez le dernier package MSI du noyau Linux WSL 2 à partir de cette page : [Téléchargement du noyau WSL 2](https://aka.ms/wsl2kernel).
-    - Suivez les instructions pour l'installer.
-### Définissez WSL 2 comme version par défaut
-    - Ouvrez PowerShell en tant qu'administrateur et exécutez la commande suivante pour définir WSL 2 comme version par défaut :
+### 5️⃣ **Installez le noyau WSL 2**
 
-```bash copy
+- Téléchargez et installez le dernier package MSI du noyau Linux **WSL 2** ici :  
+  ➡️ [Téléchargement du noyau WSL 2](https://aka.ms/wsl2kernel)
+  
+- Suivez les instructions pour l'installer. 🛠️
+
+### 6️⃣ **Définissez WSL 2 comme version par défaut**
+
+- Ouvrez **PowerShell** en tant qu'administrateur et exécutez la commande suivante :
+
+```bash
 wsl --set-default-version 2
 ```
 
-### Installez Docker Desktop pour Windows
-    - Téléchargez Docker Desktop pour Windows à partir du site officiel de Docker : [Télécharger Docker Desktop pour Windows](https://www.docker.com/products/docker-desktop).
-    - Installez Docker Desktop en suivant les instructions d'installation.
-### Configurez Docker pour utiliser WSL 2
-    - Ouvrez Docker Desktop et accédez aux paramètres.
-    - Sous l'onglet "Resources", sélectionnez "WSL Integration".
-    - Activez WSL 2 pour la distribution Linux que vous avez installée.
+### 7️⃣ **Installez Docker Desktop pour Windows**
 
+- Téléchargez **Docker Desktop pour Windows** depuis le site officiel :  
+  ➡️ [Télécharger Docker Desktop](https://www.docker.com/products/docker-desktop)
+  
+- Suivez les instructions d'installation.
+
+### 8️⃣ **Configurez Docker pour utiliser WSL 2**
+
+- Ouvrez **Docker Desktop**.
+- Accédez aux **Paramètres** en cliquant sur l'icône **roue dentée** dans le coin supérieur droit.
+- Allez dans l'onglet **Resources** et sélectionnez **WSL Integration**.
+- Activez l'intégration avec la distribution Linux que vous avez installée. 🛠️
+
+---
+
+## 🎉 **Docker est maintenant installé sur votre machine Windows !**
+
+Une fois ces étapes complétées, Docker sera prêt à l'emploi pour vos projets de développement. Vous pouvez commencer à créer et gérer vos conteneurs Docker ! 🚀

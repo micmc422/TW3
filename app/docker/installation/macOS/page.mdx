@@ -1,38 +1,78 @@
 ---
 title: "Installation de Docker sur MacOs."
 ---
-# Installation de Docker
+Voici une version plus attrayante du contenu avec des icônes et des mises en forme améliorées pour chaque section :
 
-*Les postes de l’université sont déjà configurés avec docker et Ubuntu.*
+---
 
-Les prérequis pour l'installation de Docker varient en fonction du système d'exploitation. Voici les prérequis pour macOS :
+# 🚀 **Installation de Docker sur macOS**
 
-## Prérequis pour macOS
+*Les postes de l'université sont déjà configurés avec Docker et Ubuntu.*
 
-    - **Système d'exploitation :** Docker Desktop pour macOS nécessite macOS Yosemite
-    - ou supérieur, avec la virtualisation matérielle activée.
-    - **Processeur :** Votre Mac doit être équipé d'un processeur Intel avec prise en charge de la virtualisation matérielle.
-    - **Mémoire :** Au moins 4 Go de RAM sont recommandés.
-    - **Espace disque :** Vous avez besoin d'au moins 20 Go d'espace disque disponible pour les images Docker et les conteneurs.
-    - **Système d'exploitation Hôte :** Vous devez également vous assurer que votre Mac exécute une version prise en charge du système d'exploitation hôte, car Docker Desktop s'appuie sur les fonctionnalités de virtualisation de macOS.
+Les prérequis et la procédure d'installation de Docker varient en fonction du système d'exploitation. Voici comment installer **Docker Desktop** sur macOS :
 
-Assurez-vous de vérifier la documentation officielle de Docker pour obtenir les prérequis les plus récents et les plus précis en fonction de la version de Docker que vous prévoyez d'installer.
+---
 
-https://docs.docker.com/engine/install/
+## 🖥️ **Prérequis pour macOS**
 
-## macOS (utilisation de Docker Desktop )
+Avant d'installer Docker sur macOS, assurez-vous que votre système respecte ces prérequis :
 
-    - Téléchargez Docker Desktop pour macOS depuis le site Web officiel de Docker.
-    - Double-cliquez sur le fichier téléchargé pour monter l'image disque Docker.
-    - Glissez Docker dans le dossier Applications.
-    - Ouvrez Docker depuis le dossier Applications.
+- **Système d'exploitation :**  
+  Docker Desktop pour macOS nécessite **macOS Yosemite** ou une version supérieure, avec la virtualisation matérielle activée. 🔧
+  
+- **Processeur :**  
+  Votre Mac doit disposer d'un processeur **Intel** prenant en charge la virtualisation matérielle. ⚙️
 
-Assurez-vous de suivre ces étapes spécifiques à votre plateforme pour installer Docker avec succès.
+- **Mémoire :**  
+  Il est recommandé d'avoir **au moins 4 Go de RAM** pour garantir des performances optimales. 💻
 
-## Vérification de l'installation.
+- **Espace disque :**  
+  Docker nécessite **20 Go d'espace disque libre** pour stocker les images et conteneurs Docker. 📦
 
-Exécution de la commande :
-```bash copy
+- **Compatibilité hôte :**  
+  Vérifiez que votre version de macOS est prise en charge, car Docker Desktop s'appuie sur la virtualisation intégrée de macOS. 📱
+
+> ℹ️ **Note importante :**  
+> Pour les prérequis les plus récents et détaillés, consultez la [documentation officielle de Docker](https://docs.docker.com/engine/install/).
+
+---
+
+## ⚙️ **Installation de Docker Desktop sur macOS**
+
+Suivez ces étapes pour installer Docker Desktop sur votre Mac :
+
+1. **Téléchargement :**  
+   Allez sur le site officiel de Docker et téléchargez **Docker Desktop pour macOS** :  
+   ➡️ [Télécharger Docker Desktop](https://www.docker.com/products/docker-desktop)
+
+2. **Installation :**  
+   - Double-cliquez sur le fichier téléchargé pour monter l'image disque. 📥
+   - Glissez l'icône **Docker** dans le dossier **Applications**. 🗂️
+
+3. **Lancement :**  
+   - Ouvrez Docker depuis le dossier **Applications**. Une fois lancé, Docker se mettra en arrière-plan pour gérer vos conteneurs. 🚀
+
+> 📝 **Astuce :**  
+> Docker Desktop se lance automatiquement à chaque démarrage de votre Mac et fonctionne en arrière-plan.
+
+---
+
+## 🔍 **Vérification de l'installation**
+
+Après l'installation, vérifiez que Docker fonctionne correctement en exécutant ces commandes dans le terminal :
+
+```bash
 docker --version
-docker -v // version courte
+docker -v  # Version courte
 ```
+
+Ces commandes vous indiqueront la version de Docker installée sur votre Mac. Vous devriez voir quelque chose comme :
+
+```bash
+Docker version 20.10.7, build f0df350
+```
+
+---
+
+🎉 **Docker Desktop est maintenant installé et prêt à l'emploi sur votre Mac !**  
+Vous pouvez commencer à créer et gérer vos conteneurs facilement pour vos projets de développement. 🚀

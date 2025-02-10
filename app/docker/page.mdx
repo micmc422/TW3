@@ -1,38 +1,57 @@
 ---
 description: "Docker est une technologie révolutionnaire qui apporte de nombreux avantages aux développeurs et aux entreprises en facilitant la gestion et le déploiement d'applications dans des environnements cohérents et reproductibles."
 ---
-import  ListOfChild from "@/components/list-of-child"
+import ListOfChild from "@/components/list-of-child"
 
 # Docker
 
 Docker est une technologie révolutionnaire qui apporte de nombreux avantages aux développeurs et aux entreprises en facilitant la gestion et le déploiement d'applications dans des environnements cohérents et reproductibles.
-``` mermaid
-mindmap
-  root((Docker))
-      Images
-        Image de base
-        Image personnalisée
-        Couches
-      Conteneurs
-        Conteneur en cours d'exécution
-        Conteneur arrêté
-        Environnement isolé
-      Volumes
-        Persistance des données
-        Stockage partagé
-        Montage de volumes
-      Réseaux
-        Réseau Bridge
-        Réseau Host
-        Réseau Overlay
+
+```mermaid
+flowchart TD
+    A[Développeur] -->|Crée un Dockerfile| B(Dockerfile)
+    B -->|Exécute la commande<br>docker build| C[Image Docker]
+    C -->|Contient des couches,<br>configuration et dépendances| D[Layers]
+    C -->|Utilisée pour créer| E[Conteneur Docker]
+    E -->|Exécute l'application dans un environnement isolé| F[Application]
+    E -->|Peut monter des volumes pour la persistance| G[Volumes]
+    E -->|Connecté via des réseaux pour la communication| H[Réseau]
+    G --> I[Stockage persistant]
+    H --> J[Communication entre conteneurs]
+    subgraph Docker Engine
+      C
+      E
+      G
+      H
+    end
 ```
 
 ## Pour les **développeurs**
-Docker simplifie considérablement le processus de développement en permettant de créer des environnements isolés pour chaque application. Les conteneurs Docker encapsulent toutes les dépendances nécessaires (bibliothèques, frameworks, configurations) dans une image légère, garantissant que l'application s'exécute de la même manière sur toutes les machines, qu'il s'agisse d'un environnement de développement, de test ou de production. Cela réduit le classique problème de "ça fonctionne chez moi mais pas en production". De plus, Docker permet une itération rapide en facilitant l'intégration continue et les tests automatiques. Les développeurs peuvent tester différents environnements, outils ou configurations sans impacter leur système hôte, ce qui améliore la productivité.
+
+- **Environnements isolés et reproductibles**  
+  Docker permet de créer des conteneurs qui encapsulent toutes les dépendances (bibliothèques, frameworks, configurations) dans une image légère. Cela garantit que l’application s’exécute de manière identique, que ce soit en développement, en test ou en production.  
+  - ✅ Résout le classique problème du "ça fonctionne chez moi…"
+  
+- **Itération rapide et intégration continue**  
+  Grâce à Docker, les développeurs peuvent expérimenter différentes configurations ou outils sans impacter leur système hôte.  
+  - 🔄 Facilite les tests automatiques et l’intégration continue, améliorant ainsi la productivité.
+
+---
 
 ## Pour les **entreprises**
-Docker offre une meilleure efficacité des ressources et une grande flexibilité. Les conteneurs sont légers et utilisent peu de ressources, permettant de faire tourner plusieurs services sur une même machine, contrairement aux machines virtuelles plus lourdes. Cela réduit les coûts d'infrastructure. Docker améliore également l'évolutivité des applications. Les entreprises peuvent facilement déployer et gérer des microservices grâce à Docker, en isolant chaque composant pour un déploiement indépendant. En plus, Docker s'intègre parfaitement aux outils DevOps, facilitant la livraison continue et le déploiement rapide d'applications.
 
-En résumé, Docker accélère le cycle de développement, simplifie la gestion des environnements, optimise l'utilisation des ressources, et permet aux entreprises de déployer des applications plus rapidement et à moindre coût.
+- **Efficacité des ressources et flexibilité**  
+  Les conteneurs Docker, grâce à leur légèreté, permettent d’exécuter plusieurs services sur une seule machine, en contraste avec les machines virtuelles plus lourdes.  
+  - 💡 Réduction significative des coûts d’infrastructure.
+  
+- **Scalabilité et gestion des microservices**  
+  Docker simplifie le déploiement de microservices en isolant chaque composant pour un déploiement indépendant.  
+  - 🔧 S’intègre parfaitement aux outils DevOps pour la livraison continue et des déploiements rapides.
+  
+---
+
+**En résumé :** Docker accélère le cycle de développement en simplifiant la gestion des environnements et en optimisant l’utilisation des ressources, permettant ainsi aux entreprises de déployer des applications plus rapidement et à moindre coût.
+
+---
 
 <ListOfChild path={"/docker"} />
