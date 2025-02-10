@@ -168,6 +168,166 @@ export const quiz = {
             messageForIncorrectAnswer: "Incorrect. Les fichiers `robots.ts` et `sitemap.ts` sont utilisés en Next.js pour la gestion SEO.",
             explanation: "Next.js permet de créer dynamiquement `robots.txt` et `sitemap.xml` avec `robots.ts` et `sitemap.ts`.",
             point: 20
+        },
+        {
+            question: "Quelle est une caractéristique unique des Server Actions dans Next.js 14+ ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "Elles permettent de récupérer des données en client-side uniquement",
+                "Elles sont exécutées côté serveur sans exposer un point d'API",
+                "Elles nécessitent un appel explicite via `fetch()`",
+                "Elles sont limitées aux bases de données Prisma uniquement"
+            ],
+            correctAnswer: [2],
+            messageForCorrectAnswer: "Exact ! Les Server Actions s'exécutent côté serveur sans exposer de route API publique.",
+            messageForIncorrectAnswer: "Incorrect. Les Server Actions ne nécessitent pas d'API publique.",
+            explanation: "Les Server Actions permettent d'exécuter des fonctions côté serveur directement depuis un Client Component, sans passer par une API Route.",
+            point: 30
+        },
+        {
+            question: "Comment sécuriser une Server Action en Next.js ?",
+            questionType: "text",
+            answerSelectionType: "multiple",
+            answers: [
+                "Utiliser des middlewares côté client",
+                "Valider et assainir les données d'entrée",
+                "Restreindre l'accès en fonction de la session utilisateur",
+                "Désactiver `use server` pour les composants clients"
+            ],
+            correctAnswer: [2, 3],
+            messageForCorrectAnswer: "Exact ! La validation des entrées et la restriction d’accès sont essentielles pour la sécurité.",
+            messageForIncorrectAnswer: "Incorrect. Les bonnes pratiques incluent la validation et la gestion des permissions.",
+            explanation: "Pour sécuriser une Server Action, il est essentiel de valider les entrées et d'ajouter une vérification des permissions (ex. session utilisateur).",
+            point: 30
+        },
+        {
+            question: "Dans quel cas faut-il préférer une API Route plutôt qu’une Server Action ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "Lorsqu'on a besoin d’un cache long terme pour les réponses",
+                "Lorsqu'on veut interagir avec une base de données",
+                "Si on veut envoyer des requêtes depuis un client externe (ex: mobile, autre backend)",
+                "Si l’on veut optimiser les performances du rendu côté client"
+            ],
+            correctAnswer: [3],
+            messageForCorrectAnswer: "Exact ! Une API Route est nécessaire pour les requêtes venant d'un client externe.",
+            messageForIncorrectAnswer: "Incorrect. Les API Routes sont utilisées lorsqu'un client externe doit appeler votre backend.",
+            explanation: "Les Server Actions sont idéales pour la communication interne en Next.js, mais les API Routes restent nécessaires pour les requêtes depuis des clients externes.",
+            point: 30
+        },
+        {
+            question: "Quelle approche permet d’optimiser l’utilisation des Server Actions dans un Client Component ?",
+            questionType: "text",
+            answerSelectionType: "multiple",
+            answers: [
+                "Utiliser `useOptimistic` pour une mise à jour instantanée",
+                "Utiliser `useServerAction` pour une exécution synchrone",
+                "Utiliser `startTransition` pour éviter un re-render bloquant",
+                "Privilégier un `fetch()` direct plutôt qu'une Server Action"
+            ],
+            correctAnswer: [1, 3],
+            messageForCorrectAnswer: "Correct ! `useOptimistic` et `startTransition` sont essentiels pour de meilleures performances.",
+            messageForIncorrectAnswer: "Incorrect. L’optimisation passe par `useOptimistic` et `startTransition`.",
+            explanation: "`useOptimistic` permet d'afficher une mise à jour instantanée, tandis que `startTransition` empêche le blocage du rendu lors de l'exécution de la Server Action.",
+            point: 30
+        },
+        {
+            question: "Quel est un avantage clé du streaming dans Next.js 14+ ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "Il permet de rendre immédiatement les parties statiques d'une page tout en chargeant dynamiquement le reste",
+                "Il charge toutes les ressources avant d'afficher quoi que ce soit",
+                "Il élimine complètement le besoin de Server Components",
+                "Il est activé par défaut sur toutes les pages Next.js"
+            ],
+            correctAnswer: [1],
+            messageForCorrectAnswer: "Exact ! Le streaming permet d'afficher les parties statiques immédiatement.",
+            messageForIncorrectAnswer: "Incorrect. Le streaming sert à charger progressivement les contenus dynamiques.",
+            explanation: "Le streaming améliore les performances en affichant immédiatement le contenu statique, tout en chargeant progressivement les données dynamiques au fur et à mesure.",
+            point: 30
+        },
+        {
+            question: "Comment Next.js gère-t-il le caching des Server Actions pour optimiser les performances ?",
+            questionType: "text",
+            answerSelectionType: "multiple",
+            answers: [
+                "En utilisant automatiquement `fetch()` avec un cache sur le serveur",
+                "En combinant `revalidatePath()` et `revalidateTag()` pour invalider le cache",
+                "En forçant l’exécution de l’action côté client pour éviter le cache",
+                "En ajoutant `{ cache: 'no-store' }` à l’appel de la Server Action"
+            ],
+            correctAnswer: [1, 2, 4],
+            messageForCorrectAnswer: "Exact ! Next.js utilise un cache par défaut, mais peut être invalidé via `revalidatePath()`, `revalidateTag()` ou `cache: 'no-store'`.",
+            messageForIncorrectAnswer: "Incorrect. Next.js met en cache les Server Actions sauf si elles sont configurées avec `cache: 'no-store'` ou invalidées explicitement.",
+            explanation: "Next.js met en cache les réponses par défaut, sauf indication contraire (`cache: 'no-store'`). Il permet aussi d'invalider sélectivement le cache via `revalidatePath()` et `revalidateTag()`.",
+            point: 40
+        },
+        {
+            question: "Quelle est une différence clé entre une Server Action et une API Route en Next.js ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "Les Server Actions sont appelées uniquement via `fetch()`",
+                "Les API Routes s'exécutent côté client uniquement",
+                "Les Server Actions ne nécessitent pas d’endpoint dédié",
+                "Les API Routes permettent le rendu côté serveur (SSR), contrairement aux Server Actions"
+            ],
+            correctAnswer: [3],
+            messageForCorrectAnswer: "Exact ! Les Server Actions ne nécessitent pas d’endpoint spécifique, elles sont intégrées directement dans les composants.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est que les Server Actions n'ont pas besoin d'un endpoint spécifique.",
+            explanation: "Contrairement aux API Routes, les Server Actions sont directement appelables depuis un composant React et ne nécessitent pas de requête HTTP explicite.",
+            point: 40
+        },
+        {
+            question: "Quel est un cas d'usage optimal pour une Edge Function dans Next.js ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "Servir des images statiques optimisées",
+                "Gérer l'authentification et la personnalisation des réponses en fonction de la localisation",
+                "Exécuter des opérations lourdes en base de données",
+                "Créer une API REST avec une latence minimale"
+            ],
+            correctAnswer: [2],
+            messageForCorrectAnswer: "Exact ! Les Edge Functions sont optimales pour des opérations légères comme l'authentification ou la personnalisation du contenu en fonction de l'utilisateur.",
+            messageForIncorrectAnswer: "Incorrect. Les Edge Functions sont idéales pour les tâches légères comme la personnalisation des réponses.",
+            explanation: "Les Edge Functions sont exécutées au plus proche des utilisateurs et sont parfaites pour des tâches comme la personnalisation des requêtes ou l'authentification.",
+            point: 40
+        },
+        {
+            question: "Dans un projet Next.js utilisant les React Server Components (RSC), quel impact a l’utilisation de `'use client'` dans un fichier ?",
+            questionType: "text",
+            answerSelectionType: "multiple",
+            answers: [
+                "Le fichier et tous ses enfants deviennent des Client Components",
+                "Il permet d’utiliser `useState()`, `useEffect()` et d'autres hooks React",
+                "Le composant peut appeler des Server Actions directement sans `fetch()`",
+                "Le fichier est exécuté côté serveur et peut être streamé au client"
+            ],
+            correctAnswer: [1, 2],
+            messageForCorrectAnswer: "Exact ! Ajouter `'use client'` transforme le composant en Client Component et active les hooks React.",
+            messageForIncorrectAnswer: "Incorrect. Un composant client ne peut pas appeler directement une Server Action sans une interaction utilisateur.",
+            explanation: "Un Client Component peut utiliser les hooks React et le state, mais ne peut pas exécuter du code serveur de manière transparente comme un Server Component.",
+            point: 40
+        },
+        {
+            question: "Quelle est la meilleure manière de rendre une page nécessitant des données asynchrones en Next.js tout en optimisant le Time to First Byte (TTFB) ?",
+            questionType: "text",
+            answerSelectionType: "multiple",
+            answers: [
+                "Utiliser `fetch()` dans un Server Component avec `cache: 'force-cache'`",
+                "Utiliser `suspense` et `loading.tsx` pour afficher un état de chargement",
+                "Déplacer la logique de chargement dans un Client Component avec `useEffect()`",
+                "Utiliser le streaming (`<Suspense>`) pour rendre le contenu progressivement"
+            ],
+            correctAnswer: [1, 2, 4],
+            messageForCorrectAnswer: "Exact ! Un bon TTFB est obtenu en chargeant les données côté serveur et en utilisant le streaming ou un loading state pour l’expérience utilisateur.",
+            messageForIncorrectAnswer: "Incorrect. Il faut privilégier le chargement côté serveur et le streaming pour un bon TTFB.",
+            explanation: "Utiliser `fetch()` côté serveur optimise les performances. `Suspense` et le streaming permettent d’améliorer l’expérience utilisateur en rendant le contenu progressivement.",
+            point: 40
         }
     ]
 };
