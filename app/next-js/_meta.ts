@@ -11,5 +11,6 @@ export default {
     "###": {
         type: "separator"
     },
+    quizz: "Quizz",
     ressources: "Ressources"
 }

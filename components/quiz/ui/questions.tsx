@@ -1,7 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useMemo, useRef, useState } from "react"
 import { QuizzContext } from "../context"
 import { QuizNextBtn, QuizResetBtn, QuizTitle } from ".."
 import { Trash2Icon } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 export default function Questions() {
     const ref = useRef(null)
@@ -12,23 +13,26 @@ export default function Questions() {
     }, [userAnswers?.[currentQuestion - 1], currentQuestion])
     // Fonction pour mettre à jour la classe CSS
     function updateSelectedClass() {
-        console.log(userAnswers?.[currentQuestion - 1])
+        //    console.log(userAnswers?.[currentQuestion - 1])
         ref?.current?.querySelectorAll('li').forEach((item, index) => {
-            if (userAnswers?.[currentQuestion - 1][0] === 0) return
+            //  if (userAnswers?.[currentQuestion - 1][0] === 0) return
             if (userAnswers?.[currentQuestion - 1].includes(index + 1)) {
                 if (questions[currentQuestion - 1]?.correctAnswer.includes(Number(index) + 1)) {
                     item.style.backgroundColor = "rgba(0, 128, 0, .3)"
-                    item.style.border = "solid 1px rgba(0, 128, 0, .8)"
+                    item.style.outlineColor = "rgba(0, 128, 0, 1)";
                 } else {
                     item.style.backgroundColor = "rgba(127, 29, 29, .3)";
-                    item.style.border = "solid 1px rgba(127, 29, 29, .8)";
+                    item.style.outlineColor = "rgba(127, 29, 29, 1)";
                 }
                 item.style.color = "white"
+                item.style["outline-width"] = "2px";
+                item.style.outlineStyle = "solid";
 
             } else {
                 item.style.backgroundColor = "unset";
                 item.style.color = ""
-                item.style.border = ""
+                item.style["outline-width"] = "0";
+                item.style.outlineStyle = "none";
             }
         })
     }
@@ -37,24 +41,54 @@ export default function Questions() {
     return (
         <>
             <QuizTitle>{currentQuestion}/{questions.length} - {question}</QuizTitle>
-            <ul ref={ref} key={currentQuestion}>
+            <ul ref={ref} key={currentQuestion} className="grid gap-2">
                 {answers.map((answer, i) => (
                     <li
                         key={i}
-                        className={`x:flex x:rounded x:px-2 x:py-1.5 x:text-sm x:transition-colors [word-break:break-word] x:cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] x:contrast-more:border x:text-gray-500 x:hover:bg-gray-100 x:hover:text-gray-900 x:dark:text-neutral-400 x:dark:hover:bg-primary-100/5 x:dark:hover:text-gray-50 x:contrast-more:text-gray-900 x:contrast-more:dark:text-gray-50 x:contrast-more:node-border-transparent x:contrast-more:hover:border-gray-900 x:contrast-more:dark:hover:border-gray-50`}
+                        className={`flex rounded px-2 py-0.5 text-sm transition-colors [word-break:break-word] cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:border text-gray-500 hover:bg-gray-100/10 hover:text-black dark:text-neutral-400 dark:hover:bg-white/5 dark:hover:text-gray-500 contrast-more:text-gray-900 contrast-more:dark:text-gray-50 contrast-more:node-border-transparent contrast-more:hover:border-gray-900 contrast-more:dark:hover:border-gray-50`}
                         onClick={() => handleAnswser(i + 1)}
                     >
                         {answer}
                     </li>
                 ))}
             </ul>
-            <div className="x:flex" style={{ gap: "1rem" }}>
+            <ProgressBar />
+            <div className="flex" style={{ gap: "1rem" }}>
                 <QuizNextBtn>Continuer</QuizNextBtn>
                 <QuizResetBtn><Trash2Icon /></QuizResetBtn>
-                <div className="x:flex x:justify-end x:mt-2 x:text-2xl x:font-bold x:tracking-tight x:text-slate-900 x:dark:text-slate-100" style={{ alignSelf: "center" }}>
+                <div className="flex justify-end ml-auto mt-4 text-2xl font-bold tracking-tight text-slate-900 dark:text-white" style={{ alignSelf: "center" }}>
                     {score} / {totalScore}
                 </div>
             </div>
         </>
     )
+}
+
+function ProgressBar() {
+    const { currentQuestion, questions, handleAnswser, userAnswers, score, totalScore } = useContext(QuizzContext);
+    const { question, answers } = questions[currentQuestion - 1] || {}
+    const progressItems = useMemo(() => {
+        let array = new Array(questions.length).fill("untouch")
+        array = array.map((item, i) => {
+            const correct = (questions[i].correctAnswer)
+            const answer = (userAnswers[i])
+
+            if (correct.sort().join("") == answer.sort().join("")) {
+                return "correct";
+            }
+            let aUneCorrespondance = correct.some(element => answer.includes(element));
+
+            if (aUneCorrespondance) return "partial";
+            if (answer[0] != 0) return "error";
+            return item;
+        })
+        console.log(array)
+
+        return array
+    }, [userAnswers])
+
+    console.log(progressItems)
+    return <div className="w-full flex gap-1 mt-8 items-center">
+        {progressItems.map((el, i) => <div key={i} className={cn("h-2 grow rounded bg-gray-500 transition-colors duration-700", el === "correct" && "bg-green-500", el === "partial" && "bg-orange-500", el === "error" && "bg-red-500", i === currentQuestion - 1 && "bg-white outline-2")}></div>)}
+    </div>
 }

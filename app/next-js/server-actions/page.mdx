@@ -27,13 +27,34 @@ Les **Server Actions** permettent d’exécuter des **fonctions côté serveur d
 
 ---
 
-## **2️⃣ Comment utiliser les Server Actions ?**  
+Voici une version améliorée du chapitre, mettant en parallèle une **API Route classique** et une **Server Action**, afin d’illustrer clairement leurs différences.  
 
-### **Définir une Server Action**  
+---
 
-Next.js introduit le mot-clé **`"use server"`** pour déclarer une fonction exécutée côté serveur.  
+## **2️⃣ Méthode avec une API Route (`app/api/`)**  
 
-🔹 **Exemple : Ajouter un commentaire à une base de données**  
+### **Définition de l’API Route**
+Avec Next.js, une API Route est définie dans `app/api/addComment/route.ts` ou `pages/api/addComment.ts`.  
+
+```tsx filename="app/api/addComment/route.ts" copy
+import { NextResponse } from "next/server";
+import { db } from "@/lib/db"; // Connexion à la base de données
+
+export async function POST(req: Request) {
+  const { comment } = await req.json();
+  
+  if (!comment) {
+    return NextResponse.json({ error: "Le commentaire est vide." }, { status: 400 });
+  }
+
+  await db.comments.create({ data: { content: comment } });
+
+  return NextResponse.json({ success: true });
+}
+```
+
+### **Utilisation côté client (`fetch()`)**
+Le client doit envoyer une requête HTTP vers l’API.
 
 ```tsx filename="app/comments/page.tsx" copy
 "use client";
@@ -44,12 +65,16 @@ export default function CommentsPage() {
   const [comment, setComment] = useState("");
   const [status, setStatus] = useState("");
 
-  async function submitComment(formData: FormData) {
+  async function submitComment(e: React.FormEvent) {
+    e.preventDefault();
     setStatus("Envoi en cours...");
-    const response = await fetch("/actions/addComment", {
+
+    const response = await fetch("/api/addComment", {
       method: "POST",
-      body: formData,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ comment }),
     });
+
     if (response.ok) {
       setStatus("Commentaire ajouté !");
       setComment("");
@@ -61,7 +86,7 @@ export default function CommentsPage() {
   return (
     <div>
       <h1>Ajouter un commentaire</h1>
-      <form action={submitComment}>
+      <form onSubmit={submitComment}>
         <textarea
           name="comment"
           value={comment}
@@ -74,25 +99,11 @@ export default function CommentsPage() {
   );
 }
 ```
-```tsx filename="app/actions/addComment.ts" copy
-"use server";
 
-import { db } from "@/lib/db"; // Supposons une connexion à une base de données
-
-export async function addComment(formData: FormData) {
-  const comment = formData.get("comment");
-  if (!comment) return { error: "Le commentaire est vide." };
-
-  await db.comments.create({ data: { content: comment } });
-
-  return { success: true };
-}
-```
-
-✅ **Explication** :
-- `submitComment()` appelle l’API `/actions/addComment` via `fetch()`.
-- **La logique serveur est définie dans `app/actions/addComment.ts`**, non exposée au client.
-- Next.js optimise la communication, **évite un appel réseau** si possible.
+✅ **Points à retenir :**  
+- Nécessite un appel **fetch()** côté client.  
+- Une requête HTTP est envoyée au serveur.  
+- L’API Route **reste accessible publiquement** si elle n'est pas protégée.  
 
 ---
 

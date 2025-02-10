@@ -1,4 +1,5 @@
 "use client"
+
 import { createContext, ReactNode, useMemo, useState } from "react";
 import { Question, QuizStructure } from "react-quiz-component";
 
@@ -17,10 +18,10 @@ export const QuizzContext = createContext<QuizzContextProps>({ currentQuestion: 
 
 export default function QuizzRoot({ children, quizData }: { children: ReactNode, quizData: QuizStructure }) {
     // currentQuestion est 0 pour permettre de savoir quand le quizz est commencé (0 == false)
-    const questions = quizData.questions || []
+    const questions = quizData.questions || [[]]
     const [currentQuestion, setCurrentQuestion] = useState<number>(0)
     // const [questions, setQuestions] = useState(quizData.questions || [])
-    const [userAnswers, setUserAnswers] = useState<number[][]>(new Array(quizData.questions.length).fill([0]))
+    const [userAnswers, setUserAnswers] = useState<number[][]>(new Array(questions?.length || 0).fill([0]))
     const score = useMemo(() => {
         let calculScore = 0;
         quizData.questions.forEach((question, i) => {
@@ -46,11 +47,12 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
 
     async function handleAnswser(num: number) {
         setUserAnswers((prev: number[][]) => {
-            let currentQ = prev?.[currentQuestion - 1] || [0];
+            let answsers = [...prev];
+            let currentQ = answsers?.[currentQuestion - 1] || [0];
 
             if (num === 0) {
                 // Reset : assigne [0]
-                currentQ = [0];
+                currentQ = [...[0]];
             } else {
                 // Ajoute ou retire num du tableau
                 if (currentQ?.includes(num)) {
@@ -59,6 +61,7 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
                     if (currentQ.length === 0) {
                         currentQ = [0];
                     }
+                    answsers[currentQuestion - 1] = currentQ
                 } else {
                     // Ajoute num si il n'est pas présent
                     if (currentQ?.[0] === 0) {
@@ -66,13 +69,17 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
                     } else {
                         currentQ = [...currentQ, num];
                     }
+                    answsers[currentQuestion - 1] = currentQ
                 }
-
-                // Remplace la valeur précédente par la nouvelle
-                return [...prev?.slice(0, currentQuestion - 1), currentQ, ...prev?.slice(currentQuestion)];
             }
+            // Remplace la valeur précédente par la nouvelle
+            return [...answsers?.slice(0, currentQuestion - 1), currentQ, ...answsers?.slice(currentQuestion)];
         });
     } return (
-        <QuizzContext.Provider value={{ currentQuestion, nextQuestion, handleAnswser, questions, quizTitle, quizSynopsis, userAnswers, score, totalScore }}>{children}</QuizzContext.Provider>
+        <QuizzContext.Provider value={{ currentQuestion, nextQuestion, handleAnswser, questions, quizTitle, quizSynopsis, userAnswers, score, totalScore }}>
+            <div className="outline-2 rounded-xl p-4 mt-8 w-fit max-w-lg mx-auto bg-slate-500/10 shadow-lg">
+                {children}
+            </div>
+        </QuizzContext.Provider>
     )
 }

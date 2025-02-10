@@ -6,17 +6,17 @@ export default {
   "avantages": "Avantages de GraphQL",
   "limitations-defis": "Limitations et défis de GraphQL",
   "usage-ecosysteme": "Cas d’usage typiques et écosystème GraphQL",
+  // "conclusion": "Conclusion",
+  "---": {
+    "type": "separator"
+  },
   "exercice": "Exercice",
   "TLDR": "TLDR",
-  // "conclusion": "Conclusion",
+  "quizz": "Quizz",
+  "----": {
+    "type": "separator"
+  },
   /*
-   "---": {
-     "type": "separator"
-   },
-   "quizz": "Quizz",
-   "----": {
-     "type": "separator"
-   },
-   "ressources": "Ressources"
-   */
+  "ressources": "Ressources"
+  */
 }

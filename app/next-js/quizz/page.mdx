@@ -1,0 +1,177 @@
+---
+description: "Ce quiz est conçu pour tester vos connaissances sur Next.js, un framework React permettant de créer des applications web performantes et optimisées."
+---
+import Quizz from "@/components/quiz"
+export const quiz = {
+    quizTitle: "Quizz Next.js",
+    quizSynopsis: <>Ce quiz est conçu pour tester vos connaissances sur Next.js, un framework React permettant de créer des applications web performantes et optimisées.
+        <br />
+        À travers ces questions, vous allez explorer les concepts clés de Next.js, y compris le rendu, le routage, les API Routes et l’optimisation des performances. Bonne chance !
+    </>,
+    questions: [
+        {
+            question: "Quel est l'avantage principal de Next.js par rapport à React seul ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "Une meilleure gestion des états globaux",
+                "Le rendu côté serveur (SSR) et le pré-rendu des pages",
+                "L'obligation d'utiliser Redux",
+                "Un support natif pour TypeScript uniquement"
+            ],
+            correctAnswer: [2],
+            messageForCorrectAnswer: "Correct ! Next.js permet un rendu côté serveur (SSR) et un pré-rendu des pages pour de meilleures performances.",
+            messageForIncorrectAnswer: "Incorrect. Next.js apporte des fonctionnalités avancées comme le SSR et le SSG.",
+            explanation: "Next.js offre le rendu côté serveur (SSR) et le Static Site Generation (SSG), améliorant ainsi les performances et le SEO.",
+            point: 20
+        },
+        {
+            question: "Quel dossier contient le système de routage par défaut en Next.js 13+ ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "components/",
+                "pages/",
+                "app/",
+                "routes/"
+            ],
+            correctAnswer: [3],
+            messageForCorrectAnswer: "Exact ! Le dossier `app/` introduit dans Next.js 13+ remplace `pages/` pour le nouveau système de routing.",
+            messageForIncorrectAnswer: "Incorrect. En Next.js 13+, le dossier `app/` est utilisé pour le routing.",
+            explanation: "Avec Next.js 13+, le routage est basé sur le dossier `app/`, qui utilise le système de fichiers pour définir les routes.",
+            point: 20
+        },
+        {
+            question: "Quelle directive permet de définir un Client Component en Next.js ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                `"use client";`,
+                `"client-component";`,
+                `"client";`,
+                `"next/client";`
+            ],
+            correctAnswer: [1],
+            messageForCorrectAnswer: "Exact ! Next.js utilise la directive `'use client';` pour définir un Client Component.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est `'use client';`.",
+            explanation: "En Next.js, `'use client';` doit être placé au début d'un fichier pour indiquer que c'est un Client Component.",
+            point: 20
+        },
+        {
+            question: "Quelle méthode est utilisée pour définir des métadonnées dynamiques dans une page Next.js ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "generateSEO",
+                "useMetadata",
+                "getMetadata",
+                "generateMetadata"
+            ],
+            correctAnswer: [4],
+            messageForCorrectAnswer: "Correct ! `generateMetadata` est utilisé pour définir des métadonnées dynamiques en Next.js.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est `generateMetadata`.",
+            explanation: "Next.js permet de définir des métadonnées dynamiques pour chaque page via `generateMetadata`.",
+            point: 20
+        },
+        {
+            question: "Quel composant Next.js est utilisé pour optimiser les images ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "<Image />",
+                "<OptimizedImage />",
+                "<NextImg />",
+                "<img />"
+            ],
+            correctAnswer: [1],
+            messageForCorrectAnswer: "Exact ! Next.js utilise `<Image />` pour optimiser les images.",
+            messageForIncorrectAnswer: "Incorrect. Next.js fournit `<Image />` pour gérer automatiquement l'optimisation des images.",
+            explanation: "Le composant `<Image />` de Next.js optimise automatiquement le chargement et la mise en cache des images.",
+            point: 20
+        },
+        {
+            question: "Comment Next.js gère-t-il le rendu des pages pour améliorer les performances ?",
+            questionType: "text",
+            answerSelectionType: "multiple",
+            answers: [
+                "Rendu statique (SSG)",
+                "Rendu côté serveur (SSR)",
+                "Rendu client uniquement",
+                "Streaming de composants"
+            ],
+            correctAnswer: [1, 2, 4],
+            messageForCorrectAnswer: "Correct ! Next.js supporte SSG, SSR et le streaming de composants.",
+            messageForIncorrectAnswer: "Incorrect. Next.js ne se limite pas au rendu client uniquement.",
+            explanation: "Next.js offre plusieurs modes de rendu : SSG, SSR et le streaming pour optimiser le chargement des pages.",
+            point: 20
+        },
+        {
+            question: "Comment définir un layout global en Next.js 13+ ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "Créer `_layout.tsx`",
+                "Créer `layout.tsx` dans `app/`",
+                "Définir un `<Layout>` dans `_app.tsx`",
+                "Utiliser `globalLayout.tsx`"
+            ],
+            correctAnswer: [2],
+            messageForCorrectAnswer: "Correct ! Next.js utilise `layout.tsx` dans `app/` pour définir un layout global.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est `layout.tsx` dans `app/`.",
+            explanation: "Dans Next.js 13+, `layout.tsx` définit la structure globale des pages en utilisant le système `app/`.",
+            point: 20
+        },
+        {
+            question: "Quel hook React est souvent utilisé avec les Server Actions pour gérer les mises à jour optimistes ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "useState",
+                "useEffect",
+                "useOptimistic",
+                "useMutation"
+            ],
+            correctAnswer: [3],
+            messageForCorrectAnswer: "Exact ! `useOptimistic` permet de gérer les mises à jour optimistes avec les Server Actions.",
+            messageForIncorrectAnswer: "Incorrect. Le bon hook est `useOptimistic`.",
+            explanation: "Next.js propose `useOptimistic` pour améliorer l'expérience utilisateur en appliquant immédiatement les mises à jour attendues.",
+            point: 20
+        },
+        {
+            question: "Quelle plateforme est recommandée pour déployer une application Next.js avec une intégration native ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "AWS Lambda",
+                "Vercel",
+                "OVH",
+                "Netlify"
+            ],
+            correctAnswer: [2],
+            messageForCorrectAnswer: "Correct ! Vercel est la plateforme officielle pour déployer des applications Next.js.",
+            messageForIncorrectAnswer: "Incorrect. La plateforme recommandée est Vercel.",
+            explanation: "Vercel est la plateforme officielle de Next.js, offrant des optimisations natives pour ce framework.",
+            point: 20
+        },
+        {
+            question: "Quel fichier permet de générer automatiquement un `robots.txt` et un `sitemap.xml` dans Next.js ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "robots.ts et sitemap.ts",
+                "metadata.ts",
+                "server-config.ts",
+                "seo.tsx"
+            ],
+            correctAnswer: [1],
+            messageForCorrectAnswer: "Exact ! `robots.ts` et `sitemap.ts` permettent de générer ces fichiers dynamiquement.",
+            messageForIncorrectAnswer: "Incorrect. Les fichiers `robots.ts` et `sitemap.ts` sont utilisés en Next.js pour la gestion SEO.",
+            explanation: "Next.js permet de créer dynamiquement `robots.txt` et `sitemap.xml` avec `robots.ts` et `sitemap.ts`.",
+            point: 20
+        }
+    ]
+};
+
+<Quizz quizData={quiz} />
+
+

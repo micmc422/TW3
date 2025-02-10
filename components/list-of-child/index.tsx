@@ -16,8 +16,6 @@ export default async function ListOfChild({ path }: { path?: string }) {
     items = items.filter(({ route }) => route && route !== "/")
         .filter(({ title }) => title && title.length > 0)
         .filter(({ name }) => !["ressources", "webpack"]?.includes(name))
-    console.log(items)
-
     return <Cards>
         {items?.map(({ title, route, frontMatter, children }, i) => {
             const icon = (children?.find(({ name }) => name === "index")?.frontMatter.icon)
