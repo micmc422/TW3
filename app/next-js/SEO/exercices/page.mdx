@@ -1,0 +1,158 @@
+# 📌 **Exercice : Optimisation SEO avec Next.js**  
+
+## **🎯 Objectif**  
+Mettre en place les bonnes pratiques SEO dans une application Next.js en travaillant sur les **métadonnées**, **les Open Graph & Twitter Cards**, et la **génération d’un sitemap et d’un robots.txt**.  
+
+🔗 **Code source :** [📂 GitHub](https://github.com/micmc422/my-next-app.git) 🚀
+
+---
+
+## **🛠 Étape 1 : Définir les métadonnées SEO**  
+
+### **1️⃣ Ajouter des métadonnées globales dans `layout.tsx`**  
+- Ouvrez le fichier `app/layout.tsx`  
+- Ajoutez un objet `metadata` avec les informations suivantes :  
+  - `title` : Nom du site  
+  - `description` : Une courte description du site  
+  - `keywords` : Liste de mots-clés  
+
+📌 **Exemple :**  
+```tsx filename="app/layout.tsx" copy
+export const metadata = {
+  title: "Mon Super Site",
+  description: "Découvrez des articles passionnants sur le développement web.",
+  keywords: ["next.js", "seo", "développement web"],
+};
+```
+- Lancez le projet et inspectez la page avec les DevTools (`F12` > `Elements` > `head`) pour vérifier que les balises `<title>` et `<meta>` sont bien générées.  
+
+---
+
+### **2️⃣ Ajouter des métadonnées dynamiques avec `generateMetadata()`**  
+- Dans `app/blog/[id]/page.tsx`, créez une fonction `generateMetadata()` pour générer un titre et une description unique pour chaque article de blog.  
+
+📌 **Exemple :**  
+```tsx filename="app/blog/[id]/page.tsx" copy
+import { notFound } from "next/navigation";
+
+export async function getPostBySlug(id: string) {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+
+    if (!response.ok) {
+        notFound()
+    }
+
+    const post = await response.json();
+
+    return {
+        title: post.title,
+        excerpt: post.body.substring(0, 150) + "...", // Prend les 150 premiers caractères du contenu
+        content: post.body,
+        image: `https://via.placeholder.com/600x400?text=${encodeURIComponent(post.title)}`, // Image générée
+    };
+}
+
+export async function generateMetadata({ params }: { params: { id: string } }) {
+    const post = await getPostBySlug((await params).id); // Fonction fictive récupérant un article
+    return {
+        title: post.title,
+        description: post.excerpt,
+    };
+}
+
+export default async function PostPage({ params }: { params: { id: string } }) {
+    const post = await getPostBySlug((await params).id); // Fonction fictive récupérant un article
+
+    return <div>
+        <h1>{post.title}</h1>
+    </div>
+}
+```
+- Ouvrez un article dans le navigateur et vérifiez que le titre change bien en fonction du contenu du blog.
+
+---
+
+## **🖼 Étape 2 : Ajouter Open Graph et Twitter Cards**  
+
+- Modifiez `generateMetadata()` pour inclure des balises **Open Graph** et **Twitter Cards** avec une image de partage.
+
+📌 **Exemple :**  
+```tsx filename="app/blog/[id]/page.tsx" copy
+export async function generateMetadata({ params }) {
+  const post = await getPostBySlug(params.id);
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: [{ url: `https://via.placeholder.com/600x400?text=${encodeURIComponent(post.title)}` }],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [`https://via.placeholder.com/600x400?text=${encodeURIComponent(post.title)}`],
+    },
+  };
+}
+```
+- Testez les balises générées avec l'outil [Meta Tags](https://metatags.io/) ou l'outil [Sharing Debugger](https://developers.facebook.com/tools/debug/).
+
+---
+
+## **🗺 Étape 3 : Générer un sitemap et un robots.txt**  
+
+### **1️⃣ Générer un `sitemap.xml` dynamique**  
+- Dans `app/sitemap.ts`, créez un sitemap listant dynamiquement toutes les pages du blog.  
+
+📌 **Exemple :**  
+```tsx filename="app/sitemap.ts" copy
+export async function getAllPosts() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+
+  if (!response.ok) {
+    throw new Error("Impossible de récupérer les articles");
+  }
+
+  const posts = await response.json();
+
+  return posts.map((post) => ({
+    slug: post.id.toString(), // JSONPlaceholder utilise des IDs numériques
+    updatedAt: new Date().toISOString(), // Simule une date de mise à jour
+  }));
+}
+
+export default async function sitemap() {
+  const posts = await getAllPosts();
+
+  return posts.map((post) => ({
+    url: `https://example.com/blog/${post.slug}`,
+    lastModified: post.updatedAt,
+  }));
+}
+```
+- Vérifiez que votre sitemap fonctionne en visitant `http://localhost:3000/sitemap.xml`.
+
+---
+
+### **2️⃣ Ajouter un `robots.txt`**  
+- Dans le dossier `public/`, ajoutez un fichier `robots.txt` avec les directives suivantes :  
+
+📌 **Exemple :**  
+```
+User-agent: *
+Allow: /
+Sitemap: https://example.com/sitemap.xml
+```
+- Vérifiez le fichier en accédant à `http://localhost:3000/robots.txt`.
+
+---
+
+## **✅ Validation finale**  
+1. **Vérifier les métadonnées SEO** avec Lighthouse (Chrome DevTools > Audits > SEO).  
+2. **Tester Open Graph et Twitter Cards** avec [Meta Tags](https://metatags.io/).  
+3. **S'assurer que `sitemap.xml` et `robots.txt` sont bien accessibles** dans le navigateur.  
+
+🚀 **Félicitations ! Votre site Next.js est maintenant optimisé pour le SEO.**

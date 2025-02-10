@@ -1,0 +1,220 @@
+# 📌 **Travail Pratique : Server Actions & Optimistic UI avec Next.js 14+**
+
+## **Objectifs**
+1. Implémenter un **formulaire de contact** utilisant une **Server Action** pour envoyer des données sans passer par un appel `fetch()` explicite.
+2. Créer un bouton **"Like"** qui met à jour instantanément l'affichage (optimistic UI) grâce à `useOptimistic()` et `useTransition()`.
+
+> **Note :** Dans Next.js 14+, les Server Actions permettent d’attacher directement une fonction serveur à l'attribut `action` d’un formulaire. Assurez-vous que les fichiers respectent la convention « `"use server";` en tête de fichier d’action ».
+
+🔗 **Code source :** [📂 GitHub](https://github.com/micmc422/my-next-app.git) 🚀
+
+---
+
+## 📝 **Exercice 1 : Formulaire de contact avec Server Action**
+
+### **Étape 1 : Créer la Server Action**
+
+Créez un fichier `app/contact/contact.ts` qui contient la fonction serveur suivante :
+
+```tsx filename="app/contact/contact.ts" copy
+"use server";
+
+import { revalidatePath } from "next/cache";
+
+export async function sendContactMessage(formData: FormData) {
+  // Récupération et validation des données
+  const name = formData.get("name") as string;
+  const email = formData.get("email") as string;
+  const message = formData.get("message") as string;
+
+  if (!name || !email || !message) {
+    return { error: "Tous les champs sont requis." };
+  }
+
+  // Simulation d'un délai réseau (1 seconde)
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  // Log en console côté serveur (pour la démo)
+  console.log("Message reçu :", { name, email, message });
+
+  // Optionnel : invalider le cache de la page /contact pour rafraîchir les données
+  revalidatePath("/contact");
+
+  return { success: "Message envoyé !" };
+}
+```
+
+> **Explication :**  
+> - La directive `"use server";` garantit que cette fonction s'exécute uniquement côté serveur.  
+> - La fonction récupère les champs du formulaire, effectue une validation simple et simule un délai.  
+> - En cas de succès, elle renvoie un objet avec une propriété `success`, sinon une propriété `error`.
+
+---
+
+### **Étape 2 : Créer le formulaire côté client**
+
+Créez ou modifiez le fichier `app/contact/page.tsx` pour utiliser la Server Action directement via l'attribut `action` du formulaire. Comme l'interactivité est gérée côté client (affichage des messages, gestion de l'état), le composant doit être un Client Component (déclaré avec `"use client"`).
+
+```tsx filename="app/contact/page.tsx" copy
+"use client";
+
+import { useState, useTransition } from "react";
+import { sendContactMessage } from "@/app/contact/contact";
+import { useRouter } from "next/navigation";
+
+export default function ContactPage() {
+    const [feedback, setFeedback] = useState<string | null | undefined>(null);
+    const [isPending, startTransition] = useTransition();
+    const router = useRouter()
+
+    // Nous utilisons la Server Action directement dans le formulaire.
+    // Next.js 14+ gère automatiquement la conversion du FormData en appel serveur.
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        // Démarrer la transition pour éviter de bloquer l'UI
+        startTransition(async () => {
+            // Appel direct de la Server Action via l'attribut "action"
+            const result = await sendContactMessage(new FormData(event.currentTarget));
+            if (result?.success) {
+                setFeedback(result.success);
+                router.refresh();
+            } else {
+                setFeedback(result.error);
+            }
+        });
+    }
+
+    return (
+        <div className="max-w-lg mx-auto p-6 border rounded-lg shadow-lg">
+            <h1 className="text-xl font-bold mb-4">Contactez-nous</h1>
+            <form onSubmit={handleSubmit} className="space-y-3">
+                <input
+                    name="name"
+                    placeholder="Nom"
+                    required
+                    className="w-full p-2 border rounded"
+                />
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                    className="w-full p-2 border rounded"
+                />
+                <textarea
+                    name="message"
+                    placeholder="Votre message"
+                    required
+                    className="w-full p-2 border rounded"
+                />
+                <button
+                    type="submit"
+                    disabled={isPending}
+                    className={`w-full py-2 rounded ${isPending ? "bg-gray-400" : "bg-blue-500 text-white"
+                        }`}
+                >
+                    {isPending ? "Envoi en cours..." : "Envoyer"}
+                </button>
+            </form>
+            {feedback && <p className="mt-2 text-center text-green-500">{feedback}</p>}
+        </div>
+    );
+}
+```
+
+> **Explication :**  
+> - Le hook `useTransition()` permet de lancer la fonction sans bloquer l'interface.  
+> - L'état `feedback` affiche un message de succès ou d'erreur après l'envoi.
+
+---
+
+## 📝 **Exercice 2 : Bouton "Like" avec mise à jour optimiste**
+
+### **Étape 1 : Créer la Server Action pour incrémenter le compteur**
+
+Créez le fichier `app/likes/likes.ts` :
+
+```tsx filename="app/likes/likes.ts" copy
+"use server";
+
+import { revalidatePath } from "next/cache";
+
+// Simuler un compteur stocké en mémoire (à remplacer par une DB dans une vraie application)
+let likeCount = 0;
+
+export async function addLike() {
+  likeCount++;
+
+  // Simuler un délai de traitement (500 ms)
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
+  // Optionnel : invalider la page /likes pour rafraîchir le contenu
+  revalidatePath("/likes");
+
+  return likeCount;
+}
+```
+
+> **Explication :**  
+> - La fonction incrémente une variable `likeCount` et simule un délai.  
+> - Elle renvoie le nouveau nombre de likes après mise à jour.
+
+---
+
+### **Étape 2 : Créer l'interface du bouton Like avec mise à jour optimiste**
+
+Créez ou modifiez le fichier `app/likes/page.tsx` :
+
+```tsx filename="app/likes/page.tsx" copy
+"use client";
+
+import { useState, useTransition, useOptimistic } from "react";
+import { addLike } from "@/app/likes/likes";
+
+export default function LikeButton() {
+    const [likes, setLikes] = useState(0);
+    const [isPending, startTransition] = useTransition();
+
+    // Utilisation de useOptimistic pour mettre à jour immédiatement le compteur
+    const [optimisticLikes, setOptimisticLikes] = useOptimistic(likes, (current) => current + 1);
+
+    function handleLike() {
+
+        // Lancer la Server Action dans une transition pour éviter le blocage de l'UI
+        startTransition(async () => {
+        // Mise à jour optimiste immédiate
+        setOptimisticLikes(likes);
+            const updatedLikes = await addLike();
+            setLikes(updatedLikes); // Met à jour l'état réel une fois la réponse obtenue
+        });
+    }
+
+    return (
+        <div className="flex flex-col items-center p-6 border rounded-lg shadow-lg">
+            <button
+                onClick={handleLike}
+                disabled={isPending}
+                className={`px-4 py-2 rounded ${isPending ? "bg-gray-400" : "bg-red-500 text-white"}`}
+            >
+                ❤️ Like ({optimisticLikes})
+            </button>
+        </div>
+    );
+}
+```
+
+> **Explication :**  
+> - Le hook `useOptimistic()` permet d'afficher immédiatement l'incrémentation du compteur, améliorant ainsi la réactivité (optimistic UI).  
+> - `useTransition()` garantit que l'appel à la Server Action ne bloque pas l'interface.  
+> - Une fois la Server Action exécutée, l'état réel (`likes`) est mis à jour.
+
+---
+
+## 🎯 **Conclusion**
+
+Avec cet exercice, vous avez appris à :
+- Utiliser les **Server Actions** de Next.js 14+ pour gérer des formulaires sans recourir à un appel `fetch()` explicite.
+- Mettre en place une **optimistic UI** avec `useOptimistic()` et `useTransition()`, garantissant ainsi une expérience utilisateur fluide et réactive.
+
+N'oubliez pas de tester vos implémentations en local et de consulter la documentation officielle pour les dernières mises à jour sur les Server Actions et les hooks expérimentaux. Bonne pratique !

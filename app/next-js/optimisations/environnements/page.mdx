@@ -1,0 +1,75 @@
+# 🚀 **Les Environnements d'Exécution dans Next.js**  
+
+## 🖥️ **1. Node.js Runtime (par défaut)**  
+🔹 **Description**  
+L’environnement standard pour Next.js, offrant un accès complet aux API Node.js. Idéal pour les applications nécessitant des fonctionnalités serveur avancées comme la gestion de fichiers ou les sockets.  
+
+✅ **Avantages**  
+✔️ **Compatibilité totale** avec l’écosystème Node.js et ses modules.  
+✔️ Parfait pour des **opérations lourdes** ou un **traitement complexe des données**.  
+✔️ Supporte toutes les fonctionnalités avancées (middlewares, gestion d’état serveur, etc.).  
+
+📌 **Cas d’usage**  
+📂 Applications nécessitant un accès au système de fichiers.  
+⚙️ API Routes classiques et traitement intensif des données.  
+⏳ Opérations de longue durée ou requérant des modules tiers non compatibles avec l’Edge Runtime.  
+
+---
+
+## 🌍 **2. Edge Runtime**  
+🔹 **Description**  
+Optimisé pour la **rapidité** et l’**exécution à la périphérie** du réseau (Edge). Fonctionne sur des **V8 isolates**, similaires à ceux utilisés dans les navigateurs, garantissant un **temps de démarrage ultra-rapide** et une **latence minimale**.  
+
+✅ **Avantages**  
+⚡ **Faible latence** grâce à une exécution proche des utilisateurs finaux.  
+🚀 **Démarrage instantané** et **scalabilité mondiale**.  
+🌎 Idéal pour des applications nécessitant des réponses rapides et une distribution globale.  
+
+⚠️ **Limitations**  
+⛔ Accès restreint aux API Node.js (certains modules ne sont pas pris en charge).  
+🔹 Conçu pour des opérations **légères et réactives**, la logique lourde doit rester sur le runtime Node.js.  
+
+📌 **Cas d’usage**  
+🔐 Authentification légère et personnalisation des contenus (ex : géolocalisation).  
+🔄 Redirections et API Routes où la **vitesse** est prioritaire.  
+📡 Fonctionnalités nécessitant une exécution rapide sans dépendance aux modules Node.js natifs.  
+
+---
+
+### 🛠️ **Comment Choisir le Bon Runtime ?**  
+
+| ⚡ **Critère**         | 🖥️ **Node.js Runtime** | 🌍 **Edge Runtime** |
+|---------------------|-------------------|------------------|
+| **💡 Idéal pour...** | Opérations lourdes, accès complet aux modules Node.js, traitement de données | API ultra-rapides, faible latence, distribution mondiale |
+| **🚀 Démarrage** | Plus lent, mais robuste | Instantané grâce aux V8 isolates |
+| **🌎 Scalabilité** | Standard, adapté aux serveurs classiques | Globale, optimisée pour les Edge Functions |
+| **⚙️ Accès aux modules Node.js** | ✅ Oui, support complet | ❌ Non, API restreinte (pas de `fs`, `crypto` natif, etc.) |
+| **🔗 Cas d’usage** | API complexes, gestion d’état, intégration avec bases de données locales | Authentification rapide, redirections dynamiques, personnalisation basée sur la géolocalisation |
+
+### 📝 **Configuration de l’Environnement d’Exécution**  
+Dans Next.js, vous pouvez définir explicitement l’environnement souhaité avec la propriété `runtime`.  
+
+✅ **Exemple pour une API en Edge Runtime** :  
+```tsx
+export const runtime = "edge";
+
+export default function handler(req, res) {
+  return new Response("Hello from the edge!", { status: 200 });
+}
+```
+
+✅ **Exemple pour une API en Node.js Runtime** :  
+```tsx
+export const runtime = "nodejs";
+
+export default function handler(req, res) {
+  res.status(200).json({ message: "Hello from Node.js!" });
+}
+```
+
+📌 **Bonnes pratiques** :  
+- Préférez **Edge Runtime** pour les **API légères et rapides**.  
+- Utilisez **Node.js Runtime** lorsque vous avez besoin **d’un accès natif aux modules Node.js**.  
+- Mélangez les deux en fonction des besoins spécifiques de votre application pour **optimiser performance et scalabilité**. 🚀
+---
+En résumé, Next.js vous offre la possibilité de choisir l'environnement d'exécution le plus adapté à chaque partie de votre application, alliant la puissance complète de Node.js et la rapidité des Edge Functions pour optimiser l'expérience utilisateur.

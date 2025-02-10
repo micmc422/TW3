@@ -2,5 +2,9 @@ export default {
     index: "SEO",
     generateMetadata: "generateMetadata",
     OG: "OpenGraph",
-    "robots-sitemap": "robots.txt & sitemap.xml"
+    "robots-sitemap": "robots.txt & sitemap.xml",
+    "---": {
+        type: "separator"
+    },
+    exercices: "Exercices"
 }

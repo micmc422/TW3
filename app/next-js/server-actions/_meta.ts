@@ -4,5 +4,8 @@ export default {
     "react-server-components": "React server components",
     useoptimistic: "useOptimistic()",
     usetransition:"useTransition()",
-    exercice: "Exercice"
+    "---": {
+        type: "separator"
+    },
+    exercices: "Exercices"
 }

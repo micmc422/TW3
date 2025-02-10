@@ -4,5 +4,8 @@ export default {
     loading: "Loading",
     error:" Error",
     "server-vs-client": "Server VS Client",
-    exercice: "Exercice"
+    "---": {
+        type: "separator"
+    },
+    exercices: "Exercices"
 }
