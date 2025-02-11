@@ -3,18 +3,19 @@ description: "Dans ce cas pratique, nous allons explorer le fonctionnement des r
 ---
 import { Steps } from 'nextra/components'
 
-# Cas Pratique : Réseau Docker
+# 🚀 Cas Pratique : Réseau Docker
 
 Dans ce cas pratique, nous allons explorer le fonctionnement des réseaux Docker à travers un exemple concret de deux conteneurs Docker qui communiquent entre eux via un réseau **bridge**.
 
-## Objectif
+## 🎯 Objectif
 
 Nous allons :
 1. Créer un réseau personnalisé Docker.
 2. Lancer deux conteneurs : un serveur web Nginx et un client Curl.
 3. Configurer ces conteneurs pour qu'ils communiquent via le réseau personnalisé.
+
 <Steps>
-### Créer un Réseau Docker
+### 🌐 Créer un Réseau Docker
 
 Docker fournit plusieurs types de réseaux, mais nous allons utiliser un réseau de type **bridge** personnalisé. Par défaut, Docker attribue à chaque conteneur un réseau privé isolé, mais nous allons créer un réseau commun pour que nos conteneurs puissent communiquer entre eux.
 
@@ -32,7 +33,7 @@ docker network ls
 
 Vous verrez votre réseau personnalisé dans la liste des réseaux.
 
-### Lancer un Serveur Web Nginx dans le Réseau
+### 🌍 Lancer un Serveur Web Nginx dans le Réseau
 
 Maintenant, nous allons lancer un conteneur Nginx et le connecter au réseau que nous avons créé.
 
@@ -52,7 +53,7 @@ Vérifiez que le conteneur est en cours d'exécution avec :
 docker ps
 ```
 
-### Lancer un Conteneur Client (Curl)
+### 🖥️ Lancer un Conteneur Client (Curl)
 
 Pour tester la communication, nous allons lancer un second conteneur contenant **Curl**, un utilitaire en ligne de commande pour effectuer des requêtes HTTP, afin d’accéder au serveur Nginx.
 
@@ -68,7 +69,7 @@ Explications :
 
 Si tout fonctionne correctement, vous devriez voir une réponse HTML du serveur Nginx.
 
-### Inspecter le Réseau
+### 🔍 Inspecter le Réseau
 
 Pour mieux comprendre comment Docker gère le réseau, inspectons-le :
 
@@ -78,7 +79,7 @@ docker network inspect my-custom-network
 
 Cette commande affichera les détails du réseau, y compris les conteneurs connectés, leurs adresses IP internes, et d'autres informations pertinentes.
 
-### Nettoyage
+### 🧹 Nettoyage
 
 Une fois terminé, vous pouvez arrêter et supprimer les conteneurs et le réseau avec ces commandes :
 
@@ -87,7 +88,9 @@ docker stop my-nginx
 docker rm my-nginx
 docker network rm my-custom-network
 ```
+
 </Steps>
-## Conclusion
+
+## 🎓 Conclusion
 
 Ce cas pratique illustre la manière dont Docker utilise les réseaux pour permettre la communication entre les conteneurs. Grâce à Docker, il est possible de créer des réseaux isolés et de gérer facilement la communication entre les services, ce qui est essentiel dans les environnements d’applications distribuées.

@@ -3,18 +3,18 @@ description: "Dans ce cas pratique, nous allons explorer comment Docker gère le
 ---
 import { Steps } from 'nextra/components'
 
-# Cas Pratique : Stockage Docker
+# 🗃️ Cas Pratique : Stockage Docker
 
 Dans ce cas pratique, nous allons explorer comment Docker gère le stockage persistant en utilisant deux techniques courantes : **les volumes Docker** et **les bind mounts**. Nous allons créer un conteneur qui persiste ses données, même après son arrêt ou sa suppression.
 
-## Objectif
+## 🎯 Objectif
 
 1. Utiliser un **volume Docker** pour persister les données d’un conteneur.
 2. Utiliser un **bind mount** pour partager des fichiers entre l’hôte et le conteneur.
 3. Vérifier la persistance des données après la suppression du conteneur.
 
 <Steps>
-### Utiliser un Volume Docker
+### 🌐 Utiliser un Volume Docker
 
 Les volumes Docker sont gérés par Docker lui-même et sont stockés dans un répertoire dédié sur l’hôte. Ils permettent de persister des données de manière simple et efficace, tout en étant indépendants du cycle de vie des conteneurs.
 
@@ -42,7 +42,7 @@ docker volume ls
 
 Vous devriez voir `mysql-data` dans la liste des volumes.
 
-### Vérifier la Persistance des Données avec le Volume
+### 🔄 Vérifier la Persistance des Données avec le Volume
 
 Nous allons maintenant arrêter et supprimer le conteneur MySQL, puis le relancer pour vérifier que les données sont bien persistées.
 
@@ -65,7 +65,7 @@ docker run -d \
 
 Le conteneur MySQL va redémarrer en utilisant les mêmes données que précédemment, prouvant que le volume a bien persisté les informations de la base de données.
 
-### Utiliser un Bind Mount
+### 📂 Utiliser un Bind Mount
 
 Un **bind mount** permet de lier un répertoire spécifique de la machine hôte à un répertoire du conteneur. Cela peut être utile pour partager des fichiers de configuration, du code source ou d’autres données entre l’hôte et le conteneur.
 
@@ -98,7 +98,7 @@ Explications :
 
 Ouvrez votre navigateur et accédez à `http://localhost:8080`. Vous devriez voir la page HTML que vous avez créée sur votre machine hôte, prouvant que le bind mount fonctionne.
 
-### Vérifier le Fonctionnement du Bind Mount
+### 🔄 Vérifier le Fonctionnement du Bind Mount
 
 Modifiez le fichier `index.html` sur votre machine locale :
 
@@ -108,7 +108,7 @@ echo "<h1>Updated from Host</h1>" > ~/nginx-html/index.html
 
 Rafraîchissez votre navigateur. Vous verrez immédiatement la mise à jour, car le conteneur utilise directement le fichier stocké sur votre machine.
 
-### Nettoyage
+### 🧹 Nettoyage
 
 Une fois terminé, vous pouvez arrêter et supprimer les conteneurs et volumes avec ces commandes :
 
@@ -117,7 +117,9 @@ docker stop mysql-volume nginx-bind
 docker rm mysql-volume nginx-bind
 docker volume rm mysql-data
 ```
+
 </Steps>
-## Conclusion
+
+## 🎓 Conclusion
 
 Dans ce cas pratique, nous avons exploré deux mécanismes de stockage Docker : **les volumes**, qui permettent de garantir la persistance des données indépendamment du cycle de vie des conteneurs, et **les bind mounts**, qui facilitent le partage direct de fichiers entre l’hôte et les conteneurs. Ces techniques sont essentielles pour développer des applications nécessitant la persistance des données et l’intégration continue avec les systèmes de fichiers locaux.

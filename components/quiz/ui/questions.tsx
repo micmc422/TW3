@@ -3,6 +3,24 @@ import { QuizzContext } from "../context"
 import { QuizNextBtn, QuizResetBtn, QuizTitle } from ".."
 import { Trash2Icon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { animate, AnimatePresence, motion } from "framer-motion"
+
+
+
+const itemVariant = {
+    initial: {
+        opacity: 0,
+        x: 100
+    },
+    animate: {
+        opacity: 1,
+        x: 0
+    },
+    exit: {
+        opacity: 0,
+        x: -100
+    }
+}
 
 export default function Questions() {
     const ref = useRef(null)
@@ -41,17 +59,30 @@ export default function Questions() {
     return (
         <>
             <QuizTitle>{currentQuestion}/{questions.length} - {question}</QuizTitle>
-            <ul ref={ref} key={currentQuestion} className="grid gap-2">
-                {answers.map((answer, i) => (
-                    <li
-                        key={i}
-                        className={`flex rounded px-2 py-0.5 text-sm transition-colors [word-break:break-word] cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:border text-gray-500 hover:bg-gray-100/10 hover:text-black dark:text-neutral-400 dark:hover:bg-white/5 dark:hover:text-gray-500 contrast-more:text-gray-900 contrast-more:dark:text-gray-50 contrast-more:node-border-transparent contrast-more:hover:border-gray-900 contrast-more:dark:hover:border-gray-50`}
-                        onClick={() => handleAnswser(i + 1)}
-                    >
-                        {answer}
-                    </li>
-                ))}
-            </ul>
+            <motion.ul
+                initial={"initial"}
+                animate="animate"
+                exit={"exit"}
+                transition={{
+                    staggerChildren: 0.1,
+                    delay: 0.6
+                }}
+                ref={ref}
+                key={currentQuestion}
+                className="grid gap-2">
+                <AnimatePresence mode="popLayout">
+                    {answers.map((answer, i) => (
+                        <motion.li
+                            variants={itemVariant}
+                            key={i + currentQuestion}
+                            className={`flex rounded px-2 py-0.5 text-sm transition-colors [word-break:break-word] cursor-pointer [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] contrast-more:border text-gray-500 hover:bg-gray-100/10 hover:text-black dark:text-neutral-400 dark:hover:bg-white/5 dark:hover:text-gray-500 contrast-more:text-gray-900 contrast-more:dark:text-gray-50 contrast-more:node-border-transparent contrast-more:hover:border-gray-900 contrast-more:dark:hover:border-gray-50`}
+                            onClick={() => handleAnswser(i + 1)}
+                        >
+                            {answer}
+                        </motion.li>
+                    ))}
+                </AnimatePresence>
+            </motion.ul>
             <ProgressBar />
             <div className="flex" style={{ gap: "1rem" }}>
                 <QuizNextBtn>Continuer</QuizNextBtn>
