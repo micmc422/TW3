@@ -49,6 +49,10 @@ const meta: MetaRecord = {
     "title": "JS",
     "type": "page"
   },
+  "UX-UI": {
+    "title": "UX/UI",
+    "type": "page"
+  },
   "webpack": {
     "display": "hidden",
     "title": "Webpack",
