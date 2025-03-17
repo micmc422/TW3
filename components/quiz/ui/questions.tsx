@@ -96,8 +96,7 @@ export default function Questions() {
 }
 
 function ProgressBar() {
-    const { currentQuestion, questions, handleAnswser, userAnswers, score, totalScore } = useContext(QuizzContext);
-    const { question, answers } = questions[currentQuestion - 1] || {}
+    const { currentQuestion, questions, userAnswers } = useContext(QuizzContext);
     const progressItems = useMemo(() => {
         let array = new Array(questions.length).fill("untouch")
         array = array.map((item, i) => {
@@ -113,12 +112,12 @@ function ProgressBar() {
             if (answer[0] != 0) return "error";
             return item;
         })
-        console.log(array)
+        //   console.log(array)
 
         return array
     }, [userAnswers])
 
-    console.log(progressItems)
+    //  console.log(progressItems)
     return <div className="w-full flex gap-1 mt-8 items-center">
         {progressItems.map((el, i) => <div key={i} className={cn("h-2 grow rounded bg-gray-500 transition-colors duration-700", el === "correct" && "bg-green-500", el === "partial" && "bg-orange-500", el === "error" && "bg-red-500", i === currentQuestion - 1 && "bg-white outline-2")}></div>)}
     </div>

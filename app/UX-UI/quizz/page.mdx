@@ -1,0 +1,150 @@
+---
+description: "Ce quiz est conçu pour tester vos connaissances sur le tooling. À travers ces questions, vous allez évaluer votre compréhension des concepts fondamentaux liés au tooling."
+---
+import Quizz from "@/components/quiz"
+export const quiz = {
+    quizTitle: "Quiz sur l'UX/UI Design",
+    quizSynopsis: <>Ce quiz est conçu pour tester vos connaissances sur les principes fondamentaux de l'UX/UI Design. À travers ces questions, vous évaluerez votre compréhension des concepts clés liés à l'expérience utilisateur et à l'interface utilisateur.
+        Prenez quelques instants pour répondre aux questions et vérifier votre maîtrise des bases de l'UX/UI Design. Bonne chance !</>,
+    questions: [
+        {
+            question: "Qu'est-ce que l'UX Design ?",
+            questionType: "text",
+            answers: [
+                "La conception de l'interface utilisateur",
+                "L'expérience utilisateur, centrée sur la satisfaction et l'efficacité de l'utilisateur",
+                "La programmation des fonctionnalités d'un site web",
+                "L'optimisation du référencement d'un site"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! L'UX Design se concentre sur la satisfaction et l'efficacité de l'utilisateur.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'L'expérience utilisateur, centrée sur la satisfaction et l'efficacité de l'utilisateur'.",
+            point: 10
+        },
+        {
+            question: "Quelle est la différence principale entre l'UX Design et l'UI Design ?",
+            questionType: "text",
+            answers: [
+                "L'UX Design se concentre sur l'expérience globale de l'utilisateur, tandis que l'UI Design se focalise sur l'aspect visuel et l'interaction.",
+                "L'UX Design concerne la programmation, et l'UI Design concerne le design graphique.",
+                "L'UX Design est uniquement utilisé pour les applications mobiles, tandis que l'UI Design est pour les sites web.",
+                "Il n'y a pas de différence, ce sont des synonymes."
+            ],
+            correctAnswer: [1],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! L'UX Design se concentre sur l'expérience globale, tandis que l'UI Design se focalise sur l'aspect visuel et l'interaction.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'L'UX Design se concentre sur l'expérience globale de l'utilisateur, tandis que l'UI Design se focalise sur l'aspect visuel et l'interaction.'.",
+            point: 10
+        },
+        {
+            question: "Parmi les principes de design visuel suivants, lequel n'est pas inclus dans la règle CRAP ?",
+            questionType: "text",
+            answers: [
+                "Contraste",
+                "Répétition",
+                "Alignement",
+                "Proximité",
+                "Simplicité"
+            ],
+            correctAnswer: [5],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! La simplicité n'est pas incluse dans la règle CRAP.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Simplicité'.",
+            point: 10
+        },
+        {
+            question: "Qu'est-ce que le contraste en design visuel ?",
+            questionType: "text",
+            answers: [
+                "L'utilisation de couleurs similaires pour créer une harmonie",
+                "L'utilisation d'éléments répétitifs pour renforcer la cohérence",
+                "L'utilisation de différences marquées entre les éléments pour attirer l'attention",
+                "L'alignement des éléments pour créer une structure claire"
+            ],
+            correctAnswer: [3],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! Le contraste implique l'utilisation de différences marquées pour attirer l'attention.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'L'utilisation de différences marquées entre les éléments pour attirer l'attention'.",
+            point: 10
+        },
+        {
+            question: "Pourquoi la répétition est-elle importante en design UI ?",
+            questionType: "text",
+            answers: [
+                "Pour rendre le design plus complexe",
+                "Pour assurer la cohérence et renforcer l'identité visuelle",
+                "Pour éviter l'alignement des éléments",
+                "Pour créer des contrastes forts"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! La répétition assure la cohérence et renforce l'identité visuelle.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Pour assurer la cohérence et renforcer l'identité visuelle'.",
+            point: 10
+        },
+        {
+            question: "Quel outil est couramment utilisé pour le prototypage en UX/UI Design ?",
+            questionType: "text",
+            answers: [
+                "Figma",
+                "Photoshop",
+                "Visual Studio Code",
+                "WordPress"
+            ],
+            correctAnswer: [1],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! Figma est couramment utilisé pour le prototypage en UX/UI Design.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Figma'.",
+            point: 10
+        },
+        {
+            question: "Qu'est-ce que l'affordance en UX Design ?",
+            questionType: "text",
+            answers: [
+                "La capacité d'un élément à suggérer sa fonction",
+                "La vitesse de chargement d'une page",
+                "L'esthétique d'une interface",
+                "La compatibilité d'un site avec les appareils mobiles"
+            ],
+            correctAnswer: [1],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! L'affordance est la capacité d'un élément à suggérer sa fonction.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'La capacité d'un élément à suggérer sa fonction'.",
+            point: 10
+        },
+        {
+            question: "Quelle est l'importance de l'accessibilité en design web ?",
+            questionType: "text",
+            answers: [
+                "Elle permet aux moteurs de recherche d'indexer le site plus efficacement",
+                "Elle garantit que tous les utilisateurs, y compris ceux en situation de handicap, peuvent accéder au contenu",
+                "Elle réduit le temps de développement",
+                "Elle améliore la compatibilité avec les anciens navigateurs"
+            ],
+            correctAnswer: [2],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Exact ! L'accessibilité garantit que tous les utilisateurs peuvent accéder au contenu.",
+            messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Elle garantit que tous les utilisateurs, y compris ceux en situation de handicap, peuvent accéder au contenu'.",
+            point: 10
+        },
+        {
+            question: "Qu'est-ce qu'une micro-interaction en UI Design ?",
+            questionType: "text",
+            answers: [
+                "Une petite animation décorative",
+                "Une interaction unique entre deux utilisateurs",
+                "Une réponse spécifique du système à une action de l'utilisateur",
+                "Un élément de contenu minimaliste"
+            ],
+            correctAnswer: [3],
+            answerSelectionType: "single",
+            messageForCorrectAnswer: "Correct ! Une micro-interaction",
+            point: 10
+        }
+    ]
+}
+
+<Quizz quizData={quiz} />
+
+

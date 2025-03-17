@@ -25,9 +25,11 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
     const score = useMemo(() => {
         let calculScore = 0;
         quizData.questions.forEach((question, i) => {
+
             userAnswers?.[i]?.map(ans => {
-                if (ans !== 0) {
-                    question.correctAnswer.includes(ans) ? (calculScore += question.point / question.correctAnswer.length) : (calculScore -= question.point)
+                const point = Number(question.point || 10)
+               if (ans !== 0) {
+                   question.correctAnswer.includes(ans) ? (calculScore += point / question.correctAnswer.length) : (calculScore -= point)
                 }
             });
         })
@@ -75,7 +77,9 @@ export default function QuizzRoot({ children, quizData }: { children: ReactNode,
             // Remplace la valeur précédente par la nouvelle
             return [...answsers?.slice(0, currentQuestion - 1), currentQ, ...answsers?.slice(currentQuestion)];
         });
-    } return (
+    }
+
+    return (
         <QuizzContext.Provider value={{ currentQuestion, nextQuestion, handleAnswser, questions, quizTitle, quizSynopsis, userAnswers, score, totalScore }}>
             <div className="outline-2 rounded-xl p-4 mt-8 w-fit max-w-lg mx-auto bg-slate-500/10 shadow-lg">
                 {children}
