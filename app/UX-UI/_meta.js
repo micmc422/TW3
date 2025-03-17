@@ -1,9 +1,9 @@
 export default {
-  "introduction": "Introduction à l'UX/UI Design",
+  "index": "Introduction à l'UX/UI Design",
+  "crap": "La règle CRAP en design UI",
   "principes-UX": "Principes fondamentaux de l’UX Design",
   "principes-UI": "Principes fondamentaux de l’UI Design",
-  "frontend": "Processus de conception UX/UI",
-  "conception": "Débogage & Performance",
+  "conception": "Processus de conception UX/UI",
   "---": {
     "type": "separator"
   },

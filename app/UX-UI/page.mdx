@@ -1,3 +1,5 @@
+import { Compare } from "@/components/ui/compare";
+
 # **Introduction à l'UX/UI Design**  
 
 **Objectifs du chapitre**  
@@ -20,8 +22,16 @@ L’UI design se concentre sur l’apparence et l’interaction visuelle, notamm
 - Les boutons, icônes et composants interactifs  
 - Les animations et micro-interactions  
 
-### **Exemple visuel sur Figma 🎨**  
-Créer une **interface simple** avec une mauvaise UX/UI (boutons trop petits, manque de contraste, navigation confuse) puis une version améliorée avec une meilleure ergonomie et hiérarchie visuelle.  
+### **Exemple visuel 🎨**  
+
+<Compare
+        firstImage="/images/uxui/bad-ui.png"
+        secondImage="/images/uxui/good-ui.png"
+        firstImageClassName="object-cover object-left-top"
+        secondImageClassname="object-cover object-left-top"
+        className="h-auto w-full aspect-[0.55] md:w-[625px] mt-4"
+        slideMode="hover"
+      />
 
 ---  
 ## **Différences et complémentarités entre UX et UI**  
@@ -33,9 +43,6 @@ Créer une **interface simple** avec une mauvaise UX/UI (boutons trop petits, ma
 | Exemples | Arborescence, wireframes, tests utilisateur | Boutons, couleurs, typographie, illustrations |
 
 ✅ **Analogie** : L’UX est le squelette et l’architecture d’une maison, tandis que l’UI est la décoration et le design intérieur.  
-
-### **Exemple visuel sur Figma 🎨**  
-Montrer un **wireframe UX** d’un site (structure brute) et la version UI finalisée avec styles et couleurs.  
 
 ---  
 ## **Impact de l’UX/UI sur la performance**  
@@ -50,12 +57,18 @@ Montrer un **wireframe UX** d’un site (structure brute) et la version UI final
 - Version B : bonne UX/UI (parcours simplifié, CTA visibles)  
 ➡️ Résultat : augmentation des ventes de +20%  
 
-### **Exemple visuel sur Figma 🎨**  
-Créer un écran de **checkout mal conçu**, puis une version optimisée avec de meilleures pratiques UX/UI.  
+### **Exemple visuel 🎨**  
+<Compare
+        firstImage="/images/uxui/bad-ui-checkout.png"
+        secondImage="/images/uxui/good-ui-checkout.png"
+        firstImageClassName="object-cover object-left-top"
+        secondImageClassname="object-cover object-left-top"
+        className="h-auto w-full aspect-[0.89] md:w-[625px] mt-4"
+        slideMode="hover"
+      />
+
 
 ---
 
 ## **💡 Mini-atelier pratique (10 min)**  
-**Objectif :** Sur Figma, demander aux étudiants de recréer un bouton CTA avec :  
-- Une version non optimisée (mauvais contraste, mauvaise taille)  
-- Une version optimisée selon les principes UX/UI  
+**Objectif :** Sur Figma, modifier l'exemple "base CTA" en une version optimisée selon les principes UX/UI.

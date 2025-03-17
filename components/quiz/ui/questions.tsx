@@ -3,7 +3,7 @@ import { QuizzContext } from "../context"
 import { QuizNextBtn, QuizResetBtn, QuizTitle } from ".."
 import { Trash2Icon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { animate, AnimatePresence, motion } from "framer-motion"
+import { animate, AnimatePresence, motion } from "motion/react"
 
 
 

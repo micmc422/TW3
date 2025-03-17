@@ -113,8 +113,7 @@ export default async function RootLayout({ children }) {
     <Navbar
       logo={<Champollion />
       }
-      // Next.js discord server
-      chatLink="https://discord.gg/hEM84NMkRv"
+      chatLink="https://github.com/micmc422/TW3"
     />
   )
 
