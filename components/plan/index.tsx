@@ -17,7 +17,25 @@ export default function Plan({ rootFolder }: { rootFolder?: string }) {
     const menu = normalizePagesResult.activePath[0].children || normalizePagesResult.directories
     return (
         <Steps className='[&:not(:first-child)]:mt-3 [&:first-child]:text-2xl'>
-            {menu?.map((item, i) => (i !== 0 && <MenuItem key={i} {...item} isRoot />))}
+            {menu?.map((item, i) => {
+                if (i === 0) return null;
+                // On ne passe que les props attendues, et on force title en string
+                const mapItem = (item: any): Item => ({
+                    title: typeof item.title === 'string' ? item.title : String(item.title),
+                    route: item.route,
+                    children: item.children ? item.children.map(mapItem) : undefined
+                });
+                const filtered = mapItem(item);
+                return (
+                    <MenuItem
+                        key={i}
+                        title={filtered.title}
+                        route={filtered.route}
+                        children={filtered.children}
+                        isRoot
+                    />
+                );
+            })}
         </Steps>
     );
 }
