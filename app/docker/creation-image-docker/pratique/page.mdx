@@ -1,6 +1,8 @@
 ---
 description: "Nous allons créer une image Docker pour cette application afin de l'exécuter dans un conteneur. L'objectif est d'empaqueter cette application, avec toutes ses dépendances, dans une image Docker que nous pourrons exécuter sur n'importe quel système."
 ---
+import { FileTree } from 'nextra/components'
+
 # 🚀 Création d'une Image Docker : Un Cas Concret
 
 Dans cet exemple, nous allons empaqueter une application web simple en Node.js dans une image Docker afin de l'exécuter dans un conteneur. L'objectif est de standardiser le déploiement en encapsulant l'application et toutes ses dépendances dans une image reproductible.
@@ -11,8 +13,6 @@ Dans cet exemple, nous allons empaqueter une application web simple en Node.js d
 
 Supposons que notre application est un serveur Node.js qui affiche **"Hello, Docker!"** sur le port **3000**. La structure du projet est la suivante :
 
-```jsx
-import { FileTree } from 'nextra/components'
 
 <FileTree>
   <FileTree.Folder name="app" defaultOpen>
@@ -20,7 +20,6 @@ import { FileTree } from 'nextra/components'
     <FileTree.File name="package.json" />
   </FileTree.Folder>
 </FileTree>
-```
 
 ### **app.js**  
 ```javascript
@@ -57,7 +56,7 @@ app.listen(3000, () => {
 
 Le **Dockerfile** est la "recette" qui permet de construire l'image Docker. Voici un exemple de Dockerfile pour notre application Node.js :
 
-```Dockerfile
+```Dockerfile copy
 # Étape 1 : Utiliser une image de base légère avec Node.js
 FROM node:14-alpine
 
@@ -92,7 +91,7 @@ CMD ["npm", "start"]
 
 Pour construire l'image Docker, placez-vous dans le répertoire contenant le Dockerfile et exécutez la commande suivante :
 
-```bash
+```bash copy
 docker build -t my-node-app .
 ```
 
@@ -108,7 +107,7 @@ Docker lira le Dockerfile, exécutera chaque instruction et générera une image
 
 Pour lancer un conteneur à partir de l'image créée, utilisez :
 
-```bash
+```bash copy
 docker run -d -p 3000:3000 my-node-app
 ```
 

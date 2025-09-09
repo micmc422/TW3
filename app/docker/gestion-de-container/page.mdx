@@ -2,50 +2,57 @@
 description: "La commande docker run est essentielle pour exécuter des conteneurs Docker à partir d'images préalablement créées. Elle permet de spécifier diverses options et paramètres pour personnaliser le comportement du conteneur."
 ---
 
-# 🚀 Gestion de Conteneurs Docker
 
-Docker permet d'exécuter des applications dans des environnements isolés appelés **conteneurs**. La commande `docker run` est essentielle pour lancer un conteneur à partir d'une image préalablement créée, en permettant de configurer divers paramètres comme le réseau, les volumes et les ports.
+# � Gestion de conteneurs Docker
+
+
+Docker 🐳 permet d’exécuter des applications dans des environnements isolés appelés **conteneurs** 🚚. La commande `docker run` est essentielle pour lancer un conteneur 🚚 à partir d’une image 📦, en permettant de configurer divers paramètres comme le réseau, les volumes 💾 et les ports.
 
 ---
 
-## ⚙️ Exécution d'une Image Docker
+
+## ⚙️ Exécution d’une image Docker 📦
 
 ### **Syntaxe de base**
 
-```bash
+```bash copy
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 
-- **OPTIONS** : Options facultatives pour configurer le conteneur (réseau, volumes, ports, etc.).
-- **IMAGE** : Nom de l'image Docker à utiliser.
-- **COMMAND** : Commande à exécuter à l'intérieur du conteneur.
+
+- **OPTIONS** : Options facultatives pour configurer le conteneur 🚚 (réseau, volumes 💾, ports, etc.).
+- **IMAGE** : Nom de l’image Docker 📦 à utiliser.
+- **COMMAND** : Commande à exécuter à l’intérieur du conteneur 🚚.
 - **ARG** : Arguments supplémentaires passés à la commande.
 
 ### **Exemple Pratique**
 
-```bash
+```bash copy
 docker run -d -p 80:80 --name mon-serveur-web nginx
 ```
 
-- **`-d`** : Lance le conteneur en mode détaché (en arrière-plan).
-- **`-p 80:80`** : Mappe le port 80 du conteneur au port 80 de l'hôte, rendant l'application accessible via le navigateur.
-- **`--name mon-serveur-web`** : Attribue le nom personnalisé "mon-serveur-web" au conteneur.
-- **`nginx`** : Utilise l'image Docker Nginx.
+
+- **`-d`** : Lance le conteneur 🚚 en mode détaché (en arrière-plan).
+- **`-p 80:80`** : Mappe le port 80 du conteneur 🚚 au port 80 de l’hôte, rendant l’application accessible via le navigateur.
+- **`--name mon-serveur-web`** : Attribue le nom personnalisé "mon-serveur-web" au conteneur 🚚.
+- **`nginx`** : Utilise l’image Docker 📦 Nginx.
 
 ---
 
-## 🔍 Vérification de l'Exécution
 
-Pour voir la liste des conteneurs en cours d'exécution, utilisez :
+## 🔍 Vérification de l’exécution du conteneur 🚚
 
-```bash
+
+Pour voir la liste des conteneurs 🚚 en cours d’exécution, utilisez :
+
+```bash copy
 docker ps
 ```
 
 > **Astuce** :  
 > Pour obtenir une liste détaillée avec tous les conteneurs, exécutez :
 > 
-> ```bash
+> ```bash copy
 > docker ps --no-trunc
 > ```
 > 
@@ -53,11 +60,13 @@ docker ps
 
 ---
 
-## 🌐 Accès au Conteneur
 
-Pour accéder à votre application dans un conteneur, ouvrez un navigateur et entrez l'URL suivante :
+## 🌐 Accès au conteneur 🚚
 
-```plaintext
+
+Pour accéder à votre application dans un conteneur 🚚, ouvrez un navigateur et entrez l’URL suivante :
+
+```plaintext copy
 http://localhost:80
 ```
 
@@ -65,39 +74,51 @@ Vous verrez la page d'accueil par défaut de Nginx.
 
 ---
 
-## ⏹️ Arrêt et Suppression du Conteneur
+
+## ⏹️ Arrêt et suppression du conteneur 🚚
 
 ### **Arrêt du conteneur**
 
-Pour arrêter un conteneur, exécutez :
 
-```bash
+Pour arrêter un conteneur 🚚 :
+
+```bash copy
 docker stop mon-serveur-web
 ```
 
-### **Suppression du conteneur**
 
-Pour supprimer le conteneur arrêté, exécutez :
+Pour supprimer ce conteneur 🚚 (après l’avoir arrêté) :
 
-```bash
+```bash copy
 docker rm mon-serveur-web
 ```
 
 ---
 
-## 🔄 Nettoyage de Tous les Conteneurs
 
-Vous pouvez utiliser une commande en script pour arrêter **tous les conteneurs** :
+## 🔄 Nettoyage de tous les conteneurs 🚚
 
-```bash
-docker stop $(docker ps -a -q)
+
+Vous pouvez utiliser une commande en script pour arrêter **tous les conteneurs** 🚚 :
+
+```bash copy
+docker stop $(docker ps -aq)
 ```
 
-> ⚠️ **Attention :**  
-> Cette commande arrêtera tous les conteneurs, actifs ou non. Utilisez-la avec précaution.
 
-> **Explication de la commande :**
-> - **`docker ps -a`** : Liste tous les conteneurs (actifs et arrêtés).
-> - **`-q`** : Affiche uniquement les IDs des conteneurs.
-> - **`$(...)`** : Substitution de commande qui remplace cette partie par la liste des IDs.
+> ⚠️ **Attention** : Cette commande arrêtera tous les conteneurs 🚚, actifs ou non. Utilisez-la avec précaution.
+
+
+Pour supprimer tous les conteneurs 🚚 arrêtés :
+
+```bash copy
+docker container prune
+```
+
+> **Explication** :
+> - `docker ps -a` : Liste tous les conteneurs (actifs et arrêtés)
+> - `-q` : Affiche uniquement les IDs
+> - `$(...)` : Substitution de commande
+> - `docker stop` : Arrête les conteneurs listés
+> - `docker container prune` : Supprime tous les conteneurs arrêtés
 > - **`docker stop`** : Arrête les conteneurs dont les IDs ont été listés.

@@ -1,11 +1,11 @@
 ---
 description: "Le fichier package.json est au cœur de tout projet Node.js. Il contient des métadonnées importantes sur le projet, notamment son nom, sa version, ses scripts et, surtout, ses dépendances."
 ---
-# Gestion des dépendances avec `package.json`
+# 📦 Gestion des dépendances avec `package.json`
 
 Le fichier `package.json` est au cœur de tout projet Node.js. Il contient des métadonnées importantes sur le projet, notamment son nom, sa version, ses scripts et, surtout, ses dépendances. Ce fichier permet de gérer efficacement les bibliothèques nécessaires au bon fonctionnement du projet, ainsi que celles utilisées uniquement lors du développement.
 
-## Structure du fichier `package.json`
+## 🗂️ Structure du fichier `package.json`
 Voici un exemple basique de fichier `package.json` :
 ```json
 {
@@ -28,7 +28,7 @@ Voici un exemple basique de fichier `package.json` :
 }
 ```
 
-## **Les dépendances (`dependencies`)**
+## 📥 Les dépendances (`dependencies`)
 La section **`dependencies`** contient les paquets nécessaires à l'exécution de l'application en production. Ces dépendances sont cruciales pour le bon fonctionnement du projet et sont automatiquement installées lorsque vous exécutez `npm install`.
 
 Exemple :
@@ -39,13 +39,13 @@ Exemple :
 ```
 Dans cet exemple, **Express** est une dépendance qui sera installée pour faire fonctionner l'application.
 
-- **Installation** : Les dépendances sont ajoutées à cette section lorsque vous exécutez la commande :
+- **Installation** 📦 : Les dépendances sont ajoutées à cette section lorsque vous exécutez la commande :
   ```bash copy
   npm install <nom_du_paquet> --save
   ```
-- **Versioning** : Le `^` indique que NPM peut installer toute version mineure ou patch supérieure à la version spécifiée (`4.17.1` dans cet exemple), tout en restant dans la même version majeure.
+- **Versioning** ⏳ : Le `^` indique que NPM peut installer toute version mineure ou patch supérieure à la version spécifiée (`4.17.1` dans cet exemple), tout en restant dans la même version majeure.
 
-## **Les dépendances de développement (`devDependencies`)**
+## 🛠️ Les dépendances de développement (`devDependencies`)
 La section **`devDependencies`** contient les paquets nécessaires uniquement pendant le développement. Ces dépendances ne sont pas utilisées en production, mais elles sont essentielles pour des tâches comme le test, la compilation ou le rechargement automatique.
 
 Exemple :
@@ -56,7 +56,7 @@ Exemple :
 ```
 Ici, **Nodemon** est une dépendance de développement qui permet de redémarrer automatiquement le serveur lorsque des fichiers sont modifiés.
 
-- **Installation** : Les dépendances de développement sont ajoutées à cette section avec la commande :
+- **Installation** 🛠️ : Les dépendances de développement sont ajoutées à cette section avec la commande :
   ```bash copy
   npm install <nom_du_paquet> --save-dev
   ```

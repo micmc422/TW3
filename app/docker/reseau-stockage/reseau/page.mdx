@@ -21,13 +21,13 @@ Docker fournit plusieurs types de réseaux, mais nous allons utiliser un réseau
 
 Créez un réseau Docker en utilisant la commande suivante :
 
-```bash
+```bash copy
 docker network create my-custom-network
 ```
 
 Cette commande crée un réseau de type bridge appelé `my-custom-network`. Vous pouvez vérifier sa création avec :
 
-```bash
+```bash copy
 docker network ls
 ```
 
@@ -37,7 +37,7 @@ Vous verrez votre réseau personnalisé dans la liste des réseaux.
 
 Maintenant, nous allons lancer un conteneur Nginx et le connecter au réseau que nous avons créé.
 
-```bash
+```bash copy
 docker run -d --name my-nginx --network my-custom-network nginx
 ```
 
@@ -49,7 +49,7 @@ Explications :
 
 Vérifiez que le conteneur est en cours d'exécution avec :
 
-```bash
+```bash copy
 docker ps
 ```
 
@@ -57,7 +57,7 @@ docker ps
 
 Pour tester la communication, nous allons lancer un second conteneur contenant **Curl**, un utilitaire en ligne de commande pour effectuer des requêtes HTTP, afin d’accéder au serveur Nginx.
 
-```bash
+```bash copy
 docker run -it --network my-custom-network curlimages/curl curl my-nginx
 ```
 
@@ -73,7 +73,7 @@ Si tout fonctionne correctement, vous devriez voir une réponse HTML du serveur 
 
 Pour mieux comprendre comment Docker gère le réseau, inspectons-le :
 
-```bash
+```bash copy
 docker network inspect my-custom-network
 ```
 
@@ -83,7 +83,7 @@ Cette commande affichera les détails du réseau, y compris les conteneurs conne
 
 Une fois terminé, vous pouvez arrêter et supprimer les conteneurs et le réseau avec ces commandes :
 
-```bash
+```bash copy
 docker stop my-nginx
 docker rm my-nginx
 docker network rm my-custom-network

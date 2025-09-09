@@ -1,15 +1,15 @@
 ---
 description: "Dans cette section, nous explorerons comment Node.js gère les fichiers et les flux de données. Le module fs (File System) permet de lire et écrire des fichiers, tandis que les flux (streams) permettent de traiter efficacement de grandes quantités de données de manière asynchrone."
 ---
-# **Gestion des fichiers et des flux en Node.js**
+# 🟩 **Gestion des fichiers et des flux en Node.js**
 
 Dans cette section, nous explorerons comment Node.js gère les fichiers et les flux de données. Le module `fs` (File System) permet de lire et écrire des fichiers, tandis que les flux (`streams`) permettent de traiter efficacement de grandes quantités de données de manière asynchrone.
 
-## Lire et écrire des fichiers
+## 📂 Lire et écrire des fichiers
 
 Le module `fs` de Node.js fournit une interface pour interagir avec le système de fichiers, permettant de lire, écrire, supprimer, et manipuler des fichiers. Voici un exemple de lecture et d’écriture de fichiers avec le module `fs`.
 
-### **Lecture d’un fichier**
+### 📖 Lecture d’un fichier
   ```javascript copy
   const fs = require('fs');
 
@@ -23,7 +23,7 @@ Le module `fs` de Node.js fournit une interface pour interagir avec le système 
   ```
   Ici, `fs.readFile` lit un fichier de manière asynchrone. Si une erreur survient (par exemple, si le fichier n'existe pas), elle est capturée et affichée.
 
-### **Écriture dans un fichier**
+### ✍️ Écriture dans un fichier
   ```javascript copy
   const fs = require('fs');
 
@@ -38,7 +38,7 @@ Le module `fs` de Node.js fournit une interface pour interagir avec le système 
   ```
   Avec `fs.writeFile`, vous pouvez écrire des données dans un fichier. Si le fichier n'existe pas, il est créé. Sinon, il est remplacé.
 
-## Gestion des flux et buffers
+## 🔄 Gestion des flux et buffers
 
 **Les flux (`streams`)** sont des abstractions pour lire ou écrire des données par petits morceaux, au lieu de charger la totalité en mémoire. Cela est particulièrement utile pour les gros fichiers ou les transferts de données en continu.
 
@@ -50,7 +50,7 @@ Il existe quatre types de flux en Node.js :
 
 Voici un exemple de lecture de fichier en utilisant un flux (`stream`):
 
-- **Lecture avec flux (`streams`)** :
+- **Lecture avec flux (`streams`)** 📥 :
   ```javascript copy
   const fs = require('fs');
 
@@ -68,7 +68,7 @@ Voici un exemple de lecture de fichier en utilisant un flux (`stream`):
 
 **Les buffers** sont des zones de mémoire brute allouées pour stocker des données binaires, souvent utilisées lors de la manipulation de flux.
 
-### **Utilisation d’un buffer**
+### 🧊 Utilisation d’un buffer
   ```javascript copy
   const buffer = Buffer.from('Bonjour');
   console.log(buffer);  // <Buffer 42 6f 6e 6a 6f 75 72>

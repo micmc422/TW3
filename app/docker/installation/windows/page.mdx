@@ -42,7 +42,7 @@ Avant de commencer l'installation de Docker sur Windows, assurez-vous que votre 
 - Ouvrez **PowerShell** en tant qu'administrateur.
 - Exécutez cette commande pour activer la fonctionnalité **WSL** :
 
-```bash
+```bash copy
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
 
@@ -63,7 +63,7 @@ dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux 
 - Assurez-vous que **WSL 2** est activé, car Docker fonctionne mieux avec cette version.  
   Exécutez cette commande dans PowerShell pour activer WSL 2 :
 
-```bash
+```bash copy
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
 
@@ -78,7 +78,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 - Ouvrez **PowerShell** en tant qu'administrateur et exécutez la commande suivante :
 
-```bash
+```bash copy
 wsl --set-default-version 2
 ```
 

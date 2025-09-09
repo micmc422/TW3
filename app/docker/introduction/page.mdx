@@ -5,48 +5,60 @@ description: "Docker est une plateforme de virtualisation légère qui repose su
 import { Callout } from 'nextra/components'
 
 
+
+
 # 🐳 Présentation de Docker
 
-Docker est une **plateforme de virtualisation légère** qui repose sur trois concepts fondamentaux :  
-🚀 **Conteneurs**, 📦 **Images** et 💾 **Volumes**.
+Docker est une **plateforme de virtualisation légère** qui repose sur trois concepts fondamentaux :
 
-L’image permet de créer un conteneur **normalisé et indépendant**, qui utilise des données issues d’un volume.
+- 🚚 **Conteneurs**
+- 📦 **Images**
+- 💾 **Volumes**
 
-> 🎯 **En finir avec "Mais ça marche sur mon poste !"**  
-> Docker normalise l’environnement d’exécution et allège les ressources matérielles.
+
+Une image 📦 permet de créer un conteneur 🚚 **normalisé et indépendant**, qui utilise des données issues d’un volume 💾.
+
+> 🎯 **Fini le "ça marche sur mon poste !"**  
+> Docker normalise l’environnement d’exécution et réduit la consommation de ressources matérielles.
 
 ---
 
 ## 🔑 Concepts fondamentaux
 
-### 🏗️ Conteneurs  
-Les **conteneurs** sont des environnements d'exécution **légers et autonomes** encapsulant une application et ses dépendances (bibliothèques, binaires, variables).  
-🔹 **Portables et cohérents** → Fonctionnent de la même manière en dev, test et prod.  
-🔹 **Isolation efficace** → Plusieurs applications peuvent s’exécuter sans interférence.  
-🔹 **Léger et rapide** → Partage du noyau de l’OS, contrairement aux machines virtuelles.
+
+### 🚚 Conteneurs
+Les **conteneurs** sont des environnements d’exécution **légers et autonomes** qui encapsulent une application et toutes ses dépendances (bibliothèques, binaires, variables).
+
+- 🔹 **Portables et cohérents** : Fonctionnent de la même manière en développement, test et production.
+- 🔹 **Isolation efficace** : Plusieurs applications peuvent s’exécuter sans interférence.
+- 🔹 **Légers et rapides** : Partagent le noyau de l’OS, contrairement aux machines virtuelles.
 
 ---
 
-### 📌 Images  
-Les **images Docker** sont des modèles immuables servant à créer des conteneurs.  
-🔹 **Construites avec un Dockerfile** → Décrit toutes les étapes de création.  
-🔹 **Stockables et partageables** → Via un registre Docker (Docker Hub, GitHub Container Registry…).  
-🔹 **Optimisées** → Utilisent un système de couches pour minimiser l’espace et le temps de build.
+
+### 📦 Images
+Les **images Docker** sont des modèles immuables servant à créer des conteneurs 🚚.
+
+- 🔹 **Construites avec un Dockerfile** : Décrit toutes les étapes de création.
+- 🔹 **Stockables et partageables** : Via un registre Docker (Docker Hub, GitHub Container Registry…).
+- 🔹 **Optimisées** : Utilisent un système de couches pour minimiser l’espace et le temps de build.
 
 ---
 
-### 💾 Volumes  
-Les **volumes** permettent de gérer le **stockage persistant** des données.  
-🔹 **Partage entre conteneurs et hôte** → Idéal pour bases de données et fichiers de config.  
-🔹 **Survivent aux redémarrages et suppressions de conteneurs**.  
-🔹 **Optimisés pour la performance** → Mieux que le montage de dossiers classiques.
+
+### 💾 Volumes
+Les **volumes** permettent de gérer le **stockage persistant** des données.
+
+- 🔹 **Partage entre conteneurs et hôte** : Idéal pour bases de données et fichiers de configuration.
+- 🔹 **Survivent aux redémarrages et suppressions de conteneurs**.
+- 🔹 **Optimisés pour la performance** : Plus efficaces que le montage de dossiers classiques.
 
 ---
 
-## ⚖️ Virtualisation légère vs Virtualisation traditionnelle  
+## ⚖️ Virtualisation légère vs Virtualisation traditionnelle
 
 | 🖥️ Virtualisation Traditionnelle (VM) | 🐳 Virtualisation Docker |
-|--------------------------------|--------------------------|
+|--------------------------------------|------------------------|
 | **Hyperviseur** (VMware, VirtualBox, Hyper-V) | **Conteneurs** légers |
 | Chaque VM **inclut un OS complet** | **Partage du noyau** de l’OS hôte |
 | **Isolation forte**, mais consomme **beaucoup de ressources** | **Isolation efficace**, tout en étant **plus léger** |
@@ -55,10 +67,12 @@ Les **volumes** permettent de gérer le **stockage persistant** des données.
 
 ---
 
-## ✨ En résumé  
-Docker repose sur :  
-✔️ **Les conteneurs** → Isolation et portabilité des applications.  
-✔️ **Les images** → Création d’environnements reproductibles.  
-✔️ **Les volumes** → Gestion optimisée du stockage des données.  
+## ✨ En résumé
+
+
+Docker repose sur :
+- 🚚 **Les conteneurs** : Isolation et portabilité des applications.
+- 📦 **Les images** : Création d’environnements reproductibles.
+- 💾 **Les volumes** : Gestion optimisée du stockage des données.
 
 🔹 **Rapide, léger et efficace**, Docker facilite le déploiement et l’exécution d’applications modernes tout en réduisant la consommation des ressources.

@@ -3,13 +3,13 @@ description: "Node.js permet de créer facilement des serveurs HTTP grâce à so
 ---
 import { Steps } from 'nextra/components'
 
-# **Node.js et serveur HTTP** (25 minutes)
+# 🟩 **Node.js et serveur HTTP** (25 minutes)
 
-## Créer un serveur HTTP simple
+## 🌐 Créer un serveur HTTP simple
 Node.js permet de créer facilement des serveurs HTTP grâce à son module intégré **`http`**. Ce module permet de recevoir des requêtes et d'envoyer des réponses via le protocole HTTP, qui est à la base du fonctionnement des sites web.
 <Steps>
 
-### Utiliser le module `http` pour créer un serveur
+### ⚙️ Utiliser le module `http` pour créer un serveur
 
 Le module `http` permet de définir un serveur capable de répondre aux requêtes des clients (navigateurs, outils comme Postman, etc.). Voici un exemple de serveur HTTP minimaliste avec Node.js :
 
@@ -31,7 +31,7 @@ server.listen(3000, () => {
 
 Ce serveur écoute sur le **port 3000**. Lorsque vous accédez à `http://localhost:3000/` via un navigateur ou un client HTTP, le serveur répondra avec "Hello, welcome to my Node.js server!".
 
-### Gestion des requêtes et réponses HTTP
+### 🔄 Gestion des requêtes et réponses HTTP
 
 Dans cet exemple, `req` représente la **requête** du client (c'est-à-dire les informations envoyées par le navigateur ou autre), et `res` représente la **réponse** que le serveur renverra. Chaque requête peut contenir des informations comme la méthode HTTP utilisée (GET, POST, etc.), l'URL, et les en-têtes.
 
@@ -47,11 +47,11 @@ const server = http.createServer((req, res) => {
 });
 ```
 </Steps>
-## Routage basique
+## 🛤️ Routage basique
 
 Le **routage** consiste à définir des actions spécifiques en fonction de l'URL demandée. Cela permet de créer des pages et des services différents en fonction des besoins des utilisateurs.
 <Steps>
-### Implémenter une gestion de routes basique avec Node.js
+### 🗺️ Implémenter une gestion de routes basique avec Node.js
 
 Vous pouvez utiliser la propriété `req.url` pour vérifier l'URL demandée par le client et exécuter différentes actions en fonction de cette URL. Voici un exemple simple de routage :
 
@@ -107,11 +107,11 @@ server.listen(3000, () => {
 
 Dans cet exemple, le serveur répond différemment selon la méthode HTTP utilisée (GET ou POST). Cela permet d'implémenter des comportements variés selon les actions effectuées par l'utilisateur.
 </Steps>
-## Exercice pratique
+## 📝 Exercice pratique
 
 Créez un serveur HTTP qui gère deux routes simples :
-- La route `/` doit afficher un message de bienvenue.
-- La route `/about` doit afficher une page "À propos".
+- La route `/` 🏠 doit afficher un message de bienvenue.
+- La route `/about` ℹ️ doit afficher une page "À propos".
 
 Exemple de solution :
 

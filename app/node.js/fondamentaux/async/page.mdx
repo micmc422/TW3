@@ -1,11 +1,11 @@
 ---
 description: "La gestion asynchrone est l'un des concepts les plus puissants de Node.js, rendant possible l'exécution de tâches sans bloquer l'application. Cela permet de réaliser plusieurs opérations en parallèle sans interrompre le flux du programme, ce qui est particulièrement utile dans les applications à forte charge, comme les serveurs web."
 ---
-# **Node.js et gestion asynchrone**
+# 🟩 **Node.js et gestion asynchrone**
 
 La gestion asynchrone est l'un des concepts les plus puissants de Node.js, rendant possible l'exécution de tâches sans bloquer l'application. Cela permet de réaliser plusieurs opérations en parallèle sans interrompre le flux du programme, ce qui est particulièrement utile dans les applications à forte charge, comme les serveurs web.
 
-## Programmation asynchrone avec des callbacks
+## 🔄 Programmation asynchrone avec des callbacks
 
 Node.js utilise un modèle **non-bloquant**, ce qui signifie que lorsqu'une opération est déclenchée, elle ne bloque pas le reste du programme. En d'autres termes, au lieu d'attendre qu'une tâche soit terminée, Node.js continue d'exécuter le reste du code et gère le résultat de l'opération de manière asynchrone.
 
@@ -28,7 +28,7 @@ fs.readFile('example.txt', 'utf8', (err, data) => {
 
 Dans cet exemple, la fonction `fs.readFile()` déclenche la lecture du fichier, et une fois que l'opération est terminée, elle exécute la fonction callback. Si une erreur survient (par exemple, si le fichier n'existe pas), elle est gérée via l'objet `err`.
 
-## Les Promesses et async/await
+## ⏳ Les Promesses et async/await
 
 Les **Promesses** sont une alternative moderne aux callbacks pour gérer l'asynchronie. Elles permettent de rendre le code plus lisible et d'éviter les fameux "callback hell" (enchaînements complexes de callbacks).
 
@@ -69,7 +69,7 @@ lireFichier();
 
 Avec `async/await`, le code est plus lisible et plus facile à comprendre. La fonction `lireFichier` est marquée comme `async`, ce qui permet d'utiliser `await` pour attendre que la Promesse soit résolue.
 
-## Exercice pratique
+## 📝 Exercice pratique
 
 1. **Réécrire un code basé sur des callbacks en utilisant des Promesses :**
 
