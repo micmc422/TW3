@@ -10,7 +10,7 @@ Dans cette activité, nous allons prendre un formulaire de connexion de base et 
 ## **Préparation du Formulaire de Connexion de Base**
 
 **Code HTML de départ :**
-```html
+```html copy
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +33,7 @@ Dans cette activité, nous allons prendre un formulaire de connexion de base et 
 ```
 
 **Code Node.js de départ :**
-```javascript
+```javascript copy
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -71,7 +71,7 @@ Les attaquants peuvent injecter des scripts malveillants dans les champs de form
 - Ajouter une **Content Security Policy (CSP)** pour restreindre les sources de scripts.
 
 **Mise en œuvre dans Node.js :**
-```javascript
+```javascript copy
 const sanitizeHtml = require('sanitize-html');
 
 app.post('/login', (req, res) => {
@@ -87,7 +87,7 @@ app.post('/login', (req, res) => {
 ```
 
 **Ajout d’une CSP dans les headers HTTP :**
-```javascript
+```javascript copy
 app.use((req, res, next) => {
     res.setHeader(
         'Content-Security-Policy',
@@ -108,12 +108,12 @@ Un attaquant peut forcer un utilisateur authentifié à envoyer une requête mal
 - Utiliser des jetons CSRF pour valider que chaque requête POST provient de l’utilisateur légitime.  
 
 **Installation et utilisation de `csurf` :**
-```bash
+```bash copy
 npm install csurf cookie-parser
 ```
 
 **Ajout dans l’application :**
-```javascript
+```javascript copy
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
 
@@ -157,12 +157,12 @@ Les attaquants peuvent essayer plusieurs combinaisons de mots de passe jusqu’�
 - Implémenter un délai ou un blocage temporaire après plusieurs échecs.
 
 **Installation et utilisation de `express-rate-limit` :**
-```bash
+```bash copy
 npm install express-rate-limit
 ```
 
 **Ajout dans l’application :**
-```javascript
+```javascript copy
 const rateLimit = require('express-rate-limit');
 
 const loginLimiter = rateLimit({
@@ -192,7 +192,7 @@ Les cookies peuvent être volés via des attaques XSS ou envoyés sur des connex
 - Ajouter les options `HttpOnly`, `Secure`, et `SameSite` aux cookies de session.
 
 **Exemple :**
-```javascript
+```javascript copy
 const session = require('express-session');
 
 app.use(session({
@@ -221,7 +221,7 @@ Avec ces améliorations, notre formulaire de connexion est désormais protégé 
 
 **Tester l’application :**  
 1. Lancez le serveur :  
-   ```bash
+   ```bash copy
    node app.js
    ```
 2. Accédez à `http://localhost:3000/login` pour tester le formulaire sécurisé.  

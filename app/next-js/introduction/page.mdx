@@ -21,15 +21,15 @@ Next.js est un framework basé sur **React** qui facilite le développement d’
 
 La manière la plus simple de démarrer un projet Next.js est d’utiliser **create-next-app** :  
 
-```bash
+```bash copy
 npx create-next-app@latest my-next-app
 ```
 Ou avec **yarn** :  
-```bash
+```bash copy
 yarn create next-app my-next-app
 ```
 Ou encore avec **pnpm** :  
-```bash
+```bash copy
 pnpm create next-app my-next-app
 ```
 <Callout emoji="👉" type='info'>
@@ -38,7 +38,7 @@ Cette commande crée un projet avec une configuration prête à l’emploi, incl
 
 Ensuite, rendez-vous dans le dossier du projet et démarrez le serveur local :  
 
-```bash
+```bash copy
 cd my-next-app
 npm run dev
 ```
@@ -51,18 +51,15 @@ L’application sera disponible sur **http://localhost:3000**.
 Vercel est la plateforme idéale pour héberger une application Next.js, car elle optimise automatiquement les performances et gère le déploiement en continu.  
 
 ### **1️⃣ Installer Vercel CLI**  
-```bash npm2yarn
-npm install -g vercel
+```bash copy
 ```
   
 ### **2️⃣ Se connecter à Vercel**  
-```bash
-vercel login
+```bash copy
 ```
   
 ### **3️⃣ Déployer l’application**  
-```bash
-vercel
+```bash copy
 ```
 Vercel détecte automatiquement Next.js et génère une URL publique. À chaque modification poussée sur **GitHub**, **GitLab** ou **Bitbucket**, un déploiement est automatiquement généré.  
 

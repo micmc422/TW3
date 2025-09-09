@@ -4,7 +4,7 @@ La création de routes dynamiques dans React Router permet de rendre des composa
 
 Voici comment vous pouvez créer une route dynamique avec React Router :
 
-```jsx
+```jsx copy
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 
 Dans cet exemple, `:id` est un paramètre de route dynamique. Vous pouvez accéder à la valeur de ce paramètre dans le composant `Product` en utilisant le hook `useParams` de React Router :
 
-```jsx
+```jsx copy
 import { useParams } from "react-router-dom";
 
 function Product() {

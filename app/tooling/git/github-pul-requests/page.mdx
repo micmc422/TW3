@@ -52,8 +52,7 @@ git push origin feature/nouvelle-fonctionnalite
 
 ### Mise à jour de la PR
 
-```sh
-# Mettre à jour votre branche avec main
+```sh copy
 git checkout main
 git pull
 git checkout feature/nouvelle-fonctionnalite
@@ -95,7 +94,7 @@ git push origin --delete feature/nouvelle-fonctionnalite  # remote
 
 ### GitHub Actions
 
-```jsonl
+```jsonl copy
 name: PR Checks
 on: [pull_request]
 jobs:

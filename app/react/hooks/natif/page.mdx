@@ -6,7 +6,7 @@ Voici des exemples fonctionnels pour chaque Hook natif de React :
 
 Le Hook `useState` permet d'ajouter un état local à un composant fonctionnel. Il retourne un tableau avec deux éléments : la valeur actuelle de l'état et une fonction pour la mettre à jour.
 
-```jsx twoslash
+```jsx copy
 import React, { useState } from 'react';
 
 function Counter() {
@@ -23,7 +23,7 @@ function Counter() {
 ```
 
 #### Les bénéfices de la syntaxe `setCount(count => count + 1)`
-```jsx
+```jsx copy
 import React, { useState } from 'react';
 
 function Counter() {
@@ -46,7 +46,7 @@ export default Counter;
    - Si une mise à jour dépend de l'état précédent, il faut utiliser la **fonction de mise à jour** pour éviter des erreurs.  
 
    ✅ **Exemple où cette syntaxe est indispensable** :  
-   ```jsx
+   ```jsx copy
    function Counter() {
      const [count, setCount] = useState(0);
 
@@ -70,7 +70,7 @@ export default Counter;
    - Les mises à jour sont **écrasées** car React ne met pas à jour immédiatement `count`.  
 
    ✅ **Correction avec la fonction de mise à jour** :  
-   ```jsx
+   ```jsx copy
    const incrementThreeTimes = () => {
      setCount(prevCount => prevCount + 1);
      setCount(prevCount => prevCount + 1);
@@ -82,7 +82,7 @@ export default Counter;
 ---
 
 2. **Elle fonctionne mieux avec les effets (`useEffect`) et les mises à jour asynchrones.**  
-   ```jsx
+   ```jsx copy
    useEffect(() => {
      setTimeout(() => {
        setCount(prevCount => prevCount + 1);
@@ -105,7 +105,7 @@ export default Counter;
 
 Le Hook `useEffect` permet d'effectuer des effets secondaires dans les composants fonctionnels. Il peut être utilisé pour des opérations telles que les requêtes réseau, les abonnements, les manipulations du DOM, etc.
 
-```jsx
+```jsx copy
 import React, { useState, useEffect } from 'react';
 
 function Exemple() {
@@ -137,7 +137,7 @@ Le `return` dans `useEffect` est utilisé pour **nettoyer les effets secondaires
 ---
 
 #### **Exemple sans `return` (effet simple)**
-```jsx
+```jsx copy
 import React, { useState, useEffect } from 'react';
 
 function Timer() {
@@ -170,7 +170,7 @@ La fonction de nettoyage est utile dans plusieurs cas :
 ---
 
 #### **Exemple avec nettoyage (`return`)**
-```jsx
+```jsx copy
 import React, { useState, useEffect } from 'react';
 
 function Timer() {
@@ -206,7 +206,7 @@ export default Timer;
 Si on ajoute un écouteur d’événement sans le retirer, il peut continuer à exister après le démontage du composant :
 
 ❌ **Mauvais exemple (pas de nettoyage)**
-```jsx
+```jsx copy
 useEffect(() => {
   window.addEventListener("resize", () => {
     console.log("Fenêtre redimensionnée !");
@@ -217,7 +217,7 @@ useEffect(() => {
 - L’événement `resize` reste actif même après le démontage du composant.  
 
 ✅ **Solution avec un `return` pour le supprimer :**
-```jsx
+```jsx copy
 useEffect(() => {
   const handleResize = () => {
     console.log("Fenêtre redimensionnée !");
@@ -248,7 +248,7 @@ useEffect(() => {
 
 Le Hook `useContext` permet d'accéder à la valeur actuelle d'un contexte. Il est souvent utilisé avec le Context API pour partager des données globales entre plusieurs composants.
 
-```jsx
+```jsx copy
 import React, { useContext } from 'react';
 
 // Création d'un contexte avec une valeur par défaut "light"
@@ -268,7 +268,7 @@ export default BoutonThème;
 
 Le Hook `useReducer` est une alternative à `useState` qui est plus adaptée pour gérer des logiques d'état complexes. Il fonctionne de manière similaire à `reduce` dans JavaScript, en acceptant un réducteur et un état initial.
 
-```jsx
+```jsx copy
 import React, { useReducer } from 'react';
 
 // État initial du compteur
@@ -306,7 +306,7 @@ export default Compteur;
 
 Le Hook `useRef` permet de créer une référence mutable qui persiste pendant toute la durée de vie du composant. Il est souvent utilisé pour accéder aux éléments du DOM ou pour garder une référence à une valeur qui peut changer au fil du temps.
 
-```jsx
+```jsx copy
 import React, { useRef } from 'react';
 
 function TextInputWithFocusButton() {
@@ -328,7 +328,7 @@ function TextInputWithFocusButton() {
 
 Le Hook `useMemo` permet de mémoriser des calculs coûteux. Il retourne une valeur mémorisée qui ne change que si une de ses dépendances change.
 
-```jsx
+```jsx copy
 import React, { useMemo } from 'react';
 
 function computeExpensiveValue(a, b) {
@@ -350,7 +350,7 @@ function MyComponent({ a, b }) {
 
 Le Hook `useCallback` permet de mémoriser une fonction. Il retourne une version mémorisée de la fonction qui ne change que si une de ses dépendances change.
 
-```jsx
+```jsx copy
 import React, { useCallback } from 'react';
 
 function MyComponent({ a, b }) {

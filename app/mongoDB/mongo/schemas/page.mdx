@@ -10,8 +10,7 @@ description: "Schémas Dynamiques vs Statiques dans MongoDB."
 
 Considérons un blog dans lequel les utilisateurs peuvent ajouter des articles avec des champs dynamiques. Un utilisateur peut ajouter des informations supplémentaires à chaque article sans définir de schéma fixe à l'avance.
 
-```json
-{
+```json copy
   "_id": ObjectId("id_article1"),
   "titre": "Introduction à MongoDB",
   "contenu": "...",
@@ -29,8 +28,7 @@ Dans cet exemple, le document peut évoluer au fil du temps en fonction des beso
 
 Imaginons un catalogue de produits où la structure des produits est relativement stable. Chaque produit suit un schéma fixe qui inclut des informations telles que le nom, la description, le prix, et la catégorie.
 
-```json
-{
+```json copy
   "_id": ObjectId("id_produit1"),
   "nom": "Laptop",
   "description": "Ordinateur portable performant",

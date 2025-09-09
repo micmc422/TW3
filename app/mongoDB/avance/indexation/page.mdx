@@ -25,14 +25,14 @@ En résumé, l'indexation dans MongoDB utilise des structures d'arbres B pour or
 
 La création d'index dans MongoDB repose sur des principes fondamentaux visant à améliorer la rapidité des requêtes. Par exemple, considérons une collection `utilisateurs` avec les champs `nom` et `email`. La création d'un index sur le champ `nom` pourrait accélérer les recherches basées sur ce critère.
 
-```javascript
+```javascript copy
 // Exemple de création d'un index sur le champ 'nom'
 db.utilisateurs.createIndex({ "nom": 1 });
 ```
 
 Explorerons également les index composés, qui impliquent plusieurs champs, adaptés aux requêtes complexes.
 
-```javascript
+```javascript copy
 // Exemple de création d'un index composé sur les champs 'nom' et 'ville'
 db.utilisateurs.createIndex({ "nom": 1, "ville": 1 });
 ```
@@ -41,14 +41,14 @@ db.utilisateurs.createIndex({ "nom": 1, "ville": 1 });
 
 La gestion des index est une composante clé de leur efficacité continue. Utilisons la méthode `explain()` pour évaluer la performance d'une requête indexée.
 
-```javascript
+```javascript copy
 // Exemple d'utilisation de explain() pour évaluer une requête indexée
 db.utilisateurs.find({ "nom": "John" }).explain("executionStats");
 ```
 
 Pour la suppression d'index lorsque nécessaire, utilisez la commande `dropIndex()`.
 
-```javascript
+```javascript copy
 // Exemple de suppression d'un index sur le champ 'nom'
 db.utilisateurs.dropIndex({ "nom": 1 });
 ```
@@ -57,7 +57,7 @@ db.utilisateurs.dropIndex({ "nom": 1 });
 
 L'indexation n'est pas une approche universelle, mais elle peut être cruciale dans certains scénarios. Par exemple, dans une collection de messages, un index sur le champ `date` pourrait améliorer la récupération des messages les plus récents.
 
-```javascript
+```javascript copy
 // Exemple de création d'un index sur le champ 'date' pour trier les messages
 db.messages.createIndex({ "date": -1 });
 ```

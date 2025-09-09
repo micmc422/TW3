@@ -10,7 +10,7 @@ La mise à jour de données, souvent désignée par le terme "Update", est une �
 
 1. **`updateOne()` et `updateMany()` :** Ces méthodes permettent de mettre à jour un ou plusieurs documents qui correspondent à un critère donné. Elles prennent en charge une variété d'opérateurs de mise à jour pour modifier des champs spécifiques.
 
-    ```javascript
+    ```javascript copy
     // Exemple de mise à jour d'un document unique
     db.ma_collection.updateOne({ "nom": "John Doe" }, { $set: { "age": 26 } });
 
@@ -20,14 +20,14 @@ La mise à jour de données, souvent désignée par le terme "Update", est une �
 
 2. **`update()` :** Bien que `updateOne()` et `updateMany()` soient plus explicites, vous pouvez également utiliser la méthode générique `update()` pour mettre à jour un ou plusieurs documents.
 
-    ```javascript
+    ```javascript copy
     // Exemple d'utilisation de update() pour un ou plusieurs documents
     db.ma_collection.update({ "nom": "Jane Doe" }, { $set: { "age": 31 } });
     ```
 
 3. **`replaceOne()` :** Cette méthode remplace entièrement un document qui correspond à un critère donné. Elle est utile lorsque vous souhaitez remplacer un document existant par un nouveau.
 
-    ```javascript
+    ```javascript copy
     // Exemple de remplacement d'un document
     db.ma_collection.replaceOne({ "nom": "Bob Smith" }, { "nom": "Robert Smith", "age": 29, "ville": "Smithville" });
     ```
@@ -36,21 +36,21 @@ La mise à jour de données, souvent désignée par le terme "Update", est une �
 
 1. **`$set` :** Met à jour la valeur d'un champ spécifique.
 
-    ```javascript
+    ```javascript copy
     // Exemple d'utilisation de $set
     db.ma_collection.updateOne({ "nom": "John Doe" }, { $set: { "ville": "Nouvellbourg" } });
     ```
 
 2. **`$inc` :** Incrémente la valeur d'un champ numérique.
 
-    ```javascript
+    ```javascript copy
     // Exemple d'utilisation de $inc
     db.ma_collection.updateOne({ "nom": "Alice" }, { $inc: { "age": 1 } });
     ```
 
 3. **`$push` :** Ajoute un élément à un tableau.
 
-    ```javascript
+    ```javascript copy
     // Exemple d'utilisation de $push
     db.ma_collection.updateOne({ "nom": "Eva" }, { $push: { "amis": "Charlie" } });
     ```
@@ -59,7 +59,7 @@ La mise à jour de données, souvent désignée par le terme "Update", est une �
 
 1. **Utilisation de Filtres Précis :** Soyez spécifique dans les filtres pour cibler précisément les documents à mettre à jour et éviter des modifications non désirées.
 
-    ```javascript
+    ```javascript copy
     // Exemple de filtre précis
     db.ma_collection.updateOne({ "nom": "John Doe", "ville": "Villebourg" }, { $set: { "age": 27 } });
     ```
@@ -68,7 +68,7 @@ La mise à jour de données, souvent désignée par le terme "Update", est une �
 
 3. **Utilisation de `multi` :** Lorsque cela est nécessaire, utilisez l'option `multi` pour appliquer une mise à jour à plusieurs documents.
 
-    ```javascript
+    ```javascript copy
     // Exemple de mise à jour de plusieurs documents avec multi
     db.ma_collection.update({ "ville": "Villebourg" }, { $set: { "statut": "actif" } }, { multi: true });
     ```

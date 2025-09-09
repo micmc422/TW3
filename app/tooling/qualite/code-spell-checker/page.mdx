@@ -20,8 +20,7 @@ Par défaut, l'extension vérifie l'orthographe en anglais. Pour ajouter le supp
 4. Ajoutez "fr" à la liste des langages
 
 
-```json
-{
+```json copy
   "cSpell.language": "en,fr"
 }
 ```
@@ -31,7 +30,7 @@ Par défaut, l'extension vérifie l'orthographe en anglais. Pour ajouter le supp
 L'extension souligne automatiquement les mots mal orthographiés :
 
 
-```js
+```js copy
 // Exemple avec une faute
 const mesage = "Bonjour"; // 'mesage' sera souligné car mal orthographié
 const message = "Bonjour"; // Correct
@@ -50,8 +49,7 @@ const message = "Bonjour"; // Correct
 
 Pour ignorer certains mots spécifiques, ajoutez-les dans les paramètres :
 
-```json
-{
+```json copy
   "cSpell.words": [
     "vuepress",
     "nuxt",
@@ -64,8 +62,7 @@ Pour ignorer certains mots spécifiques, ajoutez-les dans les paramètres :
 
 Vous pouvez créer un fichier `cspell.json` à la racine de votre projet :
 
-```json
-{
+```json copy
   "version": "0.2",
   "language": "en,fr",
   "words": [

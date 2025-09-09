@@ -37,7 +37,7 @@ Dans cette activité, nous allons mettre en place une authentification OAuth 2.0
 ## **Initialiser le Projet Node.js**
 <Steps>
 ### **Créer un projet Node.js :**  
-   ```bash
+   ```bash copy
    mkdir oauth2-google-auth
    cd oauth2-google-auth
    npm init -y
@@ -46,7 +46,7 @@ Dans cette activité, nous allons mettre en place une authentification OAuth 2.0
 
 ### **Configurer l’environnement :**  
    Créez un fichier `.env` pour stocker vos identifiants OAuth :  
-   ```plaintext
+   ```plaintext copy
    GOOGLE_CLIENT_ID=<votre_client_id>
    GOOGLE_CLIENT_SECRET=<votre_client_secret>
    SESSION_SECRET=<votre_session_secret>
@@ -58,7 +58,7 @@ Dans cette activité, nous allons mettre en place une authentification OAuth 2.0
 
 **Créer un fichier `app.js` :**
 
-```javascript
+```javascript copy
 const express = require('express');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -143,7 +143,7 @@ app.listen(PORT, () => {
 ## **Tester l’Application**
 <Steps>
 ### **Lancer le serveur :**  
-   ```bash
+   ```bash copy
    node app.js
    ```
 

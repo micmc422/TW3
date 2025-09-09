@@ -8,7 +8,7 @@ Il existe deux types principaux de composants React : les composants fonctionnel
 
 Un composant fonctionnel est une fonction qui retourne un élément React. Voici un exemple de composant fonctionnel :
 
-```jsx
+```jsx copy
 import React from 'react';
 
 function Welcome(props) {
@@ -22,7 +22,7 @@ Dans cet exemple, `Welcome` est un composant fonctionnel qui prend un objet `pro
 
 Un composant de classe est une classe ES6 qui hérite de la classe `Component` de React. Voici un exemple de composant de classe :
 
-```jsx
+```jsx copy
 import React, { Component } from 'react';
 
 class Welcome extends Component {
@@ -38,7 +38,7 @@ Dans cet exemple, `Welcome` est un composant de classe qui a une méthode `rende
 
 Pour utiliser un composant, vous devez l'importer dans le fichier où vous voulez l'utiliser, puis l'inclure dans votre JSX comme une balise HTML. Par exemple, si vous avez un composant `Welcome`, vous pouvez l'utiliser comme ceci :
 
-```jsx
+```jsx copy
 import React from 'react';
 import Welcome from './Welcome';
 

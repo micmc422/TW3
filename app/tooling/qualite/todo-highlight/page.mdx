@@ -14,7 +14,7 @@ L'extension TODO Highlight est un outil pratique pour Visual Studio Code qui per
 
 L'extension reconnaît par défaut les mots-clés suivants dans les commentaires :
 
-```js
+```js copy
 // TODO: Implémenter la fonction de validation
 // FIXME: Corriger le bug d'affichage 
 // NOTE: Cette partie pourrait être optimisée
@@ -24,8 +24,7 @@ L'extension reconnaît par défaut les mots-clés suivants dans les commentaires
 
 Vous pouvez personnaliser les mots-clés et leurs couleurs dans settings.json :
 
-```json
-{
+```json copy
   "todohighlight.keywords": [
     {
       "text": "TODO:",
@@ -49,7 +48,7 @@ Vous pouvez personnaliser les mots-clés et leurs couleurs dans settings.json :
 ## Exemples d'utilisation
 
 ### JavaScript
-```js
+```js copy
 // TODO: Ajouter la validation des entrées
 function validateForm() {
   // FIXME: La regex n'est pas assez stricte
@@ -60,7 +59,7 @@ function validateForm() {
 
 ### Python
 
-```python
+```python copy
 # TODO: Implémenter la gestion des erreurs
 def process_data(data):
     # FIXME: Optimiser cette boucle

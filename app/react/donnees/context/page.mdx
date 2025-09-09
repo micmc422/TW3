@@ -6,7 +6,7 @@ Le Context API est une fonctionnalité de React qui permet de partager des donn�
 
 La première étape consiste à créer un contexte. Un contexte est simplement un objet vide qui sert de conteneur pour les données que vous souhaitez partager. Vous pouvez créer un contexte en utilisant la fonction `createContext()` de React.
 
-```jsx
+```jsx copy
 import React, { createContext } from 'react';
 
 // Création du contexte
@@ -17,7 +17,7 @@ const MyContext = createContext();
 
 Une fois que vous avez créé un contexte, vous pouvez le fournir à vos composants en utilisant le `Provider` du contexte. Le `Provider` est un composant spécial qui accepte une prop `value` et la rend disponible à tous les composants enfants.
 
-```jsx
+```jsx copy
 import React, { createContext, useContext } from 'react';
 
 // Création du contexte
@@ -40,7 +40,7 @@ Dans cet exemple, le composant `ParentComponent` fournit le contexte `MyContext`
 
 Pour consommer le contexte dans un composant enfant, vous pouvez utiliser le hook `useContext()`. Ce hook accepte un objet de contexte (c'est-à-dire l'objet retourné par `createContext()`) et renvoie la valeur actuelle du contexte.
 
-```jsx
+```jsx copy
 import React, { createContext, useContext } from 'react';
 
 // Création du contexte

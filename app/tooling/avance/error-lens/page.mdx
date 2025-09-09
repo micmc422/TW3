@@ -19,7 +19,7 @@ Error Lens affiche les messages d'erreur directement à la fin de la ligne conce
 - Lire le message d'erreur sans avoir à survoler la ligne
 - Identifier rapidement les erreurs de syntaxe ou de type
 
-```js
+```js copy
 const nombre: string = 42; // Error: Type 'number' is not assignable to type 'string'
 ```
 
@@ -28,8 +28,7 @@ const nombre: string = 42; // Error: Type 'number' is not assignable to type 'st
 Vous pouvez personnaliser les couleurs utilisées pour différents types de messages :
 
 
-```json
-{
+```json copy
   "errorLens.errorColor": "#ff0000",
   "errorLens.warningColor": "#ffa500",
   "errorLens.infoColor": "#2080ff"
@@ -43,8 +42,7 @@ Vous pouvez personnaliser les couleurs utilisées pour différents types de mess
 
 2. **Filtrer les messages** : Configurez quels types de messages afficher :
 
-```json
-{
+```json copy
   "errorLens.enabledDiagnosticLevels": [
     "error",
     "warning",
@@ -55,8 +53,7 @@ Vous pouvez personnaliser les couleurs utilisées pour différents types de mess
 
 
 3. **Mode status bar** : Affichez les erreurs dans la barre de statut plutôt qu'en inline :
-```json
-{
+```json copy
   "errorLens.messageEnabled": false,
   "errorLens.statusBarMessageEnabled": true
 }
@@ -68,8 +65,7 @@ Vous pouvez personnaliser les couleurs utilisées pour différents types de mess
 Voici une configuration optimale pour un bon équilibre entre visibilité et discrétion :
 
 
-```json
-{
+```json copy
   "errorLens.enabledDiagnosticLevels": [
     "error",
     "warning"
@@ -95,8 +91,7 @@ Voici une configuration optimale pour un bon équilibre entre visibilité et dis
 
 2. **Performance** : Si vous travaillez sur de très grands fichiers, vous pouvez optimiser les performances avec :
 
-```json
-{
+```json copy
   "errorLens.delay": 100,
   "errorLens.scrollbarHackEnabled": false
 }
@@ -105,8 +100,7 @@ Voici une configuration optimale pour un bon équilibre entre visibilité et dis
 
 3. **Mode focus** : Pour vous concentrer sur la résolution d'erreurs spécifiques :
 
-```json
-{
+```json copy
   "errorLens.enabledDiagnosticLevels": ["error"],
   "errorLens.followCursor": true
 }

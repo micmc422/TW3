@@ -18,7 +18,7 @@ L’objectif de cet exercice est de créer un serveur GraphQL simple qui permet 
 ## **Étape 1 : Structure du projet**
 
 Créez un répertoire et initialisez un projet Node.js :
-```bash
+```bash copy
 mkdir exercice-graphql
 cd exercice-graphql
 npm init -y
@@ -129,8 +129,7 @@ query {
 ```
 
 **Réponse attendue :**
-```json
-{
+```json copy
   "data": {
     "students": [
       {
@@ -159,8 +158,7 @@ query {
 ```
 
 **Réponse attendue :**
-```json
-{
+```json copy
   "data": {
     "student": {
       "name": "Alice",
@@ -182,8 +180,7 @@ mutation {
 ```
 
 **Réponse attendue :**
-```json
-{
+```json copy
   "data": {
     "addStudent": {
       "id": "3",

@@ -15,8 +15,7 @@ GraphQL permet aux clients de demander exactement les données nécessaires, et 
 - Exemple : Avec REST, pour récupérer un utilisateur et ses articles, deux appels pourraient être nécessaires. Avec GraphQL, une seule requête suffit.
 
 **Exemple de requête ciblée :**
-```graphql
-query {
+```graphql copy
   user(id: 1) {
     name
     email
@@ -46,8 +45,7 @@ Pour une application de réseau social :
 
 - **GraphQL** :
   Une seule requête peut retourner toutes ces informations :
-  ```graphql
-  query {
+  ```graphql copy
     user(id: 1) {
       name
       posts {

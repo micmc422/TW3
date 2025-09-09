@@ -10,8 +10,7 @@ L'administration d'une base de données MongoDB est une tâche essentielle pour 
 
 La surveillance régulière des performances est cruciale pour identifier les goulots d'étranglement, les pics d'activité, et les tendances à long terme. Mongo propose des outils intégrés tels que MongoDB Profiler et MongoDB Cloud Manager, vous permettant de recueillir des informations précieuses sur l'utilisation des ressources et les temps de réponse.
 
-```bash
-# Activation du Profiler pour surveiller les opérations
+```bash copy
 db.setProfilingLevel(1);
 ```
 
@@ -19,8 +18,7 @@ db.setProfilingLevel(1);
 
 La sauvegarde régulière de votre base de données est impérative pour la récupération en cas de défaillance du système.
 
-```bash
-# Utilisation de mongodump pour sauvegarder la base de données
+```bash copy
 mongodump --db ma_base_de_donnees --out /chemin/vers/le/dossier
 ```
 
@@ -28,8 +26,7 @@ mongodump --db ma_base_de_donnees --out /chemin/vers/le/dossier
 
 La maintenance régulière garantit des performances optimales. Cela inclut la vérification et la réparation des données corrompues, la suppression des index inutilisés, et la gestion des collections temporaires.
 
-```bash
-# Vérification et réparation de la base de données
+```bash copy
 mongod --dbpath /chemin/vers/le/dossier
 ```
 
@@ -37,7 +34,7 @@ mongod --dbpath /chemin/vers/le/dossier
 
 Nous aborderons les stratégies d'évolutivité horizontale et verticale, ainsi que la configuration de la haute disponibilité avec la réplication. Cela garantit une distribution équilibrée de la charge et la résilience en cas de défaillance d'un nœud.
 
-```javascript
+```javascript copy
 // Configuration d'un ensemble de réplication pour la haute disponibilité
 rs.initiate();
 ```

@@ -25,7 +25,7 @@ Le hachage consiste à transformer un mot de passe en une chaîne illisible. Tou
    - Possibilité de configurer le "coût" pour ralentir le calcul du hachage, rendant les attaques par force brute moins efficaces.
 
    **Exemple (Node.js) :**
-   ```javascript
+   ```javascript copy
    const bcrypt = require('bcrypt');
    const saltRounds = 10;
 
@@ -43,7 +43,7 @@ Le hachage consiste à transformer un mot de passe en une chaîne illisible. Tou
    - Idéal pour les environnements où la sécurité est une priorité.
 
    **Exemple (Node.js) :**
-   ```javascript
+   ```javascript copy
    const argon2 = require('argon2');
 
    const hashPassword = async (password) => {
@@ -78,7 +78,7 @@ Les headers HTTP peuvent être configurés pour ajouter une couche supplémentai
 Le header `Content-Security-Policy` limite les sources de contenu autorisées (scripts, styles, images, etc.) pour prévenir les attaques **XSS** (Cross-Site Scripting).
 
 **Exemple :**
-```http
+```http copy
 Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com
 ```
 - **default-src 'self'** : N’autorise que le contenu provenant du même domaine.
@@ -94,7 +94,7 @@ Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.goog
 Le header `Strict-Transport-Security` force le navigateur à n’accepter que des connexions sécurisées (HTTPS), même si l'utilisateur tente d'accéder au site via HTTP.
 
 **Exemple :**
-```http
+```http copy
 Strict-Transport-Security: max-age=31536000; includeSubDomains
 ```
 - **max-age=31536000** : Définit une durée de 1 an (en secondes) pour l'obligation d'utiliser HTTPS.
@@ -109,7 +109,7 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 Ce header empêche le navigateur d’interpréter un fichier en tant que type MIME différent de celui déclaré. Cela protège contre certains types d'attaques.
 
 **Exemple :**
-```http
+```http copy
 X-Content-Type-Options: nosniff
 ```
 
@@ -122,7 +122,7 @@ X-Content-Type-Options: nosniff
 Ce header empêche une page web d’être chargée dans un cadre (iframe), réduisant les risques d’attaques **Clickjacking**.
 
 **Exemple :**
-```http
+```http copy
 X-Frame-Options: DENY
 ```
 
@@ -136,7 +136,7 @@ X-Frame-Options: DENY
 Ce header contrôle les informations envoyées dans l'en-tête `Referer` lorsqu’un utilisateur clique sur un lien.
 
 **Exemple :**
-```http
+```http copy
 Referrer-Policy: no-referrer-when-downgrade
 ```
 - `no-referrer-when-downgrade` : Envoie le référent uniquement pour des connexions sécurisées (HTTPS).

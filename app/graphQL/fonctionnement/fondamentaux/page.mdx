@@ -15,8 +15,7 @@ Le schéma est la pierre angulaire d’une API GraphQL. Il définit :
 
 ### **Structure d’un schéma :**  
 Le schéma utilise un langage spécifique, appelé **SDL (Schema Definition Language)**. Par exemple :  
-```graphql
-type User {
+```graphql copy
   id: ID!
   name: String!
   email: String!
@@ -44,8 +43,7 @@ Les types scalaires sont les blocs de base pour représenter des données simple
 
 ### **Types personnalisés (Objets)** :  
 Les types personnalisés permettent de structurer des données plus complexes. Par exemple, un type utilisateur :  
-```graphql
-type User {
+```graphql copy
   id: ID!
   name: String!
   email: String
@@ -55,12 +53,7 @@ type User {
 
 ### **Enums et Listes :**  
 - **Enums** : Définissent un ensemble de valeurs possibles pour une propriété :  
-  ```graphql
-  enum Role {
-    ADMIN
-    USER
-    GUEST
-  }
+  ```graphql copy
   ```
 - **Listes** : Utilisées pour représenter des collections de données. Par exemple, `[User]` est une liste d’utilisateurs.  
 
@@ -70,8 +63,7 @@ type User {
 Les requêtes permettent de récupérer les données depuis le serveur. Ce qui distingue GraphQL, c’est la possibilité pour le client de spécifier exactement les champs nécessaires.  
 
 ### **Exemple de requête simple :**  
-```graphql
-query {
+```graphql copy
   user(id: 1) {
     name
     email
@@ -89,8 +81,7 @@ Les mutations permettent de modifier ou d’ajouter des données sur le serveur.
 
 ### **Exemple de mutation :**  
 Créer un nouvel utilisateur :  
-```graphql
-mutation {
+```graphql copy
   createUser(input: { name: "Alice", email: "alice@example.com" }) {
     id
     name
@@ -111,13 +102,7 @@ Les subscriptions permettent d’écouter les changements de données en temps r
 - Affichage de mises à jour dans une application de chat.  
 
 ### **Exemple de subscription :**  
-```graphql
-subscription {
-  messageAdded {
-    content
-    sender
-  }
-}
+```graphql copy
 ```
 
 ---

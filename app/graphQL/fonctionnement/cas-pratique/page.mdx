@@ -14,7 +14,7 @@ L'objectif de cet exemple est de mettre en place un serveur GraphQL de base, cap
 
 2. **Initialiser un projet Node.js**  
    Créez un répertoire pour votre projet et initialisez-le avec `npm`:  
-   ```bash
+   ```bash copy
    mkdir graphql-server
    cd graphql-server
    npm init -y
@@ -22,7 +22,7 @@ L'objectif de cet exemple est de mettre en place un serveur GraphQL de base, cap
 
 3. **Installer les dépendances nécessaires**  
    Installez Apollo Server et GraphQL :  
-   ```bash
+   ```bash copy
    npm install @apollo/server graphql
    ```
 
@@ -35,7 +35,7 @@ Le schéma déclare les types et les opérations disponibles dans notre API.
 Dans ce cas, nous allons gérer une liste d'utilisateurs avec les propriétés suivantes : `id`, `name`, et `email`.  
 
 **Fichier : `index.js`**  
-```javascript
+```javascript copy
 const { ApolloServer } = require('@apollo/server');
 
 // Définition du schéma
@@ -73,7 +73,7 @@ const server = new ApolloServer({ typeDefs, resolvers });
 ### **2. Configurer et démarrer le serveur**  
 Ajoutez le code pour démarrer le serveur.  
 
-```javascript
+```javascript copy
 // Importer des modules pour le serveur HTTP
 const { startStandaloneServer } = require('@apollo/server/standalone');
 
@@ -90,12 +90,12 @@ startStandaloneServer(server, {
 ## **Étape 3 : Lancer le serveur**  
 
 Dans le terminal, exécutez :  
-```bash
+```bash copy
 node index.js
 ```
 
 Vous devriez voir un message indiquant que le serveur est prêt, avec l’URL suivante :  
-```text
+```text copy
 🚀 Serveur GraphQL prêt à l'adresse : http://localhost:4000/
 ```
 
@@ -105,20 +105,12 @@ Vous devriez voir un message indiquant que le serveur est prêt, avec l’URL su
 
 Ouvrez un navigateur ou un client GraphQL comme **GraphiQL** ou **Apollo Studio Explorer**, puis envoyez la requête suivante pour obtenir la liste des utilisateurs :  
 
-```graphql
-query {
-  users {
-    id
-    name
-    email
-  }
-}
+```graphql copy
 ```
 
 ### **Réponse attendue :**  
 Le serveur retournera un objet JSON avec les données :  
-```json
-{
+```json copy
   "data": {
     "users": [
       {
@@ -157,14 +149,13 @@ Le serveur retournera un objet JSON avec les données :
 Vous pouvez enrichir le serveur en ajoutant des **mutations** pour modifier les données ou des **subscriptions** pour des mises à jour en temps réel. Voici un exemple d’ajout d’une mutation pour créer un utilisateur :  
 
 **Ajout dans `typeDefs` :**  
-```graphql
-type Mutation {
+```graphql copy
   createUser(name: String!, email: String!): User
 }
 ```
 
 **Ajout dans `resolvers` :**  
-```javascript
+```javascript copy
 Mutation: {
   createUser: (_, { name, email }) => {
     const newUser = { id: String(users.length + 1), name, email };

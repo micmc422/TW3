@@ -10,7 +10,7 @@ La suppression de données, souvent désignée par le terme "Delete", est une é
 
 1. **`deleteOne()` et `deleteMany()` :** Ces méthodes permettent de supprimer un ou plusieurs documents qui correspondent à un critère donné.
 
-    ```javascript
+    ```javascript copy
     // Exemple de suppression d'un document unique
     db.ma_collection.deleteOne({ "nom": "John Doe" });
 
@@ -20,7 +20,7 @@ La suppression de données, souvent désignée par le terme "Delete", est une é
 
 2. **`remove()` :** Bien que `deleteOne()` et `deleteMany()` soient plus explicites, vous pouvez également utiliser la méthode générique `remove()` pour supprimer un ou plusieurs documents.
 
-    ```javascript
+    ```javascript copy
     // Exemple d'utilisation de remove() pour un ou plusieurs documents
     db.ma_collection.remove({ "nom": "Jane Doe" });
     ```
@@ -29,14 +29,14 @@ La suppression de données, souvent désignée par le terme "Delete", est une é
 
 1. **Suppression de Champs Spécifiques :** Utilisez l'opérateur `$unset` pour supprimer des champs spécifiques d'un document.
 
-    ```javascript
+    ```javascript copy
     // Exemple de suppression d'un champ spécifique
     db.ma_collection.updateOne({ "nom": "Alice" }, { $unset: { "ville": "" } });
     ```
 
 2. **Suppression de Documents avec des Critères Spécifiques :** Utilisez des critères spécifiques pour cibler les documents à supprimer.
 
-    ```javascript
+    ```javascript copy
     // Exemple de suppression de documents avec des critères spécifiques
     db.ma_collection.deleteMany({ "age": { $gt: 30 } });
     ```
@@ -45,21 +45,21 @@ La suppression de données, souvent désignée par le terme "Delete", est une é
 
 1. **Utilisation de `justOne` :** Lors de l'utilisation de `deleteMany()`, considérez l'option `justOne` pour ne supprimer qu'un seul document, même s'il y en a plusieurs qui correspondent au critère.
 
-    ```javascript
+    ```javascript copy
     // Exemple de suppression de seulement un document avec deleteMany et justOne
     db.ma_collection.deleteMany({ "ville": "Villebourg" }, { justOne: true });
     ```
 
 2. **Précaution avec `remove()` :** Faites preuve de prudence lors de l'utilisation de `remove()`, car elle peut supprimer tous les documents si aucun critère n'est spécifié.
 
-    ```javascript
+    ```javascript copy
     // Exemple de suppression de tous les documents dans une collection
     db.ma_collection.remove({});
     ```
 
 3. **Utilisation de `w` avec `remove()` :** Lors de l'utilisation de `remove()`, spécifiez un niveau de garantie avec `w` pour confirmer le succès de l'opération.
 
-    ```javascript
+    ```javascript copy
     // Exemple de suppression de documents avec writeConcern
     db.ma_collection.remove({ "statut": "inactif" }, { writeConcern: { w: "majority" } });
     ```

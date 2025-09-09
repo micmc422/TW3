@@ -12,14 +12,14 @@ MongoDB propose plusieurs méthodes pour l'insertion de données, chacune adapt�
 
 1. **`insertOne()` :** Cette méthode permet d'ajouter un seul document à la collection. Elle prend en argument un objet JSON représentant le document à insérer.
 
-    ```javascript
+    ```javascript copy
     // Exemple d'insertion d'un document unique
     db.ma_collection.insertOne({ "nom": "John Doe", "age": 25, "ville": "Villebourg" });
     ```
 
 2. **`insertMany()` :** Utilisée pour insérer plusieurs documents en une seule opération, cette méthode prend un tableau d'objets JSON en tant qu'argument.
 
-    ```javascript
+    ```javascript copy
     // Exemple d'insertion de plusieurs documents
     db.ma_collection.insertMany([
       { "nom": "Jane Doe", "age": 30, "ville": "Villeville" },
@@ -29,7 +29,7 @@ MongoDB propose plusieurs méthodes pour l'insertion de données, chacune adapt�
 
 3. **`insert()` :** Bien que les méthodes `insertOne()` et `insertMany()` soient plus explicites, vous pouvez également utiliser la méthode générique `insert()` pour insérer un ou plusieurs documents.
 
-    ```javascript
+    ```javascript copy
     // Exemple d'utilisation de insert() pour un ou plusieurs documents
     db.ma_collection.insert({ "nom": "Alice", "age": 22, "ville": "Wonderland" });
     db.ma_collection.insert([{ "nom": "Charlie", "age": 35, "ville": "Charlottesville" }]);
@@ -43,14 +43,14 @@ MongoDB propose plusieurs méthodes pour l'insertion de données, chacune adapt�
 
 3. **Utilisation de `writeConcern` :** Pour des opérations d'écriture sécurisées, spécifiez un niveau de garantie avec `writeConcern` pour confirmer le succès de l'opération.
 
-    ```javascript
+    ```javascript copy
     // Exemple avec writeConcern
     db.ma_collection.insertOne({ "nom": "Eva", "age": 28, "ville": "Evaville" }, { writeConcern: { w: "majority" } });
     ```
 
 4. **Batch Inserts :** Lors de l'insertion de multiples documents, utilisez `insertMany()` pour réduire le nombre d'opérations et améliorer les performances.
 
-    ```javascript
+    ```javascript copy
     // Exemple avec insertMany() pour plusieurs documents
     db.ma_collection.insertMany([
       { "nom": "Frank", "age": 40, "ville": "Frankfurt" },

@@ -67,7 +67,7 @@ Ajoutez les directives Tailwind dans votre fichier CSS principal :
 #### Bouton personnalisé
 
 
-```html
+```html copy
 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
   Cliquez ici
 </button>
@@ -76,7 +76,7 @@ Ajoutez les directives Tailwind dans votre fichier CSS principal :
 #### Carte responsive
 
 
-```html
+```html copy
 <div className="max-w-sm rounded overflow-hidden shadow-lg">
   <img className="w-full" src="/image.jpg" alt="Image" />
   <div className="px-6 py-4">
@@ -92,7 +92,7 @@ Ajoutez les directives Tailwind dans votre fichier CSS principal :
 
 1. **Organisation des classes** : Gardez un ordre cohérent dans vos classes (layout → espacement → couleurs → etc.)
 
-```html
+```html copy
 <div className="flex items-center p-4 bg-blue-500 text-white">
   Contenu
 </div>
@@ -100,7 +100,7 @@ Ajoutez les directives Tailwind dans votre fichier CSS principal :
 
 2. **Extraction des composants** : Pour les motifs répétitifs, créez des composants réutilisables
 
-```html
+```html copy
 function Button({ children }) {
   return (
     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

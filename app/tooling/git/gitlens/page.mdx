@@ -8,7 +8,7 @@ GitLens est une extension populaire pour Visual Studio Code qui enrichit les fon
 ### Annotations de blame
 GitLens affiche des annotations inline montrant qui a modifié chaque ligne de code:
 
-```js
+```js copy
 function hello() {      // John Doe, il y a 2 jours - Initial commit
   console.log("Hi!");   // Jane Smith, hier - Ajout du message
 }
@@ -23,7 +23,7 @@ Visualisez l'historique complet d'un fichier avec:
 ### CodeLens
 Des informations Git apparaissent au-dessus des fonctions:
 
-```js
+```js copy
 // 3 modifications depuis 6 mois - Dernière modification par Alice
 function calculateTotal() {
   // ...
@@ -43,8 +43,7 @@ Comparez facilement:
 
 ## Configuration recommandée
 
-```json
-{
+```json copy
   "gitlens.codeLens.enabled": true,
   "gitlens.currentLine.enabled": true,
   "gitlens.hovers.currentLine.over": "line",

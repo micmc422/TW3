@@ -10,7 +10,7 @@ Configurer un environnement de développement web complet, tester plusieurs outi
    - Installez **Visual Studio Code** (si ce n’est pas déjà fait).
    - Assurez-vous que **Node.js** et **npm** sont correctement installés sur votre machine.
    - Vérifiez que **Git** est installé et configuré avec votre nom et email :
-     ```bash
+     ```bash copy
      git config --global user.name "VotreNom"
      git config --global user.email "VotreEmail"
      ```
@@ -23,8 +23,7 @@ Configurer un environnement de développement web complet, tester plusieurs outi
      - **Bracket Pair Colorizer 2**
      - **Material Icon Theme**
    - Activez et configurez chacune d’elles dans le fichier `settings.json` de VSCode. Exemple :
-     ```json
-     {
+     ```json copy
        "editor.formatOnSave": true,
        "prettier.singleQuote": true,
        "eslint.format.enable": true,
@@ -38,17 +37,15 @@ Configurer un environnement de développement web complet, tester plusieurs outi
 1. **Initialisation :**
    - Créez un dossier nommé `tooling-exercice`.
    - Ouvrez un terminal dans ce dossier et initialisez un projet Node.js :
-     ```bash
-     npm init -y
+     ```bash copy
      ```
 
 2. **Ajout d’outils Node.js :**
    - Installez les packages suivants :
-     ```bash
-     npm install lodash axios
+     ```bash copy
      ```
    - Installez également ESLint et Prettier comme dépendances de développement :
-     ```bash
+     ```bash copy
      npm install eslint prettier --save-dev
      ```
 
@@ -57,8 +54,7 @@ Configurer un environnement de développement web complet, tester plusieurs outi
 ## **Partie 3 : Mise en pratique des outils**
 1. **Configurer ESLint et Prettier :**
    - Créez un fichier `.eslintrc.json` à la racine du projet :
-     ```json
-     {
+     ```json copy
        "env": {
          "node": true,
          "es2021": true
@@ -74,8 +70,7 @@ Configurer un environnement de développement web complet, tester plusieurs outi
      }
      ```
    - Ajoutez un fichier `.prettierrc` :
-     ```json
-     {
+     ```json copy
        "singleQuote": true,
        "semi": true
      }
@@ -83,7 +78,7 @@ Configurer un environnement de développement web complet, tester plusieurs outi
 
 2. **Créer un script Node.js simple :**
    - Ajoutez un fichier `index.js` :
-     ```javascript
+     ```javascript copy
      const _ = require('lodash');
      const axios = require('axios');
 
@@ -108,16 +103,14 @@ Configurer un environnement de développement web complet, tester plusieurs outi
 ## **Partie 4 : Collaboration avec Git**
 1. **Initialisation :**
    - Initialisez un dépôt Git :
-     ```bash
-     git init
+     ```bash copy
      ```
    - Créez un fichier `.gitignore` et ajoutez :
      ```
      node_modules/
      ```
    - Faites un premier commit :
-     ```bash
-     git add .
+     ```bash copy
      git commit -m "Initial commit"
      ```
 
@@ -130,8 +123,7 @@ Configurer un environnement de développement web complet, tester plusieurs outi
 ## **Partie 5 : Debugging et optimisation**
 1. **Configurer Chrome DevTools et VSCode Debug :**
    - Configurez un fichier `launch.json` pour déboguer le script Node.js :
-     ```json
-     {
+     ```json copy
        "version": "0.2.0",
        "configurations": [
          {
