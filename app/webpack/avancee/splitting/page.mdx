@@ -12,7 +12,7 @@ Supposons que nous ayons deux fichiers JavaScript, `main.js` et `other.js`, et n
 
 Voici comment nous pourrions configurer le code splitting pour ces fichiers dans notre fichier de configuration Webpack (`webpack.config.js`) :
 
-```javascript
+```javascript copy
 const path = require('path');
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
 
 Et voici comment nous pourrions utiliser `import()` dans `main.js` pour charger `other.js` de manière asynchrone :
 
-```javascript
+```javascript copy
 console.log('Hello from main.js!');
 
 button.addEventListener('click', async () => {
@@ -44,7 +44,7 @@ Supposons que nous ayons une application avec plusieurs bundles, et nous voulons
 
 Voici comment nous pourrions configurer `SplitChunksPlugin` dans notre fichier de configuration Webpack (`webpack.config.js`) :
 
-```javascript
+```javascript copy
 const path = require('path');
 
 module.exports = {
@@ -74,7 +74,7 @@ Tree shaking est une technique d'optimisation qui élimine le code inutilisé du
 
 Supposons que nous ayons un module `utils.js` qui contient plusieurs fonctions, dont certaines ne sont pas utilisées dans notre application.
 
-```javascript
+```javascript copy
 // utils.js
 export function usedFunction() {
  // ...
@@ -87,7 +87,7 @@ export function unusedFunction() {
 
 Si nous importons uniquement `usedFunction` dans notre application, Webpack peut utiliser tree shaking pour éliminer `unusedFunction` du bundle final.
 
-```javascript
+```javascript copy
 // app.js
 import { usedFunction } from './utils';
 
@@ -105,13 +105,13 @@ Par exemple, vous pouvez utiliser des outils comme Webpack Bundle Analyzer pour 
 
 Pour utiliser Webpack Bundle Analyzer, vous devez d'abord l'installer via npm :
 
-```bash
+```bash copy
 npm install --save-dev webpack-bundle-analyzer
 ```
 
 Ensuite, vous pouvez ajouter le plugin à votre configuration Webpack :
 
-```javascript
+```javascript copy
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {

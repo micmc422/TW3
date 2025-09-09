@@ -41,14 +41,14 @@ Voici les principales options de sécurité pour les cookies :
 1. **HttpOnly :**
    - Les cookies marqués comme `HttpOnly` ne sont pas accessibles via JavaScript. Cela protège contre les attaques de type **Cross-Site Scripting (XSS)**.
    - Exemple d’utilisation :
-     ```http
+     ```http copy
      Set-Cookie: session_id=abc123; HttpOnly
      ```
 
 2. **Secure :**
    - Les cookies marqués comme `Secure` ne sont envoyés qu’au serveur via des connexions HTTPS, ce qui protège contre l’interception des données (attaque de type man-in-the-middle).
    - Exemple d’utilisation :
-     ```http
+     ```http copy
      Set-Cookie: session_id=abc123; Secure
      ```
 
@@ -57,7 +57,7 @@ Voici les principales options de sécurité pour les cookies :
      - **Strict :** Les cookies ne sont envoyés qu’aux requêtes provenant du même site.  
      - **Lax :** Les cookies sont envoyés aux requêtes provenant d'autres sites, mais uniquement pour des méthodes de navigation "sûres" (GET, HEAD).  
    - Exemple d’utilisation :
-     ```http
+     ```http copy
      Set-Cookie: session_id=abc123; SameSite=Strict
      ```
 
@@ -88,12 +88,12 @@ Voici les principales options de sécurité pour les cookies :
 Voici comment configurer une session sécurisée en Node.js avec des cookies.
 
 **Installer les dépendances :**
-```bash
+```bash copy
 npm install express-session cookie-parser
 ```
 
 **Code d’exemple :**
-```javascript
+```javascript copy
 const express = require('express');
 const session = require('express-session');
 

@@ -46,12 +46,12 @@ WebAuthn repose sur une architecture **asymétrique** utilisant des clés publiq
 ### **Exemple d’Implémentation (Node.js)**
 
 **Installation des dépendances :**
-```bash
+```bash copy
 npm install @simplewebauthn/server @simplewebauthn/browser express body-parser
 ```
 
 **Exemple de code pour le serveur :**
-```javascript
+```javascript copy
 const express = require('express');
 const { generateRegistrationOptions, verifyRegistrationResponse } = require('@simplewebauthn/server');
 const app = express();
@@ -116,12 +116,11 @@ app.listen(3000, () => {
    - Standard basé sur **TOTP** (Time-Based One-Time Password).
 
    **Exemple d’intégration avec Google Authenticator (Node.js):**
-   ```bash
-   npm install speakeasy qrcode
+   ```bash copy
    ```
 
    **Code :**
-   ```javascript
+   ```javascript copy
    const speakeasy = require('speakeasy');
    const QRCode = require('qrcode');
 

@@ -9,7 +9,7 @@ description: "Fiche pratique sur l'utilisation des objets avec JavaScript/Node.j
 Un objet en JavaScript est une collection de **paires clé-valeur**. Voici quelques manières de créer un objet :  
 
 #### **Littéral d’objet**
-```javascript
+```javascript copy
 const personne = {
   nom: "Alice",
   age: 25,
@@ -20,7 +20,7 @@ const personne = {
 ```
 
 #### **Avec un constructeur**
-```javascript
+```javascript copy
 const voiture = new Object();
 voiture.marque = "Toyota";
 voiture.modele = "Corolla";
@@ -30,7 +30,7 @@ voiture.demarrer = function() {
 ```
 
 #### **Avec une classe (ES6+)**
-```javascript
+```javascript copy
 class Animal {
   constructor(nom, espece) {
     this.nom = nom;
@@ -45,27 +45,27 @@ const chat = new Animal("Mimi", "Chat");
 ### **b) Déconstruction d’un Objet**
 
 #### **Accéder aux propriétés**
-```javascript
+```javascript copy
 console.log(personne.nom);  // "Alice"
 console.log(personne["age"]);  // 25
 ```
 
 #### **Destructuration**
-```javascript
+```javascript copy
 const { nom, age } = personne;
 console.log(nom);  // "Alice"
 console.log(age);  // 25
 ```
 
 #### **Attribuer de nouvelles variables**
-```javascript
+```javascript copy
 const { nom: prenom, age: annee } = personne;
 console.log(prenom);  // "Alice"
 console.log(annee);  // 25
 ```
 Une autre approche si l'objet manipuler est stable (toujours le même format, et le même ordre.)
 
-```javascript
+```javascript copy
 const { nom, age } = personne;
 const [ prenom, annee ] = personne;
 console.log(prenom);  // "Alice"
@@ -82,7 +82,7 @@ console.log(annee);  // 25
 L’objet `window` est **l’objet global** dans les navigateurs. Toutes les variables globales et fonctions sont ses propriétés.
 
 #### **Exemples de propriétés et méthodes**
-```javascript
+```javascript copy
 console.log(window.innerWidth);  // Largeur de la fenêtre
 console.log(window.location.href);  // URL de la page actuelle
 
@@ -104,17 +104,17 @@ L’objet `document` représente la **structure HTML** de la page. Il permet de 
 
 #### **Exemples courants**
 - Accéder à un élément HTML :
-  ```javascript
+  ```javascript copy
   const titre = document.getElementById("mon-titre");
   const boutons = document.querySelectorAll(".bouton");
   ```
 - Modifier un élément :
-  ```javascript
+  ```javascript copy
   titre.textContent = "Nouveau Titre";
   titre.style.color = "blue";
   ```
 - Créer et ajouter un élément :
-  ```javascript
+  ```javascript copy
   const nouveauParagraphe = document.createElement("p");
   nouveauParagraphe.textContent = "Bonjour tout le monde !";
   document.body.appendChild(nouveauParagraphe);
@@ -131,7 +131,7 @@ Consultez la documentation complète [ici](https://developer.mozilla.org/en-US/d
 
 ### **Schéma de Synthèse**
 
-```plaintext
+```plaintext copy
 window → Objet global contenant des méthodes/fonctions pour le navigateur.
 document → Objet qui représente et manipule le contenu de la page.
 ```

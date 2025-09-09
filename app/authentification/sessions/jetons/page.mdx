@@ -13,8 +13,7 @@ Un JWT est composé de trois parties encodées en base64 et séparées par des p
 1. **Header** (en-tête) :  
    Contient des métadonnées sur le token, comme le type de token (JWT) et l’algorithme de signature utilisé.  
    Exemple :  
-   ```json
-   {
+   ```json copy
        "alg": "HS256",
        "typ": "JWT"
    }
@@ -23,8 +22,7 @@ Un JWT est composé de trois parties encodées en base64 et séparées par des p
 2. **Payload** (charge utile) :  
    Contient les informations ou "claims" à transmettre, comme l'identité de l'utilisateur ou les permissions.  
    Exemple :  
-   ```json
-   {
+   ```json copy
        "sub": "1234567890",
        "name": "John Doe",
        "admin": true,
@@ -46,7 +44,7 @@ Un JWT est composé de trois parties encodées en base64 et séparées par des p
    ```
 
 **Exemple de JWT complet :**  
-```plaintext
+```plaintext copy
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 ```
 

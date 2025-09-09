@@ -17,8 +17,7 @@ MongoDB utilise un modèle de document BSON (Binary JSON) pour stocker les donn�
 Conception des documents pour refléter la structure des données. Par exemple, un document peut représenter un utilisateur avec tous ses attributs.
 ### 2. Utiliser des Sous-Documents pour la Hiérarchie :
 Les sous-documents peuvent être utilisés pour représenter des relations hiérarchiques. Par exemple, un document utilisateur peut contenir un sous-document pour l'adresse.
-```json
-{
+```json copy
 "nom": "John Doe",
 "adresse": {
     "rue": "123 Rue Principale",
@@ -29,8 +28,7 @@ Les sous-documents peuvent être utilisés pour représenter des relations hiér
 ```
 ### 3. Utiliser des Tableaux pour les Collections :
 Les tableaux peuvent être utilisés pour représenter des collections d'éléments. Par exemple, un tableau de commandes dans un document utilisateur.
-```json
-{
+```json copy
 "nom": "John Doe",
 "commandes": [
     {"produit": "Laptop", "quantite": 2},
@@ -42,7 +40,7 @@ Les tableaux peuvent être utilisés pour représenter des collections d'éléme
     Concevoir les documents en fonction des types de requêtes que vous prévoyez d'exécuter fréquemment. L'objectif est d'optimiser l'accessibilité des données.
 ### 5. Utiliser les Index Correctement :
     Identifiez les champs qui seront fréquemment utilisés pour des opérations de recherche et créez des index sur ces champs pour améliorer les performances.
-```javascript
+```javascript copy
 db.ma_collection.createIndex({ "nom": 1 });
 ```
 ### 6. Éviter les Requêtes Complexes :
@@ -50,8 +48,7 @@ db.ma_collection.createIndex({ "nom": 1 });
 ## Exemple de Modélisation des Données
     Considérons un exemple de modélisation pour un blog où nous aurions deux collections : une pour les utilisateurs et une pour les articles.
 ### Collection Utilisateurs
-```json
-{
+```json copy
     "_id": ObjectId("id_utilisateur"),
     "nom": "John Doe",
     "email": "john.doe@example.com",
@@ -59,8 +56,7 @@ db.ma_collection.createIndex({ "nom": 1 });
 }
 ```
 ### Collection Articles
-```json
-{
+```json copy
 "_id": ObjectId("id_article1"),
     "titre": "Introduction à MongoDB",
     "contenu": "..."

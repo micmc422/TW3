@@ -20,8 +20,7 @@ Les volumes Docker sont gérés par Docker lui-même et sont stockés dans un r�
 
 Nous allons commencer par lancer un conteneur MySQL en utilisant un volume Docker pour persister les données.
 
-```bash
-docker run -d \
+```bash copy
   --name mysql-volume \
   -e MYSQL_ROOT_PASSWORD=rootpassword \
   -v mysql-data:/var/lib/mysql \
@@ -36,8 +35,7 @@ Explications :
 
 Docker va créer automatiquement le volume `mysql-data`. Pour vérifier que le volume a été créé, exécutez la commande suivante :
 
-```bash
-docker volume ls
+```bash copy
 ```
 
 Vous devriez voir `mysql-data` dans la liste des volumes.
@@ -48,15 +46,14 @@ Nous allons maintenant arrêter et supprimer le conteneur MySQL, puis le relance
 
 1. **Arrêter et supprimer le conteneur** :
 
-```bash
+```bash copy
 docker stop mysql-volume
 docker rm mysql-volume
 ```
 
 2. **Relancer un conteneur avec le même volume** :
 
-```bash
-docker run -d \
+```bash copy
   --name mysql-volume \
   -e MYSQL_ROOT_PASSWORD=rootpassword \
   -v mysql-data:/var/lib/mysql \
@@ -75,15 +72,14 @@ Nous allons maintenant monter un répertoire de notre machine locale dans un con
 
 Créez un répertoire sur votre machine hôte contenant une page HTML simple.
 
-```bash
+```bash copy
 mkdir ~/nginx-html
 echo "<h1>Hello from Docker Bind Mount</h1>" > ~/nginx-html/index.html
 ```
 
 2. **Lancer un conteneur Nginx avec un bind mount** :
 
-```bash
-docker run -d \
+```bash copy
   --name nginx-bind \
   -p 8080:80 \
   -v ~/nginx-html:/usr/share/nginx/html \
@@ -102,7 +98,7 @@ Ouvrez votre navigateur et accédez à `http://localhost:8080`. Vous devriez voi
 
 Modifiez le fichier `index.html` sur votre machine locale :
 
-```bash
+```bash copy
 echo "<h1>Updated from Host</h1>" > ~/nginx-html/index.html
 ```
 
@@ -112,7 +108,7 @@ Rafraîchissez votre navigateur. Vous verrez immédiatement la mise à jour, car
 
 Une fois terminé, vous pouvez arrêter et supprimer les conteneurs et volumes avec ces commandes :
 
-```bash
+```bash copy
 docker stop mysql-volume nginx-bind
 docker rm mysql-volume nginx-bind
 docker volume rm mysql-data

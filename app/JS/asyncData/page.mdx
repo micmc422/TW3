@@ -39,7 +39,7 @@ La fonction `getContent` :
 1. **Construction du chemin dynamique**  
    Le chemin du fichier est créé en joignant les éléments du tableau `pathArray` avec `/`.  
    Exemple : 
-   ```typescript
+   ```typescript copy
    const pathArray = ['pages', 'about'];
    const filePath = `./${pathArray.join('/')}/`; // Résultat : "./pages/about/"
    ```
@@ -59,7 +59,7 @@ La fonction `getContent` :
 
 4. **Résultat consolidé**
    Si tout se passe bien, un objet nommé `success` est créé contenant toutes les données chargées :  
-   ```typescript
+   ```typescript copy
    const success = { cards, services, hero, seo };
    ```
    Et la fonction retourne ce résultat sous forme de tableau `[success, null]`.
@@ -71,7 +71,7 @@ La fonction `getContent` :
 Voici un exemple pratique d’utilisation de cette fonction dans une application.
 
 ### **a) Appeler la fonction**
-```typescript
+```typescript copy
 import getContent from './getContent';
 
 (async () => {
@@ -98,8 +98,7 @@ import getContent from './getContent';
 
 3. **Structure des données renvoyées**
    Exemple de données renvoyées si tout fonctionne :
-   ```javascript
-   {
+   ```javascript copy
      seo: { title: "About Page", description: "About us page SEO metadata" },
      cards: [
        { id: 1, title: "Card 1", content: "Content for card 1" },
@@ -112,7 +111,7 @@ import getContent from './getContent';
 
 4. **Gestion des erreurs**
    Si un fichier est introuvable, par exemple `seo.ts`, la fonction capture cette erreur et renvoie :
-   ```javascript
+   ```javascript copy
    [null, Error: "Failed to load module at ./pages/about/seo.ts"]
    ```
 

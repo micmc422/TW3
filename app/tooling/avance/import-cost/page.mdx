@@ -22,7 +22,7 @@ L'extension affiche en temps réel:
 
 ## Exemples
 
-```js
+```js copy
 // Petit import (vert)
 🟢import _ from 'lodash-es'; // 24.7KB gzipped
 
@@ -37,7 +37,7 @@ L'extension affiche en temps réel:
 
 Utilisez l'import sélectif:
 
-```js
+```js copy
 // À éviter
 import * as lodash from 'lodash'
 
@@ -48,7 +48,7 @@ import { map, filter } from 'lodash'
 
 Privilégiez les alternatives plus légères:
 
-```js
+```js copy
 // Lourd
 import moment from 'moment' // 329KB
 
@@ -59,7 +59,7 @@ import dayjs from 'dayjs' // 6.3KB
 
 Utilisez les imports dynamiques pour le code splitting:
 
-```js
+```js copy
 // Import dynamique
 const module = await import('./heavy-module')
 ```

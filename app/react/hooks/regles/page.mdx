@@ -10,7 +10,7 @@ React a introduit les Hooks dans sa version 16.8 pour permettre aux développeur
 Voici deux exemples :  
 
 ### ✅ **Exemple Valide** (Respecte les règles des Hooks)  
-```jsx
+```jsx copy
 import { useState, useEffect } from "react";
 
 function ValidComponent() {
@@ -33,7 +33,7 @@ function ValidComponent() {
 ---
 
 ### ❌ **Exemple Invalide** (Ne respecte pas les règles des Hooks)  
-```jsx
+```jsx copy
 import { useState, useEffect } from "react";
 
 function InvalidComponent() {
@@ -63,7 +63,7 @@ Voici deux exemples illustrant cette règle :
 ---
 
 ### ✅ **Exemple Valide** (Les Hooks sont utilisés dans un composant fonctionnel)  
-```jsx
+```jsx copy
 import { useState, useEffect } from "react";
 
 function ValidComponent() {
@@ -88,7 +88,7 @@ function ValidComponent() {
 ---
 
 ### ❌ **Exemple Invalide** (Un Hook est appelé dans une fonction classique)  
-```jsx
+```jsx copy
 import { useState } from "react";
 
 function badFunction() {
@@ -109,7 +109,7 @@ function InvalidComponent() {
 ### ✅ **Correction avec un Hook personnalisé**  
 Si vous voulez réutiliser la logique d'un Hook, il faut créer un **Hook personnalisé** (une fonction qui commence par `use` et utilise des Hooks en interne).  
 
-```jsx
+```jsx copy
 import { useState } from "react";
 
 // ✅ Un Hook personnalisé commence par "use"
@@ -136,7 +136,7 @@ function ValidComponent() {
 ---
 
 ### ❌ **Exemple Invalide avec une Classe** (Les Hooks ne fonctionnent pas dans les classes)  
-```jsx
+```jsx copy
 import { useState } from "react";
 
 class InvalidClassComponent extends React.Component {
@@ -168,7 +168,7 @@ class InvalidClassComponent extends React.Component {
 
 ### ✅ **Correction avec un Composant Fonctionnel**  
 Si vous utilisez React moderne, il est recommandé d'utiliser des **composants fonctionnels avec des Hooks** à la place des classes :  
-```jsx
+```jsx copy
 import { useState } from "react";
 
 function ValidComponent() {

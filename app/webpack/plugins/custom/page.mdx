@@ -11,7 +11,7 @@ Un plugin Webpack doit avoir une méthode `apply` qui sera appelée par le compi
 ### Exemple de Plugin Personnalisé
 Voici un exemple simple d'un plugin personnalisé qui enregistre un message dans la console après la construction réussie :
 
-```javascript
+```javascript copy
 class MyCustomPlugin {
  apply(compiler) {
    compiler.hooks.done.tap('MyCustomPlugin', (stats) => {
@@ -34,7 +34,7 @@ Dans cet exemple, `MyCustomPlugin` utilise le hook `done` pour enregistrer un me
 Webpack fournit une variété de hooks que vous pouvez utiliser pour brancher votre plugin à différentes étapes du processus de construction.
 
 ### Exemple d'Utilisation des Hooks
-```javascript
+```javascript copy
 class MyCustomPlugin {
  apply(compiler) {
    compiler.hooks.emit.tapAsync('MyCustomPlugin', (compilation, callback) => {

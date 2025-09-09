@@ -12,7 +12,7 @@ Dans cette activité, nous allons implémenter un système d’authentification 
 ### **1. Initialisation du Projet**
 
 1. **Créer un nouveau projet Node.js :**  
-   ```bash
+   ```bash copy
    mkdir jwt-auth
    cd jwt-auth
    npm init -y
@@ -21,7 +21,7 @@ Dans cette activité, nous allons implémenter un système d’authentification 
 
 2. **Configurer l’environnement :**  
    Créez un fichier `.env` à la racine pour y stocker des variables sensibles :  
-   ```plaintext
+   ```plaintext copy
    JWT_SECRET=votre_secret_jwt
    PORT=3000
    ```
@@ -43,7 +43,7 @@ jwt-auth/
 ### **3. Écriture du Code**
 
 **Fichier `app.js` :**
-```javascript
+```javascript copy
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
@@ -115,13 +115,13 @@ app.listen(PORT, () => {
 ### **4. Tester l’Application**
 
 1. **Démarrer le serveur :**  
-   ```bash
+   ```bash copy
    node app.js
    ```
 
 2. **Inscription (POST /register) :**  
    Utilisez Postman ou curl pour envoyer une requête :  
-   ```json
+   ```json copy
    POST http://localhost:3000/register
    Content-Type: application/json
 
@@ -138,7 +138,7 @@ app.listen(PORT, () => {
 
 3. **Connexion (POST /login) :**  
    Envoyez une requête pour obtenir un token JWT :  
-   ```json
+   ```json copy
    POST http://localhost:3000/login
    Content-Type: application/json
 
@@ -149,8 +149,7 @@ app.listen(PORT, () => {
    ```
 
    **Réponse attendue :**  
-   ```json
-   {
+   ```json copy
        "token": "<votre_jwt>"
    }
    ```

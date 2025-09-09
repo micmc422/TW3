@@ -10,21 +10,21 @@ La lecture de données, également connue sous le terme "Read", constitue une é
 
 1. **`find()` :** La méthode `find()` est l'une des méthodes les plus fondamentales pour récupérer des données. Elle renvoie un curseur qui peut être itéré pour accéder à tous les documents correspondants.
 
-    ```javascript
+    ```javascript copy
     // Exemple de lecture de tous les documents dans une collection
     db.ma_collection.find();
     ```
 
 2. **`findOne()` :** Utilisez `findOne()` pour récupérer le premier document qui correspond à un critère donné. Cela peut être utile lorsque vous vous attendez à un seul résultat.
 
-    ```javascript
+    ```javascript copy
     // Exemple de lecture d'un seul document
     db.ma_collection.findOne({ "nom": "John Doe" });
     ```
 
 3. **Projection :** La projection permet de spécifier les champs à inclure ou exclure des résultats de lecture, optimisant ainsi la quantité d'informations transférées.
 
-    ```javascript
+    ```javascript copy
     // Exemple de projection
     db.ma_collection.find({ "ville": "Villebourg" }, { "nom": 1, "age": 1 });
     ```
@@ -33,21 +33,21 @@ La lecture de données, également connue sous le terme "Read", constitue une é
 
 1. **Filtrage avec Critères :** Utilisez des critères de recherche pour filtrer les résultats en fonction de valeurs spécifiques dans les documents.
 
-    ```javascript
+    ```javascript copy
     // Exemple de lecture avec filtre
     db.ma_collection.find({ "ville": "Villebourg" });
     ```
 
 2. **Limitation du Nombre de Résultats :** Utilisez `limit()` pour restreindre le nombre de documents retournés par une opération de recherche.
 
-    ```javascript
+    ```javascript copy
     // Exemple de limitation du nombre de résultats
     db.ma_collection.find().limit(5);
     ```
 
 3. **Tri des Résultats :** Utilisez `sort()` pour trier les résultats en fonction de critères spécifiques.
 
-    ```javascript
+    ```javascript copy
     // Exemple de tri des résultats
     db.ma_collection.find().sort({ "nom": 1 });
     ```
@@ -56,21 +56,21 @@ La lecture de données, également connue sous le terme "Read", constitue une é
 
 1. **Indexation :** Indexez les champs utilisés fréquemment dans vos opérations de recherche pour améliorer les performances.
 
-    ```javascript
+    ```javascript copy
     // Exemple de création d'index
     db.ma_collection.createIndex({ "nom": 1 });
     ```
 
 2. **Utilisation de `explain()` :** Utilisez `explain()` pour obtenir des informations détaillées sur l'exécution d'une opération de recherche, aidant à identifier les opportunités d'optimisation.
 
-    ```javascript
+    ```javascript copy
     // Exemple d'utilisation de explain()
     db.ma_collection.find({ "ville": "Villebourg" }).explain("executionStats");
     ```
 
 3. **Utilisation de `hint()` :** Si nécessaire, utilisez `hint()` pour spécifier un index particulier à utiliser dans une opération de recherche.
 
-    ```javascript
+    ```javascript copy
     // Exemple d'utilisation de hint()
     db.ma_collection.find({ "ville": "Villebourg" }).hint({ "nom": 1 });
     ```

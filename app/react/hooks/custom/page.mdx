@@ -8,7 +8,7 @@ Un exemple courant de hook personnalisé est `useMediaQuery`, qui est utilisé p
 
 Voici comment vous pouvez créer un hook personnalisé `useMediaQuery`:
 
-```javascript
+```javascript copy
 import { useState, useEffect } from 'react';
 
 const useMediaQuery = (query) => {
@@ -32,7 +32,7 @@ const useMediaQuery = (query) => {
 
 Dans cet exemple, nous utilisons l'API `window.matchMedia` pour écouter les changements de requête média. Lorsque la requête média change, nous mettons à jour l'état `matches` avec la nouvelle valeur. Nous retournons ensuite cette valeur, ce qui signifie que nous pouvons utiliser notre hook personnalisé comme ceci:
 
-```javascript
+```javascript copy
 const isMobile = useMediaQuery('(max-width: 600px)');
 ```
 

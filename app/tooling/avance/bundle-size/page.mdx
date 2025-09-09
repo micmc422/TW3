@@ -10,7 +10,7 @@ Pour analyser la taille de votre bundle, plusieurs outils sont disponibles :
 ### Webpack Bundle Analyzer
 
 
-```sh npm2yarn
+```sh copy
 npm install --save-dev webpack-bundle-analyzer
 ```
 
@@ -18,7 +18,7 @@ npm install --save-dev webpack-bundle-analyzer
 Dans votre configuration webpack :
 
 
-```js
+```js copy
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
@@ -34,7 +34,7 @@ module.exports = {
 Pour Next.js, utilisez :
 
 
-```sh npm2yarn
+```sh copy
 npm install --save-dev @next/bundle-analyzer
 ```
 
@@ -46,7 +46,7 @@ npm install --save-dev @next/bundle-analyzer
 Utilisez le chargement dynamique :
 
 
-```js
+```js copy
 import dynamic from 'next/dynamic'
 
 const DynamicComponent = dynamic(() => import('../components/Heavy'))
@@ -58,7 +58,7 @@ const DynamicComponent = dynamic(() => import('../components/Heavy'))
 Assurez-vous d'utiliser des imports nommés :
 
 
-```js
+```js copy
 // ❌ Mauvais - importe tout le module
 import lodash from 'lodash'
 
@@ -72,7 +72,7 @@ import { map } from 'lodash'
 Utilisez des formats optimisés comme WebP :
 
 
-```js
+```js copy
 import Image from 'next/image'
 
 export default function OptimizedImage() {

@@ -7,8 +7,7 @@ Le fichier `package.json` est au cœur de tout projet Node.js. Il contient des m
 
 ## 🗂️ Structure du fichier `package.json`
 Voici un exemple basique de fichier `package.json` :
-```json
-{
+```json copy
   "name": "mon-projet",
   "version": "1.0.0",
   "description": "Un exemple de projet Node.js",
@@ -32,7 +31,7 @@ Voici un exemple basique de fichier `package.json` :
 La section **`dependencies`** contient les paquets nécessaires à l'exécution de l'application en production. Ces dépendances sont cruciales pour le bon fonctionnement du projet et sont automatiquement installées lorsque vous exécutez `npm install`.
 
 Exemple :
-```json
+```json copy
 "dependencies": {
   "express": "^4.17.1"
 }
@@ -49,7 +48,7 @@ Dans cet exemple, **Express** est une dépendance qui sera installée pour faire
 La section **`devDependencies`** contient les paquets nécessaires uniquement pendant le développement. Ces dépendances ne sont pas utilisées en production, mais elles sont essentielles pour des tâches comme le test, la compilation ou le rechargement automatique.
 
 Exemple :
-```json
+```json copy
 "devDependencies": {
   "nodemon": "^2.0.7"
 }

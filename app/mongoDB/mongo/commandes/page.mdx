@@ -95,22 +95,21 @@ import { Callout } from 'nextra/components'
 A exécuter dans le bash docker ou dans votre terminal mais pas dans le shell MongoDB.
 </Callout>
     - **Sauvegarde :**
-        ```bash
+        ```bash copy
         mongodump --db ma_base_de_donnees --out /chemin/vers/sauvegarde
         ```
     - **Restauration :**
-        ```bash
+        ```bash copy
         mongorestore --db ma_base_de_donnees /chemin/vers/sauvegarde/ma_base_de_donnees
         ```
 
 19. **Créer un Utilisateur :**
-    ```javascript
+    ```javascript copy
     db.createUser({ user: "utilisateur", pwd: "mot_de_passe", roles: ["readWrite"] });
     ```
 
 20. **Quitter le Shell MongoDB :**
-    ```javascript
-    exit
+    ```javascript copy
     ```
 
 Ces commandes fournissent une base solide pour explorer et manipuler vos données MongoDB. N'hésitez pas à les expérimenter dans le shell et à explorer davantage en fonction de vos besoins spécifiques !
