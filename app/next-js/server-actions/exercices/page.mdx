@@ -1,6 +1,6 @@
 # 📌 **Travail Pratique : Server Actions & Optimistic UI avec Next.js 14+**
 
-## **Objectifs**
+## ⚡ **Objectifs**
 1. Implémenter un **formulaire de contact** utilisant une **Server Action** pour envoyer des données sans passer par un appel `fetch()` explicite.
 2. Créer un bouton **"Like"** qui met à jour instantanément l'affichage (optimistic UI) grâce à `useOptimistic()` et `useTransition()`.
 
@@ -12,7 +12,7 @@
 
 ## 📝 **Exercice 1 : Formulaire de contact avec Server Action**
 
-### **Étape 1 : Créer la Server Action**
+### ⚡ **Étape 1 : Créer la Server Action**
 
 Créez un fichier `app/contact/contact.ts` qui contient la fonction serveur suivante :
 
@@ -51,7 +51,7 @@ export async function sendContactMessage(formData: FormData) {
 
 ---
 
-### **Étape 2 : Créer le formulaire côté client**
+### ⚡ **Étape 2 : Créer le formulaire côté client**
 
 Créez ou modifiez le fichier `app/contact/page.tsx` pour utiliser la Server Action directement via l'attribut `action` du formulaire. Comme l'interactivité est gérée côté client (affichage des messages, gestion de l'état), le composant doit être un Client Component (déclaré avec `"use client"`).
 
@@ -131,7 +131,7 @@ export default function ContactPage() {
 
 ## 📝 **Exercice 2 : Bouton "Like" avec mise à jour optimiste**
 
-### **Étape 1 : Créer la Server Action pour incrémenter le compteur**
+### ⚡ **Étape 1 : Créer la Server Action pour incrémenter le compteur**
 
 Créez le fichier `app/likes/likes.ts` :
 
@@ -162,7 +162,7 @@ export async function addLike() {
 
 ---
 
-### **Étape 2 : Créer l'interface du bouton Like avec mise à jour optimiste**
+### ⚡ **Étape 2 : Créer l'interface du bouton Like avec mise à jour optimiste**
 
 Créez ou modifiez le fichier `app/likes/page.tsx` :
 

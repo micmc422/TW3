@@ -3,27 +3,27 @@ description: "Dans cette activité, nous allons mettre en place une authentifica
 ---
 import { Steps } from 'nextra/components'
 
-# **Activité Pratique : Implémentation d’une Authentification OAuth 2.0 avec Google**
+# 🔒 **Activité Pratique : Implémentation d’une Authentification OAuth 2.0 avec Google**
 
 Dans cette activité, nous allons mettre en place une authentification OAuth 2.0 en utilisant **Google** comme fournisseur d'identité (IdP). L'application permettra aux utilisateurs de se connecter avec leur compte Google.  
 
 <Steps>
 
-## **Configuration de l’application Google**
+## 🛠️ **Configuration de l’application Google**
 <Steps>
-### **Accéder à la Console Google Cloud :**  
+### 🔐 **Accéder à la Console Google Cloud :**
    Rendez-vous sur [Google Cloud Console](https://console.cloud.google.com/) et connectez-vous avec votre compte Google.
 
-### **Créer un projet :**  
+### 🔐 **Créer un projet :**
    - Cliquez sur **"Créer un projet"**. Donnez-lui un nom, puis cliquez sur **"Créer"**.
 
-### **Configurer l’OAuth Consent Screen (écran de consentement OAuth) :**  
+### 🛠️ **Configurer l’OAuth Consent Screen (écran de consentement OAuth) :**
    - Allez dans **"API & Services" → "Consentement OAuth"**.  
    - Choisissez **type externe** si vous souhaitez permettre à d'autres utilisateurs d'utiliser votre application.  
    - Remplissez les champs requis, comme le nom de l'application et votre email.  
    - Enregistrez.
 
-### **Créer des identifiants OAuth 2.0 :**  
+### 🔒 **Créer des identifiants OAuth 2.0 :**
    - Rendez-vous dans **"Identifiants" → "Créer des identifiants" → "Identifiants OAuth 2.0"**.  
    - Sélectionnez **Application web** comme type.  
    - Configurez les **URI de redirection** (callback URL) :  
@@ -34,9 +34,9 @@ Dans cette activité, nous allons mettre en place une authentification OAuth 2.0
    - Cliquez sur **Créer** et notez votre **Client ID** et **Client Secret**.
 </Steps>
 
-## **Initialiser le Projet Node.js**
+## 🔐 **Initialiser le Projet Node.js**
 <Steps>
-### **Créer un projet Node.js :**  
+### 🔐 **Créer un projet Node.js :**
    ```bash copy
    mkdir oauth2-google-auth
    cd oauth2-google-auth
@@ -44,7 +44,7 @@ Dans cette activité, nous allons mettre en place une authentification OAuth 2.0
    npm install express passport passport-google-oauth20 express-session dotenv
    ```
 
-### **Configurer l’environnement :**  
+### 🛠️ **Configurer l’environnement :**
    Créez un fichier `.env` pour stocker vos identifiants OAuth :  
    ```plaintext copy
    GOOGLE_CLIENT_ID=<votre_client_id>
@@ -54,7 +54,7 @@ Dans cette activité, nous allons mettre en place une authentification OAuth 2.0
    ```
 </Steps>
 
-## **Écrire le Code de l’Application**
+## 🔐 **Écrire le Code de l’Application**
 
 **Créer un fichier `app.js` :**
 
@@ -140,14 +140,14 @@ app.listen(PORT, () => {
 
 ---
 
-## **Tester l’Application**
+## 🔐 **Tester l’Application**
 <Steps>
-### **Lancer le serveur :**  
+### 🔐 **Lancer le serveur :**
    ```bash copy
    node app.js
    ```
 
-### **Accéder à l’application :**  
+### 🔐 **Accéder à l’application :**
    Ouvrez votre navigateur et rendez-vous sur [http://localhost:3000](http://localhost:3000).  
    - Cliquez sur **"Se connecter avec Google"**.
    - Connectez-vous avec votre compte Google.  
@@ -157,7 +157,7 @@ app.listen(PORT, () => {
 ---
 </Steps>
 
-## **Explications Techniques**
+## 🔐 **Explications Techniques**
 **Passport.js :**  
    - Un middleware d’authentification pour Node.js.  
    - La stratégie `passport-google-oauth20` est utilisée pour intégrer OAuth 2.0 avec Google.
@@ -171,7 +171,7 @@ app.listen(PORT, () => {
 
 ---
 
-## **Allez plus loin**
+## 🔐 **Allez plus loin**
 - Ajouter une base de données pour stocker les utilisateurs.  
 - Protéger les routes avec des middlewares pour vérifier si un utilisateur est authentifié.  
 - Intégrer d'autres fournisseurs (GitHub, Facebook).  

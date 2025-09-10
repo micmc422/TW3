@@ -1,17 +1,17 @@
 
-# Docker
+# 🐳 Docker
 
 Docker est un outil puissant qui permet de créer, déployer et exécuter des applications dans des conteneurs. Cette section explique comment utiliser Docker avec Node.js.
 
-## Installation
+## 🛠️ Installation
 
 Pour commencer, assurez-vous d'avoir Docker installé sur votre système. Vous pouvez télécharger Docker Desktop pour votre système d'exploitation sur le [site officiel de Docker](https://www.docker.com/products/docker-desktop).
 
-## Création d'un Dockerfile
+## 🟩 Création d'un Dockerfile
 
 Pour conteneuriser une application Node.js, créez un fichier `Dockerfile` à la racine de votre projet :
 
-``` docker
+```docker copy
 FROM node:18
 WORKDIR /app
 COPY package*.json ./
@@ -21,7 +21,7 @@ EXPOSE 3000
 CMD ["npm", "start"]
 ```
 
-## Construction de l'image
+## 🟩 Construction de l'image
 
 Pour construire l'image Docker, exécutez la commande suivante :
 
@@ -29,7 +29,7 @@ Pour construire l'image Docker, exécutez la commande suivante :
 docker build -t mon-app-nodejs .
 ```
 
-## Exécution du conteneur
+## 🟩 Exécution du conteneur
 
 Pour démarrer votre application dans un conteneur :
 
@@ -37,7 +37,7 @@ Pour démarrer votre application dans un conteneur :
 docker run -p 3000:3000 mon-app-nodejs
 ```
 
-## Bonnes pratiques
+## 🧪 Bonnes pratiques
 
 1. Utilisez une version spécifique de Node.js dans votre Dockerfile
 2. Optimisez la taille de l'image en utilisant .dockerignore
@@ -45,11 +45,11 @@ docker run -p 3000:3000 mon-app-nodejs
 4. Gérez correctement les variables d'environnement
 5. Implémentez la surveillance de la santé de l'application
 
-## Docker Compose
+## 🟩 Docker Compose
 
 Pour les applications plus complexes, utilisez Docker Compose :
 
-``` docker
+```docker copy
 version: '3'
 services:
   app:
@@ -60,7 +60,7 @@ services:
       - NODE_ENV=production
 ```
 
-## Déploiement
+## 🟩 Déploiement
 
 Pour déployer votre application conteneurisée :
 
@@ -68,7 +68,7 @@ Pour déployer votre application conteneurisée :
 2. Configurez votre environnement de production
 3. Utilisez des outils d'orchestration comme Kubernetes si nécessaire
 
-## Dépannage
+## 🟩 Dépannage
 
 - Vérifiez les logs avec `docker logs`
 - Inspectez les conteneurs avec `docker inspect`

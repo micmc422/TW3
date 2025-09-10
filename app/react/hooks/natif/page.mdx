@@ -1,8 +1,8 @@
-## **Hooks Natifs**
+## ⚛️ **Hooks Natifs**
 
 Voici des exemples fonctionnels pour chaque Hook natif de React :
 
-### useState
+### ⚛️ useState
 
 Le Hook `useState` permet d'ajouter un état local à un composant fonctionnel. Il retourne un tableau avec deux éléments : la valeur actuelle de l'état et une fonction pour la mettre à jour.
 
@@ -101,7 +101,7 @@ export default Counter;
 ✅ **Fiable avec des effets (`useEffect`) et les mises à jour asynchrones.**  
 
 ➡️ **Bonne pratique :** Toujours utiliser `setCount(prev => prev + 1)` quand la mise à jour dépend de l'état précédent ! 🔥
-### useEffect
+### ⚛️ useEffect
 
 Le Hook `useEffect` permet d'effectuer des effets secondaires dans les composants fonctionnels. Il peut être utilisé pour des opérations telles que les requêtes réseau, les abonnements, les manipulations du DOM, etc.
 
@@ -244,7 +244,7 @@ useEffect(() => {
 3. **Sans ce nettoyage, on risque des fuites mémoire ou des comportements indésirables.**  
 
 ➡️ **Règle d’or :** **Si un effet met en place quelque chose de persistant (timer, écouteur...), il doit être nettoyé avec `return` !** 🚀
-### useContext
+### ⚛️ useContext
 
 Le Hook `useContext` permet d'accéder à la valeur actuelle d'un contexte. Il est souvent utilisé avec le Context API pour partager des données globales entre plusieurs composants.
 
@@ -264,7 +264,7 @@ function BoutonThème() {
 export default BoutonThème;
 ```
 
-### useReducer
+### ⚛️ useReducer
 
 Le Hook `useReducer` est une alternative à `useState` qui est plus adaptée pour gérer des logiques d'état complexes. Il fonctionne de manière similaire à `reduce` dans JavaScript, en acceptant un réducteur et un état initial.
 
@@ -302,7 +302,7 @@ function Compteur() {
 export default Compteur;
 ```
 
-### useRef
+### ⚛️ useRef
 
 Le Hook `useRef` permet de créer une référence mutable qui persiste pendant toute la durée de vie du composant. Il est souvent utilisé pour accéder aux éléments du DOM ou pour garder une référence à une valeur qui peut changer au fil du temps.
 
@@ -324,7 +324,7 @@ function TextInputWithFocusButton() {
 }
 ```
 
-### useMemo
+### ⚛️ useMemo
 
 Le Hook `useMemo` permet de mémoriser des calculs coûteux. Il retourne une valeur mémorisée qui ne change que si une de ses dépendances change.
 
@@ -346,7 +346,7 @@ function MyComponent({ a, b }) {
 }
 ```
 
-### useCallback
+### ⚛️ useCallback
 
 Le Hook `useCallback` permet de mémoriser une fonction. Il retourne une version mémorisée de la fonction qui ne change que si une de ses dépendances change.
 

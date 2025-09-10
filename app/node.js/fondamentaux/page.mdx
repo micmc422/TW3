@@ -27,7 +27,7 @@ Une fois que vous avez créé un fichier contenant ce script (par exemple, `app.
 node app.js
 ```
 - Vous devriez voir l'affichage suivant dans votre terminal :
-```
+```text copy
 Hello, Node.js!
 ```
 </Steps>
@@ -43,7 +43,7 @@ Node.js offre plusieurs modules natifs accessibles immédiatement sans installat
   - **`fs`** 📂 : Gère les systèmes de fichiers, comme la lecture et l'écriture de fichiers.
   - **`path`** 🛤️ : Facilite la manipulation des chemins de fichiers et de répertoires.
 
-Par exemple, pour lire un fichier en utilisant le module `fs` :
+🧪 Par exemple, pour lire un fichier en utilisant le module `fs` :
 
 ```javascript copy
 const fs = require('fs');
@@ -59,7 +59,7 @@ if (err) {
 ### 🔗 Importer des modules avec `require` :
    Le mot-clé `require` est utilisé pour importer des modules dans Node.js. Vous pouvez utiliser `require` pour accéder aux **modules intégrés** ou aux **modules que vous avez installés** via NPM.
 
-Exemple avec le module `http` :
+🧪 Exemple avec le module `http` :
 
 ```javascript copy
 const http = require('http');
@@ -73,11 +73,11 @@ server.listen(3000, () => {
 });
 ```
 </Steps>
-## Modules personnalisés
+## 🟩 Modules personnalisés
 
 En plus des modules intégrés, vous pouvez créer vos **propres modules** pour organiser votre code et réutiliser certaines fonctionnalités.
 <Steps>
-### Créer et exporter un module personnalisé** :
+### 🟩 Créer et exporter un module personnalisé** :
   Pour créer un module, il vous suffit d'écrire des fonctions ou des objets dans un fichier et de les exporter avec `module.exports`.
 
   Exemple de module dans un fichier `greetings.js` :
@@ -89,7 +89,7 @@ En plus des modules intégrés, vous pouvez créer vos **propres modules** pour 
   module.exports = sayHello;
   ```
 
-### Importer et utiliser un module personnalisé :
+### 🟩 Importer et utiliser un module personnalisé :
   Une fois votre module créé, vous pouvez l'importer dans un autre fichier en utilisant `require`.
 
   Exemple d'importation et d'utilisation du module `greetings.js` :
@@ -100,7 +100,7 @@ En plus des modules intégrés, vous pouvez créer vos **propres modules** pour 
 ```
 </Steps>
 
-## Exercice pratique
+## 🧪 Exercice pratique
 
 **Exercice** : Créer un fichier Node.js qui lit un fichier texte à l'aide du module `fs` et affiche son contenu dans la console.
 

@@ -1,10 +1,10 @@
 import { Callout } from 'nextra/components'
 
-# Règles des Hooks en React
+# ⚛️ Règles des Hooks en React
 
 React a introduit les Hooks dans sa version 16.8 pour permettre aux développeurs d'utiliser l'état et d'autres fonctionnalités de React sans avoir à écrire des classes. Cependant, il y a certaines règles strictes que vous devez suivre lors de l'utilisation des Hooks. Voici ces règles:
 
-## 1. Ne pas appeler les Hooks à l'intérieur des boucles, des conditions ou des fonctions imbriquées
+## ⚛️ 1. Ne pas appeler les Hooks à l'intérieur des boucles, des conditions ou des fonctions imbriquées
 
 **Il est important de toujours appeler les Hooks au niveau supérieur de vos fonctions de composant ou de vos fonctions personnalisées.** Vous ne devez jamais les appeler à l'intérieur des boucles, des conditions ou des fonctions imbriquées. Cela garantit que les Hooks sont appelés dans le même ordre chaque fois qu'un composant est rendu, ce qui permet à React de maintenir correctement l'état entre plusieurs appels de Hooks.
 Voici deux exemples :  
@@ -55,7 +55,7 @@ function InvalidComponent() {
 - `useState("Erreur")` est appelé dans une condition (`if (count > 5)`).  
 - Cela casse l'ordre d'exécution des Hooks, car React s'attend à ce que chaque Hook soit toujours appelé dans le même ordre à chaque rendu du composant.  
 
-## 2. Appeler les Hooks uniquement à partir de fonctions de composant ou de fonctions personnalisées
+## ⚛️ 2. Appeler les Hooks uniquement à partir de fonctions de composant ou de fonctions personnalisées
 
 **Les Hooks ne peuvent être appelés que depuis des fonctions de composant React ou des fonctions personnalisées.** Vous ne pouvez pas les appeler à partir de fonctions JavaScript régulières. De plus, ils ne peuvent pas être appelés à partir de fonctions de classe.
 Voici deux exemples illustrant cette règle :  
@@ -198,7 +198,7 @@ function ValidComponent() {
 ❌ Une classe React (`class MonComposant extends React.Component {}`)  
 
 En suivant ces règles, vous évitez des erreurs et garantissez un bon fonctionnement de votre application React. 🎯
-## 3. Utiliser les Hooks uniquement à partir de packages React
+## ⚛️ 3. Utiliser les Hooks uniquement à partir de packages React
 
 **Il est recommandé d'utiliser les Hooks uniquement à partir de packages React.** Bien que rien n'empêche techniquement de créer vos propres Hooks, il est généralement préférable d'utiliser ceux fournis par React ou par des bibliothèques tierces fiables. 
  <Callout type="info" emoji="ℹ️">

@@ -13,7 +13,7 @@ L’architecture `app/` de Next.js 13+ repose sur plusieurs améliorations majeu
 ✅ **Pas besoin de gérer des états client inutiles** → moins de re-renders.  
 ✅ **Accès direct aux bases de données et API** **(sans besoin d’API routes)**.  
 
-Exemple d’un Server Component (par défaut) dans `app/` :  
+🧪 Exemple d’un Server Component (par défaut) dans `app/` :  
 
 ```tsx filename="app/dashboard/page.tsx" copy
 import db from "@/lib/db"; // Connexion directe à une base de données
@@ -58,7 +58,7 @@ export default async function Dashboard() {
 
 📌 **Dans `app/`, on peut structurer l’application avec des `layout.tsx` à différents niveaux** pour partager des composants sans les recharger inutilement.  
 
-### **Exemple : Un Layout partagé pour un tableau de bord**  
+### ⚡ **Exemple : Un Layout partagé pour un tableau de bord**
 ```tsx filename="app/dashboard/layout.tsx" copy
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -79,7 +79,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 ✅ Plus besoin d’utiliser `<Head>` partout comme dans `pages/`.  
 ✅ Gestion **simplifiée et dynamique** des balises SEO.  
 
-Exemple d’une métadonnée dynamique dans `app/` : 
+🧪 Exemple d’une métadonnée dynamique dans `app/` : 
 
 ```tsx filename="app/blog/[slug]/page.tsx" copy
 export async function generateMetadata({ params }) {
@@ -98,7 +98,7 @@ export async function generateMetadata({ params }) {
 📌 Dans `app/`, plus besoin de créer des **API routes (`pages/api/*`)**.  
 ✅ On peut directement appeler des fonctions serveur depuis un composant.  
 
-Exemple : **Un formulaire qui enregistre des données en base**  
+🧪 Exemple : **Un formulaire qui enregistre des données en base**  
 
 ```tsx filename="app/contact/page.tsx" copy
 "use server";

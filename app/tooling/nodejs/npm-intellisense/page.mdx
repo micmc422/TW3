@@ -1,17 +1,17 @@
 import { Callout } from 'nextra/components'
 
-# NPM IntelliSense
+# 🔍 NPM IntelliSense
 
 NPM IntelliSense est une extension VS Code qui autocomplète les noms des modules npm dans les déclarations d'import.
 
-## Installation
+## 🛠️ Installation
 
 1. Ouvrez VS Code
 2. Appuyez sur `Ctrl+P` / `Cmd+P`
 3. Collez `ext install christian-kohler.npm-intellisense`
 4. Appuyez sur Entrée
 
-## Fonctionnalités
+## 🟩 Fonctionnalités
 
 - Autocomplétion des noms de modules npm lors de l'import
 - Suggestions basées sur les dépendances dans package.json
@@ -22,16 +22,16 @@ NPM IntelliSense est une extension VS Code qui autocomplète les noms des module
 L'extension analyse votre package.json pour suggérer uniquement les modules que vous avez installés.
 </Callout>
 
-## Utilisation
+## 🟩 Utilisation
 
 Commencez à taper une déclaration d'import et les suggestions apparaîtront automatiquement :
 
-``` js
+```js copy
 import { } from 'ex' // Suggère express, expo, etc.
 const module = require('re') // Suggère react, redux, etc. 
 ```
 
-## Configuration
+## 🛠️ Configuration
 
 Quelques options sont disponibles dans les paramètres VS Code :
 
@@ -39,7 +39,7 @@ Quelques options sont disponibles dans les paramètres VS Code :
 - `npm-intellisense.recursivePackageJsonLookup`: Rechercher récursivement package.json
 - `npm-intellisense.packageSubfoldersIntellisense`: Activer l'autocomplétion pour les sous-dossiers
 
-## Dépannage
+## 🟩 Dépannage
 
 Si l'autocomplétion ne fonctionne pas :
 

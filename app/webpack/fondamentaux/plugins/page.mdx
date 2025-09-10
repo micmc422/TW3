@@ -1,9 +1,9 @@
 import { Steps } from "nextra/components"
 
-# Plugins
+# 🧩 Plugins
 Les plugins sont des modules qui effectuent des tâches plus avancées sur votre bundle. Ils peuvent être utilisés pour effectuer des optimisations, générer des fichiers supplémentaires (comme le fichier HTML), ou même manipuler le graphe des dépendances.
 
-Exemple de configuration avec le plugin HtmlWebpackPlugin dans `webpack.config.js` :
+🧪 Exemple de configuration avec le plugin HtmlWebpackPlugin dans `webpack.config.js` :
 
 ```javascript copy
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -22,12 +22,12 @@ module.exports = {
   // ...
 };
 ```
-## Exercice : Utiliser le plugin HtmlWebpackPlugin
+## 🧪 Exercice : Utiliser le plugin HtmlWebpackPlugin
 Le plugin HtmlWebpackPlugin est un outil très utile qui génère automatiquement un fichier HTML pour votre application. Il injecte tous les bundles Webpack (ou chunks) que vous avez définis dans votre configuration Webpack.
 
 Lorsque vous construisez votre application pour la production, vous pouvez avoir plusieurs bundles JavaScript. Chaque bundle représente une partie différente de votre application. Le plugin HtmlWebpackPlugin vous permet de générer un fichier HTML unique qui inclut toutes ces références de script.
 
-Par exemple, si vous avez deux bundles, `main.js` et `vendor.js`, le plugin HtmlWebpackPlugin générera un fichier HTML qui ressemble à ceci :
+🧪 Par exemple, si vous avez deux bundles, `main.js` et `vendor.js`, le plugin HtmlWebpackPlugin générera un fichier HTML qui ressemble à ceci :
 
 ```html copy
 <!DOCTYPE html>
@@ -47,21 +47,21 @@ Chaque fois que vous construisez votre application, le plugin HtmlWebpackPlugin 
 
 En outre, le plugin HtmlWebpackPlugin offre beaucoup d'options de personnalisation. Par exemple, vous pouvez définir un modèle HTML personnalisé, ajouter des métadonnées, minifier le HTML, et bien plus encore.
 <Steps>
-### Installer HtmlWebpackPlugin
+### 🛠️ Installer HtmlWebpackPlugin
 Installez le plugin HtmlWebpackPlugin en tant que dépendance de développement :
 
 ```bash copy
 npm install --save-dev html-webpack-plugin
 ```
 
-### Importer HtmlWebpackPlugin
+### 🧩 Importer HtmlWebpackPlugin
 Importez le plugin HtmlWebpackPlugin dans votre fichier `webpack.config.js` :
 
 ```javascript copy
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 ```
 
-### Ajouter le plugin à la configuration
+### 🛠️ Ajouter le plugin à la configuration
 Ajoutez une nouvelle instance de HtmlWebpackPlugin à votre tableau de plugins dans la configuration de Webpack :
 
 ```javascript copy
@@ -76,9 +76,9 @@ module.exports = {
 };
 ```
 
-### Build 
+### 🧩 Build
 Exécutez à nouveau votre script de construction Webpack.
 
-### Vérifiez
+### 🧩 Vérifiez
 Vérifiez si un nouveau fichier `index.html` a été généré dans le dossier `dist`. Ce fichier doit inclure une référence au bundle JavaScript généré par Webpack.
 </Steps>

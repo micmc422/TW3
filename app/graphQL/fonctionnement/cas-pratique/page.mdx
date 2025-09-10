@@ -1,13 +1,13 @@
 ---
 description: "L'objectif de cet exemple est de mettre en place un serveur GraphQL de base, capable de répondre à une requête simple et d'illustrer le fonctionnement de ses principaux concepts."
 ---
-# **Exemple pratique simple avec un serveur GraphQL**
+# **🧪 Exemple pratique simple avec un serveur GraphQL**
 
 L'objectif de cet exemple est de mettre en place un serveur GraphQL de base, capable de répondre à une requête simple et d'illustrer le fonctionnement de ses principaux concepts. Nous utiliserons **Node.js** et le package **Apollo Server**, l'un des frameworks les plus populaires pour créer des serveurs GraphQL.  
 
 ---
 
-## **Étape 1 : Préparation de l’environnement**  
+## 🧬 **Étape 1 : Préparation de l’environnement**
 
 1. **Installer Node.js et npm**  
    Assurez-vous que Node.js est installé sur votre machine. Si ce n’est pas le cas, téléchargez-le depuis [nodejs.org](https://nodejs.org/).
@@ -28,9 +28,9 @@ L'objectif de cet exemple est de mettre en place un serveur GraphQL de base, cap
 
 ---
 
-## **Étape 2 : Création du serveur GraphQL**  
+## 🧬 **Étape 2 : Création du serveur GraphQL**
 
-### **1. Définir le schéma**  
+### 🧱 **1. Définir le schéma**
 Le schéma déclare les types et les opérations disponibles dans notre API.  
 Dans ce cas, nous allons gérer une liste d'utilisateurs avec les propriétés suivantes : `id`, `name`, et `email`.  
 
@@ -70,7 +70,7 @@ const server = new ApolloServer({ typeDefs, resolvers });
 
 ---
 
-### **2. Configurer et démarrer le serveur**  
+### 🛠️ **2. Configurer et démarrer le serveur**
 Ajoutez le code pour démarrer le serveur.  
 
 ```javascript copy
@@ -87,7 +87,7 @@ startStandaloneServer(server, {
 
 ---
 
-## **Étape 3 : Lancer le serveur**  
+## 🧬 **Étape 3 : Lancer le serveur**
 
 Dans le terminal, exécutez :  
 ```bash copy
@@ -101,14 +101,21 @@ Vous devriez voir un message indiquant que le serveur est prêt, avec l’URL su
 
 ---
 
-## **Étape 4 : Effectuer une première requête**  
+## 🧬 **Étape 4 : Effectuer une première requête**
 
 Ouvrez un navigateur ou un client GraphQL comme **GraphiQL** ou **Apollo Studio Explorer**, puis envoyez la requête suivante pour obtenir la liste des utilisateurs :  
 
 ```graphql copy
+query {
+  users {
+    id
+    name
+    email
+  }
+}
 ```
 
-### **Réponse attendue :**  
+### 🧬 **Réponse attendue :**
 Le serveur retournera un objet JSON avec les données :  
 ```json copy
   "data": {
@@ -130,7 +137,7 @@ Le serveur retournera un objet JSON avec les données :
 
 ---
 
-### **Explications des composants clés**  
+### 🧬 **Explications des composants clés**
 
 1. **Schéma (typeDefs)** :  
    - Décrit les types (`User`) et les opérations disponibles (`Query { users }`).  
@@ -145,7 +152,7 @@ Le serveur retournera un objet JSON avec les données :
 
 ---
 
-## **Étape 5 : Étendre le serveur (facultatif)**  
+## 🧬 **Étape 5 : Étendre le serveur (facultatif)**
 Vous pouvez enrichir le serveur en ajoutant des **mutations** pour modifier les données ou des **subscriptions** pour des mises à jour en temps réel. Voici un exemple d’ajout d’une mutation pour créer un utilisateur :  
 
 **Ajout dans `typeDefs` :**  

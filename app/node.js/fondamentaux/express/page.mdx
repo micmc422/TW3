@@ -19,13 +19,17 @@ L'utilisation d'Express.js avec Node.js permet de simplifier et d'améliorer le 
 
 Pour utiliser Express, vous devez l'installer dans votre projet Node.js via NPM (Node Package Manager). Voici comment procéder :
 
+
 1. **Initialiser un projet Node.js** (si ce n'est pas déjà fait) :
-   ```sh copy
-   ```
+  ```bash copy
+  npm init -y
+  ```
+
 
 2. **Installer Express** dans le projet :
-   ```sh copy
-   ```
+  ```bash copy
+  npm install express
+  ```
 
 3. **Configurer un serveur Express de base** :
 
@@ -110,7 +114,7 @@ Un **middleware** est une fonction qui a accès à l'objet `req` (requête), `re
 
 3. **Étape 3** : Ajouter un middleware de gestion des erreurs qui renvoie une erreur 404 pour toute route non trouvée.
 
-Exemple de solution :
+🧪 Exemple de solution :
 ```javascript copy
 const express = require('express');
 const app = express();

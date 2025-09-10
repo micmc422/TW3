@@ -15,7 +15,7 @@ Open Graph (OG) est un protocole utilisé par Facebook, LinkedIn et d'autres pla
 - `og:url` → URL de la page  
 - `og:type` → Type de contenu (`website`, `article`, etc.)  
 
-Exemple de rendu sur Facebook :  
+🧪 Exemple de rendu sur Facebook :  
 ![Open Graph Preview](/images/opengraph-facebook.png)  
 
 ---
@@ -35,7 +35,7 @@ Twitter utilise ses propres balises pour afficher des cartes riches lors du part
 - `twitter:image` → Image de la carte  
 - `twitter:card` → Type de carte  
 
-Exemple de rendu sur Twitter :  
+🧪 Exemple de rendu sur Twitter :  
 ![Twitter Card Preview](/images/twittercard.png)  
 
 ---
@@ -44,7 +44,7 @@ Exemple de rendu sur Twitter :
 
 ### **🌍 Définir les Open Graph & Twitter Cards globalement (`layout.tsx`)**  
 
-```tsx filename="app/layout.tsx"
+```tsx filename="app/layout.tsx" copy
 export const metadata = {
   title: "Mon Site Next.js",
   description: "Découvrez toutes les fonctionnalités de Next.js 13+ avec App Router.",
@@ -90,7 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 📍 **But** : Générer des métadonnées spécifiques pour une page d’article.  
 
-```tsx filename="app/blog/[slug]/page.tsx"
+```tsx filename="app/blog/[slug]/page.tsx" copy
 import { Metadata } from "next";
 
 type Props = {

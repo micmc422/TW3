@@ -1,15 +1,15 @@
 ---
 description: "Dans cette activité, nous allons implémenter un système d’authentification utilisant des JSON Web Tokens (JWT) avec Node.js et Express. Ce système permettra aux utilisateurs de s'inscrire, de se connecter et d'accéder à des routes protégées uniquement s'ils sont authentifiés via un JWT."
 ---
-# **Activité Pratique : Mise en Place d’un Système d’Authentification Basé sur des JWT**
+# 🔒 **Activité Pratique : Mise en Place d’un Système d’Authentification Basé sur des JWT**
 
 Dans cette activité, nous allons implémenter un système d’authentification utilisant des **JSON Web Tokens (JWT)** avec Node.js et Express. Ce système permettra aux utilisateurs de s'inscrire, de se connecter et d'accéder à des routes protégées uniquement s'ils sont authentifiés via un JWT.
 
 ---
 
-## **Étapes à Suivre**
+## 🔐 **Étapes à Suivre**
 
-### **1. Initialisation du Projet**
+### 🔐 **1. Initialisation du Projet**
 
 1. **Créer un nouveau projet Node.js :**  
    ```bash copy
@@ -28,7 +28,7 @@ Dans cette activité, nous allons implémenter un système d’authentification 
 
 ---
 
-### **2. Structure des Fichiers**
+### 🔐 **2. Structure des Fichiers**
 
 Organisez les fichiers comme suit :  
 ```
@@ -40,7 +40,7 @@ jwt-auth/
 
 ---
 
-### **3. Écriture du Code**
+### 🔐 **3. Écriture du Code**
 
 **Fichier `app.js` :**
 ```javascript copy
@@ -112,7 +112,7 @@ app.listen(PORT, () => {
 
 ---
 
-### **4. Tester l’Application**
+### 🔐 **4. Tester l’Application**
 
 1. **Démarrer le serveur :**  
    ```bash copy
@@ -169,7 +169,7 @@ app.listen(PORT, () => {
 
 ---
 
-## **Explications Techniques**
+## 🔐 **Explications Techniques**
 
 1. **bcrypt :**  
    Utilisé pour hacher et vérifier les mots de passe afin qu’ils ne soient jamais stockés en clair.  
@@ -186,7 +186,7 @@ app.listen(PORT, () => {
 
 ---
 
-## **Améliorations Futures**
+## 🔐 **Améliorations Futures**
 - Ajouter une base de données réelle (MongoDB, MySQL) pour stocker les utilisateurs.  
 - Gérer la révocation de tokens via une liste noire.  
 - Chiffrer les données sensibles dans les payloads JWT si nécessaire.  

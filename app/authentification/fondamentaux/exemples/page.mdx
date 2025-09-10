@@ -5,13 +5,13 @@ description: "Dans cette activité, nous allons créer une page de connexion sim
 import { Steps } from 'nextra/components'
 import { FileTree } from 'nextra/components'
 
-# **Activité Pratique : Mise en Place d’une Page Simple de Connexion avec Mot de Passe**
+# 🧪 **Activité Pratique : Mise en Place d’une Page Simple de Connexion avec Mot de Passe**
 
 Dans cette activité, nous allons créer une page de connexion simple en utilisant **Node.js** avec Express comme framework. Cette application permettra aux utilisateurs de saisir un nom d'utilisateur et un mot de passe, puis de les authentifier à l'aide d'une vérification simple.
 
 
 <Steps>
-## **Initialiser le Projet Node.js**  
+## 🔐 **Initialiser le Projet Node.js**
    Créez un nouveau projet et installez les dépendances nécessaires :
    ```bash copy
    mkdir simple-login
@@ -20,7 +20,7 @@ Dans cette activité, nous allons créer une page de connexion simple en utilisa
    npm install express body-parser bcrypt ejs
    ```
 
-## **Créer la Structure des Fichiers**  
+## 🔐 **Créer la Structure des Fichiers**
    Organisez les fichiers comme suit :
 
 <FileTree>
@@ -37,7 +37,7 @@ Dans cette activité, nous allons créer une page de connexion simple en utilisa
   </FileTree.Folder>
 </FileTree>
 
-## **Configurer le Serveur (app.js)**  
+## 🛠️ **Configurer le Serveur (app.js)**
    Voici le code du serveur principal :
    ```javascript copy
 const express = require('express');
@@ -93,7 +93,7 @@ app.listen(PORT, () => {
 ```
 
 
-## **Créer les Vues (EJS)**  
+## 🔐 **Créer les Vues (EJS)**
 
 - **login.ejs** (page de connexion) :
    ```html copy
@@ -143,7 +143,7 @@ app.listen(PORT, () => {
    ```
 
 
-## **Ajouter un Fichier CSS Simple (public/styles.css)**  
+## 🔐 **Ajouter un Fichier CSS Simple (public/styles.css)**
    ```css copy
    body {
        font-family: Arial, sans-serif;
@@ -197,7 +197,7 @@ app.listen(PORT, () => {
    ```
 
 
-## **Tester l’Application**  
+## 🔐 **Tester l’Application**
 - Lancez le serveur avec la commande :  
    ```bash copy
    node app.js
@@ -209,7 +209,7 @@ app.listen(PORT, () => {
 
 </Steps>
 
-## **Explications Techniques**
+## 🔐 **Explications Techniques**
 - **bcrypt :** Utilisé pour sécuriser les mots de passe en les hachant avant de les stocker dans une base de données.  
 - **EJS :** Permet de créer des vues dynamiques en intégrant des variables côté serveur dans des pages HTML.  
 - **Body-parser :** Middleware pour traiter les données soumises via un formulaire HTML.

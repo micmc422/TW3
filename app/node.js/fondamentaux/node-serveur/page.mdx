@@ -35,7 +35,7 @@ Ce serveur écoute sur le **port 3000**. Lorsque vous accédez à `http://localh
 
 Dans cet exemple, `req` représente la **requête** du client (c'est-à-dire les informations envoyées par le navigateur ou autre), et `res` représente la **réponse** que le serveur renverra. Chaque requête peut contenir des informations comme la méthode HTTP utilisée (GET, POST, etc.), l'URL, et les en-têtes.
 
-Exemple avec des détails supplémentaires sur la requête et la réponse :
+🧪 Exemple avec des détails supplémentaires sur la requête et la réponse :
 
 ```javascript copy
 const server = http.createServer((req, res) => {
@@ -79,7 +79,7 @@ server.listen(3000, () => {
 
 Dans cet exemple, lorsque vous accédez à `http://localhost:3000/`, le serveur renvoie un message d'accueil, et pour `http://localhost:3000/about`, il affiche une page "À propos". Pour toute autre URL, il affiche une page 404 (page non trouvée).
 
-### Gérer différentes méthodes HTTP (GET, POST)
+### 🧪 Gérer différentes méthodes HTTP (GET, POST)
 
 Node.js permet également de gérer différentes méthodes HTTP comme `GET`, `POST`, `PUT`, et `DELETE`. Voici un exemple qui différencie les méthodes `GET` et `POST` :
 
@@ -113,7 +113,7 @@ Créez un serveur HTTP qui gère deux routes simples :
 - La route `/` 🏠 doit afficher un message de bienvenue.
 - La route `/about` ℹ️ doit afficher une page "À propos".
 
-Exemple de solution :
+🧪 Exemple de solution :
 
 ```javascript copy
 const http = require('http');

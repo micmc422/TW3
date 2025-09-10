@@ -11,7 +11,7 @@ Next.js 13+ introduit une API native pour gérer les **métadonnées** (`title`,
 
 📍 **But** : Définir des métadonnées globales pour l’ensemble du site.  
 
-```tsx filename="app/layout.tsx"
+```tsx filename="app/layout.tsx" copy
 export const metadata = {
   title: "Mon Site Next.js",
   description: "Un site web performant avec Next.js 13+",
@@ -60,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 📍 **But** : Personnaliser les métadonnées par page.  
 
-```tsx filename="app/about/page.tsx"
+```tsx filename="app/about/page.tsx" copy
 export const metadata = {
   title: "À propos - Mon Site",
   description: "Découvrez qui nous sommes et notre mission.",
@@ -85,7 +85,7 @@ export default function AboutPage() {
 
 📍 **But** : Générer des métadonnées en fonction d’un **contenu dynamique** (ex : article de blog).  
 
-```tsx filename="app/blog/[slug]/page.tsx"
+```tsx filename="app/blog/[slug]/page.tsx" copy
 import { Metadata } from "next";
 
 type Props = {

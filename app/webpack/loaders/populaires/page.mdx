@@ -1,8 +1,8 @@
-# Utilisation de Loaders Courants dans Webpack
+# 📥 Utilisation de Loaders Courants dans Webpack
 
 Dans ce module, nous allons explorer l'utilisation pratique de loaders courants pour traiter différents types de fichiers dans Webpack. Ces loaders sont des outils essentiels qui permettent de transformer et de préparer divers types de fichiers pour une intégration harmonieuse dans votre application.
 
-## Babel Loader pour JavaScript
+## 📥 Babel Loader pour JavaScript
 - Babel est un outil largement utilisé pour transpiler le code JavaScript moderne en une version compatible avec les navigateurs. Le loader Babel dans Webpack permet d'intégrer cette fonctionnalité dans votre flux de construction.
 
   ```javascript copy
@@ -15,7 +15,7 @@ Dans ce module, nous allons explorer l'utilisation pratique de loaders courants 
   },
   ```
 
-## CSS Loaders (style-loader, css-loader)
+## 📥 CSS Loaders (style-loader, css-loader)
 - Les loaders `style-loader` et `css-loader` permettent de traiter les fichiers CSS, de résoudre les dépendances, et d'ajouter les styles au DOM du document.
   ```javascript copy
   {
@@ -24,7 +24,7 @@ Dans ce module, nous allons explorer l'utilisation pratique de loaders courants 
   },
   ```
 
-## Sass Loader pour les fichiers SCSS
+## 📥 Sass Loader pour les fichiers SCSS
 - Le loader `sass-loader` permet de traiter les fichiers SCSS et de les convertir en CSS. Il peut être combiné avec `style-loader` et `css-loader`.
   ```javascript copy
   {
@@ -33,7 +33,7 @@ Dans ce module, nous allons explorer l'utilisation pratique de loaders courants 
   },
   ```
 
-## File Loader pour les Images
+## 📥 File Loader pour les Images
 - Le loader `file-loader` permet de traiter les fichiers d'images en les copiant dans un répertoire de sortie spécifié. Il est souvent utilisé pour gérer les images dans les projets Web.
   ```javascript copy
   {
@@ -50,7 +50,7 @@ Dans ce module, nous allons explorer l'utilisation pratique de loaders courants 
   },
   ```
 
-## URL Loader pour les Petites Images
+## 🧭 URL Loader pour les Petites Images
 - Le loader `url-loader` est une alternative au `file-loader` qui peut transformer de petites images en données URL directement intégrées dans le fichier de sortie JavaScript.
   ```javascript copy
   {

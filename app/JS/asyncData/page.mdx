@@ -1,10 +1,9 @@
 ---
 description: "Gestion des fonctions Asynchrones, quelques bonnes pratiques."
 ---
-# Fonction asynchrone
+# 📘 Fonction asynchrone
 
-``` javascript
-
+```javascript copy
 export default async function getContent(pathArray: string[]) {
     const filePath = `./${pathArray.join('/')}/`;
     // Construire le chemin complet du fichier
@@ -24,9 +23,9 @@ export default async function getContent(pathArray: string[]) {
 }
 ```
 
-## **1. Fonctionnement du Code**
+## 📘 **1. Fonctionnement du Code**
 
-### **a) Objectif de la fonction**
+### 📘 **a) Objectif de la fonction**
 La fonction `getContent` :
 1. **Construit dynamiquement un chemin de fichier** en utilisant les éléments d’un tableau (`pathArray`).
 2. **Charge des modules TypeScript dynamiques** situés dans ce chemin (ex. `seo.ts`, `cards.ts`, etc.).
@@ -34,7 +33,7 @@ La fonction `getContent` :
 
 ---
 
-### **b) Étapes principales**
+### 📘 **b) Étapes principales**
 
 1. **Construction du chemin dynamique**  
    Le chemin du fichier est créé en joignant les éléments du tableau `pathArray` avec `/`.  
@@ -66,11 +65,11 @@ La fonction `getContent` :
 
 ---
 
-## **2. Comment l’utiliser**
+## 📘 **2. Comment l’utiliser**
 
 Voici un exemple pratique d’utilisation de cette fonction dans une application.
 
-### **a) Appeler la fonction**
+### 📘 **a) Appeler la fonction**
 ```typescript copy
 import getContent from './getContent';
 
@@ -88,7 +87,7 @@ import getContent from './getContent';
 
 ---
 
-### **b) Explication de l'exemple**
+### 📘 **b) Explication de l'exemple**
 1. **Appel avec un chemin**  
    Le tableau `['pages', 'about']` indique que les fichiers se trouvent dans le dossier `./pages/about/`.
 
@@ -117,7 +116,7 @@ import getContent from './getContent';
 
 ---
 
-### **c) Cas d'utilisation**
+### 📘 **c) Cas d'utilisation**
 Ce type de fonction est utile dans les contextes suivants :
 - **Applications modulaires** : où chaque section ou page a ses propres fichiers de données.
 - **CMS headless** : pour charger dynamiquement du contenu basé sur des routes ou des pages.

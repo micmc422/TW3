@@ -1,21 +1,21 @@
 ---
 description: "L’objectif de cet exercice est de créer un serveur GraphQL simple qui permet de : 1. Récupérer des données via des requêtes (Query). 2. Modifier des données avec des mutations (Mutation). 3. Tester les interactions en utilisant un client GraphQL comme GraphiQL ou Apollo Explorer."
 ---
-# **Exercice Pratique : Mise en place d’un serveur GraphQL simple**
+# **📝 Exercice Pratique : Mise en place d’un serveur GraphQL simple**
 
 L’objectif de cet exercice est de créer un serveur GraphQL simple qui permet de :
 1. Récupérer des données via des **requêtes (Query)**.
 2. Modifier des données avec des **mutations (Mutation)**.
 3. Tester les interactions en utilisant un client GraphQL comme **GraphiQL** ou **Apollo Explorer**.
 
-## **Prérequis**
+## 🧬 **Prérequis**
 - **Node.js** installé sur votre machine.
 - Un éditeur de code comme Visual Studio Code.
 - Les dépendances nécessaires : `npm install @apollo/server graphql`.
 
 ---
 
-## **Étape 1 : Structure du projet**
+## 🧬 **Étape 1 : Structure du projet**
 
 Créez un répertoire et initialisez un projet Node.js :
 ```bash copy
@@ -31,11 +31,11 @@ npm install @apollo/server graphql
 
 ---
 
-## **Étape 2 : Création du serveur GraphQL**
+## 🧬 **Étape 2 : Création du serveur GraphQL**
 
 Créez un fichier principal `index.js` et ajoutez le code suivant :
 
-### **Définir le schéma**
+### 🧱 **Définir le schéma**
 Nous allons créer un schéma pour gérer une liste d’étudiants, avec des propriétés comme `id`, `name`, et `email`.
 ```javascript copy
 const { ApolloServer } = require('@apollo/server');
@@ -88,7 +88,7 @@ const resolvers = {
 const server = new ApolloServer({ typeDefs, resolvers });
 ```
 
-### **Démarrer le serveur**
+### 🧬 **Démarrer le serveur**
 Ajoutez la configuration pour démarrer le serveur sur un port donné :
 ```javascript copy
 startStandaloneServer(server, {
@@ -100,7 +100,7 @@ startStandaloneServer(server, {
 
 ---
 
-## **Étape 3 : Lancer et tester le serveur**
+## 🧬 **Étape 3 : Lancer et tester le serveur**
 
 1. Démarrez le serveur GraphQL :
    ```bash copy
@@ -115,9 +115,9 @@ startStandaloneServer(server, {
 
 ---
 
-## **Étape 4 : Tester les requêtes et mutations**
+## 🧬 **Étape 4 : Tester les requêtes et mutations**
 
-### **Requête pour récupérer tous les étudiants**
+### 🧬 **Requête pour récupérer tous les étudiants**
 ```graphql copy
 query {
   students {
@@ -147,7 +147,7 @@ query {
 }
 ```
 
-### **Requête pour récupérer un étudiant spécifique**
+### 🧬 **Requête pour récupérer un étudiant spécifique**
 ```graphql copy
 query {
   student(id: "1") {
@@ -168,7 +168,7 @@ query {
 }
 ```
 
-### **Mutation pour ajouter un étudiant**
+### 🧬 **Mutation pour ajouter un étudiant**
 ```graphql copy
 mutation {
   addStudent(name: "Charlie", email: "charlie@example.com") {
@@ -195,7 +195,7 @@ Refaites une requête pour tous les étudiants et vérifiez que le nouvel étudi
 
 ---
 
-## **Étape 5 : Étendre l’exercice (facultatif)**
+## 🧪 **Étape 5 : Étendre l’exercice (facultatif)**
 
 1. **Ajouter des relations** : Associez des étudiants à des cours (par exemple, type `Course`).
 2. **Pagination** : Implémentez un système pour retourner les étudiants par page (par exemple, `limit` et `offset`).
@@ -204,7 +204,7 @@ Refaites une requête pour tous les étudiants et vérifiez que le nouvel étudi
 
 ---
 
-### **Résumé des objectifs atteints**
+### 🧾 **Résumé des objectifs atteints**
 
 | **Objectif**                  | **Statut**                  |
 |-------------------------------|----------------------------|

@@ -48,7 +48,7 @@ Il existe quatre types de flux en Node.js :
 3. **Duplex** (lecture et écriture simultanées)
 4. **Transform** (modification des données pendant le transfert)
 
-Voici un exemple de lecture de fichier en utilisant un flux (`stream`):
+Voici un exemple de lecture et d'écriture de fichier en utilisant des flux (`streams`):
 
 - **Lecture avec flux (`streams`)** 📥 :
   ```javascript copy
@@ -66,11 +66,46 @@ Voici un exemple de lecture de fichier en utilisant un flux (`stream`):
   });
   ```
 
+- **Écriture avec flux (`streams`)** 📤 :
+  ```javascript copy
+  const fs = require('fs');
+
+  const writeStream = fs.createWriteStream('nouveauFichier.txt');
+  writeStream.write('Première ligne\n');
+  writeStream.write('Deuxième ligne\n');
+  writeStream.end('Fin du fichier');
+  writeStream.on('finish', () => {
+    console.log('Écriture terminée !');
+  });
+  writeStream.on('error', (err) => {
+    console.error('Erreur lors de l\'écriture :', err);
+  });
+  readStream.on('end', () => {
+    console.log('Lecture du fichier terminée.');
+  });
+  readStream.on('error', (err) => {
+    console.error('Erreur lors de la lecture du fichier :', err);
+  });
+  ```
+
+
+👉 **Astuce** : Depuis Node.js 10+, vous pouvez aussi utiliser les promesses avec `fs.promises` pour une gestion asynchrone plus moderne (ex : `await fs.promises.readFile('exemple.txt', 'utf8')`).
+
 **Les buffers** sont des zones de mémoire brute allouées pour stocker des données binaires, souvent utilisées lors de la manipulation de flux.
 
 ### 🧊 Utilisation d’un buffer
+
   ```javascript copy
   const buffer = Buffer.from('Bonjour');
   console.log(buffer);  // <Buffer 42 6f 6e 6a 6f 75 72>
   console.log(buffer.toString());  // 'Bonjour'
   ```
+
+---
+
+## 📝 TL;DR
+
+- Utilisez le module `fs` pour lire/écrire des fichiers de façon simple.
+- Les flux (`streams`) permettent de traiter de gros fichiers sans tout charger en mémoire.
+- Les buffers servent à manipuler des données binaires.
+- Privilégiez les méthodes asynchrones pour de meilleures performances.

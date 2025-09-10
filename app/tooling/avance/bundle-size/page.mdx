@@ -1,13 +1,13 @@
 
-# Optimisation de la taille du bundle
+# ⚡ Optimisation de la taille du bundle
 
 La taille du bundle est un facteur crucial pour les performances de votre application. Un bundle trop volumineux peut ralentir significativement le chargement initial de votre site.
 
-## Analyser la taille du bundle
+## 📘 Analyser la taille du bundle
 
 Pour analyser la taille de votre bundle, plusieurs outils sont disponibles :
 
-### Webpack Bundle Analyzer
+### 📘 Webpack Bundle Analyzer
 
 
 ```sh copy
@@ -29,7 +29,7 @@ module.exports = {
 ```
 
 
-### Next.js Bundle Analyzer
+### 📘 Next.js Bundle Analyzer
 
 Pour Next.js, utilisez :
 
@@ -39,9 +39,9 @@ npm install --save-dev @next/bundle-analyzer
 ```
 
 
-## Astuces pour réduire la taille
+## 📘 Astuces pour réduire la taille
 
-### 1. Code splitting
+### 📘 1. Code splitting
 
 Utilisez le chargement dynamique :
 
@@ -53,7 +53,7 @@ const DynamicComponent = dynamic(() => import('../components/Heavy'))
 ```
 
 
-### 2. Tree shaking
+### 📘 2. Tree shaking
 
 Assurez-vous d'utiliser des imports nommés :
 
@@ -67,7 +67,7 @@ import { map } from 'lodash'
 ```
 
 
-### 3. Compression des images
+### 📘 3. Compression des images
 
 Utilisez des formats optimisés comme WebP :
 
@@ -88,7 +88,7 @@ export default function OptimizedImage() {
 ```
 
 
-### 4. Minification des dépendances
+### 📘 4. Minification des dépendances
 
 Vérifiez régulièrement vos dépendances avec `npm-check` :
 
@@ -98,7 +98,7 @@ npx npm-check
 ```
 
 
-## Bonnes pratiques
+## 🧪 Bonnes pratiques
 
 - Utilisez `import()` pour le code splitting
 - Évitez les dépendances lourdes
@@ -106,7 +106,7 @@ npx npm-check
 - Mettez en place un budget de performance
 - Surveillez régulièrement la taille du bundle
 
-## Outils recommandés
+## 📘 Outils recommandés
 
 - webpack-bundle-analyzer
 - source-map-explorer

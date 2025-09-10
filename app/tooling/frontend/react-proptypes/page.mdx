@@ -1,28 +1,28 @@
 
-# PropTypes React
+# 🧩 PropTypes React
 
 React PropTypes est un mécanisme de validation des props dans React qui permet de vérifier le type des données passées aux composants.
 
-## Pourquoi utiliser PropTypes ?
+## 📘 Pourquoi utiliser PropTypes ?
 
 PropTypes aide à :
 - Détecter les bugs tôt dans le cycle de développement
 - Documenter les props attendues par un composant
 - Améliorer la maintenabilité du code
 
-## Installation
+## 🛠️ Installation
 
 
 ``` sh npm2yarn copy
 npm install prop-types
 ```
 
-## Exemples d'utilisation
+## 📘 Exemples d'utilisation
 
-### Types de base
+### 📘 Types de base
 
 
-``` js
+```js copy
 import PropTypes from 'prop-types';
 
 function Welcome(props) {
@@ -38,10 +38,10 @@ Welcome.propTypes = {
 };
 ```
 
-### Types complexes
+### 📘 Types complexes
 
 
-``` js
+```js copy
 import PropTypes from 'prop-types';
 
 function UserProfile(props) {
@@ -72,10 +72,10 @@ UserProfile.propTypes = {
 };
 ```
 
-### Valeurs spécifiques
+### 📘 Valeurs spécifiques
 
 
-``` js
+```js copy
 function Button(props) {
   return <button className={props.size}>{props.label}</button>;
 }
@@ -86,10 +86,10 @@ Button.propTypes = {
 };
 ```
 
-### Props personnalisées
+### 📘 Props personnalisées
 
 
-``` js
+```js copy
 function Password(props) {
   return <input type="password" value={props.value} />;
 }
@@ -105,14 +105,14 @@ Password.propTypes = {
 };
 ```
 
-## Bonnes pratiques
+## 🧪 Bonnes pratiques
 
 1. Toujours définir les PropTypes pour les composants réutilisables
 2. Utiliser `.isRequired` pour les props obligatoires
 3. Documenter les props complexes avec des commentaires
 4. Désactiver PropTypes en production pour de meilleures performances
 
-## PropTypes vs TypeScript
+## 📘 PropTypes vs TypeScript
 
 PropTypes est utile pour :
 - Les petits projets

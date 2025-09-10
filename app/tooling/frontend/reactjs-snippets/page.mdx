@@ -1,16 +1,16 @@
-# Snippets React pour VS Code
+# ✂️ Snippets React pour VS Code
 
 Cette extension VS Code fournit des snippets React/ReactJS pour accélérer votre développement.
 
-## Installation
+## 🛠️ Installation
 
 1. Ouvrez VS Code
 2. Appuyez sur `Ctrl+P` / `Cmd+P`
 3. Tapez `ext install dsznajder.es7-react-js-snippets`
 
-## Snippets disponibles
+## 📘 Snippets disponibles
 
-### Composants React
+### 📘 Composants React
 
 | Snippet | Description |
 |---------|-------------|
@@ -19,7 +19,7 @@ Cette extension VS Code fournit des snippets React/ReactJS pour accélérer votr
 | `rcc→` | Crée une classe composant |
 
 
-``` js
+```js copy
 // rfc
 function MonComposant() {
   return (
@@ -51,7 +51,7 @@ class MonComposant extends React.Component {
 }
 ```
 
-### Hooks React
+### 📘 Hooks React
 
 | Snippet | Description |
 |---------|-------------|
@@ -60,7 +60,7 @@ class MonComposant extends React.Component {
 | `useR→` | useRef Hook |
 
 
-``` js
+```js copy
 // useState
 const [compteur, setCompteur] = useState(0)
 
@@ -73,7 +73,7 @@ useEffect(() => {
 const monRef = useRef(null)
 ```
 
-### Props & State
+### 📘 Props & State
 
 | Snippet | Description |
 |---------|-------------|
@@ -82,7 +82,7 @@ const monRef = useRef(null)
 | `ptf→` | PropTypes Func |
 
 
-``` js
+```js copy
 MonComposant.propTypes = {
   nom: PropTypes.string,
   age: PropTypes.number,
@@ -90,7 +90,7 @@ MonComposant.propTypes = {
 }
 ```
 
-### Import/Export
+### 📘 Import/Export
 
 | Snippet | Description |
 |---------|-------------|
@@ -98,7 +98,7 @@ MonComposant.propTypes = {
 | `exp→` | export |
 
 
-``` js
+```js copy
 import { Component } from 'react'
 export default Component
 ```

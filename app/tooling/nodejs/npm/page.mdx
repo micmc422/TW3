@@ -1,8 +1,8 @@
-# NPM
+# 📦 NPM
 
 NPM (Node Package Manager) est le gestionnaire de paquets par défaut de Node.js. Il permet d'installer, de partager et de gérer les dépendances des projets Node.js.
 
-## Installation
+## 🛠️ Installation
 
 NPM est installé automatiquement avec Node.js. Pour vérifier son installation :
 
@@ -10,7 +10,7 @@ NPM est installé automatiquement avec Node.js. Pour vérifier son installation 
 npm -v
 ```
 
-## Initialisation d'un projet
+## 🟩 Initialisation d'un projet
 
 Pour créer un nouveau projet Node.js :
 
@@ -20,9 +20,9 @@ npm init
 
 Cette commande crée un fichier `package.json` qui contient les métadonnées du projet.
 
-## Gestion des dépendances
+## 🟩 Gestion des dépendances
 
-### Installation de dépendances
+### 🛠️ Installation de dépendances
 
 
 ``` sh npm2yarn copy filename="dépendances de production"
@@ -32,14 +32,14 @@ npm install <package-name>
 npm install --save-dev <package-name>
 ```
 
-### Désinstallation de dépendances
+### 🛠️ Désinstallation de dépendances
 
 
 ``` sh npm2yarn copy
 npm uninstall <package-name>
 ```
 
-### Mise à jour des dépendances
+### 🟩 Mise à jour des dépendances
 
 
 ``` sh npm2yarn copy
@@ -49,11 +49,11 @@ npm outdated
 npm update
 ```
 
-## Scripts NPM
+## 🟩 Scripts NPM
 
 Les scripts NPM permettent d'automatiser des tâches courantes. Ils sont définis dans le fichier `package.json` :
 
-``` json
+```json copy
 {
   "scripts": {
     "start": "node index.js",
@@ -70,9 +70,9 @@ Pour exécuter un script :
 npm run <script-name>
 ```
 
-## Configuration
+## 🛠️ Configuration
 
-### Fichier .npmrc
+### 🟩 Fichier .npmrc
 
 Le fichier `.npmrc` permet de configurer NPM. Il peut être créé à différents niveaux :
 
@@ -80,7 +80,7 @@ Le fichier `.npmrc` permet de configurer NPM. Il peut être créé à différent
 - Par utilisateur
 - Globalement
 
-### Registry
+### 🟩 Registry
 
 NPM utilise par défaut le registry public npmjs.com. Pour utiliser un registry privé :
 
@@ -89,7 +89,7 @@ NPM utilise par défaut le registry public npmjs.com. Pour utiliser un registry 
 npm config set registry <registry-url>
 ```
 
-## Bonnes pratiques
+## 🧪 Bonnes pratiques
 
 - Toujours versionner le fichier `package.json`
 - Ne pas versionner le dossier `node_modules`

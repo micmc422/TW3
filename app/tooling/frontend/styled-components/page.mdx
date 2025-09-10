@@ -1,19 +1,19 @@
 
-# Styled Components
+# 💅 Styled Components
 
 Styled Components est une bibliothèque qui permet d'écrire du CSS dans du JavaScript en utilisant les tagged templates literals. Cette approche permet de créer des composants React avec des styles encapsulés.
 
-## Installation
+## 🛠️ Installation
 
 
 ``` sh npm2yarn copy
 npm install styled-components
 ```
 
-## Utilisation de base
+## 📘 Utilisation de base
 
 
-``` js
+```js copy
 import styled from 'styled-components';
 
 // Création d'un bouton stylisé
@@ -36,12 +36,12 @@ function App() {
 }
 ```
 
-## Props dynamiques
+## 📘 Props dynamiques
 
 Les styled-components peuvent utiliser des props pour modifier leur style :
 
 
-``` js
+```js copy
 const Button = styled.button`
   background-color: ${props => props.primary ? '#007bff' : '#6c757d'};
   color: white;
@@ -53,12 +53,12 @@ const Button = styled.button`
 <Button>Bouton Secondaire</Button>
 ```
 
-## Extension de styles
+## 🧩 Extension de styles
 
 On peut étendre les styles d'un composant existant :
 
 
-``` js
+```js copy
 const Button = styled.button`
   color: white;
   padding: 10px 20px;
@@ -70,12 +70,12 @@ const LargeButton = styled(Button)`
 `;
 ```
 
-## Thèmes
+## 📘 Thèmes
 
 Styled Components supporte le theming :
 
 
-``` js
+```js copy
 import { ThemeProvider } from 'styled-components';
 
 const theme = {
@@ -95,12 +95,12 @@ const ThemedButton = styled.button`
 </ThemeProvider>
 ```
 
-## Styles globaux
+## 📘 Styles globaux
 
 Pour définir des styles globaux :
 
 
-``` js
+```js copy
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -122,16 +122,16 @@ function App() {
 }
 ```
 
-## Bonnes pratiques
+## 🧪 Bonnes pratiques
 
 1. **Nommage explicite** : Donnez des noms clairs à vos composants stylisés
 2. **Organisation** : Gardez les styled-components dans des fichiers séparés
 3. **Réutilisation** : Créez des composants de base réutilisables
 4. **Props** : Utilisez des props pour la logique conditionnelle des styles
 
-## Exemple avec variables CSS
+## 📘 Exemple avec variables CSS
 
-``` js
+```js copy
 import styled from 'styled-components';
 
 // Définition des variables CSS dans un thème

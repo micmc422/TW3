@@ -1,19 +1,19 @@
 ---
 description: "GraphQL est une technologie riche, bâtie autour de concepts bien définis qui facilitent la création et la gestion des APIs. Ces concepts fondamentaux incluent le schéma, les types, les requêtes, les mutations et les subscriptions."
 ---
-# **Les concepts fondamentaux de GraphQL**  
+# **📚 Les concepts fondamentaux de GraphQL**  
 
 GraphQL est une technologie riche, bâtie autour de concepts bien définis qui facilitent la création et la gestion des APIs. Ces concepts fondamentaux incluent le **schéma**, les **types**, les **requêtes**, les **mutations** et les **subscriptions**.  
 
 ---
 
-## **Le Schéma (Schema)**  
+## 🧱 **Le Schéma (Schema)**
 Le schéma est la pierre angulaire d’une API GraphQL. Il définit :  
 - **Les types de données disponibles** : Ce que le client peut demander.  
 - **Les relations entre ces types** : Comment les différentes entités sont connectées.  
 - **Les opérations possibles** : Quelles actions peuvent être effectuées, comme récupérer ou modifier des données.  
 
-### **Structure d’un schéma :**  
+### 🧱 **Structure d’un schéma :**
 Le schéma utilise un langage spécifique, appelé **SDL (Schema Definition Language)**. Par exemple :  
 ```graphql copy
   id: ID!
@@ -23,17 +23,17 @@ Le schéma utilise un langage spécifique, appelé **SDL (Schema Definition Lang
 }
 ```
 
-### **Principaux éléments d’un schéma :**  
+### 🧱 **Principaux éléments d’un schéma :**
 - **Query** : Définit les opérations pour lire les données.  
 - **Mutation** : Définit les opérations pour modifier ou écrire des données.  
 - **Subscription** : Définit les opérations pour écouter les mises à jour en temps réel.  
 
 ---
 
-## **Les Types**  
+## 🧬 **Les Types**
 GraphQL repose sur un système de typage strict qui assure la cohérence et la validation des données échangées.  
 
-### **Types scalaires de base :**  
+### 🧬 **Types scalaires de base :**
 Les types scalaires sont les blocs de base pour représenter des données simples :  
 - `String` : Texte.  
 - `Int` : Entiers.  
@@ -41,7 +41,7 @@ Les types scalaires sont les blocs de base pour représenter des données simple
 - `Boolean` : `true` ou `false`.  
 - `ID` : Identifiant unique, souvent utilisé pour les clés primaires.  
 
-### **Types personnalisés (Objets)** :  
+### 🧬 **Types personnalisés (Objets)** :
 Les types personnalisés permettent de structurer des données plus complexes. Par exemple, un type utilisateur :  
 ```graphql copy
   id: ID!
@@ -51,7 +51,7 @@ Les types personnalisés permettent de structurer des données plus complexes. P
 }
 ```
 
-### **Enums et Listes :**  
+### 🧬 **Enums et Listes :**
 - **Enums** : Définissent un ensemble de valeurs possibles pour une propriété :  
   ```graphql copy
   ```
@@ -59,10 +59,10 @@ Les types personnalisés permettent de structurer des données plus complexes. P
 
 ---
 
-## **Les Requêtes (Query)**  
+## 🧬 **Les Requêtes (Query)**
 Les requêtes permettent de récupérer les données depuis le serveur. Ce qui distingue GraphQL, c’est la possibilité pour le client de spécifier exactement les champs nécessaires.  
 
-### **Exemple de requête simple :**  
+### 🧬 **Exemple de requête simple :**
 ```graphql copy
   user(id: 1) {
     name
@@ -70,16 +70,16 @@ Les requêtes permettent de récupérer les données depuis le serveur. Ce qui d
   }
 }
 ```
-### **Caractéristiques principales :**  
+### 🧬 **Caractéristiques principales :**
 - **Précision** : Le client obtient uniquement les champs demandés.  
 - **Relations** : Les requêtes peuvent suivre des relations complexes entre types.  
 
 ---
 
-## **Les Mutations**  
+## 🧬 **Les Mutations**
 Les mutations permettent de modifier ou d’ajouter des données sur le serveur.  
 
-### **Exemple de mutation :**  
+### 🧬 **Exemple de mutation :**
 Créer un nouvel utilisateur :  
 ```graphql copy
   createUser(input: { name: "Alice", email: "alice@example.com" }) {
@@ -89,25 +89,25 @@ Créer un nouvel utilisateur :
 }
 ```
 
-### **Retour structuré :**  
+### 🧬 **Retour structuré :**
 Les mutations retournent les données modifiées ou créées, dans le même format que les requêtes.
 
 ---
 
-## **Les Subscriptions**  
+## 🧬 **Les Subscriptions**
 Les subscriptions permettent d’écouter les changements de données en temps réel, souvent à l’aide de WebSockets.  
 
-### **Cas d’utilisation :**  
+### 🧬 **Cas d’utilisation :**
 - Suivi des notifications en direct.  
 - Affichage de mises à jour dans une application de chat.  
 
-### **Exemple de subscription :**  
+### 🧬 **Exemple de subscription :**
 ```graphql copy
 ```
 
 ---
 
-## **Résumé des concepts fondamentaux**  
+## 🧾 **Résumé des concepts fondamentaux**
 | Concept       | Rôle principal                                  | Exemple clé                    |  
 |---------------|------------------------------------------------|--------------------------------|  
 | **Schéma**    | Définir les types et opérations disponibles    | `type User { id: ID! name: String! }` |  

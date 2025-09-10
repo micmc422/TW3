@@ -18,7 +18,6 @@ export const metadata = {
     title: 'TW3'
   },
   other: {
-    'msapplication-TileImage': '/ms-icon-144x144.png',
     'msapplication-TileColor': '#fff'
   },
   twitter: {
@@ -27,21 +26,21 @@ export const metadata = {
   openGraph: {
     title: {
       template: '%s - TW3',
-      description: 'Dans le cadre de vos études à l’Université Champollion à Albi, ce programme de cours vous permettra de maîtriser les technologies essentielles au développement web moderne.',
     },
-    
+    description: 'Dans le cadre de vos études à l’Université Champollion à Albi, ce programme de cours vous permettra de maîtriser les technologies essentielles au développement web moderne.',
+    images: [
+      {
+        url: '/opengraph-image.jpg',
+        width: 1200,
+        height: 630,
+        type: 'image/jpeg'
+      }
+    ]
   },
   locale: "fr_FR",
   type: "website",
-  images: [
-    {
-      url: '/code-html.jpg',
-      width: 3543,
-      height: 2365,
-      type: 'image/jpeg'}
-  ],
   alternates: {
-    canonical: './',
+    canonical: '/',
   },
 }
 
@@ -120,42 +119,11 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="fr" dir="ltr" suppressHydrationWarning>
       <Head faviconGlyph="✦">
-        <meta name="msapplication-TileColor" content="#fff" />
-        <meta httpEquiv="Content-Language" content="fr" />
-        <meta name="apple-mobile-web-app-title" content="TW3" />
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="https://tw-3.vercel.app" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-icon-180x180.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="192x192"
-          href="/android-icon-192x192.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="96x96"
-          href="/favicon-96x96.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
+  <meta name="msapplication-TileColor" content="#fff" />
+  <meta httpEquiv="Content-Language" content="fr" />
+  <meta name="apple-mobile-web-app-title" content="TW3" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="https://tw-3.vercel.app" />
       </Head>
       <body>
         <Layout

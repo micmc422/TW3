@@ -2,11 +2,11 @@
 description: "La suppression de données, souvent désignée par le terme Delete, est une étape cruciale pour maintenir la propreté et l'intégrité des collections MongoDB. Ce chapitre explore les diverses méthodes et considérations pour supprimer des documents, en mettant l'accent sur la flexibilité offerte par MongoDB dans la gestion de la suppression de données."
 ---
 
-# Suppression de Données dans MongoDB
+# 🗑️ Suppression de Données dans MongoDB
 
 La suppression de données, souvent désignée par le terme "Delete", est une étape cruciale pour maintenir la propreté et l'intégrité des collections MongoDB. Ce chapitre explore les diverses méthodes et considérations pour supprimer des documents, en mettant l'accent sur la flexibilité offerte par MongoDB dans la gestion de la suppression de données.
 
-## Méthodes de Suppression
+## 🍃 Méthodes de Suppression
 
 1. **`deleteOne()` et `deleteMany()` :** Ces méthodes permettent de supprimer un ou plusieurs documents qui correspondent à un critère donné.
 
@@ -25,7 +25,7 @@ La suppression de données, souvent désignée par le terme "Delete", est une é
     db.ma_collection.remove({ "nom": "Jane Doe" });
     ```
 
-## Suppression Sélective
+## 🍃 Suppression Sélective
 
 1. **Suppression de Champs Spécifiques :** Utilisez l'opérateur `$unset` pour supprimer des champs spécifiques d'un document.
 
@@ -41,7 +41,7 @@ La suppression de données, souvent désignée par le terme "Delete", est une é
     db.ma_collection.deleteMany({ "age": { $gt: 30 } });
     ```
 
-## Bonnes Pratiques et Astuces
+## 🧪 Bonnes Pratiques et Astuces
 
 1. **Utilisation de `justOne` :** Lors de l'utilisation de `deleteMany()`, considérez l'option `justOne` pour ne supprimer qu'un seul document, même s'il y en a plusieurs qui correspondent au critère.
 

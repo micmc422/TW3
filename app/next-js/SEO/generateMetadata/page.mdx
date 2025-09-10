@@ -18,7 +18,7 @@ Dans Next.js 13+, `generateMetadata` permet de **générer dynamiquement** les m
 
 📍 **But** : Chaque page d’article de blog aura ses propres métadonnées (`title`, `description`, `og:image`).  
 
-```tsx filename="app/blog/[slug]/page.tsx"
+```tsx filename="app/blog/[slug]/page.tsx" copy
 import { Metadata } from "next";
 
 type Props = {
@@ -79,7 +79,7 @@ export default function BlogPost({ params }: Props) {
 
 📍 **But** : Récupérer les métadonnées d’un produit depuis une API.  
 
-```tsx filename="app/product/[id]/page.tsx"
+```tsx filename="app/product/[id]/page.tsx" copy
 import { Metadata } from "next";
 
 type Props = {

@@ -2,11 +2,11 @@
 description: "La sécurité des données est une priorité absolue dans MongoDB. Ce chapitre examine les pratiques et les fonctionnalités de sécurité intégrées à MongoDB pour garantir l'intégrité et la confidentialité des informations stockées."
 ---
 
-# Sécurité dans MongoDB : Protéger les Données Sensibles
+# 🔒 Sécurité dans MongoDB : Protéger les Données Sensibles
 
 La sécurité des données est une priorité absolue dans MongoDB. Ce chapitre examine les pratiques et les fonctionnalités de sécurité intégrées à MongoDB pour garantir l'intégrité et la confidentialité des informations stockées. En comprenant ces aspects, vous pourrez mettre en place des mesures robustes pour protéger vos données sensibles.
 
-## Authentification et Autorisation
+## 🔒 Authentification et Autorisation
 
 L'authentification garantit que seuls les utilisateurs autorisés peuvent accéder à la base de données. Explorerons la configuration des utilisateurs et des rôles, ainsi que l'utilisation d'une connexion chiffrée pour renforcer la sécurité.
 
@@ -19,7 +19,7 @@ db.createUser({
 });
 ```
 
-## Chiffrement des Données
+## 🍃 Chiffrement des Données
 
 Le chiffrement des données ajoute une couche de sécurité supplémentaire. Le chiffrement au repos et le chiffrement en transit, protégeant respectivement les données stockées sur le disque et celles transitant entre le client et le serveur.
 
@@ -28,7 +28,7 @@ Le chiffrement des données ajoute une couche de sécurité supplémentaire. Le 
 db.getSiblingDB("admin").runCommand({ enableEncryption: 1, kms: { key: "myKey" } });
 ```
 
-## Pare-feu MongoDB
+## 🍃 Pare-feu MongoDB
 
 La configuration d'un pare-feu MongoDB permet de restreindre l'accès à la base de données en spécifiant les adresses IP autorisées. Configuration des règles du pare-feu pour renforcer la sécurité du réseau.
 
@@ -37,7 +37,7 @@ La configuration d'un pare-feu MongoDB permet de restreindre l'accès à la base
 db.runCommand({ addIPWhitelist: "192.168.1.1" });
 ```
 
-## Audit des Opérations
+## 🍃 Audit des Opérations
 
 L'audit des opérations offre une traçabilité des activités dans la base de données. 
 Configuration de l'audit pour enregistrer des événements spécifiques, permettant une surveillance détaillée.
@@ -47,6 +47,6 @@ Configuration de l'audit pour enregistrer des événements spécifiques, permett
 db.adminCommand({setParameter: 1, auditAuthorizationSuccess: true});
 ```
 
-## Bonnes Pratiques de Sécurité
+## 🔒 Bonnes Pratiques de Sécurité
 
 En plus des fonctionnalités spécifiques, nous discuterons des bonnes pratiques générales de sécurité, telles que la mise à jour régulière, la gestion des vulnérabilités et la sensibilisation des équipes à la sécurité des bases de données.

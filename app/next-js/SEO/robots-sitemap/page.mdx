@@ -59,7 +59,7 @@ Next.js permet de **générer dynamiquement** ces fichiers via les **routes d’
 
 ### **📂 Méthode 1 : Générer `robots.txt` avec une route `/robots.txt`**  
 
-```tsx filename="app/robots.ts"
+```tsx filename="app/robots.ts" copy
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -87,7 +87,7 @@ Sitemap: https://monsite.com/sitemap.xml
 
 Si le site contient **des articles de blog ou des produits**, on peut générer dynamiquement le `sitemap.xml` en récupérant ces données.  
 
-```tsx filename="app/sitemap.tsx"
+```tsx filename="app/sitemap.tsx" copy
 import { NextResponse } from "next/server";
 
 async function getPages() {

@@ -1,14 +1,14 @@
 import { Callout } from 'nextra/components'
  
-# Créer un site en utilisant Webpack.
+# 🧩 Créer un site en utilisant Webpack.
 
-## Ressources utilisées
+## 🔗 Ressources utilisées
 Cet exercice utilise les technologies suivantes :
 
 - [Webpack](https://webpack.js.org/) : Un outil de regroupement de modules JavaScript open source.
 - [html-webpack-plugin](https://webpack.js.org/plugins/html-webpack-plugin/) : Un plugin pour Webpack qui génère des fichiers HTML pour vos bundles.
 
-## **Objectif** 
+## 🧩 **Objectif**
 Créez un site web minimaliste avec trois pages : Accueil, À propos et Contact. Utilisez du JavaScript pur pour créer des composants pour chaque page. Utilisez Webpack pour regrouper et optimiser votre code.
 ```plaintext copy
 mon-site/
@@ -30,7 +30,7 @@ mon-site/
 
 ```
 
-## Initialiser le projet
+## 🧩 Initialiser le projet
 Créez un nouveau dossier pour votre projet et initialisez un nouveau projet npm.
 
 ```bash copy
@@ -39,14 +39,14 @@ cd mon-site
 npm init -y
 ```
 
-## Installer les dépendances nécessaires
+## 🛠️ Installer les dépendances nécessaires
 Installez Webpack et le presse-papiers de développement.
 
 ```bash copy
 npm install --save-dev webpack webpack-cli webpack-dev-server html-webpack-plugin
 ```
 
-## Créer les fichiers HTML
+## 🧩 Créer les fichiers HTML
 Créez trois fichiers HTML pour chaque page : `index.html`, `about.html` et `contact.html`. Chaque fichier doit avoir un élément avec un identifiant unique où le contenu de la page sera inséré.
 ```html copy
 <!-- index.html -->
@@ -86,7 +86,7 @@ Créez trois fichiers HTML pour chaque page : `index.html`, `about.html` et `con
 </html>
 ```
 
-## Créer les fichiers JavaScript
+## 🧩 Créer les fichiers JavaScript
 Créez trois fichiers JavaScript pour chaque page : `home.js`, `about.js` et `contact.js`. Chaque fichier doit contenir une fonction qui insère du contenu dans l'élément avec l'identifiant unique correspondant.
 
 ```javascript copy
@@ -100,7 +100,7 @@ document.getElementById('content').innerHTML = '<h1>À propos</h1>';
 document.getElementById('content').innerHTML = '<h1>Contactez-moi</h1>';
 ```
 
-## Configurer Webpack
+## 🛠️ Configurer Webpack
 Configurez Webpack pour regrouper vos fichiers JavaScript en un seul fichier. Vous pouvez utiliser le plugin `html-webpack-plugin` pour injecter automatiquement le bundle JavaScript dans vos fichiers HTML.
 
 Créez un fichier `webpack.config.js` à la racine de votre projet avec le contenu suivant :
@@ -145,5 +145,5 @@ plugins: [
 };
 ```
 
-## Test
+## 🧩 Test
 Testez votre site en exécutant `npx webpack serve` et en ouvrant les fichiers HTML générés dans votre navigateur.

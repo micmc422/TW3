@@ -1,14 +1,14 @@
-# Création de Plugins Personnalisés avec Webpack
+# 🧩 Création de Plugins Personnalisés avec Webpack
 
 Webpack est non seulement puissant grâce à son écosystème de plugins existants, mais il offre également la flexibilité de créer vos propres plugins personnalisés pour répondre à des besoins spécifiques de votre processus de construction.
 
-## Qu'est-ce qu'un Plugin Personnalisé ?
+## 🧩 Qu'est-ce qu'un Plugin Personnalisé ?
 Un plugin personnalisé est une classe JavaScript que vous créez pour effectuer des tâches spécifiques pendant le cycle de vie de Webpack. Il peut s'agir de tout, de la modification des fichiers de sortie à l'exécution de tâches après la construction.
 
-## Structure de Base d'un Plugin
+## 🧩 Structure de Base d'un Plugin
 Un plugin Webpack doit avoir une méthode `apply` qui sera appelée par le compilateur Webpack. Cette méthode reçoit une instance du compilateur, qui vous donne accès à l'ensemble du processus de construction.
 
-### Exemple de Plugin Personnalisé
+### 🧩 Exemple de Plugin Personnalisé
 Voici un exemple simple d'un plugin personnalisé qui enregistre un message dans la console après la construction réussie :
 
 ```javascript copy
@@ -30,10 +30,10 @@ module.exports = {
 
 Dans cet exemple, `MyCustomPlugin` utilise le hook `done` pour enregistrer un message une fois que le processus de construction est terminé.
 
-## Utilisation des Hooks Webpack
+## 🧩 Utilisation des Hooks Webpack
 Webpack fournit une variété de hooks que vous pouvez utiliser pour brancher votre plugin à différentes étapes du processus de construction.
 
-### Exemple d'Utilisation des Hooks
+### 🧩 Exemple d'Utilisation des Hooks
 ```javascript copy
 class MyCustomPlugin {
  apply(compiler) {
@@ -47,5 +47,5 @@ class MyCustomPlugin {
 
 Dans cet exemple, `MyCustomPlugin` utilise le hook `emit` pour effectuer des actions juste avant que les fichiers soient émis vers le dossier de sortie.
 
-## Conclusion
+## 🧩 Conclusion
 Créer vos propres plugins Webpack peut vous donner un contrôle inégalé sur le processus de construction. Cela peut être particulièrement utile pour les cas d'utilisation spécifiques qui ne sont pas couverts par les plugins existants. Avec une compréhension de base de la façon dont les plugins fonctionnent et de l'utilisation des hooks, vous pouvez commencer à créer des plugins qui répondent parfaitement à vos besoins de construction.

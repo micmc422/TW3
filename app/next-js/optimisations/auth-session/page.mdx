@@ -70,7 +70,7 @@ Remplacez `your-google-client-id` et `your-google-client-secret` par vos clés G
 
 Maintenant, créons un bouton de connexion/déconnexion pour gérer les sessions.  
 
-```tsx filename="components/AuthButton.tsx"
+```tsx filename="components/AuthButton.tsx" copy
 "use client";
 
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -125,7 +125,7 @@ Ce middleware empêche les utilisateurs non authentifiés d’accéder à certai
 ### **🔹 Protection des pages avec Server Components**  
 Vous pouvez également protéger une page spécifique en récupérant la session côté serveur.  
 
-```tsx filename="app/dashboard/page.tsx"
+```tsx filename="app/dashboard/page.tsx" copy
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 
@@ -150,7 +150,7 @@ export default async function Dashboard() {
 
 Vous pouvez afficher l’état de l’authentification dans un **layout** global.  
 
-```tsx filename="app/layout.tsx"
+```tsx filename="app/layout.tsx" copy
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import AuthButton from "@/components/AuthButton";

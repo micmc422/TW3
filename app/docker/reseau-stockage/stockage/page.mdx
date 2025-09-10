@@ -18,9 +18,17 @@ Dans ce cas pratique, nous allons explorer comment Docker gère le stockage pers
 
 Les volumes Docker sont gérés par Docker lui-même et sont stockés dans un répertoire dédié sur l’hôte. Ils permettent de persister des données de manière simple et efficace, tout en étant indépendants du cycle de vie des conteneurs.
 
-Nous allons commencer par lancer un conteneur MySQL en utilisant un volume Docker pour persister les données.
+
+Avant de commencer, vous pouvez créer explicitement le volume (optionnel) :
 
 ```bash copy
+docker volume create mysql-data
+```
+
+Nous allons commencer par lancer un conteneur MySQL en utilisant un volume Docker pour persister les données :
+
+```bash copy
+docker run -d \
   --name mysql-volume \
   -e MYSQL_ROOT_PASSWORD=rootpassword \
   -v mysql-data:/var/lib/mysql \
@@ -33,9 +41,11 @@ Explications :
 - **`-e MYSQL_ROOT_PASSWORD=rootpassword`** : Définit une variable d'environnement pour le mot de passe root.
 - **`-v mysql-data:/var/lib/mysql`** : Monte un volume nommé `mysql-data` dans le répertoire `/var/lib/mysql`, où MySQL stocke ses données.
 
+
 Docker va créer automatiquement le volume `mysql-data`. Pour vérifier que le volume a été créé, exécutez la commande suivante :
 
 ```bash copy
+docker volume ls
 ```
 
 Vous devriez voir `mysql-data` dans la liste des volumes.
@@ -54,6 +64,7 @@ docker rm mysql-volume
 2. **Relancer un conteneur avec le même volume** :
 
 ```bash copy
+docker run -d \
   --name mysql-volume \
   -e MYSQL_ROOT_PASSWORD=rootpassword \
   -v mysql-data:/var/lib/mysql \
@@ -80,6 +91,7 @@ echo "<h1>Hello from Docker Bind Mount</h1>" > ~/nginx-html/index.html
 2. **Lancer un conteneur Nginx avec un bind mount** :
 
 ```bash copy
+docker run -d \
   --name nginx-bind \
   -p 8080:80 \
   -v ~/nginx-html:/usr/share/nginx/html \
@@ -106,12 +118,21 @@ Rafraîchissez votre navigateur. Vous verrez immédiatement la mise à jour, car
 
 ### 🧹 Nettoyage
 
+docker rm mysql-volume nginx-bind
+docker volume rm mysql-data
+
 Une fois terminé, vous pouvez arrêter et supprimer les conteneurs et volumes avec ces commandes :
 
 ```bash copy
 docker stop mysql-volume nginx-bind
 docker rm mysql-volume nginx-bind
 docker volume rm mysql-data
+```
+
+Vous pouvez également supprimer le dossier local utilisé pour le bind mount si vous n'en avez plus besoin :
+
+```bash copy
+rm -rf ~/nginx-html
 ```
 
 </Steps>

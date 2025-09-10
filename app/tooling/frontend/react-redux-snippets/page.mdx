@@ -3,20 +3,20 @@ title: Snippets React/Redux/React Native
 description: Extraits de code et modèles pour React, Redux et React Native
 ---
 
-# Snippets React/Redux/React Native
+# ✂️ Snippets React/Redux/React Native
 
-## Installation des snippets
+## 🛠️ Installation des snippets
 
 Pour installer les snippets dans votre éditeur :
 
-### VS Code
+### 📘 VS Code
 1. Ouvrez la palette de commandes (Ctrl+Shift+P)
 2. Tapez "Snippets"
 3. Sélectionnez "Preferences: Configure User Snippets"
 4. Choisissez "javascript.json" ou "javascriptreact.json"
 5. Copiez les snippets ci-dessous
 
-### Utilisation
+### 📘 Utilisation
 Pour utiliser un snippet, tapez son préfixe puis appuyez sur Tab.
 
 Préfixes disponibles :
@@ -25,11 +25,11 @@ Préfixes disponibles :
 - `reduxact` : Redux Actions
 
 
-## React
+## 📘 React
 
-### Composant Fonctionnel
+### 📘 Composant Fonctionnel
 
-``` js
+```js copy
 const MonComposant = ({ prop1, prop2 }) => {
   return (
     <div>
@@ -40,9 +40,9 @@ const MonComposant = ({ prop1, prop2 }) => {
 };
 ```
 
-### Composant Classe
+### 📘 Composant Classe
 
-``` js
+```js copy
 class MonComposant extends React.Component {
   constructor(props) {
     super(props);
@@ -62,11 +62,11 @@ class MonComposant extends React.Component {
 }
 ```
 
-## Redux
+## 📘 Redux
 
-### Actions
+### 📘 Actions
 
-``` js
+```js copy
 // Types d'actions
 export const CHARGER_DONNEES = 'CHARGER_DONNEES';
 export const CHARGER_DONNEES_SUCCES = 'CHARGER_DONNEES_SUCCES';
@@ -83,10 +83,10 @@ export const chargerDonneesSucces = (donnees) => ({
 });
 ```
 
-### Reducer
+### 📘 Reducer
 
 
-``` js
+```js copy
 const etatInitial = {
   donnees: [],
   chargement: false,
@@ -112,7 +112,7 @@ const monReducer = (state = etatInitial, action) => {
 };
 ```
 
-## Bonnes Pratiques
+## 🧪 Bonnes Pratiques
 
 - Utilisez des composants fonctionnels avec des hooks quand c'est possible
 - Maintenez une structure de dossiers claire et organisée

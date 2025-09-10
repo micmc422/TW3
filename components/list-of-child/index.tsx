@@ -1,5 +1,5 @@
 import { Cards } from "nextra/components"
-import { createIndexPage, getPageMap } from "nextra/page-map"
+import { getPageMap } from "nextra/page-map"
 import { JSXElementConstructor, ReactElement } from "react";
 
 interface Item {

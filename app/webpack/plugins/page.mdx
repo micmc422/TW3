@@ -1,14 +1,14 @@
-# Introduction aux Plugins Webpack
+# 📘 Introduction aux Plugins Webpack
 
 Les plugins sont des outils puissants dans l'écosystème Webpack qui permettent d'étendre ses fonctionnalités et de personnaliser le processus de construction. Ils peuvent être utilisés pour tout, de l'optimisation des bundles à la gestion des assets et à l'injection de scripts.
 
-## Comprendre les Plugins
+## 🧩 Comprendre les Plugins
 Les plugins Webpack sont des classes JavaScript qui ont accès au cycle de vie complet de Webpack. Ils peuvent écouter des événements émis par Webpack et effectuer des actions à différentes étapes du processus de construction.
 
-## Utilisation des Plugins
+## 🧩 Utilisation des Plugins
 Pour utiliser un plugin, vous devez d'abord l'installer (généralement via npm) et ensuite l'ajouter à la configuration de Webpack dans le tableau `plugins`.
 
-### Exemple de base avec HtmlWebpackPlugin
+### 🧩 Exemple de base avec HtmlWebpackPlugin
 Le `HtmlWebpackPlugin` simplifie la création de fichiers HTML pour servir vos bundles. Voici comment vous pourriez l'ajouter à votre configuration :
 
 ```javascript copy
@@ -25,17 +25,17 @@ module.exports = {
 };
 ```
 
-## Plugins populaires
+## 🧩 Plugins populaires
 Voici quelques plugins populaires dans la communauté Webpack :
 
 - `MiniCssExtractPlugin` : extrait le CSS dans des fichiers séparés. Il crée un fichier CSS par fichier JS qui contient du CSS.
 - `CleanWebpackPlugin` : nettoie le dossier de sortie en supprimant les fichiers inutilisés avant chaque build.
 - `CopyWebpackPlugin` : copie des fichiers ou des dossiers individuels vers le dossier de sortie.
 
-## Créer vos propres Plugins
+## 🧩 Créer vos propres Plugins
 Si les plugins existants ne répondent pas à vos besoins, vous pouvez créer le vôtre. Les plugins sont des instances de classes qui ont une méthode `apply` qui est appelée par Webpack.
 
-## Objectifs
+## 🧩 Objectifs
 - Comprendre le rôle et l'importance des plugins dans Webpack.
 - Apprendre à configurer et à utiliser des plugins populaires pour améliorer votre processus de construction.
 - Explorer la création de plugins personnalisés pour répondre à des besoins spécifiques.

@@ -1,16 +1,16 @@
-# Passer des données entre les composants
+# ⚛️ Passer des données entre les composants
 
 Dans une application React, il est crucial de pouvoir passer des données d'un composant à un autre. Cela permet de créer des interactions complexes et dynamiques entre différents parties de l'interface utilisateur. Il existe plusieurs méthodes pour accomplir cela, mais les plus couramment utilisées sont les props, le Context API, et les bibliothèques d'état global comme Redux ou MobX.
 
-## Props
+## ⚛️ Props
 
 Les props sont les paramètres que vous passez à un composant lors de son rendu. Ils sont un moyen direct de passer des données d'un composant parent à un composant enfant. Cependant, ils ne sont pas toujours la solution la plus efficace pour les grands ensembles de données ou lorsque les données doivent être partagées entre plusieurs composants qui ne sont pas directement liés.
 
-## Context API
+## 🔌 Context API
 
 Lorsque les données doivent être partagées entre plusieurs composants qui ne sont pas directement liés, le Context API peut être une solution utile. Il permet de créer un contexte qui peut être consommé par n'importe quel composant de l'arbre de composants, indépendamment de leur niveau hiérarchique.
 
-## Redux et MobX
+## ⚛️ Redux et MobX
 
 Pour les applications plus grandes, où le passage de props devient difficile à gérer, on peut utiliser des bibliothèques comme Redux ou MobX pour gérer l'état global de l'application. Ces bibliothèques permettent de stocker l'état de l'application dans un magasin centralisé, et de le récupérer là où il est nécessaire. Elles offrent également des outils pour gérer les effets secondaires et les actions asynchrones.
 

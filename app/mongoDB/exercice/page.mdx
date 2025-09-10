@@ -5,9 +5,9 @@ import { FileTree } from 'nextra/components'
 import { Callout } from 'nextra/components'
  
 
-# MongoDB-TP-TW3
+# 🧪 MongoDB-TP-TW3
 
-## Ressources :
+## 🔗 Ressources :
 - [CodeSandbox](https://codesandbox.io/) est une plateforme en ligne offrant un environnement de développement collaboratif basé sur le cloud.
   
 - L'image Docker officielle de MongoDB peut être trouvée sur le [Hub Docker - MongoDB](https://hub.docker.com/_/mongo), offrant une solution prête à l'emploi pour le déploiement de bases de données MongoDB dans des conteneurs Docker.
@@ -18,7 +18,7 @@ import { Callout } from 'nextra/components'
 
 - [Body-Parser](https://www.npmjs.com/package/body-parser) est un middleware Node.js facilitant le traitement des données du corps des requêtes HTTP dans une application Express.
 
-## Étapes :
+## 🍃 Étapes :
 - Créer un devBox Node.js sur [codesandBox](https://codesandbox.io/dashboard/recent)
 - Utiliser le cours pour installer mongoDB dans le codesandBox, et lancer un container docker mongo.
 - Installer les dépendances (librairies), nécessaire au projet.
@@ -46,9 +46,9 @@ import { Callout } from 'nextra/components'
   
   **vous pouvez/devez travailler tous ensembles**
 </Callout>
-## Création des fichiers
+## 🍃 Création des fichiers
 
-### public/index.html
+### 📇 public/index.html
 ```html filename="public/index.html" copy
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +70,7 @@ import { Callout } from 'nextra/components'
 </body>
 </html>
 ```
-### public/style.css
+### 🍃 public/style.css
 
 ```css filename="public/style.css" copy
 body {
@@ -98,7 +98,7 @@ button {
   cursor: pointer;
 }
 ```
-### public/script.js
+### 🍃 public/script.js
 
 ```js filename="public/script.js" copy
 function sendData() {
@@ -124,7 +124,7 @@ function sendData() {
   });
 }
 ```
-### src/index.js
+### 📇 src/index.js
 ```js filename="src/index.js" copy
 const express = require('express');
 const { MongoClient } = require('mongodb');
@@ -210,7 +210,7 @@ app.listen(PORT, () => {
 })
 ```
 
-``` mermaid
+```mermaid copy
 flowchart TD
     A[Formulaire] -->|"envoi des données"| B("sendData()")
     B -->|/endpoint| C{Express}
@@ -222,7 +222,7 @@ flowchart TD
 ```
 
 
-## Objectifs
+## 🍃 Objectifs
 
 Développer le projet créé en utilisant deux documents (cf: [modélisation](/mongoDB/modelisation/modelisation)) :
 

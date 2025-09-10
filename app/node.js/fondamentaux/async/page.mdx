@@ -11,7 +11,7 @@ Node.js utilise un modèle **non-bloquant**, ce qui signifie que lorsqu'une opé
 
 Les **callbacks** sont une méthode classique pour gérer cette asynchronicité. Un callback est une fonction passée en argument d'une autre fonction et appelée une fois que la tâche asynchrone est terminée.
 
-Exemple d'utilisation avec le module `fs` pour lire un fichier de manière asynchrone :
+🧪 Exemple d'utilisation avec le module `fs` pour lire un fichier de manière asynchrone :
 
 ```javascript copy
 const fs = require('fs');
@@ -28,13 +28,13 @@ fs.readFile('example.txt', 'utf8', (err, data) => {
 
 Dans cet exemple, la fonction `fs.readFile()` déclenche la lecture du fichier, et une fois que l'opération est terminée, elle exécute la fonction callback. Si une erreur survient (par exemple, si le fichier n'existe pas), elle est gérée via l'objet `err`.
 
-## ⏳ Les Promesses et async/await
+## 🟩 ⏳ Les Promesses et async/await
 
 Les **Promesses** sont une alternative moderne aux callbacks pour gérer l'asynchronie. Elles permettent de rendre le code plus lisible et d'éviter les fameux "callback hell" (enchaînements complexes de callbacks).
 
 Une **Promesse** représente la valeur d'une opération asynchrone qui sera remplie dans le futur. Elle peut être en trois états : *pending* (en attente), *fulfilled* (réussie), ou *rejected* (échouée).
 
-Exemple de Promesse avec la méthode `readFile` :
+🧪 Exemple de Promesse avec la méthode `readFile` :
 
 ```javascript copy
 const fs = require('fs').promises;

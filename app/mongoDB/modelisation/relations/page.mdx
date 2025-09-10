@@ -2,21 +2,22 @@
 description: "La modélisation des relations dans MongoDB implique souvent l'utilisation de références pour lier des documents entre eux. Contrairement aux bases de données relationnelles traditionnelles, MongoDB n'a pas de joints intégrés, mais il propose des références pour représenter les relations."
 ---
 
-# Modélisation des Relations dans MongoDB avec l'Utilisation des Références
+# 🔗 Modélisation des Relations dans MongoDB avec l'Utilisation des Références
 
 La modélisation des relations dans MongoDB implique souvent l'utilisation de références pour lier des documents entre eux. Contrairement aux bases de données relationnelles traditionnelles, MongoDB n'a pas de joints intégrés, mais il propose des références pour représenter les relations.
 
-## Introduction aux Références
+## 📘 Introduction aux Références
 
 Dans MongoDB, les références permettent de lier un document à un autre en utilisant la valeur de son `_id`. Il existe principalement deux types de références : les références manuelles et les références incorporées.
 
-### Références Manuelles
+### 🔗 Références Manuelles
 
 Les références manuelles consistent à stocker l'_id d'un document lié dans un autre document. Cela crée une relation entre les deux documents. Voici un exemple :
 
 **Collection Utilisateurs**
 
 ```json copy
+{
   "_id": ObjectId("id_utilisateur1"),
   "nom": "John Doe",
   "articles": [
@@ -29,6 +30,7 @@ Les références manuelles consistent à stocker l'_id d'un document lié dans u
 **Collection Articles**
 
 ```json copy
+{
   "_id": ObjectId("id_article1"),
   "titre": "Introduction à MongoDB",
   "contenu": "..."
@@ -37,13 +39,14 @@ Les références manuelles consistent à stocker l'_id d'un document lié dans u
 
 Dans cet exemple, la collection "Utilisateurs" fait référence à des articles spécifiques par leurs `_id`.
 
-### Références Incorporées
+### 🔗 Références Incorporées
 
 Les références incorporées consistent à incorporer des documents directement dans un autre document. Cela évite de faire des requêtes supplémentaires pour récupérer des informations liées. Voici un exemple :
 
 **Collection Utilisateurs avec Références Incorporées**
 
 ```json copy
+{
   "_id": ObjectId("id_utilisateur2"),
   "nom": "Jane Doe",
   "articles": [
@@ -63,7 +66,7 @@ Les références incorporées consistent à incorporer des documents directement
 
 Dans cet exemple, chaque document utilisateur contient directement des informations sur les articles associés. Cela élimine la nécessité de faire référence à des documents distincts pour les articles.
 
-## Avantages et Considérations
+## 🍃 Avantages et Considérations
 
 - **Références Manuelles :**
   - *Avantages :*

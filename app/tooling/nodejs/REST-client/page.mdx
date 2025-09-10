@@ -1,8 +1,8 @@
-# Client REST
+# 🔗 Client REST
 
 Le client REST est un outil qui permet d'effectuer des requêtes HTTP vers des API REST. Il est disponible dans de nombreux environnements de développement et peut être utilisé pour tester et déboguer des API.
 
-## Installation
+## 🛠️ Installation
 
 Pour installer le client REST, vous pouvez utiliser npm :
 
@@ -10,15 +10,15 @@ Pour installer le client REST, vous pouvez utiliser npm :
 npm install --save-dev rest-client
 ```
 
-## Utilisation
+## 🟩 Utilisation
 
 Le client REST peut être utilisé de plusieurs façons :
 
-### Dans un fichier .http
+### 🧪 Dans un fichier .http
 
 Créez un fichier avec l'extension `.http` et écrivez vos requêtes :
 
-``` http
+```http copy
 GET http://api.example.com/users
 Authorization: Bearer token123
 
@@ -31,9 +31,9 @@ Content-Type: application/json
 }
 ```
 
-### Dans votre code JavaScript
+### 🟩 Dans votre code JavaScript
 
-``` js
+```js copy
 const RestClient = require('rest-client');
 
 const client = new RestClient();
@@ -46,7 +46,7 @@ client.get('http://api.example.com/users')
     });
 ```
 
-## Fonctionnalités principales
+## 🟩 Fonctionnalités principales
 
 - Support de toutes les méthodes HTTP (GET, POST, PUT, DELETE, etc.)
 - Gestion des en-têtes personnalisés
@@ -55,14 +55,14 @@ client.get('http://api.example.com/users')
 - Support de l'authentification
 - Possibilité d'utiliser des variables d'environnement
 
-## Bonnes pratiques
+## 🧪 Bonnes pratiques
 
 1. Utilisez des variables d'environnement pour les valeurs sensibles
 2. Organisez vos requêtes dans des fichiers séparés
 3. Commentez vos requêtes pour une meilleure compréhension
 4. Utilisez les séparateurs ### pour séparer les requêtes
 
-## Dépannage
+## 🟩 Dépannage
 
 Si vous rencontrez des problèmes :
 

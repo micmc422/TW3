@@ -1,13 +1,13 @@
 ---
 description: "Dans cette activité, nous allons prendre un formulaire de connexion de base et y appliquer des bonnes pratiques pour renforcer sa sécurité. L'objectif est de prévenir les attaques courantes comme le XSS, le CSRF, et le brute force, tout en protégeant les données utilisateur."
 ---
-# **Activité Pratique : Renforcement de la Sécurité d’un Formulaire de Connexion**
+# 🔒 **Activité Pratique : Renforcement de la Sécurité d’un Formulaire de Connexion**
 
 Dans cette activité, nous allons prendre un formulaire de connexion de base et y appliquer des bonnes pratiques pour renforcer sa sécurité. L'objectif est de prévenir les attaques courantes comme le **XSS**, le **CSRF**, et le **brute force**, tout en protégeant les données utilisateur.
 
 ---
 
-## **Préparation du Formulaire de Connexion de Base**
+## 🔐 **Préparation du Formulaire de Connexion de Base**
 
 **Code HTML de départ :**
 ```html copy
@@ -59,9 +59,9 @@ Ce formulaire fonctionne, mais il est vulnérable à plusieurs attaques. Nous al
 
 ---
 
-## **Mesures de Sécurisation**
+## 🔐 **Mesures de Sécurisation**
 
-### **a. Protection contre les Attaques XSS**
+### 🔒 **a. Protection contre les Attaques XSS**
 
 **Vulnérabilité XSS :**  
 Les attaquants peuvent injecter des scripts malveillants dans les champs de formulaire, qui s'exécuteront sur le navigateur de la victime.
@@ -99,7 +99,7 @@ app.use((req, res, next) => {
 
 ---
 
-### **b. Protection contre les Attaques CSRF**
+### 🔒 **b. Protection contre les Attaques CSRF**
 
 **Vulnérabilité CSRF :**  
 Un attaquant peut forcer un utilisateur authentifié à envoyer une requête malveillante (par exemple, en cliquant sur un lien malicieux).
@@ -147,7 +147,7 @@ app.post('/login', (req, res) => {
 
 ---
 
-### **c. Limitation des Attaques par Force Brute**
+### 🔐 **c. Limitation des Attaques par Force Brute**
 
 **Vulnérabilité :**  
 Les attaquants peuvent essayer plusieurs combinaisons de mots de passe jusqu’à en trouver un correct.
@@ -183,7 +183,7 @@ app.post('/login', loginLimiter, (req, res) => {
 
 ---
 
-### **d. Utilisation de Cookies Sécurisés**
+### 🍪 **d. Utilisation de Cookies Sécurisés**
 
 **Vulnérabilité :**  
 Les cookies peuvent être volés via des attaques XSS ou envoyés sur des connexions non sécurisées.
@@ -209,7 +209,7 @@ app.use(session({
 
 ---
 
-## **Résultat Final**
+## 🔐 **Résultat Final**
 
 Avec ces améliorations, notre formulaire de connexion est désormais protégé contre :  
 1. **XSS** : Validation des entrées et ajout d’une CSP.  

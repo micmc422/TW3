@@ -3,15 +3,15 @@ description: "Aujourd'hui, nous allons plonger dans le monde captivant de NoSQL 
 ---
 import { Callout } from 'nextra/components'
 
-# Introduction à NoSQL avec MongoDB
+# 🗄️ Introduction à NoSQL avec MongoDB
 
 Aujourd'hui, nous allons plonger dans le monde captivant de NoSQL et découvrir comment cette approche révolutionne la gestion des données. Plus spécifiquement, nous explorerons le rôle de MongoDB en tant qu'exemple notable dans le domaine de NoSQL.
 
-## Qu'est-ce que NoSQL ?
+## 🍃 Qu'est-ce que NoSQL ?
 
 NoSQL, qui signifie "Not Only SQL", est une approche de gestion de données qui diffère des bases de données relationnelles traditionnelles. Contrairement aux bases de données SQL classiques, NoSQL adopte une structure plus souple et évolutive pour stocker et récupérer des données.
 
-## Pourquoi NoSQL ?
+## 🍃 Pourquoi NoSQL ?
 
 **Flexibilité du Schéma :** Les bases de données NoSQL, y compris MongoDB, permettent de stocker des données sans avoir besoin de définir un schéma rigide à l'avance. Cela facilite l'adaptation aux changements dans la structure des données.
 
@@ -19,9 +19,9 @@ NoSQL, qui signifie "Not Only SQL", est une approche de gestion de données qui 
 
 **Gestion de Données Non-Structurées :** Les bases de données NoSQL sont idéales pour les données non-structurées ou semi-structurées, comme celles trouvées dans les applications web modernes.
 
-## Exemple avec MongoDB
+## 🍃 Exemple avec MongoDB
 
-### Modèle de Données
+### 🍃 Modèle de Données
 
 MongoDB utilise un modèle de données basé sur des documents BSON (Binary JSON). Chaque enregistrement est un document flexible, similaire à un objet JSON, qui peut contenir des champs variés.
 
@@ -45,7 +45,7 @@ Un document MongoDB ressemble à un objet JSON, offrant une flexibilité consid�
 
 Ici, nous avons un document représentant un utilisateur avec des informations personnelles, une adresse et une liste de commandes.
 
-### Opérations CRUD
+### 🍃 Opérations CRUD
 
 Les opérations CRUD (Create, Read, Update, Delete) sont fondamentales dans MongoDB.
 
@@ -68,7 +68,7 @@ Les opérations CRUD (Create, Read, Update, Delete) sont fondamentales dans Mong
 ```js copy
   db.etudiants.updateOne({ "nom": "Étudiant1" }, { $addToSet: { "matières": "Chimie" } });
 ```
-``` json
+```json copy
 {
   acknowledged: true,
   insertedId: null,
@@ -97,6 +97,6 @@ En résumé, la réponse indique que l'opération de mise à jour a été exécu
   db.etudiants.deleteOne({ "nom": "Étudiant2" });
 ```
 
-## Conclusion
+## 🍃 Conclusion
 
 NoSQL, offre une alternative puissante aux bases de données relationnelles traditionnelles. Sa flexibilité, son évolutivité et sa capacité à gérer des données non-structurées en font un choix populaire pour diverses applications.
