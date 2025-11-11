@@ -1,68 +1,65 @@
-## ⚛️ Utilisation de bibliothèques tierces comme Formik ou react-hook-form
+## 📝 Utilisation de bibliothèques tierces comme Formik ou react-hook-form
 
 **Formik** est une bibliothèque qui aide à gérer l'état des formulaires en React. Elle fournit une API simple pour gérer les valeurs des champs de formulaire, les erreurs de validation, et le soumission du formulaire. Voici un exemple de base de la façon dont Formik peut être utilisé pour gérer un formulaire :
 
 ```jsx copy
-import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
 const validate = values => {
- let errors = {};
- if (!values.email) {
-  errors.email = 'Required';
- } else if (
-  !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
- ) {
-  errors.email = 'Invalid email address';
- }
- return errors;
+  let errors = {};
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+  return errors;
 };
 
 export const SignUpForm = () => (
- <div>
- <h1>Sign Up</h1>
- <Formik
-   initialValues={{
-     email: '',
-   }}
-   validate={validate}
-   onSubmit={async values => {
-     await new Promise(resolve => setTimeout(resolve, 500));
-     alert(JSON.stringify(values, null, 2));
-   }}
- >
-   {({ isSubmitting }) => (
-     <Form>
-       <Field type="email" name="email" />
-       <ErrorMessage name="email" component="div" />
-       <button type="submit" disabled={isSubmitting}>
-         Submit
-       </button>
-     </Form>
-   )}
- </Formik>
- </div>
+  <div>
+    <h1>Sign Up</h1>
+    <Formik
+      initialValues={{
+        email: '',
+      }}
+      validate={validate}
+      onSubmit={async values => {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        alert(JSON.stringify(values, null, 2));
+      }}
+    >
+      {({ isSubmitting }) => (
+        <Form>
+          <Field type="email" name="email" />
+          <ErrorMessage name="email" component="div" />
+          <button type="submit" disabled={isSubmitting}>
+            Submit
+          </button>
+        </Form>
+      )}
+    </Formik>
+  </div>
 );
 ```
 
 **react-hook-form** est une autre bibliothèque qui utilise les hooks de React pour gérer l'état des formulaires. Elle offre une API légère et performante pour la validation des formulaires. Voici un exemple de base de la façon dont react-hook-form peut être utilisé pour gérer un formulaire :
 
 ```jsx copy
-import React from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function App() {
- const { register, handleSubmit, errors } = useForm();
- const onSubmit = data => console.log(data);
+  // API moderne : errors est maintenant dans formState
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = data => console.log(data);
 
- return (
- <form onSubmit={handleSubmit(onSubmit)}>
-   <input name="example" defaultValue="test" ref={register} />
-   <input name="exampleRequired" ref={register({ required: true })} />
-   {errors.exampleRequired && <span>This field is required</span>}
-   <input type="submit" />
- </form>
- );
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register('example')} defaultValue="test" />
+      <input {...register('exampleRequired', { required: true })} />
+      {errors.exampleRequired && <span>This field is required</span>}
+      <input type="submit" />
+    </form>
+  );
 }
 ```
 

@@ -3,35 +3,77 @@ description: "React est un framework JavaScript puissant pour la construction d'
 ---
 # 📘 Introduction à React
 
-## ⚛️ Qu'est-ce que React?
+## 📘 Qu'est-ce que React?
 
 React est un **framework JavaScript** puissant pour la construction d'**interfaces utilisateur**. Il offre une approche déclarative pour la création d'applications web interactives, ce qui rend le processus de développement plus efficace et agréable.
 
-## ⚛️ Pourquoi utiliser React?
+## 📘 Pourquoi utiliser React?
 
 React est largement utilisé en raison de sa flexibilité, de sa performance et de sa capacité à créer des applications web réactives et performantes. Il permet aux développeurs de créer des applications monopages (SPA) et offre une excellente expérience utilisateur grâce à son système de virtual DOM.
 
-## ⚛️ Comparaison avec d'autres bibliothèques ou frameworks
+## ⚖️ Comparaison avec d'autres bibliothèques ou frameworks
 
 React se distingue par sa simplicité et sa facilité d'utilisation. Par rapport à d'autres bibliothèques ou frameworks comme Angular ou Vue.js, React est souvent considéré comme plus facile à apprendre et à utiliser.
 
-## 🛠️ Installation et configuration de l'environnement de développement
+## 🛠️ Installation et configuration de l'environnement de développement (React pur)
 
-Avant de plonger dans le développement avec React, il est important de configurer correctement votre environnement de développement. Cela comprend l'installation de Node.js et npm, et la création d'un nouveau projet React avec Create React App.
+Pour ce cours nous nous concentrons sur **React pur**, sans frameworks spécifiques comme Vite ou Next.js. Deux approches pédagogiques sont recommandées :
 
-## ⚛️ Comprendre les composants React
+- Une configuration de projet standard (Create React App) — pratique pour des projets réels.
+- Un exemple minimal via un fichier HTML et les CDN — idéal pour comprendre les bases sans outils de build.
+
+1) Créer un projet avec Create React App (recommandé pour débuter sur un vrai projet) :
+
+```bash copy
+npx create-react-app mon-app
+cd mon-app
+npm start
+```
+
+2) Exemple minimaliste sans build (pour apprendre les bases rapidement) :
+
+Créez un fichier `index.html` avec le contenu suivant :
+
+```html copy
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>React CDN</title>
+	</head>
+	<body>
+		<div id="root"></div>
+		<!-- React et ReactDOM via CDN (version stable) -->
+		<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+		<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+		<script type="text/javascript">
+			const e = React.createElement;
+			function App() {
+				return e('h1', null, 'Hello React pur !');
+			}
+			const root = ReactDOM.createRoot(document.getElementById('root'));
+			root.render(e(App));
+		</script>
+	</body>
+</html>
+```
+
+
+Note : Create React App reste une solution simple pour démarrer sans configuration lourde. Les outils modernes (Vite, Next.js) apportent des avantages, mais ne seront pas couverts ici car le cours vise le React « pur ».
+
+## 🧩 Comprendre les composants React
 
 Les **composants** sont l'un des concepts clés en React. Ils permettent de diviser l'interface utilisateur en plusieurs parties indépendantes et réutilisables, ce qui rend le code plus organisé et plus facile à maintenir.
 
-## ⚛️ Passer des données entre les composants
+## 🔁 Passer des données entre les composants
 
 La communication entre les composants est essentielle dans React. Nous apprendrons comment passer des données via les **props**, à utiliser le **Context API** pour partager des données globales, et à gérer l'état global avec Redux ou MobX.
 
-## ⚛️ Formulaires et gestion de l'état dans les formulaires
+## 📝 Formulaires et gestion de l'état dans les formulaires
 
 La gestion de l'état est un aspect crucial de toute application React. Nous apprendrons comment gérer l'état local dans les formulaires, la validation des formulaires, et l'utilisation de bibliothèques tierces comme Formik ou react-hook-form.
 
-## ⚛️ Les Hooks en React
+## 🪝 Les Hooks en React
 
 Les **Hooks** sont une fonctionnalité introduite dans React 16.8 qui permet aux composants fonctionnels d'accéder à l'état et aux autres fonctionnalités de React. Nous explorerons les Hooks natifs et personnalisés, ainsi que les règles des Hooks.
 
@@ -39,6 +81,6 @@ Les **Hooks** sont une fonctionnalité introduite dans React 16.8 qui permet aux
 
 Le **routage** est un autre aspect important de React. Nous apprendrons comment utiliser React Router pour créer des routes dynamiques et naviguer programmatiquement dans l'application.
 
-## ⚛️ Déploiement d'une application React
+## 🚀 Déploiement d'une application React
 
 Enfin, nous préparerons notre application pour la production et la déployerons sur Vercel ou Netlify. Le déploiement est une étape cruciale pour mettre votre application à disposition des utilisateurs finaux.

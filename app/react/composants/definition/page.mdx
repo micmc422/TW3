@@ -1,56 +1,54 @@
-# ⚛️ Définition et Utilisation des Composants
+# 🧩 Définition et Utilisation des Composants
 
 Un composant React est une unité indépendante de code qui retourne un élément React. Cet élément représente une partie de l'interface utilisateur de l'application. Les composants peuvent être réutilisés pour construire des interfaces utilisateur complexes.
 
 Il existe deux types principaux de composants React : les composants fonctionnels et les composants de classe.
 
-## ⚛️ Composants Fonctionnels
+## 🧩 Composants Fonctionnels
 
 Un composant fonctionnel est une fonction qui retourne un élément React. Voici un exemple de composant fonctionnel :
 
 ```jsx copy
-import React from 'react';
-
-function Welcome(props) {
- return <h1>Hello, {props.name}</h1>;
+// Avec le nouveau JSX transform (React 17+),
+// l'import explicite de `React` n'est plus nécessaire si votre build est configuré.
+export function Welcome({ name }) {
+  return <h1>Hello, {name}</h1>;
 }
 ```
 
 Dans cet exemple, `Welcome` est un composant fonctionnel qui prend un objet `props` en argument et retourne un élément JSX. L'objet `props` contient les propriétés passées au composant.
 
-## ⚛️ Composants de Classe
+## 🧩 Composants de Classe
 
 Un composant de classe est une classe ES6 qui hérite de la classe `Component` de React. Voici un exemple de composant de classe :
 
 ```jsx copy
+// Exemple de composant de classe (encore supporté mais moins utilisé pour les nouveaux projets)
 import React, { Component } from 'react';
 
-class Welcome extends Component {
- render() {
-   return <h1>Hello, {this.props.name}</h1>;
- }
+class WelcomeClass extends Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
 }
 ```
 
 Dans cet exemple, `Welcome` est un composant de classe qui a une méthode `render` qui retourne un élément JSX. La méthode `render` est appelée automatiquement par React chaque fois que l'état du composant ou les props changent.
 
-## ⚛️ Utilisation des Composants
+## 🧩 Utilisation des Composants
 
 Pour utiliser un composant, vous devez l'importer dans le fichier où vous voulez l'utiliser, puis l'inclure dans votre JSX comme une balise HTML. Par exemple, si vous avez un composant `Welcome`, vous pouvez l'utiliser comme ceci :
 
 ```jsx copy
-import React from 'react';
 import Welcome from './Welcome';
 
-function App() {
- return (
-   <div>
-     <Welcome name="John" />
-   </div>
- );
+export default function App() {
+  return (
+    <div>
+      <Welcome name="John" />
+    </div>
+  );
 }
-
-export default App;
 ```
 
 Dans cet exemple, le composant `App` inclut le composant `Welcome` dans son JSX. Le prop `name` est passé au composant `Welcome` avec la valeur "John".

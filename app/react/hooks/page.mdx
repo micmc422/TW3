@@ -1,4 +1,4 @@
-# ⚛️ Les Hooks React
+# 🪝 Les Hooks React
 
 Les Hooks sont une fonctionnalité introduite dans React 16.8 qui permet aux composants fonctionnels d'accéder à des fonctionnalités précédemment uniquement disponibles pour les composants de classe. Avant l'introduction des Hooks, les composants de classe étaient nécessaires pour utiliser certaines fonctionnalités de React, comme l'état local et les méthodes du cycle de vie.
 
@@ -6,14 +6,25 @@ Les Hooks permettent de réutiliser l'état et d'autres fonctionnalités de Reac
 
 Il existe plusieurs Hooks intégrés dans React, chacun ayant une fonctionnalité spécifique. Parmi eux, on trouve :
 
-- [`useState`](/react/hooks/natif#usestate) : Permet d'ajouter un état local à un composant fonctionnel.
-- [`useEffect`](/react/hooks/natif#useeffect) : Permet d'effectuer des effets secondaires dans les composants fonctionnels.
-- [`useContext`](/react/hooks/natif#usecontext) : Permet d'accéder à la valeur actuelle d'un contexte.
-- [`useReducer`](/react/hooks/natif#usereducer) : Une alternative à `useState` qui est plus adaptée pour gérer des logiques d'état complexes.
-- [`useRef`](/react/hooks/natif#useref) : Permet d'accéder à des éléments du DOM et de garder des références mutables.
-- [`useMemo`](/react/hooks/natif#usememo) : Permet de mémoriser des calculs coûteux.
-- [`useCallback`](/react/hooks/natif#usecallback) : Permet de mémoriser des fonctions.
+- [`useState`](/react/hooks/natif#%EF%B8%8F-usestate) : Permet d'ajouter un état local à un composant fonctionnel.
+- [`useEffect`](/react/hooks/natif#%EF%B8%8F-useeffect) : Permet d'effectuer des effets secondaires dans les composants fonctionnels.
+- [`useContext`](/react/hooks/natif#%EF%B8%8F-usecontext) : Permet d'accéder à la valeur actuelle d'un contexte.
+- [`useReducer`](/react/hooks/natif#%EF%B8%8F-usereducer) : Une alternative à `useState` qui est plus adaptée pour gérer des logiques d'état complexes.
+- [`useRef`](/react/hooks/natif#%EF%B8%8F-useref) : Permet d'accéder à des éléments du DOM et de garder des références mutables.
+- [`useMemo`](/react/hooks/natif#%EF%B8%8F-usememo) : Permet de mémoriser des calculs coûteux.
+- [`useCallback`](/react/hooks/natif#%EF%B8%8F-usecallback) : Permet de mémoriser des fonctions.
+
+- [`useId`](/react/hooks/natif#useid) : Génère des identifiants stables côté client/serveur (utile pour l'accessibilité et les inputs).
+- [`useTransition`](/react/hooks/natif#%EF%B8%8F-usetransition) et `startTransition` : Permettent de marquer des mises à jour comme non prioritaires pour améliorer l'expérience lors d'opérations lourdes (React 18 concurrent features).
+- [`useDeferredValue`](/react/hooks/natif#%EF%B8%8F-usedeferredvalue) : Permet de différer une valeur pour éviter des recalculs fréquents.
 
 En outre, vous pouvez créer vos propres Hooks personnalisés pour encapsuler et réutiliser la logique d'état.
+
+Règles importantes à respecter (Rules of Hooks) :
+
+- N'appelez les Hooks qu'au premier niveau d'un composant React ou d'un Hook personnalisé (pas dans des boucles, conditions ou fonctions imbriquées).
+- N'appelez les Hooks que depuis des composants fonctionnels React ou des Hooks personnalisés.
+
+Ces règles garantissent que React conserve l'ordre des Hooks entre les rendus.
 
 Dans ce chapitre, nous allons explorer ces Hooks intégrés et comment ils peuvent être utilisés pour améliorer la structure et la lisibilité de votre code React.

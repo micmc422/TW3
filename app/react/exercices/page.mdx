@@ -1,38 +1,244 @@
 ---
-title: "Exercices React"
+title: "🧪 Exercices React"
 ---
+import Quizz from "@/components/quiz"
+
+export const quiz = {
+    quizTitle: "Quizz React",
+    quizSynopsis: <>Ce quiz rapide vérifie vos connaissances essentielles de React 🧠 : hooks de base, passage de callbacks et usage du Context.<br />
+        Répondez aux 3 questions pour valider les notions présentées sur cette page. Bonne chance !
+    </>,
+    questions: [
+        {
+            question: "Quel hook est utilisé pour gérer l'état local d'un composant ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "useEffect",
+                "useState",
+                "useContext",
+                "useReducer"
+            ],
+            correctAnswer: [2],
+            messageForCorrectAnswer: "Exact — useState gère l'état local.",
+            messageForIncorrectAnswer: "Incorrect. Le hook le plus simple pour l'état local est useState.",
+            explanation: "useState permet de déclarer et mettre à jour un état local dans un composant fonctionnel.",
+            point: 33
+        },
+        {
+            question: "Comment remonter une action depuis un enfant vers son parent ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "En utilisant useRef pour modifier le parent",
+                "En important directement l'état du parent dans l'enfant",
+                "En passant une fonction (callback) via les props",
+                "En écrivant dans localStorage"
+            ],
+            correctAnswer: [3],
+            messageForCorrectAnswer: "Bien vu — on passe une fonction en props (callback) à l'enfant.",
+            messageForIncorrectAnswer: "Non — la bonne pratique est de transmettre une fonction en props pour notifier le parent.",
+            explanation: "Le parent fournit une fonction en prop ; l'enfant l'appelle pour envoyer des données ou événements vers le parent.",
+            point: 33
+        },
+        {
+            question: "Quand est-il pertinent d'utiliser React Context ?",
+            questionType: "text",
+            answerSelectionType: "single",
+            answers: [
+                "Pour partager un état ou des données entre de nombreux composants",
+                "Pour remplacer systématiquement toutes les props",
+                "Pour gérer le cycle de vie des composants",
+                "Pour effectuer des requêtes HTTP"
+            ],
+            correctAnswer: [1],
+            messageForCorrectAnswer: "Correct — Context sert pour l'état partagé à large échelle.",
+            messageForIncorrectAnswer: "Pas tout à fait — Context est destiné au partage d'état entre plusieurs composants, pas pour tout remplacer.",
+            explanation: "Context facilite le partage de données (ex : thème, utilisateur) sans prop drilling, mais ne doit pas remplacer toutes les props.",
+            point: 34
+        }
+    ]
+};
+
 
 # 🧪 Exercices React
 
-Exercice 1 : Compteur de clics
-- Créez un composant `Compteur` avec un état local `compteur`.
-- Affichez la valeur et un bouton pour l'incrémenter.
-- Expérimentez avec `setCompteur(prev => prev + 1)`.
+cette page rassemble des exercices progressifs pour pratiquer React, du local state au contexte. Chaque exercice contient : objectifs, consignes, pistes et un mini-exemple.
 
-Exercice 2 : Transmission de données entre composants
-- Implémentez un `Parent` et un `Enfant`.
-- Transmettez des données via `props` et utilisez `children`.
-- Ajoutez une fonction de rappel (`callback`) pour remonter une action à `Parent`.
+## 🎯 Objectifs
+- Consolider useState, props, composition, context et formulaires.
+- Pratiquer la structuration de composants et le passage de données.
+- Apprendre des patterns simples pour la production d'interfaces réactives.
 
-Exercice 3 : Page 404
-- Créez un composant `Page404` affichant un message d'erreur.
-- Ajoutez un lien de retour à l'accueil.
+## 📚 Fondamentaux rapides
+- useState pour l'état local.
+- Props / children pour la communication parent → enfant.
+- Callbacks pour l'enfant → parent.
+- Context pour l'état global (ex : thème).
+- Formulaires contrôlés avec validation simple.
 
-Exercice 4 : Liste d'articles de blog
-- Déclarez un tableau d'objets représentant des articles.
-- Affichez dynamiquement les articles avec `.map()`.
+## 🧩 Exercices détaillés
 
-Exercice 5 : Menu de navigation
-- Implémentez une `NavBar` avec une liste de liens.
-- Expérimentez avec les styles et le responsive design.
+### Exercice 1 : Compteur de clics 🎛️
+Objectif : utiliser useState et les mises à jour basées sur la valeur précédente.
 
-Exercice 6 : Formulaire de contact
-- Créez un formulaire avec des champs `nom`, `email`, `message`.
-- Gérez l'état avec `useState`.
-- Ajoutez une validation simple avant soumission.
+Consignes :
+- Créer un composant `Compteur` avec un état `compteur`.
+- Afficher la valeur et un bouton pour incrémenter (+1).
+- Utiliser setState avec la forme fonctionnelle.
 
-Exercice 7 : Contexte React (thème clair/sombre)
-- Utilisez `ThemeContext` pour gérer un état global.
-- Expérimentez avec `useContext` et un bouton pour basculer le thème.
+Piste / exemple :
+```jsx copy
+// Exemple minimal - Compteur.jsx
+import React, { useState } from 'react';
 
-[Dépot GIT](https://github.com/micmc422/TW3.git)
+export default function Compteur() {
+  const [compteur, setCompteur] = useState(0);
+
+  return (
+    <div>
+      <p>Valeur : {compteur}</p>
+      <button onClick={() => setCompteur(prev => prev + 1)}>+1</button>
+    </div>
+  );
+}
+```
+
+### Exercice 2 : Transmission de données entre composants 🔁
+Objectif : props, children, callback.
+
+Consignes :
+- Créer `Parent` et `Enfant`.
+- Transmettre une valeur via props.
+- L'enfant doit appeler un callback pour informer le parent.
+
+Piste / exemple :
+```jsx copy
+// Exemple minimal - Parent.jsx / Enfant.jsx
+// Parent.jsx
+import React, { useState } from 'react';
+import Enfant from './Enfant';
+
+export default function Parent() {
+  const [message, setMessage] = useState('Salut');
+
+  return (
+    <div>
+      <Enfant message={message} onNotify={msg => setMessage(msg)} />
+      <p>Message actuel: {message}</p>
+    </div>
+  );
+}
+
+// Enfant.jsx
+export default function Enfant({ message, onNotify, children }) {
+  return (
+    <div>
+      <p>Reçu: {message}</p>
+      <button onClick={() => onNotify('Clic depuis l\'enfant')}>Notifier</button>
+      {children}
+    </div>
+  );
+}
+```
+
+### Exercice 3 : Page 404 🔎
+Objectif : créer un composant d'erreur simple et navigable.
+
+Consignes :
+- Créer `Page404` avec message et lien vers l'accueil.
+
+Piste :
+```jsx copy
+// Page404.jsx
+export default function Page404() {
+  return (
+    <main>
+      <h1>404 — Page non trouvée</h1>
+      <p>Retournez à <a href="/">l'accueil</a></p>
+    </main>
+  );
+}
+```
+
+### Exercice 4 : Liste d'articles de blog 📰
+Objectif : afficher des données via .map().
+
+Consignes :
+- Déclarer un tableau d'objets (titre, résumé).
+- Afficher une liste d'articles avec clé unique.
+
+Piste :
+```jsx copy
+// Articles.jsx
+const articles = [
+  { id: 1, titre: 'Intro React', resume: 'Bases de React' },
+  { id: 2, titre: 'useState', resume: 'Gérer l\'état local' },
+];
+
+export default function Articles() {
+  return (
+    <ul>
+      {articles.map(a => (
+        <li key={a.id}>
+          <h3>{a.titre}</h3>
+          <p>{a.resume}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+### Exercice 5 : Menu de navigation 🧭
+Objectif : créer une NavBar responsive simple.
+
+Consignes :
+- Composant `NavBar` avec une liste de liens.
+- Tester styles et responsive (CSS/Sass).
+
+Astuce : utiliser flexbox et points de rupture simples.
+
+### Exercice 6 : Formulaire de contact ✉️
+Objectif : formulaires contrôlés et validation simple.
+
+Consignes :
+- Champs : nom, email, message.
+- useState pour les valeurs.
+- Valider présence et format email avant submission.
+
+Piste :
+```jsx copy
+// ContactForm.jsx (extrait)
+function validateEmail(email) {
+  return /\S+@\S+\.\S+/.test(email);
+}
+```
+
+### Exercice 7 : Contexte React (thème clair/sombre) 🌗
+Objectif : utiliser React Context pour un thème global.
+
+Consignes :
+- Créer ThemeContext et un provider.
+- Ajouter un bouton pour basculer thème depuis n'importe quel composant.
+
+Piste : stocker "light" | "dark" et appliquer une classe racine.
+
+## ❓ Mini-quiz (3 questions rapides)
+<Quizz quizData={quiz} />
+
+1. Quel hook pour l'état local ? (Réponse : useState)  
+2. Comment passer une fonction de l'enfant au parent ? (Réponse : callback via props)  
+3. Quand utiliser Context ? (Réponse : état partagé entre beaucoup de composants, pas pour tout)
+
+## 🔗 Ressources
+- Repo du cours : https://github.com/micmc422/TW3.git  
+- Docs React : https://fr.reactjs.org/  
+- Guide useContext : https://fr.reactjs.org/docs/context.html
+
+## 🏁 TL;DR
+- Exercices progressifs : state → props → context → formulaires.  
+- Ajouter exemples, objectifs et pistes pour mieux guider l'apprentissage.  
+- Utiliser les composants réutilisables et respecter la structure pédagogique du repo.
+
+[Retour au dépôt GitHub](https://github.com/micmc422/TW3.git)

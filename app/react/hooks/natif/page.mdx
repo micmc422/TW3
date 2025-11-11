@@ -1,8 +1,8 @@
-## ⚛️ **Hooks Natifs**
+## 🪝 **Hooks Natifs**
 
 Voici des exemples fonctionnels pour chaque Hook natif de React :
 
-### ⚛️ useState
+### 🧠 useState
 
 Le Hook `useState` permet d'ajouter un état local à un composant fonctionnel. Il retourne un tableau avec deux éléments : la valeur actuelle de l'état et une fonction pour la mettre à jour.
 
@@ -51,7 +51,7 @@ export default Counter;
      const [count, setCount] = useState(0);
 
      const incrementThreeTimes = () => {
-       setCount(count + 1); // ❌ Ne prend pas en compte les mises à jour groupées
+      setCount(count + 1); // ⚠️ Ne prend pas en compte les mises à jour groupées
        setCount(count + 1);
        setCount(count + 1);
      };
@@ -64,7 +64,7 @@ export default Counter;
      );
    }
    ```
-   🔴 **Problème :**  
+  ⚠️ **Problème :**  
    - Tu t'attends à ce que `count` augmente de 3, mais en réalité, il **n'augmente que de 1**.  
    - Chaque `setCount(count + 1)` lit la même valeur de `count` (celle du rendu actuel).  
    - Les mises à jour sont **écrasées** car React ne met pas à jour immédiatement `count`.  
@@ -100,8 +100,8 @@ export default Counter;
 ✅ **Indispensable pour les mises à jour successives (`+1` plusieurs fois d'affilée).**  
 ✅ **Fiable avec des effets (`useEffect`) et les mises à jour asynchrones.**  
 
-➡️ **Bonne pratique :** Toujours utiliser `setCount(prev => prev + 1)` quand la mise à jour dépend de l'état précédent ! 🔥
-### ⚛️ useEffect
+➡️ **Bonne pratique :** Toujours utiliser `setCount(prev => prev + 1)` quand la mise à jour dépend de l'état précédent ! �
+### ⏱️ useEffect
 
 Le Hook `useEffect` permet d'effectuer des effets secondaires dans les composants fonctionnels. Il peut être utilisé pour des opérations telles que les requêtes réseau, les abonnements, les manipulations du DOM, etc.
 
@@ -205,7 +205,7 @@ export default Timer;
 #### **Exemple avec `addEventListener`**
 Si on ajoute un écouteur d’événement sans le retirer, il peut continuer à exister après le démontage du composant :
 
-❌ **Mauvais exemple (pas de nettoyage)**
+⚠️ **Mauvais exemple (pas de nettoyage)**
 ```jsx copy
 useEffect(() => {
   window.addEventListener("resize", () => {
@@ -213,7 +213,7 @@ useEffect(() => {
   });
 }, []); // Ajout une seule fois, mais jamais retiré !
 ```
-🔴 **Problème** :  
+⚠️ **Problème** :  
 - L’événement `resize` reste actif même après le démontage du composant.  
 
 ✅ **Solution avec un `return` pour le supprimer :**
@@ -231,7 +231,7 @@ useEffect(() => {
   };
 }, []);
 ```
-👉 **Résultat :** L’écouteur est supprimé quand le composant est démonté, **évite les bugs et les fuites mémoire**.
+➡️ **Résultat :** L’écouteur est supprimé quand le composant est démonté, **évite les bugs et les fuites mémoire**.
 
 ---
 
@@ -243,8 +243,8 @@ useEffect(() => {
    - **WebSockets ou requêtes API** → (`abort()`)
 3. **Sans ce nettoyage, on risque des fuites mémoire ou des comportements indésirables.**  
 
-➡️ **Règle d’or :** **Si un effet met en place quelque chose de persistant (timer, écouteur...), il doit être nettoyé avec `return` !** 🚀
-### ⚛️ useContext
+➡️ **Règle d’or :** **Si un effet met en place quelque chose de persistant (timer, écouteur...), il doit être nettoyé avec `return` !** ✅
+### 🔌 useContext
 
 Le Hook `useContext` permet d'accéder à la valeur actuelle d'un contexte. Il est souvent utilisé avec le Context API pour partager des données globales entre plusieurs composants.
 
@@ -264,7 +264,7 @@ function BoutonThème() {
 export default BoutonThème;
 ```
 
-### ⚛️ useReducer
+### 🔁 useReducer
 
 Le Hook `useReducer` est une alternative à `useState` qui est plus adaptée pour gérer des logiques d'état complexes. Il fonctionne de manière similaire à `reduce` dans JavaScript, en acceptant un réducteur et un état initial.
 
@@ -302,7 +302,7 @@ function Compteur() {
 export default Compteur;
 ```
 
-### ⚛️ useRef
+### 📌 useRef
 
 Le Hook `useRef` permet de créer une référence mutable qui persiste pendant toute la durée de vie du composant. Il est souvent utilisé pour accéder aux éléments du DOM ou pour garder une référence à une valeur qui peut changer au fil du temps.
 
@@ -324,7 +324,7 @@ function TextInputWithFocusButton() {
 }
 ```
 
-### ⚛️ useMemo
+### ⚡ useMemo
 
 Le Hook `useMemo` permet de mémoriser des calculs coûteux. Il retourne une valeur mémorisée qui ne change que si une de ses dépendances change.
 
@@ -346,7 +346,7 @@ function MyComponent({ a, b }) {
 }
 ```
 
-### ⚛️ useCallback
+### 🔗 useCallback
 
 Le Hook `useCallback` permet de mémoriser une fonction. Il retourne une version mémorisée de la fonction qui ne change que si une de ses dépendances change.
 
@@ -365,3 +365,86 @@ function MyComponent({ a, b }) {
 ```
 
 Dans cet exemple, `memoizedCallback` est une version mémorisée de la fonction qui ne change que si `a` ou `b` change.
+
+### 🆔 useId
+
+Le Hook `useId` (React 18+) génère des identifiants stables et uniques, utiles pour lier des `label` à des `input` ou pour éviter les collisions d'ID lorsqu'on compose des composants réutilisables. Il est également adapté au rendu côté serveur (SSR) pour éviter les mismatches.
+
+```jsx copy
+import { useId } from 'react';
+
+export default function TextInput({ label }) {
+  const id = useId();
+
+  return (
+    <div>
+      <label htmlFor={id}>{label}</label>
+      <input id={id} type="text" />
+    </div>
+  );
+}
+```
+
+### ⏳ useTransition / startTransition
+
+`useTransition` permet de marquer des mises à jour d'état comme "low priority" afin que l'UI reste réactive pour les interactions prioritaires (clics, saisies rapides). `startTransition` peut être utilisé pour entourer la mise à jour coûteuse.
+
+```jsx copy
+import { useState, useTransition } from 'react';
+
+function SearchList({ items }) {
+  const [query, setQuery] = useState('');
+  const [isPending, startTransition] = useTransition();
+  const [filtered, setFiltered] = useState(items);
+
+  function onChange(e) {
+    const value = e.target.value;
+    setQuery(value);
+    // Marque la mise à jour comme non prioritaire
+    startTransition(() => {
+      setFiltered(items.filter(i => i.includes(value)));
+    });
+  }
+
+  return (
+    <div>
+      <input value={query} onChange={onChange} placeholder="Rechercher..." />
+      {isPending ? <p>Chargement...</p> : null}
+      <ul>
+        {filtered.map((it, idx) => (
+          <li key={idx}>{it}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+### ⏳ useDeferredValue
+
+`useDeferredValue` permet de ralentir la propagation d'une valeur au composant descendant, utile pour empêcher des recalculs coûteux à chaque frappe de l'utilisateur (par ex. recherche instantanée). Contrairement à `useTransition`, il retourne une version différée d'une valeur.
+
+```jsx copy
+import { useState, useDeferredValue, useMemo } from 'react';
+
+function Search({ items }) {
+  const [query, setQuery] = useState('');
+  const deferredQuery = useDeferredValue(query);
+
+  const filtered = useMemo(() => {
+    // Calcul coûteux simulé
+    return items.filter(i => i.includes(deferredQuery));
+  }, [items, deferredQuery]);
+
+  return (
+    <div>
+      <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Rechercher..." />
+      <ul>
+        {filtered.map((it, idx) => (
+          <li key={idx}>{it}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```

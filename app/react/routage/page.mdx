@@ -7,3 +7,45 @@ React Router est une bibliothèque populaire qui fournit des composants de routa
 Dans ce chapitre, nous allons explorer les concepts fondamentaux du routage en React, y compris la définition de routes, la navigation entre les routes, et la gestion des paramètres de route. Nous verrons également comment utiliser React Router pour créer des applications web interactives avec des transitions fluides entre les différentes parties de l'application.
 
 En maîtrisant le routage en React, vous serez en mesure de créer des applications web plus riches et plus interactives, tout en offrant une expérience utilisateur optimale.
+
+### Exemple (React Router v6)
+
+```jsx copy
+import { BrowserRouter, Routes, Route, Link, useParams, useNavigate } from 'react-router-dom';
+
+function Home() {
+	return (
+		<div>
+			<h2>Accueil</h2>
+			<Link to="/about">À propos</Link>
+		</div>
+	);
+}
+
+function About() {
+	const navigate = useNavigate();
+	return (
+		<div>
+			<h2>À propos</h2>
+			<button onClick={() => navigate(-1)}>Retour</button>
+		</div>
+	);
+}
+
+export default function AppRouter() {
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/about" element={<About />} />
+				<Route path="/user/:id" element={<User />} />
+			</Routes>
+		</BrowserRouter>
+	);
+}
+
+function User() {
+	const { id } = useParams();
+	return <div>Utilisateur {id}</div>;
+}
+```

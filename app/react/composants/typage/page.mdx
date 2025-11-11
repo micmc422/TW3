@@ -1,19 +1,18 @@
-# ⚛️ PropTypes pour le Typage des Props
+# 🧾 PropTypes pour le Typage des Props
 
 PropTypes est une bibliothèque de validation de types pour les props dans React. Il permet de spécifier le type de chaque prop que votre composant attend. Si un prop est passé avec un type incorrect, PropTypes affiche un avertissement dans la console.
 
 Voici comment vous pouvez utiliser PropTypes pour typer les props d'un composant :
 
 ```jsx copy
-import React from 'react';
 import PropTypes from 'prop-types';
 
-function Welcome(props) {
- return <h1>Hello, {props.name}</h1>;
+export function Welcome({ name }) {
+	return <h1>Hello, {name}</h1>;
 }
 
 Welcome.propTypes = {
- name: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
 };
 
 export default Welcome;
@@ -23,4 +22,4 @@ Dans cet exemple, nous avons ajouté une propriété `propTypes` au composant `W
 
 L'option `isRequired` signifie que le prop est obligatoire. Si vous essayez d'utiliser le composant `Welcome` sans passer le prop `name`, PropTypes affichera un avertissement dans la console.
 
-Il est important de noter que PropTypes ne fait que vérifier les types à la compilation et ne fournit aucune protection contre les erreurs à l'exécution. De plus, PropTypes est destiné à être utilisé pendant le développement et non dans le code de production.
+Il est important de noter que PropTypes effectue des vérifications au runtime (pendant le développement) et affiche des avertissements dans la console ; ce n'est pas une vérification de type à la compilation. Pour un typage statique robuste, préférez TypeScript.

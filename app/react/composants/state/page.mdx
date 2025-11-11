@@ -1,61 +1,224 @@
-# ⚛️ State et Cycle de Vie des Composants
+# 🧠 State et cycle de vie des composants (explications approfondies)
 
-Le state est une caractéristique interne d'un composant React qui stocke des informations qui peuvent changer au fil du temps. Lorsque le state d'un composant change, le composant se re-rend et met à jour l'interface utilisateur.
+Le state est la donnée locale propre à un composant React. Quand le state change, React re-renderise le composant (et ses enfants si nécessaire) pour mettre à jour l'interface.
 
-Voici un exemple de composant avec un state :
+Cette page explique :
+- comment utiliser `useState` et `useReducer` pour gérer l'état ;
+- comment manipuler des objets et tableaux d'état de façon immuable ;
+- comment `useEffect` remplace les méthodes de cycle de vie des classes ;
+- bonnes pratiques et pièges courants (batching, valeurs asynchrones, initialisation paresseuse).
+
+### Exemple basique avec useState
 
 ```jsx copy
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-function Counter() {
- const [count, setCount] = useState(0);
+export default function Counter() {
+  const [count, setCount] = useState(0); // état initial = 0
 
- return (
-  <div>
-    <p>You clicked {count} times</p>
-    <button onClick={() => setCount(count + 1)}>
-      Click me
-    </button>
-  </div>
- );
+  return (
+    <div>
+      <p>Vous avez cliqué {count} fois</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  );
 }
 ```
 
-Dans cet exemple, nous avons un composant `Counter` avec un state `count`. Nous utilisons la fonction `useState` pour créer ce state. `useState` retourne un tableau avec deux éléments : la valeur actuelle du state et une fonction pour la mettre à jour.
+Explications :
+- `useState(0)` crée un état `count` initialisé à `0` et retourne `[count, setCount]`.
+- `setCount` remplace la valeur de `count` (pas de fusion automatique comme pour `this.setState` en classes). Pour modifier en fonction de la valeur précédente, utilisez la forme fonctionnelle (voir ci-dessous).
 
-Le cycle de vie d'un composant React est une série d'étapes que le composant suit depuis sa création jusqu'à sa destruction. Ces étapes sont définies par les méthodes de cycle de vie que vous pouvez surcharger dans votre composant.
+### Mise à jour basée sur l'état précédent (forme fonctionnelle)
 
-Voici un exemple de composant avec des méthodes de cycle de vie :
+Lorsque la nouvelle valeur dépend de l'ancienne, préférez :
 
 ```jsx copy
-import React, { Component } from 'react';
+setCount(prev => prev + 1);
+```
 
-class Example extends Component {
- constructor(props) {
-  super(props);
-  this.state = { count: 0 };
- }
+Pourquoi ?
+- React peut regrouper (batch) les mises à jour d'état. Si vous écrivez `setCount(count + 1)` plusieurs fois dans la même phase, toutes les lectures de `count` peuvent correspondre à l'ancienne valeur et produire un résultat inattendu. En passant une fonction, React fournit la valeur la plus récente (`prev`).
 
- componentDidMount() {
-  console.log('Component mounted');
- }
+### Initialisation paresseuse
 
- componentDidUpdate() {
-  console.log('Component updated');
- }
+Si l'état initial est coûteux à calculer, vous pouvez passer une fonction à `useState` :
 
- componentWillUnmount() {
-  console.log('Component will unmount');
- }
+```jsx copy
+const [data, setData] = useState(() => expensiveInit());
+```
 
- render() {
-  return <div>{this.state.count}</div>;
- }
+La fonction `expensiveInit` ne sera appelée qu'une seule fois au montage.
+
+### Travailler avec des objets et tableaux (immutabilité)
+
+Ne muter jamais directement l'objet/array d'état. Exemple : ajouter un élément à un tableau :
+
+```jsx copy
+const [items, setItems] = useState([]);
+
+function add(item) {
+  // Correct : créer un nouveau tableau
+  setItems(prev => [...prev, item]);
+}
+
+function remove(index) {
+  setItems(prev => prev.filter((_, i) => i !== index));
 }
 ```
 
-Dans cet exemple, nous avons un composant `Example` avec trois méthodes de cycle de vie :
+Pour des objets :
 
-- `componentDidMount` : cette méthode est appelée après que le composant a été inséré dans l'arbre DOM.
-- `componentDidUpdate` : cette méthode est appelée après que le composant a été mis à jour.
-- `componentWillUnmount` : cette méthode est appelée juste avant que le composant ne soit retiré de l'arbre DOM.
+```jsx copy
+const [user, setUser] = useState({ name: 'Alice', age: 25 });
+
+// Mettre à jour une propriété sans écraser les autres
+setUser(prev => ({ ...prev, age: prev.age + 1 }));
+```
+
+### useReducer pour des états complexes
+
+`useReducer` est utile quand la logique d'état devient complexe ou quand plusieurs sous-valeurs sont mises à jour ensemble.
+
+```jsx copy
+import { useReducer } from 'react';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { ...state, count: state.count + 1 };
+    case 'decrement':
+      return { ...state, count: state.count - 1 };
+    case 'reset':
+      return action.payload;
+    default:
+      throw new Error('Action inconnue');
+  }
+}
+
+export function CounterReducer() {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  return (
+    <div>
+      <p>Compteur : {state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+    </div>
+  );
+}
+```
+
+### Cycle de vie : useEffect vs méthodes de classe
+
+Dans les composants de classe, on utilisait `componentDidMount`, `componentDidUpdate` et `componentWillUnmount`.
+Avec les Hooks, `useEffect` couvre ces cas selon la dépendance fournie :
+
+```jsx copy
+import { useEffect } from 'react';
+
+// équivalent de componentDidMount
+useEffect(() => {
+  // code de montage
+}, []); // tableau vide = exécute une seule fois au montage
+
+// équivalent de componentDidUpdate (dépendances)
+useEffect(() => {
+  // code exécuté quand `value` change
+}, [value]);
+
+// nettoyage / componentWillUnmount
+useEffect(() => {
+  const id = setInterval(() => {}, 1000);
+  return () => clearInterval(id); // exécuté au démontage
+}, []);
+```
+
+Points clés sur `useEffect` :
+- L'effet s'exécute après le rendu (commit) ; n'y mettez pas de code bloquant.
+- Le tableau des dépendances indique quand ré-exécuter l'effet.
+- Toujours déclarer toutes les dépendances nécessaires (ou documenter pourquoi vous les omettez).
+
+### Batching et nature asynchrone des mises à jour
+
+Les appels à `setState` (useState/setWhatever) ne mettent pas à jour la variable locale immédiatement dans le même rendu. React planifie la mise à jour et re-renderise le composant. Depuis React 18, les mises à jour sont automatiquement groupées (batched) même en dehors des gestionnaires d'événements.
+
+Exemple problématique :
+
+```jsx copy
+setCount(count + 1);
+setCount(count + 1);
+// peut n'augmenter que de 1 si React batch les mises à jour
+```
+
+Utilisez la forme fonctionnelle pour garantir le comportement attendu.
+
+### Exemple complet commenté
+
+```jsx copy
+import { useState, useEffect } from 'react';
+
+export default function TodoApp() {
+  const [todos, setTodos] = useState(() => {
+    // initialisation paresseuse depuis le localStorage
+    const raw = localStorage.getItem('todos');
+    return raw ? JSON.parse(raw) : [];
+  });
+  const [input, setInput] = useState('');
+
+  // sauvegarder dans localStorage quand todos change
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
+  function addTodo() {
+    if (!input.trim()) return;
+    setTodos(prev => [...prev, { id: Date.now(), text: input }]);
+    setInput('');
+  }
+
+  function removeTodo(id) {
+    setTodos(prev => prev.filter(t => t.id !== id));
+  }
+
+  return (
+    <div>
+      <h3>Todo</h3>
+      <input value={input} onChange={e => setInput(e.target.value)} />
+      <button onClick={addTodo}>Ajouter</button>
+      <ul>
+        {todos.map(t => (
+          <li key={t.id}>
+            {t.text} <button onClick={() => removeTodo(t.id)}>Supprimer</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+Commentaires sur l'exemple :
+- Initialisation paresseuse : on lit `localStorage` une seule fois au montage.
+- `useEffect` avec `[todos]` sauvegarde automatiquement l'état quand il change.
+- Les fonctions `addTodo` / `removeTodo` utilisent la forme fonctionnelle de `setTodos` pour éviter les problèmes de concurrence.
+
+### Quand préférer useReducer ?
+
+- Lorsque l'état contient plusieurs sous-valeurs liées (par ex. formulaire complexe).
+- Quand vous voulez centraliser la logique d'état (actions, reducers), ce qui facilite le test.
+
+### Bonnes pratiques rapides
+
+- Privilégiez les composants fonctionnels + Hooks pour les nouveaux développements.
+- Gardez l'état local aussi petit que possible : dérivez ce que vous pouvez.
+- Ne muter jamais directement l'état ; renvoyez de nouveaux objets/arrays.
+- Documentez pourquoi vous omettez une dépendance dans `useEffect` si nécessaire.
+
+## 📝 TL;DR
+
+- `useState` pour l'état local simple.
+- `useReducer` pour les états complexes ou les transitions explicitement nommées.
+- `useEffect` remplace la plupart des méthodes de cycle de vie des classes (montage, mises à jour, nettoyage).
+- Utilisez la forme fonctionnelle `setState(prev => ...)` quand la nouvelle valeur dépend de l'ancienne.
+- Initialisation paresseuse avec `useState(() => ...)` pour des coûts d'initialisation.

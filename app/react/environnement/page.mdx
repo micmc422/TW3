@@ -12,11 +12,32 @@ Suivez ces étapes pour installer Node.js et npm:
 1. Visitez le site officiel de Node.js à l'adresse suivante : https://nodejs.org/
 2. Vous verrez deux versions disponibles pour le téléchargement : LTS (Long Term Support) et Current. La version LTS est recommandée pour la plupart des utilisateurs car elle est plus stable. Cliquez sur le bouton vert pour télécharger cette version.
 3. Une fois le fichier d'installation téléchargé, exécutez-le. Suivez les instructions à l'écran pour installer Node.js et npm.
-4. Une fois l'installation terminée, vous pouvez vérifier si Node.js et npm sont correctement installés en ouvrir une nouvelle fenêtre de terminal et en tapant les commandes suivantes :
+4. Une fois l'installation terminée, vous pouvez vérifier si Node.js et npm sont correctement installés en ouvrant une nouvelle fenêtre de terminal et en tapant les commandes suivantes :
 
 ```bash copy
+node -v    # affiche la version de Node.js
+npm -v     # affiche la version de npm
+npx -v     # affiche la version de npx (utile pour utiliser create-react-app)
 ```
 
-Ces commandes afficheront les versions de Node.js et npm respectivement. Si ces commandes renvoient des numéros de version, cela signifie que Node.js et npm sont correctement installés.
+Ces commandes afficheront les numéros de version ; si elles renvoient une version, Node.js et npm sont correctement installés.
 
-Notez que l'installation de Node.js installe également npm, donc vous n'avez pas besoin de l'installer séparément.
+Si vous préférez gérer plusieurs versions de Node.js (recommandé pour le développement), installez `nvm` (Node Version Manager) :
+
+```bash copy
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+# puis dans le même terminal (ou rouvrez-le) :
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm install --lts
+nvm use --lts
+```
+
+Sur Debian/Ubuntu, vous pouvez aussi utiliser le dépôt NodeSource :
+
+```bash copy
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+Note : l'installation de Node.js installe généralement npm automatiquement.

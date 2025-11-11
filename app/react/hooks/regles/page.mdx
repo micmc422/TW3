@@ -1,10 +1,10 @@
 import { Callout } from 'nextra/components'
 
-# ⚛️ Règles des Hooks en React
+# 🪝 Règles des Hooks en React
 
 React a introduit les Hooks dans sa version 16.8 pour permettre aux développeurs d'utiliser l'état et d'autres fonctionnalités de React sans avoir à écrire des classes. Cependant, il y a certaines règles strictes que vous devez suivre lors de l'utilisation des Hooks. Voici ces règles:
 
-## ⚛️ 1. Ne pas appeler les Hooks à l'intérieur des boucles, des conditions ou des fonctions imbriquées
+## 🪝 1. Ne pas appeler les Hooks à l'intérieur des boucles, des conditions ou des fonctions imbriquées
 
 **Il est important de toujours appeler les Hooks au niveau supérieur de vos fonctions de composant ou de vos fonctions personnalisées.** Vous ne devez jamais les appeler à l'intérieur des boucles, des conditions ou des fonctions imbriquées. Cela garantit que les Hooks sont appelés dans le même ordre chaque fois qu'un composant est rendu, ce qui permet à React de maintenir correctement l'état entre plusieurs appels de Hooks.
 Voici deux exemples :  
@@ -28,11 +28,11 @@ function ValidComponent() {
   );
 }
 ```
-👉 Ici, `useState` et `useEffect` sont appelés directement au début de la fonction, garantissant qu'ils s'exécutent dans le même ordre à chaque rendu.
+➡️ Ici, `useState` et `useEffect` sont appelés directement au début de la fonction, garantissant qu'ils s'exécutent dans le même ordre à chaque rendu.
 
 ---
 
-### ❌ **Exemple Invalide** (Ne respecte pas les règles des Hooks)  
+### ⚠️ **Exemple Invalide** (Ne respecte pas les règles des Hooks)  
 ```jsx copy
 import { useState, useEffect } from "react";
 
@@ -40,7 +40,7 @@ function InvalidComponent() {
   const [count, setCount] = useState(0);
 
   if (count > 5) {
-    const [otherState, setOtherState] = useState("Erreur"); // ❌ Mauvaise pratique !
+  const [otherState, setOtherState] = useState("Erreur"); // ⚠️ Mauvaise pratique !
   }
 
   return (
@@ -51,11 +51,11 @@ function InvalidComponent() {
   );
 }
 ```
-🚨 **Problème** :  
+⚠️ **Problème** :  
 - `useState("Erreur")` est appelé dans une condition (`if (count > 5)`).  
 - Cela casse l'ordre d'exécution des Hooks, car React s'attend à ce que chaque Hook soit toujours appelé dans le même ordre à chaque rendu du composant.  
 
-## ⚛️ 2. Appeler les Hooks uniquement à partir de fonctions de composant ou de fonctions personnalisées
+## 🪝 2. Appeler les Hooks uniquement à partir de fonctions de composant ou de fonctions personnalisées
 
 **Les Hooks ne peuvent être appelés que depuis des fonctions de composant React ou des fonctions personnalisées.** Vous ne pouvez pas les appeler à partir de fonctions JavaScript régulières. De plus, ils ne peuvent pas être appelés à partir de fonctions de classe.
 Voici deux exemples illustrant cette règle :  
@@ -87,12 +87,12 @@ function ValidComponent() {
 
 ---
 
-### ❌ **Exemple Invalide** (Un Hook est appelé dans une fonction classique)  
+### ⚠️ **Exemple Invalide** (Un Hook est appelé dans une fonction classique)  
 ```jsx copy
 import { useState } from "react";
 
 function badFunction() {
-  const [count, setCount] = useState(0); // ❌ ERREUR : useState ne peut pas être utilisé ici
+  const [count, setCount] = useState(0); // ⚠️ ERREUR : useState ne peut pas être utilisé ici
   return count;
 }
 
@@ -100,7 +100,7 @@ function InvalidComponent() {
   return <p>Valeur : {badFunction()}</p>;
 }
 ```
-🚨 **Problème** :  
+⚠️ **Problème** :  
 - `badFunction` est une fonction JavaScript classique, **pas un composant React**.  
 - Les Hooks **ne peuvent être appelés que dans des composants fonctionnels** ou des Hooks personnalisés.  
 
@@ -135,7 +135,7 @@ function ValidComponent() {
 
 ---
 
-### ❌ **Exemple Invalide avec une Classe** (Les Hooks ne fonctionnent pas dans les classes)  
+### ⚠️ **Exemple Invalide avec une Classe** (Les Hooks ne fonctionnent pas dans les classes)  
 ```jsx copy
 import { useState } from "react";
 
@@ -150,7 +150,7 @@ class InvalidClassComponent extends React.Component {
   }
 
   render() {
-    const [count, setCount] = useState(0); // ❌ ERREUR : Impossible d'utiliser un Hook dans une classe
+  const [count, setCount] = useState(0); // ⚠️ ERREUR : Impossible d'utiliser un Hook dans une classe
     return (
       <div>
         <p>Compteur : {count}</p>
@@ -160,7 +160,7 @@ class InvalidClassComponent extends React.Component {
   }
 }
 ```
-🚨 **Problème** :  
+⚠️ **Problème** :  
 - Les **composants de classe** utilisent `this.state` et `this.setState()`, pas les Hooks.  
 - `useState` **ne peut pas être utilisé dans une classe**.  
 
@@ -188,17 +188,18 @@ function ValidComponent() {
 
 ---
 
-### 🚀 **Résumé des Règles :**  
-✅ **Les Hooks doivent être appelés dans :**  
-✔️ Un composant fonctionnel React (`function MonComposant() {}`)  
-✔️ Un Hook personnalisé (`function useMonHook() {}`)  
+### � **Résumé des Règles :**  
 
-❌ **Les Hooks NE DOIVENT PAS être appelés dans :**  
-❌ Une fonction JavaScript classique (`function badFunction() {}`)  
-❌ Une classe React (`class MonComposant extends React.Component {}`)  
+✅ **Les Hooks doivent être appelés dans :**
+- ✔️ Un composant fonctionnel React (`function MonComposant() {}`)
+- ✔️ Un Hook personnalisé (`function useMonHook() {}`)
+
+⚠️ **Les Hooks NE DOIVENT PAS être appelés dans :**
+- ⚠️ Une fonction JavaScript classique (`function badFunction() {}`)
+- ⚠️ Une classe React (`class MonComposant extends React.Component {}`)
 
 En suivant ces règles, vous évitez des erreurs et garantissez un bon fonctionnement de votre application React. 🎯
-## ⚛️ 3. Utiliser les Hooks uniquement à partir de packages React
+## 🪝 3. Utiliser les Hooks uniquement à partir de packages React
 
 **Il est recommandé d'utiliser les Hooks uniquement à partir de packages React.** Bien que rien n'empêche techniquement de créer vos propres Hooks, il est généralement préférable d'utiliser ceux fournis par React ou par des bibliothèques tierces fiables. 
  <Callout type="info" emoji="ℹ️">
