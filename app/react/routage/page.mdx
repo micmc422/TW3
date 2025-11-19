@@ -1,35 +1,147 @@
 # 📘 Introduction au Routage en React
 
-Le routage est un aspect crucial de toute application web moderne. Il permet de naviguer entre différentes parties de l'application sans recharger la page entière. En React, le routage peut être géré de manière efficace grâce à des bibliothèques tierces comme React Router.
+Le **routage** permet de changer de vue sans recharger toute la page. En React on s'appuie majoritairement sur la bibliothèque 📦 **React Router** (v6) pour :
+1. Déclarer des chemins (`/`, `/users/:id`, `/dashboard`)
+2. Afficher le composant correspondant quand l'URL change
+3. Gérer la navigation programmée (retour, redirection) et les paramètres
+4. Structurer des routes imbriquées pour refléter l'architecture UI
 
-React Router est une bibliothèque populaire qui fournit des composants de routage pour React. Il permet de définir des routes pour différents composants de votre application, ce qui signifie que lorsque l'URL correspond à une route spécifique, le composant associé est rendu.
+## 🧠 Fondamentaux
+Une **route** = un chemin + un composant à rendre. Le routeur observe l'URL et sélectionne la meilleure correspondance.
 
-Dans ce chapitre, nous allons explorer les concepts fondamentaux du routage en React, y compris la définition de routes, la navigation entre les routes, et la gestion des paramètres de route. Nous verrons également comment utiliser React Router pour créer des applications web interactives avec des transitions fluides entre les différentes parties de l'application.
+### 📦 Installation
 
-En maîtrisant le routage en React, vous serez en mesure de créer des applications web plus riches et plus interactives, tout en offrant une expérience utilisateur optimale.
+```bash copy
+pnpm add react-router
+```
 
-### Exemple (React Router v6)
+### 🧩 Routeur de haut niveau
+Le plus courant : `BrowserRouter` (historique HTML5). Alternative : `HashRouter` si déploiement statique sans configuration serveur.
+
+```jsx copy 
+import { BrowserRouter, Routes, Route } from 'react-router';
+
+function Home() { return <h1>Accueil</h1>; }
+function About() { return <h1>À propos</h1>; }
+
+export default function App() {
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/about" element={<About />} />
+			</Routes>
+		</BrowserRouter>
+	);
+}
+```
+
+### 🕸️ Paramètres dynamiques
+Utiliser `:id` dans le chemin et `useParams()` pour récupérer la valeur.
 
 ```jsx copy
-import { BrowserRouter, Routes, Route, Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router';
+
+function User() {
+	const { id } = useParams();
+	return <p>Utilisateur #{id}</p>;
+}
+```
+
+### 🔄 Navigation
+Deux approches :
+- Déclarative via `<Link to="/about" />`
+- Programmée via `useNavigate()` (redirection après action, retour).
+
+```jsx copy
+import { useNavigate } from 'react-router';
+function ProfileButton() {
+	const navigate = useNavigate();
+	return <button onClick={() => navigate('/profile')} aria-label="Aller au profil">Profil</button>;
+}
+```
+
+### 🪜 Routes imbriquées
+Permettent de partager un layout et de gérer des sous-sections.
+```jsx copy
+
+import { BrowserRouter, Routes, Route, Outlet, Link } from 'react-router';
+
+function DashboardLayout() {
+	return (
+		<div>
+			<h2>Dashboard</h2>
+			<nav>
+				<Link to="stats">Stats</Link> | <Link to="settings">Paramètres</Link>
+			</nav>
+			<Outlet /> {/* Rendu des sous-routes */}
+		</div>
+	);
+}
+function Stats() { return <p>📈 Statistiques</p>; }
+function Settings() { return <p>⚙️ Paramètres</p>; }
+
+export default function AppNested() {
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/dashboard" element={<DashboardLayout />}>  
+					<Route path="stats" element={<Stats />} />
+					<Route path="settings" element={<Settings />} />
+				</Route>
+			</Routes>
+		</BrowserRouter>
+	);
+}
+```
+
+### 💤 Chargement différé (lazy loading)
+Réduit le bundle initial : charger un écran uniquement quand nécessaire.
+
+```jsx copy
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router';
+
+const Admin = lazy(() => import('./Admin'));
+
+export function AppLazy() {
+	return (
+		<BrowserRouter>
+			<Suspense fallback={<p>Chargement…</p>}>
+				<Routes>
+					<Route path="/admin" element={<Admin />} />
+				</Routes>
+			</Suspense>
+		</BrowserRouter>
+	);
+}
+```
+
+### 🧪 Exemple complet (récap)
+
+```jsx copy
+import { BrowserRouter, Routes, Route, Link, useParams, useNavigate } from 'react-router';
 
 function Home() {
 	return (
 		<div>
 			<h2>Accueil</h2>
-			<Link to="/about">À propos</Link>
+			<Link to="/about">À propos</Link> | <Link to="/user/42">Utilisateur 42</Link>
 		</div>
 	);
 }
-
 function About() {
 	const navigate = useNavigate();
 	return (
 		<div>
 			<h2>À propos</h2>
-			<button onClick={() => navigate(-1)}>Retour</button>
+			<button onClick={() => navigate(-1)} aria-label="Retour">Retour</button>
 		</div>
 	);
+}
+function User() {
+	const { id } = useParams();
+	return <div>Utilisateur {id}</div>;
 }
 
 export default function AppRouter() {
@@ -43,9 +155,24 @@ export default function AppRouter() {
 		</BrowserRouter>
 	);
 }
-
-function User() {
-	const { id } = useParams();
-	return <div>Utilisateur {id}</div>;
-}
 ```
+
+---
+
+## 📚 Ressources
+- Documentation officielle : https://reactrouter.com/en/main 
+- Concepts SPA : https://developer.mozilla.org/en-US/docs/Glossary/SPA 
+- Accessibilité des liens : https://www.w3.org/WAI/tutorials/ 
+
+---
+
+## ⚡ TLDR
+- Déclarer routes via `<Routes>` / `<Route>`
+- Paramètres dynamiques avec `:id` + `useParams()`
+- Navigation : `<Link>` (déclaratif) / `useNavigate()` (impératif)
+- Imbrication : `<Outlet>` dans un layout parent
+- Optimisation : lazy + `Suspense` pour réduire bundle
+
+---
+
+Voir aussi : /react/composants pour structuration UI et /react/donnees pour la gestion d'état croisée.

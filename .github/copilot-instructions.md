@@ -1,50 +1,92 @@
-# Copilot Instructions for TW3 Codebase
+# Copilot Instructions
 
-## Architecture & Structure
-- **Monorepo pédagogique** : Chaque dossier dans `app/` correspond à un module de cours (ex : `docker/`, `node.js/`, `git/`, `NPM/`, etc.), chacun avec ses propres sous-sections et fichiers `.mdx`.
-- **Composants réutilisables** : Les composants React personnalisés sont dans `components/` (ex : quiz, UI, icônes). Utilisez-les pour enrichir les contenus MDX.
-- **Librairie utilitaire** : Fonctions utilitaires et hooks dans `lib/`.
-- **Configuration Next.js** : Fichiers racine `next.config.mjs`, `tsconfig.json`, `package.json`.
+## 🎯 Objectif
+Ces instructions définissent les conventions de rédaction pédagogique et d’implémentation (`MDX` + composants React) pour garantir une expérience homogène, accessible et engageante dans tout le parcours.
 
-## Conventions & Patterns
-- **MDX enrichi** :
-  - Titres, listes et concepts doivent être enrichis d’emojis pour la pédagogie.
-  - Tous les blocs de code doivent avoir l’option `copy` (ex : ```bash copy).
-  - Structurez les contenus pour la clarté et la progression pédagogique.
-- **Organisation des modules** :
-  - Chaque module suit une structure similaire : introduction, plan, fondamentaux, exercices, quizz, ressources, TLDR.
-  - Les sous-dossiers thématiques sont encouragés pour la granularité.
-- **Composants React** :
-  - Préférez l’import de composants depuis `components/` pour les quiz, infobox, etc.
-  - Les styles sont dans `components/styles.module.scss`.
+## 🧩 Conventions & Patterns
+### ✨ MDX enrichi
+- Toujours enrichir titres, listes principales et concepts avec des emojis cohérents (voir palette plus bas).
+- Utiliser des sous-titres hiérarchiques progressifs : `#`, `##`, `###` pour segmenter l’apprentissage (une idée par section).
+- Tous les blocs de code doivent avoir l’option `copy` et un langage explicite :
+  ```bash copy title="Installation Docker"
+  docker --version
+  ```
+- Préférer des phrases courtes, actives, et un ton pédagogique direct.
+- Éviter les paragraphes > 6 lignes : scinder avec listes, infobox ou quiz intermédiaire.
 
-## Workflows & Développement
-- **Installation** :
-  - Utilisez `pnpm i` pour installer les dépendances.
-- **Développement local** :
-  - Lancez le serveur avec `pnpm run dev`.
-- **Build** :
-  - Utilisez `pnpm run build` pour la production.
-- **Ajout de contenu** :
-  - Ajoutez de nouveaux modules dans `app/` en respectant la structure existante.
-  - Pour de nouveaux composants, placez-les dans `components/` et documentez leur usage.
+### 🏗️ Structure standard des modules
+Ordre recommandé des sections dans chaque `page.mdx` de module principal :
+1. 📘 Introduction
+2. 🧭 Plan (vision structurée du module)
+3. 🧠 Fondamentaux (concepts de base)
+4. 🛠️ Exercices (pratique guidée) / ou `exercices/` dédié
+5. 🧪 Quizz (validation immédiate)
+6. 📚 Ressources (liens externes fiables)
+7. ⚡ TLDR (synthèse actionnable)
 
-## Intégrations & Dépendances
-- **Next.js** : Framework principal pour le rendu et le routage.
-- **MDX** : Pour la documentation interactive et les contenus pédagogiques.
-- **React** : Pour les composants dynamiques (quiz, UI, etc.).
-- **PostCSS, SCSS** : Pour la gestion des styles.
-- **Autres outils** : ESLint, Prettier, Docker (pour certains modules), MongoDB, GraphQL, etc.
+Sous-dossiers thématiques : granularité fine (ex : `installation/`, `optimisations/`, `securisation/`). Utiliser `kebab-case` pour les dossiers.
 
-## Exemples de patterns spécifiques
-- Pour un quiz interactif, utilisez le composant `components/quiz/`.
-- Pour une infobox ou une alerte, préférez un composant dédié plutôt qu’un simple bloc Markdown.
-- Pour les ressources, centralisez les liens dans le sous-dossier `ressources/` de chaque module.
+### 🗂️ Nommage & Fichiers
+- Fichiers de page : `page.mdx` dans un dossier de module racine.
+- Plan détaillé séparé : `plan.mdx` si la structure est complexe.
+- Métadonnées : `_meta.ts` ou `_meta.js` pour navigation/ordre (tenir cohérent entre modules).
+- Éviter les espaces, accents et majuscules dans les chemins (compatibilité CI/CD & import).
 
-## Références clés
+### ⚛️ Composants React pédagogiques
+- Importer exclusivement depuis `components/` pour uniformiser style et maintenance.
+- Quiz : utiliser le composant standard (`Quizz-champollion.tsx`) ou ceux dans `components/quiz/`.
+- Infobox / alertes : créer/consommer un composant `<Infobox type="info" />` (à étendre si besoin : `info`, `warn`, `tip`, `danger`).
+- Styles globaux pédagogiques centralisés : `components/styles.module.scss`. Ne pas dupliquer des SCSS locaux pour un usage générique.
+- Accessibilité :
+  - Fournir `aria-label` sur boutons interactifs de quiz.
+  - Donner des `alt` descriptifs sur toutes les images dans `public/images`.
+  - Ne pas véhiculer l’information uniquement par la couleur.
+
+### 🧪 Blocs de code
+- Format : ```lang copy [title="Titre court"]
+- Regrouper seulement ce qui est exécutable ensemble (pas de mélange de commandes hétérogènes).
+- Ajouter commentaire bref si comportement non trivial.
+- Préférer variables explicites (`PORT=3000`) plutôt que placeholders vagues.
+- Pour les extraits longs (> 40 lignes) : envisager découpage ou fichier dédié + lien.
+
+### 🔗 Liens internes & Cross-module
+- Toujours relier les modules entre eux quand un concept est approfondi ailleurs (`Voir aussi : /docker/introduction`).
+- Utiliser des chemins absolus Next.js (`/docker/...`) pour éviter les erreurs de refactor.
+
+### 🧬 Cohérence terminologique
+- Utiliser les mêmes termes entre modules : « conteneur », « dépendances », « authentification », « schéma », « requête ».
+- Ajouter glossaire dans modules complexes si nouveaux acronymes (ex : JWT, CRUD, ODM).
+
+### ♿ Accessibilité rédactionnelle
+- Éviter jargon non expliqué à la première occurrence.
+- Fournir version textuelle pour toute image ou diagramme critique.
+- Éviter emoji seul pour transmettre une information essentielle (toujours accompagné de texte).
+
+### 🛡️ Qualité & Validation
+- Vérifier les commandes avant publication (pas de flags obsolètes).
+- Préférer exemples reproductibles (éviter : « sur certains systèmes » sans préciser conditions).
+- Ajouter mini quiz (1–3 Q) après un bloc concept clé pour favoriser la rétention.
+
+### 🧪 Palette d’emojis standard
+- 📘 Intro | 🧭 Plan | 🧠 Fondamentaux | 🛠️ Exercices | 🧪 Quizz | 📚 Ressources | ⚡ TLDR | 🧱 Architecture | 🔐 Sécurité | 🚀 Performance | 🕸️ Réseau | 🗄️ Données | 🔧 Outils
+
+### 🛠️ Tooling & lint (optionnel à étendre)
+- Uniformiser formatage : Prettier + ESLint (si déjà présents dans le repo) – appliquer avant commit.
+- Éviter l’ajout de dépendances pédagogiques non utilisées dans le code exécuté.
+
+### ✅ Checklist auteur avant PR
+- Sections présentes selon structure ?
+- Emojis conformes à la palette ?
+- Blocs de code avec `copy` + langage ?
+- Liens internes testés ?
+- Accessibilité (alt, aria) respectée ?
+- Quiz ou exercice ajouté pour au moins 1 concept clé ?
+
+## 📎 Références clés
 - Voir `README.md` pour la vision pédagogique globale et la liste des modules.
-- Consultez les fichiers d’exemple dans chaque module pour les conventions d’écriture.
+- Explorer les exemples existants dans chaque module pour caler ton style.
+- Réutiliser composants plutôt que réécrire (favorise maintenabilité & cohérence visuelle).
 
 ---
 
-Merci de respecter ces conventions pour garantir la cohérence et la qualité pédagogique du codebase.
+Merci de respecter ces conventions pour garantir la cohérence, l’accessibilité et l’efficacité pédagogique du codebase.

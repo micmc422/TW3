@@ -1,27 +1,151 @@
-# 🧭 Navigation Programmatique avec React Router
+# 🔄 Navigation Programmatique avec React Router
 
-La navigation programmatique dans React Router permet de naviguer vers différentes routes de votre application en utilisant du code JavaScript plutôt que des liens hypertextes. Cela peut être utile dans divers scénarios, par exemple lorsque vous voulez rediriger l'utilisateur après qu'une action a été effectuée, comme la soumission d'un formulaire.
+La navigation programmatique déclenche un changement de route par le code (hook ou API) plutôt que par un lien `<Link>`. Utile pour : redirection post‑authentification, retour après annulation, étape suivante d’un wizard, gestion d’erreurs.
 
-Voici comment vous pouvez réaliser une navigation programmatique avec React Router :
+## 🧠 Fondamentaux
+`useNavigate()` retourne une fonction `navigate(to, options?)` qui pousse une entrée dans l’historique (par défaut). Options clés : `{ replace: true, state: any }`.
 
-```jsx copy
-import { useNavigate } from "react-router-dom";
+### 📦 Exemple minimal
+```jsx copy filename="Redirection après formulaire"
+import { useNavigate } from 'react-router';
 
 function FormComponent() {
- let navigate = useNavigate();
-
- const handleSubmit = (event) => {
-  event.preventDefault();
-  // Effectuez une action, puis naviguez vers une autre route
-  navigate('/success');
- };
-
- return (
-  <form onSubmit={handleSubmit}>
-    {/* ... */}
-  </form>
- );
+  const navigate = useNavigate();
+  function handleSubmit(e) {
+    e.preventDefault();
+    // ... traitement
+    navigate('/success');
+  }
+  return <form onSubmit={handleSubmit}>{/* champs */}</form>;
 }
 ```
 
-Dans cet exemple, après la soumission du formulaire, l'utilisateur est redirigé vers la route `/success`. Notez que `useNavigate` est un hook fourni par React Router qui retourne une fonction que vous pouvez utiliser pour naviguer vers différentes routes.
+### ♻️ Remplacer l'entrée d'historique
+Lorsque l’on ne veut pas que l’utilisateur revienne sur la page précédente (ex: après login).
+```jsx copy filename="replace"
+navigate('/dashboard', { replace: true });
+```
+
+### 📦 Passer un état de navigation
+Transmettre des données éphémères sans polluer l’URL.
+```jsx copy filename="State de navigation"
+navigate('/checkout', { state: { fromCart: true, total: 42.9 } });
+```
+Dans la cible :
+```jsx copy filename="Lecture state"
+import { useLocation } from 'react-router';
+const { state } = useLocation();
+```
+
+### 🔁 Navigation relative & historique
+```jsx copy filename="Historique"
+navigate(-1); // revenir en arrière
+navigate(1);  // aller en avant (si entrée disponible)
+```
+
+### 🚦 Guards & conditions
+Rediriger si condition non respectée (auth, rôle, données).
+```jsx copy filename="Guard simple"
+function Protected({ isAuth }) {
+  const navigate = useNavigate();
+  if (!isAuth) {
+    navigate('/login', { replace: true });
+    return null;
+  }
+  return <p>Zone protégée</p>;
+}
+```
+
+### 🪜 Combiner avec paramètres
+```jsx copy filename="Paramètre dynamique"
+function GoUser({ id }) {
+  const navigate = useNavigate();
+  return <button onClick={() => navigate(`/users/${id}`)}>Voir user {id}</button>;
+}
+```
+
+### 🧪 Gestion d'erreur + redirection
+```jsx copy filename="Redirection erreur"
+try {
+  await submitData(form);
+  navigate('/done');
+} catch (e) {
+  navigate('/error', { state: { message: e.message } });
+}
+```
+
+### 🛡️ Accessibilité
+Après navigation programmée vers une vue structurée, placer le focus sur un titre ou un conteneur.
+```jsx copy filename="Focus après navigation"
+useEffect(() => { document.getElementById('page-title')?.focus(); }, []);
+```
+Utiliser `tabIndex="-1"` sur le titre ciblé pour autoriser le focus.
+
+### 💤 Lazy + navigate
+Fonctionne si la route cible est lazy : la transition charge le chunk nécessaire.
+
+---
+
+## 🛠️ Exercices
+1. Après login simulé, rediriger vers `/profil` avec `replace`.  
+2. Ajouter un bouton « Revenir » qui désactive si historique vide (tester `window.history.length`).  
+3. Passer un état `{ flash: 'Profil mis à jour' }` puis l’afficher et l’effacer.  
+4. Implémenter une redirection automatique vers `/login` si token absent.
+
+```jsx copy filename="Base d'exercice"
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router';
+
+function Login() {
+  const navigate = useNavigate();
+  function handleLogin() {
+    // fake token
+    localStorage.setItem('token', 'abc');
+    navigate('/profil', { replace: true, state: { flash: 'Bienvenue !' } });
+  }
+  return <button onClick={handleLogin}>Se connecter</button>;
+}
+
+function Profil() {
+  const { state } = useLocation();
+  return <div>{state?.flash && <p>{state.flash}</p>}<h2>Profil</h2></div>;
+}
+
+function Guard({ children }) {
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  useEffect(() => { if (!token) navigate('/login', { replace: true }); }, [token, navigate]);
+  return token ? children : null;
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/profil" element={<Guard><Profil /></Guard>} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+```
+
+---
+
+## 📚 Ressources
+- API navigate : https://reactrouter.com/en/main/hooks/use-navigate
+- Location & state : https://reactrouter.com/en/main/hooks/use-location
+- Accessibilité focus SPA : https://www.w3.org/WAI/ARIA/apg/practices/landmarks/
+
+---
+
+## ⚡ TLDR
+- `useNavigate()` pour déclencher navigation
+- `navigate(to, { replace, state })` pour options
+- `navigate(-1)` / `navigate(1)` pour historique
+- Guards : vérifier auth puis rediriger (souvent `replace: true`)
+- Focus manuel après navigation pour accessibilité
+- Éviter redirections dans rendu profond sans condition claire
+
+---
+
+Voir aussi : /react/routage/dynamiques pour paramètres et /react/donnees pour chargement conditionnel.

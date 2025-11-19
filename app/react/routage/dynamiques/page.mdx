@@ -1,32 +1,197 @@
-# 🧭 Création de Routes Dynamiques avec React Router
+# 🧱 Routes Dynamiques & Paramètres
 
-La création de routes dynamiques dans React Router permet de rendre des composants basés sur des paramètres d'URL variables. Par exemple, vous pouvez avoir une route pour afficher les détails d'un produit dans une boutique en ligne, où l'ID du produit est un paramètre d'URL.
+Les **routes dynamiques** permettent d'afficher un contenu en fonction de segments variables de l'URL (ex: `/produits/A1`, `/users/42`). On utilise la syntaxe `:param` dans le chemin et le hook `useParams()` pour récupérer les valeurs.
 
-Voici comment vous pouvez créer une route dynamique avec React Router :
+## 🧠 Fondamentaux
+Une route dynamique = chemin avec segment paramétré `:id` + composant qui lit la valeur. Avantages :
+1. URL sémantiques et partageables
+2. Navigation côté client rapide (SPA)
+3. Chargement ciblé de données (fetch selon ID)
 
+### 📦 Exemple minimal
 ```jsx copy
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-function App() {
- return (
- <Router>
-   <Routes>
-     <Route path="/product/:id" element={<Product />} />
-   </Routes>
- </Router>
- );
-}
-```
-
-Dans cet exemple, `:id` est un paramètre de route dynamique. Vous pouvez accéder à la valeur de ce paramètre dans le composant `Product` en utilisant le hook `useParams` de React Router :
-
-```jsx copy
-import { useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from 'react-router';
 
 function Product() {
- let { id } = useParams();
- // Maintenant, vous pouvez utiliser l'ID du produit pour charger les données du produit
+  const { id } = useParams();
+  return <p>Produit #{id}</p>;
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/product/:id" element={<Product />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 ```
 
-Dans cet exemple, si l'URL est `/product/123`, alors `id` sera `'123'` dans le composant `Product`.
+### 🔍 Paramètres multiples
+```jsx copy
+<Route path="/shop/:category/:sku" element={<Item />} />
+
+function Item() {
+  const { category, sku } = useParams();
+  return <p>{category} – référence {sku}</p>;
+}
+```
+
+### 🕸️ Recherche (Query string)
+Les paramètres d'URL ne couvrent pas tout. Pour une pagination ou un tri : utiliser l'API `URLSearchParams` sur `window.location.search` ou `useSearchParams()`.
+```jsx copy
+import { useSearchParams } from 'react-router';
+
+function ProductsList() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = searchParams.get('page') ?? '1';
+
+  return (
+    <div>
+      <p>Page {page}</p>
+      <button onClick={() => setSearchParams({ page: Number(page) + 1 })}>Suivant</button>
+    </div>
+  );
+}
+```
+
+### 🪜 Routes imbriquées + paramètres
+On peut imbriquer une route paramétrée et des sous‑vues (ex: `/users/:id/settings`).
+```jsx copy
+import { BrowserRouter, Routes, Route, Outlet, useParams } from 'react-router';
+
+function UserLayout() {
+  const { id } = useParams();
+  return (
+    <div>
+      <h2>Utilisateur {id}</h2>
+      <Outlet />
+    </div>
+  );
+}
+function Profile() { return <p>Profil</p>; }
+function Preferences() { return <p>Préférences</p>; }
+
+export function AppNestedParams() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/users/:id" element={<UserLayout />}> 
+          <Route path="profile" element={<Profile />} />
+          <Route path="preferences" element={<Preferences />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+```
+
+### 🃏 Wildcard / Catch-all
+Pour gérer routes non définies ou segments supplémentaires.
+```jsx copy
+<Route path="/docs/*" element={<Docs />} />
+```
+Dans `Docs`, vous pouvez analyser `location.pathname` pour router manuellement ou charger un article par slug.
+
+### 🚫 404 (Not Found)
+Toujours prévoir une route de repli.
+```jsx copy
+<Route path="*" element={<p>Page introuvable</p>} />
+```
+
+### 🛡️ Validation d'ID
+Ne faites pas confiance directement à `id`. Vérifiez format (regex) avant de lancer un fetch.
+```jsx copy
+function Product() {
+  const { id } = useParams();
+  if (!/^\w{2,10}$/.test(id)) return <p>ID invalide</p>;
+  return <p>Produit #{id}</p>;
+}
+```
+
+### 💤 Lazy + paramètre
+Combiner lazy loading pour vues spécialisées.
+```jsx copy
+import { lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router';
+
+const Product = lazy(() => import('./Product'));
+
+export function AppLazyDynamic() {
+  return (
+    <BrowserRouter>
+      <Suspense fallback={<p>Chargement…</p>}>
+        <Routes>
+          <Route path="/product/:id" element={<Product />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
+}
+```
+
+---
+
+## 🛠️ Exercices
+1. Crée `/articles/:slug` et affiche le slug formaté (remplacer `-` par espaces capitalisés).  
+2. Ajoute pagination via `?page=` avec `useSearchParams()`.  
+3. Ajoute une route catch‑all `/articles/*` qui affiche « Archive » pour tout chemin non spécifique.  
+4. Valide le slug avec regex (`^[a-z0-9-]+$`).
+
+```jsx copy
+// Fichier: src/App.jsx
+import { BrowserRouter, Routes, Route, useParams, useSearchParams } from 'react-router';
+
+function Article() {
+  const { slug } = useParams();
+  if (!/^[a-z0-9-]+$/.test(slug)) return <p>Slug invalide</p>;
+  const title = slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
+  return <h2>{title}</h2>;
+}
+function ArticlesIndex() {
+  const [sp, setSp] = useSearchParams();
+  const page = sp.get('page') ?? '1';
+  return (
+    <div>
+      <p>Page {page}</p>
+      <button onClick={() => setSp({ page: String(Number(page) + 1) })}>Suivant</button>
+    </div>
+  );
+}
+function Archive() { return <p>Archive des articles</p>; }
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/articles" element={<ArticlesIndex />} />
+        <Route path="/articles/:slug" element={<Article />} />
+        <Route path="/articles/*" element={<Archive />} />
+        <Route path="*" element={<p>404</p>} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+```
+
+---
+
+## 📚 Ressources
+- Docs officielle paramètres : https://reactrouter.com/en/main/hooks/use-params
+- Recherche / query : https://reactrouter.com/en/main/hooks/use-search-params
+- Wildcards & patterns : https://reactrouter.com/en/main/route/route
+
+---
+
+## ⚡ TLDR
+- Paramètres : `:id` + `useParams()`
+- Query string : `useSearchParams()` pour lire/écrire
+- Imbrication avec paramètre : parent + `<Outlet />`
+- Catch-all : `*` pour 404 ou wildcard
+- Valider / sécuriser les identifiants avant fetch
+- Lazy sur vues lourdes paramétrées
+
+---
+
+Voir aussi : /react/routage pour la vue d’ensemble et /react/donnees pour le chargement côté client.
