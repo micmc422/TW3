@@ -2,7 +2,7 @@
 
 Voici un exemple minimaliste d'un composant fonctionnel React :
 
-```jsx filename="mon-composant.js" copy
+```jsx copy filename="mon-composant.js"
 // Avec le nouveau JSX transform (React 17+),
 // l'import explicite de `React` n'est plus obligatoire si votre outil de build le supporte.
 export default function HelloWorld({ text = 'world' }) {
@@ -13,7 +13,7 @@ export default function HelloWorld({ text = 'world' }) {
 Dans cet exemple, nous avons défini un composant fonctionnel appelé `HelloWorld`. Ce composant retourne un élément JSX qui représente un titre de niveau 1 (`<h1>`) avec le texte "Hello, world!".
 
 Ensuite, nous exportons le composant `HelloWorld` pour pouvoir l'utiliser dans d'autres parties de notre application.
-```jsx filename="utilisation-du-composant.js" copy
+```jsx copy filename="utilisation-du-composant.js"
 import HelloWorld from './mon-composant';
 
 export default function Page() {

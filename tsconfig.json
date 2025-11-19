@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-  "target": "ES2022",
+    "target": "ES2022",
     "lib": [
       "dom",
       "dom.iterable",
@@ -17,7 +17,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "plugins": [
       {
         "name": "next"
@@ -35,8 +35,11 @@
     "content/_meta.js",
     "next-env.d.ts",
     "theme.config.tsx",
-    ".next/types/**/*.ts"
-, "app/_meta.ts", "app/next-js/optimisations/auth-session/page.mdx"  ],
+    ".next/types/**/*.ts",
+    "app/_meta.ts",
+    "app/next-js/optimisations/auth-session/page.mdx",
+    ".next/dev/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
