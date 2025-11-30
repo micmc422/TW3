@@ -118,6 +118,7 @@ query {
 ### 🧬 **Réponse attendue :**
 Le serveur retournera un objet JSON avec les données :  
 ```json copy
+{
   "data": {
     "users": [
       {
@@ -157,6 +158,7 @@ Vous pouvez enrichir le serveur en ajoutant des **mutations** pour modifier les 
 
 **Ajout dans `typeDefs` :**  
 ```graphql copy
+type Mutation {
   createUser(name: String!, email: String!): User
 }
 ```
