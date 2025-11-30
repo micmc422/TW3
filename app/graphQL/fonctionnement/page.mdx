@@ -23,6 +23,7 @@ GraphQL s’articule autour de plusieurs concepts fondamentaux :
 Imaginons une base de données contenant des utilisateurs. En GraphQL :  
 - Une **requête** pour obtenir le nom et l’e-mail d’un utilisateur pourrait ressembler à :  
   ```graphql copy
+  query {
     user(id: 1) {
       name
       email
@@ -31,6 +32,7 @@ Imaginons une base de données contenant des utilisateurs. En GraphQL :
   ```
 - La réponse JSON :  
   ```json copy
+  {
     "data": {
       "user": {
         "name": "Alice",
