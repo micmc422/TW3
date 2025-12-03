@@ -43,7 +43,7 @@ export default function Plan({ rootFolder }: { rootFolder?: string }) {
     };
 
     return (
-        <Steps className='[&:not(:first-child)]:mt-3 [&:first-child]:text-2xl'>
+        <Steps className='not-first:mt-3 first:text-2xl'>
             {menu?.map((item, i) => {
                 if (i === 0) return null;
 
@@ -72,7 +72,7 @@ function MenuItem({ title, route, children, isRoot }: { title: string, route: st
     if (children && children.length > 0) {
         return <>
             <Tag><Link href={route || "#"} className={['flex items-center '].join(' ')}><strong>{title}</strong></Link></Tag>
-            <ol className='[&:not(:first-child)]:mt-1 [&:first-child]:text-2xl ml-1'>
+            <ol className='not-first:mt-1 first:text-2xl ml-1'>
                 {children.map((item, i) => (i !== 0 && <MenuItem key={i} {...item} />))}
             </ol>
         </>
