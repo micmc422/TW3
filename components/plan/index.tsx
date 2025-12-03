@@ -13,19 +13,43 @@ type Item = {
 
 export default function Plan({ rootFolder }: { rootFolder?: string }) {
     const { normalizePagesResult, ...rest } = useConfig();
-   // console.log(normalizePagesResult)
+    // console.log(normalizePagesResult)
     const menu = normalizePagesResult.activePath[0].children || normalizePagesResult.directories
+
+    const mapItem = (item: any): Item | null => {
+        // Ignorer les séparateurs
+        if (item.type === 'separator') return null;
+
+        // Ignorer les ressources
+        if (item.route.includes("ressources")) return null;
+        if (!item.route) return null;
+
+        // Résolution du titre : title > frontMatter.title > name
+        const title = item.title || item.frontMatter?.title || item.name;
+
+        // Si pas de titre ou titre "undefined" (string), on ignore
+        if (!title || title === 'undefined') return null;
+
+        // Traitement récursif des enfants
+        const children = item.children
+            ? item.children.map(mapItem).filter((child: any) => child !== null)
+            : undefined;
+
+        return {
+            title: String(title),
+            route: item.route,
+            children: children as Item[]
+        };
+    };
+
     return (
         <Steps className='[&:not(:first-child)]:mt-3 [&:first-child]:text-2xl'>
             {menu?.map((item, i) => {
                 if (i === 0) return null;
-                // On ne passe que les props attendues, et on force title en string
-                const mapItem = (item: any): Item => ({
-                    title: typeof item.title === 'string' ? item.title : String(item.title),
-                    route: item.route,
-                    children: item.children ? item.children.map(mapItem) : undefined
-                });
+
                 const filtered = mapItem(item);
+                if (!filtered) return null;
+
                 return (
                     <MenuItem
                         key={i}
@@ -41,8 +65,11 @@ export default function Plan({ rootFolder }: { rootFolder?: string }) {
 }
 function MenuItem({ title, route, children, isRoot }: { title: string, route: string, children?: Item[], isRoot?: boolean }) {
     const Tag = isRoot ? 'h3' : 'li';
-    if(title?.toLowerCase() === "ressources") return
-    if (children?.length > 0) {
+    
+    if (!title || title === "undefined") return null;
+    if (title?.toLowerCase() === "ressources") return null;
+    
+    if (children && children.length > 0) {
         return <>
             <Tag><Link href={route || "#"} className={['flex items-center '].join(' ')}><strong>{title}</strong></Link></Tag>
             <ol className='[&:not(:first-child)]:mt-1 [&:first-child]:text-2xl ml-1'>
@@ -51,6 +78,5 @@ function MenuItem({ title, route, children, isRoot }: { title: string, route: st
         </>
 
     }
-    if (!title) return
     return <Tag><Link href={route || "#"} className={['flex items-center gap-1', "transition-colors text-gray-500 hover:text-gray-900 dark:text-neutral-400 dark:hover:text-gray-50 contrast-more:text-gray-900 contrast-more:dark:text-gray-50"].join(' ')}>{title}</Link></Tag>
 }

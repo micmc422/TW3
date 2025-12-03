@@ -1,59 +1,74 @@
 
-## 📘 **1. Introduction à Next.js 13+ et l'App Router**
+## 📘 **1. Introduction à Next.js 14+ et l'App Router**
 ### 🎯 Objectifs : Comprendre les bases de Next.js et les différences avec les versions précédentes.  
 - Présentation de Next.js : framework React orienté full-stack.  
 - Différences entre `pages/` et `app/` (App Router vs Pages Router).  
-- Avantages de l’architecture `app/` (Server Components, meilleure performance).  
-- Installation et configuration d’un projet Next.js (`create-next-app`).  
+- Avantages de l'architecture `app/` (Server Components, meilleure performance).  
+- Installation et configuration d'un projet Next.js (`create-next-app`).  
 
-📌 **Exercice** : Installer un projet Next.js 13+ et explorer la structure `app/`.  
+📌 **Exercice** : Installer un projet Next.js 14+ et explorer la structure `app/`.  
 
 ---
 
-## 🧭 **2. Gestion des routes et des layouts**
-### 🎯 Objectifs : Comprendre la structure de routing de Next.js avec `appDir`.  
-- Routing basé sur le système de fichiers (`app/` vs `pages/`).  
+## 🛣️ **2. Routage et navigation**
+### 🎯 Objectifs : Maîtriser le système de routing de Next.js avec l'App Router.  
+- Routing basé sur le système de fichiers dans `app/`.  
+- Navigation et redirections (`<Link>`, `useRouter`, `redirect`).  
 - Mise en place de **layouts** (`layout.tsx`) pour une structuration globale.  
 - Utilisation des **loading states** (`loading.tsx`).  
 - Gestion des erreurs (`error.tsx`).  
+- Routes parallèles pour des layouts avancés.  
+- Route Handlers (API) pour exposer des endpoints publics.  
 - Concept des **Server Components** vs **Client Components** (`'use client'`).  
 
 📌 **Exercice** :  
 1. Créer un layout global (`layout.tsx`) avec un header et un footer.  
-2. Ajouter une page `about.tsx` et observer le comportement du routing.  
-3. Implémenter une page avec un `loading.tsx` simulant un chargement asynchrone.  
+2. Implémenter une navigation avec `<Link>` et `useRouter`.  
+3. Ajouter une page avec un `loading.tsx` simulant un chargement asynchrone.  
+4. Créer une Route Handler pour une API simple (`/api/hello`).  
 
 ---
 
-## 🔎 **3. Métadonnées et SEO dans Next.js 13+**
+## 🔍 **3. SEO et métadonnées dans Next.js 14+**
 ### 🎯 Objectifs : Améliorer le référencement et le partage des pages.  
 - Utilisation de `metadata` dans un `layout.tsx` ou une page.  
 - Ajout de métadonnées dynamiques (`generateMetadata`).  
 - Gestion des Open Graph & Twitter Cards.  
-- Gestion des `robots.txt` et `sitemap.xml`.  
+- Configuration des `robots.txt` et `sitemap.xml`.  
 
 📌 **Exercice** :  
 1. Ajouter un titre et une description dynamique à une page (`generateMetadata`).  
 2. Configurer une image Open Graph pour une page spécifique.  
+3. Créer un fichier `robots.txt` et `sitemap.xml` pour le référencement.  
 
 ---
 
-## ⚡ **4. Server Actions et gestion des données**
-### 🎯 Objectifs : Exploiter les **Server Actions** pour améliorer la gestion des données.  
-- Principe des Server Actions (remplacement des API routes).  
-- Création d’une Server Action pour gérer un formulaire.  
+## ⚙️ **4. Server Actions et gestion des données**
+### 🎯 Objectifs : Exploiter les **Server Actions** pour simplifier la gestion des données.  
+- Principe des Server Actions (alternative moderne aux API routes).  
+- Création d'une Server Action pour gérer un formulaire.  
 - Utilisation avec **React Server Components**.  
-- Gestion des mutations (`useOptimistic`).  
+- Gestion des mutations optimistes (`useOptimistic`).  
+- Gestion des transitions (`useTransition`).  
 
 📌 **Exercice** :  
 1. Créer un formulaire de contact avec une Server Action.  
-2. Implémenter un bouton "Like" avec une mise à jour en temps réel (optimistic UI).  
+2. Implémenter un bouton "Like" avec une mise à jour optimiste (optimistic UI).  
+3. Utiliser `useTransition` pour afficher un indicateur de chargement.  
 
 ---
 
-## ⚡ **5. Bonus : Optimisation et bonnes pratiques**
-### 🎯 Objectifs : Aller plus loin avec Next.js.  
+## ⚡ **5. Optimisations et déploiement**
+### 🎯 Objectifs : Améliorer les performances et déployer en production.  
 - Amélioration des performances (mise en cache, streaming).  
-- Gestion des fonts et des images avec `next/font` et `next/image`.  
+- Optimisation des images avec `next/image`.  
+- Gestion des polices avec `next/font`.  
+- Comprendre les environnements d'exécution (Node.js vs Edge Runtime).  
 - Authentification avec NextAuth.js et gestion des sessions.  
-- Déploiement sur Vercel / OVH / autre.  
+- Déploiement sur Vercel, OVH ou autres plateformes.  
+
+📌 **Exercice** :  
+1. Optimiser les images d'un projet avec `next/image`.  
+2. Intégrer une police Google avec `next/font`.  
+3. Configurer l'authentification avec NextAuth.js.  
+4. Déployer l'application sur Vercel.  
