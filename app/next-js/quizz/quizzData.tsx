@@ -57,7 +57,23 @@ export const quiz: QuizData = {
             messageForIncorrectAnswer: "Incorrect. La bonne réponse est `'use client';`.",
             explanation: "En Next.js, `'use client';` doit être placé au début d'un fichier pour indiquer que c'est un Client Component.",
             point: 10,
-            difficulty: "facile"
+            difficulty: "facile",
+            codeSnippet: {
+                code: `// Composant A (async, sans hooks)
+async function PageA() {
+  const data = await fetch('https://api.example.com').then(r => r.json());
+  return <div>{data.title}</div>;
+}
+
+// Composant B (avec 'use client')
+'use client';
+export default function PageB() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(count + 1)}>{count}</button>;
+}`,
+                language: "tsx",
+                title: "Lequel nécessite 'use client' ?"
+            }
         },
         {
             question: "Quelle méthode est utilisée pour définir des métadonnées dynamiques dans une page Next.js ?",
@@ -74,7 +90,19 @@ export const quiz: QuizData = {
             messageForIncorrectAnswer: "Incorrect. La bonne réponse est `generateMetadata`.",
             explanation: "Next.js permet de définir des métadonnées dynamiques pour chaque page via `generateMetadata`.",
             point: 10,
-            difficulty: "facile"
+            difficulty: "facile",
+            codeSnippet: {
+                code: `// Métadonnées dynamiques
+export async function generateMetadata({ params }) {
+  const post = await fetch(\`/api/posts/\${params.slug}\`).then(r => r.json());
+  return {
+    title: post.title,
+    description: post.excerpt
+  };
+}`,
+                language: "tsx",
+                title: "generateMetadata"
+            }
         },
         {
             question: "Quel composant Next.js est utilisé pour optimiser les images ?",
@@ -91,7 +119,19 @@ export const quiz: QuizData = {
             messageForIncorrectAnswer: "Incorrect. Next.js fournit `<Image />` pour gérer automatiquement l'optimisation des images.",
             explanation: "Le composant `<Image />` de Next.js optimise automatiquement le chargement et la mise en cache des images.",
             point: 10,
-            difficulty: "facile"
+            difficulty: "facile",
+            codeSnippet: {
+                code: `// Optimisation automatique
+import Image from 'next/image';
+
+<Image
+  src="/photo.jpg"
+  width={500}
+  height={300}
+/>`,
+                language: "tsx",
+                title: "Next.js Image"
+            }
         },
         {
             question: "Comment définir un layout global en Next.js 13+ ?",
@@ -108,7 +148,19 @@ export const quiz: QuizData = {
             messageForIncorrectAnswer: "Incorrect. La bonne réponse est `layout.tsx` dans `app/`.",
             explanation: "Dans Next.js 13+, `layout.tsx` définit la structure globale des pages en utilisant le système `app/`.",
             point: 10,
-            difficulty: "facile"
+            difficulty: "facile",
+            codeSnippet: {
+                code: `// app/layout.tsx
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>{children}</body>
+    </html>
+  );
+}`,
+                language: "tsx",
+                title: "Layout racine"
+            }
         },
         {
             question: "Quelle plateforme est recommandée pour déployer une application Next.js avec une intégration native ?",
@@ -199,7 +251,19 @@ export default function StreamingPage() {
             messageForIncorrectAnswer: "Incorrect. Le bon hook est `useOptimistic`.",
             explanation: "Next.js propose `useOptimistic` pour améliorer l'expérience utilisateur en appliquant immédiatement les mises à jour attendues.",
             point: 15,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `// useOptimistic : affiche immédiatement le résultat attendu
+'use client';
+import { useOptimistic } from 'react';
+
+const [optimisticTodos, addOptimisticTodo] = useOptimistic(
+  todos, (state, newTodo) => [...state, newTodo]
+);
+// UI instantanée avant la réponse serveur`,
+                language: "tsx",
+                title: "useOptimistic"
+            }
         },
         {
             question: "Quel fichier permet de générer automatiquement un `robots.txt` et un `sitemap.xml` dans Next.js ?",

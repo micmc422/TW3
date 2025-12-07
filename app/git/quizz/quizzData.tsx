@@ -120,25 +120,13 @@ export const quiz: QuizData = {
             point: 15,
             difficulty: "intermédiaire",
             codeSnippet: {
-                code: `# Méthode classique en une commande
-git checkout -b ma-nouvelle-feature
-
-# Méthode en deux étapes (équivalent)
-git branch ma-nouvelle-feature
-git checkout ma-nouvelle-feature
+                code: `# Créer et basculer vers une nouvelle branche
+git checkout -b ma-feature
 
 # Nouvelle syntaxe Git (2.23+)
-git switch -c ma-nouvelle-feature
-
-# Créer une branche depuis un commit spécifique
-git checkout -b hotfix abc1234
-
-# Vérifier sur quelle branche on est
-git branch
-# * ma-nouvelle-feature
-#   main`,
+git switch -c ma-feature`,
                 language: "bash",
-                title: "Création et changement de branche"
+                title: "Création de branche"
             }
         },
         {
@@ -161,7 +149,16 @@ git branch
             },
             explanation: "La commande git merge permet de fusionner une branche dans la branche active. Par exemple, git merge feature fusionnerait la branche 'feature' dans la branche actuelle.",
             point: 15,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `# Fusionner une branche
+git checkout -b feature
+git commit -m "Ajout feature"
+git checkout main
+git merge feature`,
+                language: "bash",
+                title: "Fusion de branches"
+            }
         },
         {
             question: "Quelle commande permet de cloner un dépôt distant sur votre machine locale ?",
@@ -273,7 +270,18 @@ git branch
             },
             explanation: "git rebase réapplique vos commits au-dessus d'une autre base (branche), créant un historique linéaire. Contrairement à merge, il ne crée pas de commit de fusion. Attention : ne jamais rebaser des commits déjà partagés publiquement.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `# Avec rebase (historique linéaire)
+git checkout feature
+git rebase main
+
+# Comparaison avec merge (crée un commit de fusion)
+git checkout main
+git merge feature`,
+                language: "bash",
+                title: "Deux stratégies de fusion"
+            }
         },
         {
             question: "Comment annuler le dernier commit sans perdre les modifications ?",
@@ -295,7 +303,17 @@ git branch
             },
             explanation: "git reset --soft HEAD~1 annule le dernier commit mais garde les modifications en zone de staging. --hard supprimerait les modifications (dangereux), et revert créerait un nouveau commit inversé (mieux pour l'historique public).",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `# Différentes commandes pour annuler
+git reset --soft HEAD~1
+
+git reset --hard HEAD~1
+
+git revert HEAD`,
+                language: "bash",
+                title: "Annuler un commit"
+            }
         }
     ]
 };

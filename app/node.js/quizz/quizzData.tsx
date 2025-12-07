@@ -72,7 +72,16 @@ export const quiz: QuizData = {
             },
             explanation: "Pour importer un module personnalisé dans Node.js avec CommonJS, vous devez utiliser la fonction require(). Par exemple : const myModule = require('./monMod.js'). Note: Node.js supporte aussi les modules ES6 avec import.",
             point: 10,
-            difficulty: "facile"
+            difficulty: "facile",
+            codeSnippet: {
+                code: `// CommonJS (par défaut)
+const myModule = require('./myModule.js');
+
+// ES Modules (nécessite "type": "module" dans package.json)
+import { myFunction } from './myModule.mjs';`,
+                language: "javascript",
+                title: "CommonJS vs ES Modules"
+            }
         },
 
         // 🟡 Questions intermédiaires (3 questions - 1/3)
@@ -118,40 +127,16 @@ export const quiz: QuizData = {
             point: 15,
             difficulty: "intermédiaire",
             codeSnippet: {
-                code: `// ❌ Callback Hell
+                code: `// Avec callbacks imbriqués
 fs.readFile('file1.txt', (err, data1) => {
-  if (err) return console.error(err);
-  fs.readFile('file2.txt', (err, data2) => {
-    if (err) return console.error(err);
-    fs.readFile('file3.txt', (err, data3) => {
-      if (err) return console.error(err);
-      console.log(data1, data2, data3);
-    });
-  });
+  fs.readFile('file2.txt', (err, data2) => { ... });
 });
 
-// ✅ Avec Promises (meilleur chaînage)
-const fs = require('fs').promises;
-
-fs.readFile('file1.txt')
-  .then(data1 => fs.readFile('file2.txt'))
-  .then(data2 => fs.readFile('file3.txt'))
-  .then(data3 => console.log(data3))
-  .catch(err => console.error(err));
-
-// ✅✅ Avec async/await (encore plus lisible)
-async function readFiles() {
-  try {
-    const data1 = await fs.readFile('file1.txt');
-    const data2 = await fs.readFile('file2.txt');
-    const data3 = await fs.readFile('file3.txt');
-    console.log(data1, data2, data3);
-  } catch (err) {
-    console.error(err);
-  }
-}`,
+// Avec Promises
+fs.promises.readFile('file1.txt')
+  .then(data1 => fs.promises.readFile('file2.txt'));`,
                 language: "javascript",
-                title: "Callbacks vs Promises vs async/await"
+                title: "Deux approches"
             }
         },
         {
@@ -198,7 +183,17 @@ async function readFiles() {
             },
             explanation: "L'Event Loop est le mécanisme central de Node.js qui permet d'exécuter du code de manière non bloquante. Il surveille la Call Stack et la Callback Queue, exécutant les callbacks quand la Stack est vide. Cela permet à Node.js de gérer des milliers de connexions simultanées avec un seul thread.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `// Ordre d'exécution de l'Event Loop
+console.log('1. Synchrone');
+process.nextTick(() => console.log('2. Next Tick'));
+Promise.resolve().then(() => console.log('3. Promise'));
+setTimeout(() => console.log('4. Timeout'), 0);
+setImmediate(() => console.log('5. Immediate'));`,
+                language: "javascript",
+                title: "Phases de l'Event Loop"
+            }
         },
         {
             question: "Quelle est la différence entre process.nextTick() et setImmediate() ?",
