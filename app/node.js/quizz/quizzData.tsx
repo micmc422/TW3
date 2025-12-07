@@ -128,13 +128,13 @@ import { myFunction } from './myModule.mjs';`,
             difficulty: "intermédiaire",
             codeSnippet: {
                 code: `// Avec callbacks imbriqués
-fs.readFile('f1', (err, d1) => {
-  fs.readFile('f2', (err, d2) => { ... });
+fs.readFile('file1.txt', (err, data1) => {
+  fs.readFile('file2.txt', (err, data2) => { ... });
 });
 
 // Avec Promises
-fs.promises.readFile('f1')
-  .then(d1 => fs.promises.readFile('f2'));`,
+fs.promises.readFile('file1.txt')
+  .then(data1 => fs.promises.readFile('file2.txt'));`,
                 language: "javascript",
                 title: "Deux approches"
             }

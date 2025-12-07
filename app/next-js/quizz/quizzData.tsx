@@ -61,7 +61,7 @@ export const quiz: QuizData = {
             codeSnippet: {
                 code: `// Composant A (async, sans hooks)
 async function PageA() {
-  const data = await fetch('https://api.example.com');
+  const data = await fetch('https://api.example.com').then(r => r.json());
   return <div>{data.title}</div>;
 }
 

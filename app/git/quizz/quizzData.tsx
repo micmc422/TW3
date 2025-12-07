@@ -272,12 +272,11 @@ git merge feature`,
             point: 20,
             difficulty: "expert",
             codeSnippet: {
-                code: `# Deux approches pour fusionner
+                code: `# Avec rebase (historique linéaire)
 git checkout feature
 git rebase main
 
-# vs
-
+# Comparaison avec merge (crée un commit de fusion)
 git checkout main
 git merge feature`,
                 language: "bash",

@@ -237,8 +237,14 @@ db.users.find(
 
 // Récupérer article avec commentaires
 db.articles.aggregate([
-  { $lookup: { from: "comments", localField: "_id", 
-               foreignField: "articleId", as: "comments" }}
+  { 
+    $lookup: { 
+      from: "comments", 
+      localField: "_id", 
+      foreignField: "articleId", 
+      as: "comments" 
+    }
+  }
 ]);`,
                 language: "javascript",
                 title: "Referencing avec $lookup"
