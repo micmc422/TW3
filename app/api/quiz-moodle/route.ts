@@ -21,7 +21,8 @@ function reactNodeToString(node: ReactNode | ReactNode[]): string {
   if (!node) return '';
   if (typeof node === 'string') return node;
   if (typeof node === 'number') return node.toString();
-  if (typeof node === 'boolean') return node.toString();
+  // Les booléens ne génèrent pas de contenu visible dans React
+  if (typeof node === 'boolean') return '';
   
   // Pour les tableaux
   if (Array.isArray(node)) {
@@ -67,10 +68,14 @@ function escapeCDATA(text: string): string {
 
 /**
  * Génère un identifiant unique pour chaque question
+ * Utilise un hash simple du module + index de la question
+ * Note: Pour une production critique, considérer crypto.createHash pour éviter les collisions
  */
 function generateQuestionId(moduleId: string, questionIndex: number): number {
   // Utilise un hash simple basé sur le nom du module et l'index
+  // Chaque caractère contribue à un hash unique
   const hash = moduleId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  // Multiplie par 1000 pour éviter les collisions avec l'index
   return hash * 1000 + questionIndex;
 }
 
@@ -93,6 +98,9 @@ function questionToMoodleXML(
   
   // Créer les réponses avec leur pourcentage
   const answersXML = question.answers.map((answer, index) => {
+    // Note: correctAnswer utilise une indexation base-1 (1, 2, 3...)
+    // alors que les tableaux JS utilisent base-0 (0, 1, 2...)
+    // donc on compare avec index + 1
     const isCorrect = question.correctAnswer.includes(index + 1);
     
     // Pour les questions à choix unique: 100% si correct, 0% sinon
