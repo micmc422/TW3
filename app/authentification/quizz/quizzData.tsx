@@ -51,15 +51,6 @@ export const quiz: QuizData = {
             explanation: "L'encodage Base64 est réversible. Sans HTTPS, les identifiants peuvent être facilement interceptés et lus.",
             point: 10,
             difficulty: "facile",
-            codeSnippet: {
-                code: `// En-tête HTTP Basic Auth
-Authorization: Basic dXNlcjpwYXNzd29yZA==
-
-// Décoder :
-atob('dXNlcjpwYXNzd29yZA==')  // → "user:password"`,
-                language: "javascript",
-                title: "HTTP Basic Auth"
-            }
         },
         {
             question: "Pourquoi est-il critique d'utiliser HTTPS pour l'authentification ?",
@@ -106,17 +97,6 @@ atob('dXNlcjpwYXNzd29yZA==')  // → "user:password"`,
             explanation: "OAuth 2.0 permet de donner des droits d'accès (scopes) à une application tierce sans partager ses identifiants.",
             point: 15,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `// Redirection pour autorisation
-window.location.href = 'https://accounts.google.com/oauth?...';
-
-// Utiliser le token d'accès
-fetch('https://api.google.com/user', {
-  headers: { Authorization: 'Bearer ' + access_token }
-});`,
-                language: "javascript",
-                title: "OAuth 2.0"
-            }
         },
         {
             question: "À quoi sert l'attribut 'HttpOnly' sur un cookie de session ?",
@@ -207,18 +187,6 @@ fetch('https://api.google.com/user', {
             explanation: "SameSite=Strict ou SameSite=Lax empêche l'envoi automatique de cookies lors de requêtes provenant d'autres sites, protégeant ainsi contre CSRF.",
             point: 20,
             difficulty: "expert",
-            codeSnippet: {
-                code: `// Configuration de session Express.js
-app.use(session({
-  cookie: {
-    httpOnly: true,
-    secure: true,
-    sameSite: 'strict'
-  }
-}));`,
-                language: "javascript",
-                title: "Configuration des cookies"
-            }
         },
         {
             question: "Quelle est la principale différence entre JWT (JSON Web Token) et les sessions traditionnelles ?",
@@ -241,16 +209,6 @@ app.use(session({
             explanation: "Avec JWT, toutes les informations d'authentification sont dans le token (côté client). Le serveur n'a pas besoin de stocker d'état de session, ce qui facilite la scalabilité mais nécessite une gestion rigoureuse de la sécurité (signature, expiration, révocation).",
             point: 20,
             difficulty: "expert",
-            codeSnippet: {
-                code: `// Approche JWT
-const token = jwt.sign({ userId: 123 }, SECRET);
-jwt.verify(token, SECRET);
-
-// Approche Session
-req.session.userId = 123;`,
-                language: "javascript",
-                title: "Deux approches d'authentification"
-            }
         }
     ]
 };

@@ -95,15 +95,6 @@ export const quiz: QuizData = {
             explanation: "La commande docker container prune supprime tous les conteneurs arrêtés. C'est une façon efficace de libérer de l'espace disque en éliminant les conteneurs non utilisés.",
             point: 15,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `# Supprimer uniquement les conteneurs arrêtés
-docker container prune
-
-# Voir les conteneurs arrêtés avant suppression
-docker ps -a --filter "status=exited"`,
-                language: "bash",
-                title: "Nettoyage des conteneurs"
-            }
         },
         {
             question: "Quel est l'avantage principal de l'utilisation de volumes 💾 Docker 🐳 ?",
@@ -126,20 +117,6 @@ docker ps -a --filter "status=exited"`,
             explanation: "Les volumes Docker permettent de persister les données même lorsque le conteneur est arrêté ou supprimé. Cela facilite la sauvegarde et la récupération des données importantes.",
             point: 15,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `# Créer un volume nommé
-docker volume create mon-volume
-
-# Utiliser un volume avec un conteneur
-docker run -d \\
-  --name mon-app \\
-  -v mon-volume:/app/data \\
-  nginx
-
-# Les données dans /app/data persistent même si le conteneur est supprimé`,
-                language: "bash",
-                title: "Utilisation des volumes Docker"
-            }
         },
         {
             question: "Dans un Dockerfile, quelle instruction permet de définir le répertoire de travail du conteneur ?",
@@ -162,16 +139,6 @@ docker run -d \\
             explanation: "L'instruction WORKDIR définit le répertoire de travail pour toutes les instructions RUN, CMD, ENTRYPOINT, COPY et ADD qui suivent dans le Dockerfile.",
             point: 15,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-CMD ["npm", "start"]`,
-                language: "dockerfile",
-                title: "Exemple de Dockerfile avec WORKDIR"
-            }
         },
         // 🔴 Questions expertes (1/3)
         {
@@ -195,23 +162,6 @@ CMD ["npm", "start"]`,
             explanation: "ENTRYPOINT définit la commande principale qui sera toujours exécutée, tandis que CMD fournit des arguments par défaut qui peuvent être écrasés au runtime. Ils sont souvent utilisés ensemble.",
             point: 20,
             difficulty: "expert",
-            codeSnippet: {
-                code: `# Dockerfile avec ENTRYPOINT + CMD
-FROM python:3.11-slim
-ENTRYPOINT ["python", "app.py"]
-CMD ["--port", "8000"]
-
-# Exécution par défaut : python app.py --port 8000
-# docker run mon-image
-
-# Écraser CMD : python app.py --port 9000
-# docker run mon-image --port 9000
-
-# Écraser ENTRYPOINT (rare) :
-# docker run --entrypoint /bin/bash mon-image`,
-                language: "dockerfile",
-                title: "Différence entre ENTRYPOINT et CMD"
-            }
         },
         {
             question: "Quelle stratégie permet d'optimiser la taille d'une image Docker ?",
@@ -232,32 +182,6 @@ CMD ["--port", "8000"]
             explanation: "Pour optimiser la taille d'une image : utiliser des images de base légères (Alpine), combiner les commandes RUN pour réduire les layers, utiliser le multi-stage build pour exclure les outils de build, et nettoyer les caches.",
             point: 20,
             difficulty: "expert",
-            codeSnippet: {
-                code: `# ❌ Mauvaise pratique : plusieurs layers
-FROM node:18
-RUN npm install -g typescript
-RUN npm install -g webpack
-RUN apt-get update
-RUN apt-get install -y curl
-
-# ✅ Bonne pratique : un seul layer
-FROM node:18-alpine
-RUN npm install -g typescript webpack && \\
-    apk add --no-cache curl
-
-# ✅ Multi-stage build : image finale plus petite
-FROM node:18 AS builder
-WORKDIR /app
-COPY . .
-RUN npm ci && npm run build
-
-FROM node:18-alpine
-WORKDIR /app
-COPY --from=builder /app/dist ./dist
-CMD ["node", "dist/index.js"]`,
-                language: "dockerfile",
-                title: "Optimisation de la taille des images Docker"
-            }
         },
         {
             question: "Dans un environnement de production, quelle est la meilleure pratique pour gérer les secrets dans Docker ?",
@@ -280,26 +204,6 @@ CMD ["node", "dist/index.js"]`,
             explanation: "Les secrets ne doivent jamais être inclus dans l'image (Dockerfile ou layers). En production, utilisez Docker Secrets (Swarm), Kubernetes Secrets, ou des variables d'environnement injectées au runtime depuis un gestionnaire de secrets.",
             point: 20,
             difficulty: "expert",
-            codeSnippet: {
-                code: `# ❌ MAUVAIS : secret dans le Dockerfile
-FROM node:18
-ENV DB_PASSWORD=supersecret123  # Visible dans l'image !
-
-# ❌ MAUVAIS : secret dans ARG
-ARG API_KEY=secret123  # Visible dans docker history !
-
-# ✅ BON : secret passé au runtime
-# docker run -e DB_PASSWORD=\${DB_PASSWORD} mon-app
-
-# ✅ MEILLEUR : Docker Secrets (Swarm)
-# echo "supersecret123" | docker secret create db_password -
-# docker service create --secret db_password mon-app
-
-# ✅ MEILLEUR : Variables d'environnement depuis un fichier
-# docker run --env-file .env mon-app  # .env est dans .gitignore`,
-                language: "dockerfile",
-                title: "Gestion sécurisée des secrets"
-            }
         }
     ]
 };

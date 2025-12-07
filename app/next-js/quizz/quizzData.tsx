@@ -58,22 +58,6 @@ export const quiz: QuizData = {
             explanation: "En Next.js, `'use client';` doit être placé au début d'un fichier pour indiquer que c'est un Client Component.",
             point: 10,
             difficulty: "facile",
-            codeSnippet: {
-                code: `// Composant A (async, sans hooks)
-async function PageA() {
-  const data = await fetch('https://api.example.com').then(r => r.json());
-  return <div>{data.title}</div>;
-}
-
-// Composant B (avec 'use client')
-'use client';
-export default function PageB() {
-  const [count, setCount] = useState(0);
-  return <button onClick={() => setCount(count + 1)}>{count}</button>;
-}`,
-                language: "tsx",
-                title: "Lequel nécessite 'use client' ?"
-            }
         },
         {
             question: "Quelle méthode est utilisée pour définir des métadonnées dynamiques dans une page Next.js ?",
@@ -91,18 +75,6 @@ export default function PageB() {
             explanation: "Next.js permet de définir des métadonnées dynamiques pour chaque page via `generateMetadata`.",
             point: 10,
             difficulty: "facile",
-            codeSnippet: {
-                code: `// Métadonnées dynamiques
-export async function generateMetadata({ params }) {
-  const post = await fetch(\`/api/posts/\${params.slug}\`).then(r => r.json());
-  return {
-    title: post.title,
-    description: post.excerpt
-  };
-}`,
-                language: "tsx",
-                title: "generateMetadata"
-            }
         },
         {
             question: "Quel composant Next.js est utilisé pour optimiser les images ?",
@@ -120,18 +92,6 @@ export async function generateMetadata({ params }) {
             explanation: "Le composant `<Image />` de Next.js optimise automatiquement le chargement et la mise en cache des images.",
             point: 10,
             difficulty: "facile",
-            codeSnippet: {
-                code: `// Optimisation automatique
-import Image from 'next/image';
-
-<Image
-  src="/photo.jpg"
-  width={500}
-  height={300}
-/>`,
-                language: "tsx",
-                title: "Next.js Image"
-            }
         },
         {
             question: "Comment définir un layout global en Next.js 13+ ?",
@@ -149,18 +109,6 @@ import Image from 'next/image';
             explanation: "Dans Next.js 13+, `layout.tsx` définit la structure globale des pages en utilisant le système `app/`.",
             point: 10,
             difficulty: "facile",
-            codeSnippet: {
-                code: `// app/layout.tsx
-export default function RootLayout({ children }) {
-  return (
-    <html>
-      <body>{children}</body>
-    </html>
-  );
-}`,
-                language: "tsx",
-                title: "Layout racine"
-            }
         },
         {
             question: "Quelle plateforme est recommandée pour déployer une application Next.js avec une intégration native ?",
@@ -200,41 +148,6 @@ export default function RootLayout({ children }) {
             explanation: "Next.js offre plusieurs modes de rendu : SSG, SSR et le streaming pour optimiser le chargement des pages.",
             point: 15,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `// 1. SSG (Static Site Generation) - par défaut
-export default function StaticPage() {
-  return <h1>Page générée au build</h1>;
-}
-
-// 2. SSR (Server-Side Rendering) - dynamic
-export const dynamic = 'force-dynamic';
-
-export default async function DynamicPage() {
-  const data = await fetch('https://api.example.com/data');
-  return <h1>Rendu côté serveur à chaque requête</h1>;
-}
-
-// 3. ISR (Incremental Static Regeneration)
-export const revalidate = 60; // Régénérer toutes les 60s
-
-export default async function ISRPage() {
-  const data = await fetch('https://api.example.com/data');
-  return <h1>Statique avec mise à jour périodique</h1>;
-}
-
-// 4. Streaming avec Suspense
-import { Suspense } from 'react';
-
-export default function StreamingPage() {
-  return (
-    <Suspense fallback={<div>Chargement...</div>}>
-      <SlowComponent />
-    </Suspense>
-  );
-}`,
-                language: "tsx",
-                title: "Modes de rendu dans Next.js 13+"
-            }
         },
         {
             question: "Quel hook React est souvent utilisé avec les Server Actions pour gérer les mises à jour optimistes ?",
@@ -252,18 +165,6 @@ export default function StreamingPage() {
             explanation: "Next.js propose `useOptimistic` pour améliorer l'expérience utilisateur en appliquant immédiatement les mises à jour attendues.",
             point: 15,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `// useOptimistic : affiche immédiatement le résultat attendu
-'use client';
-import { useOptimistic } from 'react';
-
-const [optimisticTodos, addOptimisticTodo] = useOptimistic(
-  todos, (state, newTodo) => [...state, newTodo]
-);
-// UI instantanée avant la réponse serveur`,
-                language: "tsx",
-                title: "useOptimistic"
-            }
         },
         {
             question: "Quel fichier permet de générer automatiquement un `robots.txt` et un `sitemap.xml` dans Next.js ?",

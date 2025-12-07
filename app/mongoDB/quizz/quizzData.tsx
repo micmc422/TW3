@@ -73,16 +73,6 @@ export const quiz: QuizData = {
             explanation: "`insertOne()` insère un seul document, tandis que `insertMany()` en insère plusieurs.",
             point: 10,
             difficulty: "facile",
-            codeSnippet: {
-                code: `// Insérer un document
-db.users.insertOne({
-  name: "Alice",
-  email: "alice@example.com",
-  age: 25
-});`,
-                language: "javascript",
-                title: "insertOne() dans MongoDB"
-            }
         },
 
         // 🟡 Questions intermédiaires (3 questions - 1/3)
@@ -107,18 +97,6 @@ db.users.insertOne({
             explanation: "Sans arguments, `find()` retourne un curseur vers tous les documents de la collection.",
             point: 15,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `// Récupérer tous les documents
-db.users.find()
-
-// Avec filtre et projection
-db.users.find(
-  { age: { $gte: 18 } },
-  { name: 1, email: 1 }
-)`,
-                language: "javascript",
-                title: "find() avec filtre"
-            }
         },
         {
             question: "Quelle méthode permet de limiter le nombre de résultats retournés par une requête ?",
@@ -231,24 +209,6 @@ db.users.find(
             explanation: "Quand la relation contient beaucoup d'éléments, l'embedding peut créer des documents trop volumineux (limite 16MB). Le referencing avec des IDs et l'opérateur $lookup (équivalent de JOIN) est plus approprié pour éviter la croissance illimitée du document.",
             point: 20,
             difficulty: "expert",
-            codeSnippet: {
-                code: `// Collection comments
-{ _id: ObjectId("..."), articleId: ObjectId("a1"), text: "..." }
-
-// Récupérer article avec commentaires
-db.articles.aggregate([
-  { 
-    $lookup: { 
-      from: "comments", 
-      localField: "_id", 
-      foreignField: "articleId", 
-      as: "comments" 
-    }
-  }
-]);`,
-                language: "javascript",
-                title: "Referencing avec $lookup"
-            }
         }
     ]
 };

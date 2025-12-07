@@ -119,15 +119,6 @@ export const quiz: QuizData = {
             explanation: "La commande git checkout -b nom_de_la_branche crée une nouvelle branche et s'y déplace immédiatement. C'est une forme courte de git branch nom_de_la_branche puis git checkout nom_de_la_branche. Note : git switch -c est aussi correcte avec les versions récentes de Git.",
             point: 15,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `# Créer et basculer vers une nouvelle branche
-git checkout -b ma-feature
-
-# Nouvelle syntaxe Git (2.23+)
-git switch -c ma-feature`,
-                language: "bash",
-                title: "Création de branche"
-            }
         },
         {
             question: "Quelle commande permet de fusionner une branche dans la branche active ?",
@@ -150,15 +141,6 @@ git switch -c ma-feature`,
             explanation: "La commande git merge permet de fusionner une branche dans la branche active. Par exemple, git merge feature fusionnerait la branche 'feature' dans la branche actuelle.",
             point: 15,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `# Fusionner une branche
-git checkout -b feature
-git commit -m "Ajout feature"
-git checkout main
-git merge feature`,
-                language: "bash",
-                title: "Fusion de branches"
-            }
         },
         {
             question: "Quelle commande permet de cloner un dépôt distant sur votre machine locale ?",
@@ -271,17 +253,6 @@ git merge feature`,
             explanation: "git rebase réapplique vos commits au-dessus d'une autre base (branche), créant un historique linéaire. Contrairement à merge, il ne crée pas de commit de fusion. Attention : ne jamais rebaser des commits déjà partagés publiquement.",
             point: 20,
             difficulty: "expert",
-            codeSnippet: {
-                code: `# Avec rebase (historique linéaire)
-git checkout feature
-git rebase main
-
-# Comparaison avec merge (crée un commit de fusion)
-git checkout main
-git merge feature`,
-                language: "bash",
-                title: "Deux stratégies de fusion"
-            }
         },
         {
             question: "Comment annuler le dernier commit sans perdre les modifications ?",
@@ -304,16 +275,6 @@ git merge feature`,
             explanation: "git reset --soft HEAD~1 annule le dernier commit mais garde les modifications en zone de staging. --hard supprimerait les modifications (dangereux), et revert créerait un nouveau commit inversé (mieux pour l'historique public).",
             point: 20,
             difficulty: "expert",
-            codeSnippet: {
-                code: `# Différentes commandes pour annuler
-git reset --soft HEAD~1
-
-git reset --hard HEAD~1
-
-git revert HEAD`,
-                language: "bash",
-                title: "Annuler un commit"
-            }
         }
     ]
 };

@@ -52,22 +52,6 @@ export const quiz: QuizData = {
             explanation: "useState retourne un tableau avec deux éléments : la valeur actuelle de l'état et une fonction pour la mettre à jour.",
             point: 5,
             difficulty: "facile",
-            codeSnippet: {
-                code: `import { useState } from 'react';
-
-function Counter() {
-  // useState retourne [valeur, setter]
-  const [count, setCount] = useState(0);
-  
-  return (
-    <button onClick={() => setCount(count + 1)}>
-      Compteur : {count}
-    </button>
-  );
-}`,
-                language: "tsx",
-                title: "Utilisation de useState"
-            }
         },
         {
             question: "useEffect s'exécute par défaut…",
@@ -85,32 +69,6 @@ function Counter() {
             explanation: "À chaque commit, sauf si dépendances fournies. Sans tableau de dépendances, useEffect s'exécute après chaque rendu.",
             point: 5,
             difficulty: "facile",
-            codeSnippet: {
-                code: `import { useState, useEffect } from 'react';
-
-function Example() {
-  const [count, setCount] = useState(0);
-  
-  // ❌ S'exécute après CHAQUE rendu (pas de tableau de dép.)
-  useEffect(() => {
-    console.log('Rendu !');
-  });
-  
-  // ✅ S'exécute UNE SEULE FOIS au montage ([] vide)
-  useEffect(() => {
-    console.log('Monté !');
-  }, []);
-  
-  // ✅ S'exécute quand 'count' change
-  useEffect(() => {
-    console.log('Count changé:', count);
-  }, [count]);
-  
-  return <button onClick={() => setCount(count + 1)}>{count}</button>;
-}`,
-                language: "tsx",
-                title: "Tableau de dépendances dans useEffect"
-            }
         },
         {
             question: "Quelle règle de Hooks est correcte ?",
@@ -128,36 +86,6 @@ function Example() {
             explanation: "Les Hooks doivent être appelés au niveau racine du composant, jamais dans des conditions, boucles ou fonctions imbriquées. Cela garantit que l'ordre des Hooks reste cohérent entre les rendus.",
             point: 5,
             difficulty: "facile",
-            codeSnippet: {
-                code: `import { useState } from 'react';
-
-function BadExample() {
-  // ❌ MAUVAIS : Hook dans une condition
-  if (someCondition) {
-    const [state, setState] = useState(0); // Erreur !
-  }
-  
-  // ❌ MAUVAIS : Hook dans une boucle
-  for (let i = 0; i < 3; i++) {
-    const [state, setState] = useState(i); // Erreur !
-  }
-}
-
-function GoodExample() {
-  // ✅ BON : Hooks au top-level
-  const [count, setCount] = useState(0);
-  const [name, setName] = useState('');
-  
-  // La condition est APRÈS le Hook
-  if (count > 10) {
-    // Logique conditionnelle ici
-  }
-  
-  return <div>{count}</div>;
-}`,
-                language: "tsx",
-                title: "Règles des Hooks"
-            }
         },
         {
             question: "React 18: createRoot est exposé par…",
@@ -207,32 +135,6 @@ function GoodExample() {
             explanation: "useRef permet de créer une référence mutable qui persiste entre les rendus, idéal pour accéder directement à un élément DOM.",
             point: 10,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `import { useRef, useEffect } from 'react';
-
-function AutoFocusInput() {
-  const inputRef = useRef<HTMLInputElement>(null);
-  
-  useEffect(() => {
-    // Accès direct au DOM via .current
-    inputRef.current?.focus();
-  }, []);
-  
-  const handleClick = () => {
-    // Lire la valeur sans déclencher un rendu
-    console.log(inputRef.current?.value);
-  };
-  
-  return (
-    <>
-      <input ref={inputRef} type="text" />
-      <button onClick={handleClick}>Log valeur</button>
-    </>
-  );
-}`,
-                language: "tsx",
-                title: "Utilisation de useRef pour accéder au DOM"
-            }
         },
         {
             question: "useId sert à…",
@@ -260,46 +162,6 @@ function AutoFocusInput() {
             explanation: "useReducer est idéal quand la logique d'état est complexe avec plusieurs sous-valeurs ou quand le prochain état dépend du précédent de manière sophistiquée.",
             point: 10,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `import { useReducer } from 'react';
-
-type State = { count: number; step: number };
-type Action = 
-  | { type: 'increment' }
-  | { type: 'decrement' }
-  | { type: 'setStep'; step: number }
-  | { type: 'reset' };
-
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case 'increment':
-      return { ...state, count: state.count + state.step };
-    case 'decrement':
-      return { ...state, count: state.count - state.step };
-    case 'setStep':
-      return { ...state, step: action.step };
-    case 'reset':
-      return { count: 0, step: 1 };
-    default:
-      return state;
-  }
-}
-
-function Counter() {
-  const [state, dispatch] = useReducer(reducer, { count: 0, step: 1 });
-  
-  return (
-    <div>
-      <p>Compteur: {state.count}</p>
-      <button onClick={() => dispatch({ type: 'increment' })}>+{state.step}</button>
-      <button onClick={() => dispatch({ type: 'decrement' })}>-{state.step}</button>
-      <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
-    </div>
-  );
-}`,
-                language: "tsx",
-                title: "useReducer pour logique d'état complexe"
-            }
         },
         {
             question: "Quel composant active le mode concurrent et le fallback lors du lazy ?",

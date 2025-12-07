@@ -73,15 +73,6 @@ export const quiz: QuizData = {
             explanation: "Pour importer un module personnalisé dans Node.js avec CommonJS, vous devez utiliser la fonction require(). Par exemple : const myModule = require('./monMod.js'). Note: Node.js supporte aussi les modules ES6 avec import.",
             point: 10,
             difficulty: "facile",
-            codeSnippet: {
-                code: `// CommonJS (par défaut)
-const myModule = require('./myModule.js');
-
-// ES Modules (nécessite "type": "module" dans package.json)
-import { myFunction } from './myModule.mjs';`,
-                language: "javascript",
-                title: "CommonJS vs ES Modules"
-            }
         },
 
         // 🟡 Questions intermédiaires (3 questions - 1/3)
@@ -126,18 +117,6 @@ import { myFunction } from './myModule.mjs';`,
             explanation: "Les Promises offrent une meilleure gestion du code asynchrone avec le chaînage (.then(), .catch()) et évitent le 'callback hell'. Elles représentent une valeur future qui peut être résolue ou rejetée.",
             point: 15,
             difficulty: "intermédiaire",
-            codeSnippet: {
-                code: `// Avec callbacks imbriqués
-fs.readFile('file1.txt', (err, data1) => {
-  fs.readFile('file2.txt', (err, data2) => { ... });
-});
-
-// Avec Promises
-fs.promises.readFile('file1.txt')
-  .then(data1 => fs.promises.readFile('file2.txt'));`,
-                language: "javascript",
-                title: "Deux approches"
-            }
         },
         {
             question: "Quelle est la syntaxe pour utiliser async/await avec une Promise en Node.js ?",
@@ -184,16 +163,6 @@ fs.promises.readFile('file1.txt')
             explanation: "L'Event Loop est le mécanisme central de Node.js qui permet d'exécuter du code de manière non bloquante. Il surveille la Call Stack et la Callback Queue, exécutant les callbacks quand la Stack est vide. Cela permet à Node.js de gérer des milliers de connexions simultanées avec un seul thread.",
             point: 20,
             difficulty: "expert",
-            codeSnippet: {
-                code: `// Ordre d'exécution de l'Event Loop
-console.log('1. Synchrone');
-process.nextTick(() => console.log('2. Next Tick'));
-Promise.resolve().then(() => console.log('3. Promise'));
-setTimeout(() => console.log('4. Timeout'), 0);
-setImmediate(() => console.log('5. Immediate'));`,
-                language: "javascript",
-                title: "Phases de l'Event Loop"
-            }
         },
         {
             question: "Quelle est la différence entre process.nextTick() et setImmediate() ?",
