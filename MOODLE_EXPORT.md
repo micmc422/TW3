@@ -4,7 +4,15 @@ Ce fichier vous guide pour exporter et importer les quiz du cours TW3 dans Moodl
 
 ## 🎯 Méthode 1: Utiliser le fichier pré-généré
 
-Le fichier `examen.xml` à la racine du repository contient un export complet de tous les quiz au format Moodle XML.
+Le fichier `examen.xml` à la racine du repository contient un export sélectionné de 50 questions au format Moodle XML.
+
+### Sélection des questions
+
+L'export contient **50 questions** soigneusement sélectionnées selon les critères suivants:
+- **50% de questions faciles** (25 questions)
+- **25% de questions intermédiaires** (13 questions)
+- **25% de questions expertes** (12 questions)
+- **Distribution équitable entre tous les modules** (9 catégories)
 
 ### Importation dans Moodle
 
@@ -16,18 +24,18 @@ Le fichier `examen.xml` à la racine du repository contient un export complet de
 6. Choisissez le fichier `examen.xml`
 7. Cliquez sur **Importer**
 
-Les questions seront organisées en catégories:
-- TW3/Docker (15 questions)
-- TW3/React (15 questions)
-- TW3/Authentification (13 questions)
-- TW3/Next.js (20 questions)
-- TW3/NPM (12 questions)
-- TW3/Tooling (9 questions)
-- TW3/MongoDB (15 questions)
-- TW3/Git (9 questions)
-- TW3/Node.js (9 questions)
+Les questions seront organisées en catégories (répartition approximative):
+- TW3/Docker (~7 questions)
+- TW3/React (~7 questions)
+- TW3/Authentification (~7 questions)
+- TW3/Next.js (~6 questions)
+- TW3/NPM (~5 questions)
+- TW3/Tooling (~5 questions)
+- TW3/MongoDB (~5 questions)
+- TW3/Git (~4 questions)
+- TW3/Node.js (~4 questions)
 
-**Total: 117 questions**
+**Total: 50 questions** (sélection équilibrée par difficulté et module)
 
 ## 🚀 Méthode 2: Générer un export à jour
 
@@ -65,24 +73,41 @@ Si le contenu des quiz a été modifié, vous pouvez générer un export à jour
 
 ## 📊 Contenu exporté
 
-### Types de questions
-- **Questions à choix unique** (108 questions)
-  - Une seule bonne réponse
-  - 100% des points pour la bonne réponse
-  - 0% pour les mauvaises réponses
+### Sélection automatique (50 questions)
 
-- **Questions à choix multiples** (9 questions)
-  - Plusieurs bonnes réponses possibles
-  - Points distribués équitablement entre les bonnes réponses
-  - 0% pour les mauvaises réponses
+L'export est limité à **50 questions** avec une distribution optimale:
+
+**Par difficulté:**
+- **Questions faciles** (50% - 25 questions)
+  - Points: 5-10 points
+  - Concepts de base et commandes essentielles
+  
+- **Questions intermédiaires** (26% - 13 questions)
+  - Points: 10-15 points
+  - Concepts avancés et bonnes pratiques
+  
+- **Questions expertes** (24% - 12 questions)
+  - Points: 15-20 points
+  - Architectures complexes et optimisations
+
+**Par module:**
+- Distribution équitable entre les 9 modules
+- Chaque module contribue proportionnellement à sa taille
+- Garantit une couverture complète des sujets du cours
 
 ### Fonctionnalités incluses
+✅ **Sélection intelligente** de 50 questions (50% faciles, 25% intermédiaires, 25% expertes)
+✅ **Répartition équitable** entre les 9 modules du cours
 ✅ **Feedback personnalisé** par réponse incorrecte
 ✅ **Explications générales** pour chaque question
-✅ **Attribution de points** (10-20 points par question selon la difficulté)
+✅ **Attribution de points** (5-20 points selon la difficulté)
 ✅ **Emojis et caractères Unicode** préservés
 ✅ **Mélange automatique** des réponses activé
 ✅ **Numérotation alphabétique** (a, b, c, d...)
+
+### Types de questions inclus
+- **Questions à choix unique**: Une seule bonne réponse (100% des points)
+- **Questions à choix multiples**: Plusieurs bonnes réponses (points distribués équitablement)
 
 ### Modules exclus
 - ❌ UX-UI (exclu volontairement)

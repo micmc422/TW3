@@ -6,7 +6,18 @@
 
 ## 📋 Description
 
-Cette route API exporte toutes les données des quiz au format **Moodle XML** compatible pour l'importation directe dans Moodle. Elle collecte les données de tous les fichiers `quizzData.tsx` présents dans les modules du cours (à l'exception du module UX-UI) et les convertit en format XML Moodle standard.
+Cette route API exporte une **sélection optimisée de 50 questions** au format **Moodle XML** compatible pour l'importation directe dans Moodle. Elle collecte les données de tous les fichiers `quizzData.tsx` présents dans les modules du cours (à l'exception du module UX-UI) et sélectionne intelligemment les questions selon des critères pédagogiques.
+
+## 🎯 Sélection des questions
+
+L'API applique une sélection automatique pour créer un examen équilibré:
+
+**Critères de sélection:**
+- **50 questions au total** (limité pour des examens de durée raisonnable)
+- **50% faciles** (25 questions) - Concepts de base
+- **25% intermédiaires** (13 questions) - Concepts avancés  
+- **25% expertes** (12 questions) - Maîtrise approfondie
+- **Distribution équitable entre modules** - Tous les sujets couverts proportionnellement
 
 ## 🎯 Modules inclus
 

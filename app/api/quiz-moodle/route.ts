@@ -176,7 +176,100 @@ function createCategory(categoryPath: string): string {
 }
 
 /**
+ * Sélectionne un échantillon équilibré de questions selon les critères:
+ * - 50 questions au total
+ * - 50% facile (25 questions)
+ * - 25% intermédiaire (12-13 questions)
+ * - 25% expert (12-13 questions)
+ * - Distribution équitable entre les modules
+ */
+function selectBalancedQuestions(modules: Array<{ id: string; quiz: QuizData; name: string }>) {
+  // Collecter toutes les questions avec leurs métadonnées
+  interface QuestionWithMeta {
+    question: QuizQuestion;
+    moduleId: string;
+    moduleName: string;
+    originalIndex: number;
+  }
+  
+  const allQuestions: QuestionWithMeta[] = [];
+  
+  modules.forEach(module => {
+    module.quiz.questions.forEach((question, index) => {
+      allQuestions.push({
+        question,
+        moduleId: module.id,
+        moduleName: module.name,
+        originalIndex: index
+      });
+    });
+  });
+  
+  // Grouper par difficulté
+  const byDifficulty = {
+    facile: allQuestions.filter(q => q.question.difficulty === 'facile'),
+    intermédiaire: allQuestions.filter(q => q.question.difficulty === 'intermédiaire'),
+    expert: allQuestions.filter(q => q.question.difficulty === 'expert')
+  };
+  
+  // Calculer les quotas (50 questions au total)
+  const quotas = {
+    facile: 25,        // 50%
+    intermédiaire: 13, // 25% (arrondi supérieur)
+    expert: 12         // 25% (arrondi inférieur pour atteindre 50)
+  };
+  
+  // Fonction pour sélectionner des questions de manière équilibrée entre modules
+  function selectFromPool(pool: QuestionWithMeta[], count: number): QuestionWithMeta[] {
+    if (pool.length <= count) {
+      return [...pool]; // Retourner toutes si pas assez
+    }
+    
+    // Compter les questions disponibles par module
+    const moduleCount = new Map<string, QuestionWithMeta[]>();
+    pool.forEach(q => {
+      if (!moduleCount.has(q.moduleId)) {
+        moduleCount.set(q.moduleId, []);
+      }
+      moduleCount.get(q.moduleId)!.push(q);
+    });
+    
+    // Distribuer équitablement
+    const selected: QuestionWithMeta[] = [];
+    const questionsPerModule = Math.floor(count / moduleCount.size);
+    const remainder = count % moduleCount.size;
+    
+    let moduleIndex = 0;
+    for (const [moduleId, questions] of moduleCount.entries()) {
+      // Certains modules auront une question de plus si le reste n'est pas nul
+      const toTake = questionsPerModule + (moduleIndex < remainder ? 1 : 0);
+      const taken = questions.slice(0, Math.min(toTake, questions.length));
+      selected.push(...taken);
+      moduleIndex++;
+    }
+    
+    // Si on n'a pas assez, compléter avec les questions restantes
+    if (selected.length < count) {
+      const remaining = pool.filter(q => !selected.includes(q));
+      selected.push(...remaining.slice(0, count - selected.length));
+    }
+    
+    return selected.slice(0, count);
+  }
+  
+  // Sélectionner les questions selon les quotas
+  const selectedQuestions = [
+    ...selectFromPool(byDifficulty.facile, quotas.facile),
+    ...selectFromPool(byDifficulty.intermédiaire, quotas.intermédiaire),
+    ...selectFromPool(byDifficulty.expert, quotas.expert)
+  ];
+  
+  return selectedQuestions;
+}
+
+/**
  * Génère le XML Moodle complet pour tous les quiz
+ * Export limité à 50 questions avec distribution équilibrée
  */
 function generateMoodleXML(): string {
   const modules = [
@@ -191,21 +284,51 @@ function generateMoodleXML(): string {
     { id: 'node.js', quiz: nodeQuiz, name: 'Node.js' }
   ];
   
-  let questionsXML = '';
+  // Sélectionner les questions équilibrées
+  const selectedQuestions = selectBalancedQuestions(modules);
   
-  modules.forEach(module => {
-    // Créer une catégorie pour ce module
-    const categoryName = `TW3/${module.name}`;
-    questionsXML += createCategory(categoryName) + '\n\n';
-    
-    // Ajouter toutes les questions du module
-    module.quiz.questions.forEach((question, index) => {
-      const questionId = generateQuestionId(module.id, index);
-      questionsXML += questionToMoodleXML(question, questionId, categoryName) + '\n\n';
+  // Calculer les statistiques pour le commentaire
+  const stats = {
+    facile: selectedQuestions.filter(q => q.question.difficulty === 'facile').length,
+    intermédiaire: selectedQuestions.filter(q => q.question.difficulty === 'intermédiaire').length,
+    expert: selectedQuestions.filter(q => q.question.difficulty === 'expert').length
+  };
+  
+  // Grouper les questions sélectionnées par module pour maintenir l'organisation
+  const questionsByModule = new Map<string, Array<{ question: QuizQuestion; originalIndex: number }>>();
+  
+  selectedQuestions.forEach(q => {
+    if (!questionsByModule.has(q.moduleId)) {
+      questionsByModule.set(q.moduleId, []);
+    }
+    questionsByModule.get(q.moduleId)!.push({
+      question: q.question,
+      originalIndex: q.originalIndex
     });
   });
   
+  let questionsXML = '';
+  
+  // Générer le XML en conservant l'ordre des modules
+  modules.forEach(module => {
+    const moduleQuestions = questionsByModule.get(module.id);
+    if (moduleQuestions && moduleQuestions.length > 0) {
+      // Créer une catégorie pour ce module
+      const categoryName = `TW3/${module.name}`;
+      questionsXML += createCategory(categoryName) + '\n\n';
+      
+      // Ajouter les questions sélectionnées du module
+      moduleQuestions.forEach(({ question, originalIndex }) => {
+        const questionId = generateQuestionId(module.id, originalIndex);
+        questionsXML += questionToMoodleXML(question, questionId, categoryName) + '\n\n';
+      });
+    }
+  });
+  
   return `<?xml version="1.0" encoding="UTF-8"?>
+<!-- Export TW3 Quiz - 50 questions sélectionnées -->
+<!-- Distribution: ${stats.facile} faciles (50%), ${stats.intermédiaire} intermédiaires (26%), ${stats.expert} experts (24%) -->
+<!-- Modules: ${questionsByModule.size} catégories avec répartition équitable -->
 <quiz>
 ${questionsXML.trim()}
 </quiz>`;
