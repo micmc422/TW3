@@ -10,11 +10,11 @@ export default {
   // "exercice": "Exercice",
   // "TLDR": "TLDR",
   // "conclusion": "Conclusion",
+  "---": {
+    "type": "separator"
+  },
+  "quizz": "Quizz",
   /*
-   "---": {
-     "type": "separator"
-   },
-   "quizz": "Quizz",
    "----": {
      "type": "separator"
    },

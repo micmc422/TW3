@@ -30,10 +30,10 @@ export default function Questions() {
     const currentQuestionData = questions[currentQuestion - 1]
     const { question = "", answers = [], difficulty = "facile", correctAnswer = [], helpMessages, messageForCorrectAnswer, messageForIncorrectAnswer } = currentQuestionData || {}
     
-    // Déterminer quel message afficher en fonction des réponses de l'utilisateur
-    const displayMessage = useMemo(() => {
+    // Déterminer quels messages afficher en fonction des réponses de l'utilisateur
+    const displayMessages = useMemo(() => {
         const userAnswer = userAnswers?.[currentQuestion - 1]
-        if (!userAnswer || userAnswer[0] === 0 || !currentQuestionData) return null
+        if (!userAnswer || userAnswer[0] === 0 || !currentQuestionData) return []
 
         // Vérifier s'il y a des réponses correctes
         const hasCorrectAnswer = userAnswer.some(ans => correctAnswer.includes(ans))
@@ -43,25 +43,38 @@ export default function Questions() {
         // Si toutes les réponses sont correctes
         if (incorrectAnswers.length === 0 && hasCorrectAnswer) {
             if (messageForCorrectAnswer) {
-                return { message: messageForCorrectAnswer, type: "correct" as const }
+                return [{ message: messageForCorrectAnswer, type: "correct" as const, answerIndex: undefined }]
             }
-            return null
+            return []
         }
 
         // Si il y a au moins une réponse incorrecte
         if (incorrectAnswers.length > 0) {
-            // Chercher un message d'aide personnalisé pour la première mauvaise réponse
-            const firstIncorrectAnswer = incorrectAnswers[0]
-            if (helpMessages && helpMessages[firstIncorrectAnswer - 1]) {
-                return { message: helpMessages[firstIncorrectAnswer - 1], type: "incorrect" as const }
+            const messages: Array<{ message: string; type: "incorrect"; answerIndex?: number }> = []
+            
+            // Récupérer tous les messages d'aide personnalisés pour chaque mauvaise réponse
+            incorrectAnswers.forEach(incorrectAnswer => {
+                if (helpMessages && helpMessages[incorrectAnswer - 1]) {
+                    messages.push({ 
+                        message: helpMessages[incorrectAnswer - 1], 
+                        type: "incorrect" as const,
+                        answerIndex: incorrectAnswer
+                    })
+                }
+            })
+            
+            // Si aucun message d'aide personnalisé n'a été trouvé, utiliser le message générique
+            if (messages.length === 0 && messageForIncorrectAnswer) {
+                messages.push({ 
+                    message: messageForIncorrectAnswer, 
+                    type: "incorrect" as const 
+                })
             }
-            // Sinon, utiliser le message générique
-            if (messageForIncorrectAnswer) {
-                return { message: messageForIncorrectAnswer, type: "incorrect" as const }
-            }
+            
+            return messages
         }
 
-        return null
+        return []
     }, [userAnswers, currentQuestion, correctAnswer, helpMessages, messageForCorrectAnswer, messageForIncorrectAnswer, currentQuestionData])
 
     useEffect(() => {
@@ -123,13 +136,13 @@ export default function Questions() {
                 </AnimatePresence>
             </motion.ul>
             <AnimatePresence>
-                {displayMessage && (
+                {displayMessages.map((displayMessage, index) => (
                     <HelpMessage 
-                        key={`help-${currentQuestion}-${displayMessage.message}`}
+                        key={`help-${currentQuestion}-${displayMessage.answerIndex ?? `generic-${index}`}`}
                         message={displayMessage.message} 
                         type={displayMessage.type} 
                     />
-                )}
+                ))}
             </AnimatePresence>
             <ProgressBar />
             <div className="flex" style={{ gap: "1rem" }}>

@@ -10,5 +10,9 @@ export default {
   "---": {
     "type": "separator"
   },
+  "quizz": "Quizz",
+  "----": {
+    "type": "separator"
+  },
   "ressources": "Ressources",
 }

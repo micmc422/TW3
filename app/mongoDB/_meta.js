@@ -10,6 +10,7 @@ export default {
     "type": "separator"
   },
   "exercice": "Exercice",
+  "quizz": "Quizz",
   "----": {
     "type": "separator"
   },
