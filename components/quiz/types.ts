@@ -16,6 +16,8 @@ export interface QuizQuestion {
     correctAnswer: number[];
     messageForCorrectAnswer?: string;
     messageForIncorrectAnswer?: string;
+    /** Messages d'aide personnalisés pour chaque mauvaise réponse (indexés par numéro de réponse - 1) */
+    helpMessages?: { [answerIndex: number]: string };
     explanation?: string;
     point: number;
     difficulty: QuestionDifficulty;
