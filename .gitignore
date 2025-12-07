@@ -5,4 +5,5 @@ node_modules/
 .DS_Store
 public/_pagefind/
 public/sitemap*.xml
+tsconfig.tsbuildinfo
 
