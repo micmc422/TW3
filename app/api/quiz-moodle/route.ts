@@ -179,8 +179,8 @@ function createCategory(categoryPath: string): string {
  * Sélectionne un échantillon équilibré de questions selon les critères:
  * - 50 questions au total
  * - 50% facile (25 questions)
- * - 25% intermédiaire (12-13 questions)
- * - 25% expert (12-13 questions)
+ * - 26% intermédiaire (13 questions)
+ * - 24% expert (12 questions)
  * - Distribution équitable entre les modules
  */
 function selectBalancedQuestions(modules: Array<{ id: string; quiz: QuizData; name: string }>) {
@@ -213,10 +213,11 @@ function selectBalancedQuestions(modules: Array<{ id: string; quiz: QuizData; na
   };
   
   // Calculer les quotas (50 questions au total)
+  const TOTAL_QUESTIONS = 50;
   const quotas = {
-    facile: 25,        // 50%
-    intermédiaire: 13, // 25% (arrondi supérieur)
-    expert: 12         // 25% (arrondi inférieur pour atteindre 50)
+    facile: Math.round(TOTAL_QUESTIONS * 0.50),        // 50%
+    intermédiaire: Math.round(TOTAL_QUESTIONS * 0.26), // 26%
+    expert: TOTAL_QUESTIONS - Math.round(TOTAL_QUESTIONS * 0.50) - Math.round(TOTAL_QUESTIONS * 0.26) // Reste pour atteindre 50
   };
   
   // Fonction pour sélectionner des questions de manière équilibrée entre modules
@@ -294,6 +295,13 @@ function generateMoodleXML(): string {
     expert: selectedQuestions.filter(q => q.question.difficulty === 'expert').length
   };
   
+  const total = selectedQuestions.length;
+  const percentages = {
+    facile: Math.round((stats.facile / total) * 100),
+    intermédiaire: Math.round((stats.intermédiaire / total) * 100),
+    expert: Math.round((stats.expert / total) * 100)
+  };
+  
   // Grouper les questions sélectionnées par module pour maintenir l'organisation
   const questionsByModule = new Map<string, Array<{ question: QuizQuestion; originalIndex: number }>>();
   
@@ -326,8 +334,8 @@ function generateMoodleXML(): string {
   });
   
   return `<?xml version="1.0" encoding="UTF-8"?>
-<!-- Export TW3 Quiz - 50 questions sélectionnées -->
-<!-- Distribution: ${stats.facile} faciles (50%), ${stats.intermédiaire} intermédiaires (26%), ${stats.expert} experts (24%) -->
+<!-- Export TW3 Quiz - ${total} questions sélectionnées -->
+<!-- Distribution: ${stats.facile} faciles (${percentages.facile}%), ${stats.intermédiaire} intermédiaires (${percentages.intermédiaire}%), ${stats.expert} experts (${percentages.expert}%) -->
 <!-- Modules: ${questionsByModule.size} catégories avec répartition équitable -->
 <quiz>
 ${questionsXML.trim()}
