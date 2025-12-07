@@ -55,10 +55,10 @@ export const quiz: QuizData = {
                 code: `// En-tête HTTP Basic Auth
 Authorization: Basic dXNlcjpwYXNzd29yZA==
 
-// Décoder (facile sans HTTPS !) :
+// Décoder :
 atob('dXNlcjpwYXNzd29yZA==')  // → "user:password"`,
                 language: "javascript",
-                title: "HTTP Basic Auth - Base64 réversible"
+                title: "HTTP Basic Auth"
             }
         },
         {
@@ -107,16 +107,15 @@ atob('dXNlcjpwYXNzd29yZA==')  // → "user:password"`,
             point: 15,
             difficulty: "intermédiaire",
             codeSnippet: {
-                code: `// Flux OAuth 2.0 : Autorisation sans partager mot de passe
-// 1. Rediriger vers Google pour obtenir un code
+                code: `// Redirection pour autorisation
 window.location.href = 'https://accounts.google.com/oauth?...';
-// 2. Google renvoie un code → échanger contre access token
-// 3. Utiliser le token pour accéder aux ressources
+
+// Utiliser le token d'accès
 fetch('https://api.google.com/user', {
   headers: { Authorization: 'Bearer ' + access_token }
 });`,
                 language: "javascript",
-                title: "OAuth 2.0 - Délégation d'accès"
+                title: "OAuth 2.0"
             }
         },
         {
@@ -209,26 +208,16 @@ fetch('https://api.google.com/user', {
             point: 20,
             difficulty: "expert",
             codeSnippet: {
-                code: `// Configuration des cookies sécurisés en Express.js
+                code: `// Configuration de session Express.js
 app.use(session({
-  name: 'sessionId',
-  secret: process.env.SESSION_SECRET,
   cookie: {
-    httpOnly: true,     // Protection XSS : JS ne peut pas lire le cookie
-    secure: true,       // HTTPS uniquement
-    sameSite: 'strict', // Protection CSRF : pas d'envoi cross-site
-    maxAge: 3600000     // 1 heure
-  },
-  resave: false,
-  saveUninitialized: false
-}));
-
-// Valeurs possibles pour SameSite :
-// - 'strict' : Jamais envoyé en cross-site (même liens)
-// - 'lax' : Envoyé pour navigation (GET), pas pour POST cross-site
-// - 'none' : Toujours envoyé (nécessite Secure=true)`,
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict'
+  }
+}));`,
                 language: "javascript",
-                title: "Configuration sécurisée des cookies de session"
+                title: "Configuration des cookies"
             }
         },
         {
@@ -253,15 +242,14 @@ app.use(session({
             point: 20,
             difficulty: "expert",
             codeSnippet: {
-                code: `// JWT (Stateless) - tout dans le token côté client
+                code: `// Approche JWT
 const token = jwt.sign({ userId: 123 }, SECRET);
-jwt.verify(token, SECRET);  // Pas besoin de DB !
+jwt.verify(token, SECRET);
 
-// Session (Stateful) - données côté serveur
-req.session.userId = 123;  // Stocké en DB/Redis
-// Client a juste un cookie avec Session ID`,
+// Approche Session
+req.session.userId = 123;`,
                 language: "javascript",
-                title: "JWT (stateless) vs Sessions (stateful)"
+                title: "Deux approches d'authentification"
             }
         }
     ]

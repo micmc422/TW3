@@ -120,25 +120,13 @@ export const quiz: QuizData = {
             point: 15,
             difficulty: "intermédiaire",
             codeSnippet: {
-                code: `# Méthode classique en une commande
-git checkout -b ma-nouvelle-feature
-
-# Méthode en deux étapes (équivalent)
-git branch ma-nouvelle-feature
-git checkout ma-nouvelle-feature
+                code: `# Créer et basculer vers une nouvelle branche
+git checkout -b ma-feature
 
 # Nouvelle syntaxe Git (2.23+)
-git switch -c ma-nouvelle-feature
-
-# Créer une branche depuis un commit spécifique
-git checkout -b hotfix abc1234
-
-# Vérifier sur quelle branche on est
-git branch
-# * ma-nouvelle-feature
-#   main`,
+git switch -c ma-feature`,
                 language: "bash",
-                title: "Création et changement de branche"
+                title: "Création de branche"
             }
         },
         {
@@ -163,13 +151,13 @@ git branch
             point: 15,
             difficulty: "intermédiaire",
             codeSnippet: {
-                code: `# Créer et fusionner une branche
+                code: `# Fusionner une branche
 git checkout -b feature
 git commit -m "Ajout feature"
 git checkout main
-git merge feature  # Fusionne feature dans main`,
+git merge feature`,
                 language: "bash",
-                title: "git merge"
+                title: "Fusion de branches"
             }
         },
         {
@@ -284,12 +272,16 @@ git merge feature  # Fusionne feature dans main`,
             point: 20,
             difficulty: "expert",
             codeSnippet: {
-                code: `# REBASE : historique linéaire (pas de commit de fusion)
+                code: `# Deux approches pour fusionner
 git checkout feature
-git rebase main  # Réapplique les commits de feature sur main
-# ⚠️ Ne JAMAIS rebaser des commits publics !`,
+git rebase main
+
+# vs
+
+git checkout main
+git merge feature`,
                 language: "bash",
-                title: "git rebase - historique linéaire"
+                title: "Deux stratégies de fusion"
             }
         },
         {
@@ -314,13 +306,11 @@ git rebase main  # Réapplique les commits de feature sur main
             point: 20,
             difficulty: "expert",
             codeSnippet: {
-                code: `# reset --soft : garde les modifs en staging
+                code: `# Différentes commandes pour annuler
 git reset --soft HEAD~1
 
-# reset --hard : ⚠️ SUPPRIME les modifications
 git reset --hard HEAD~1
 
-# revert : crée un commit inversé (historique public)
 git revert HEAD`,
                 language: "bash",
                 title: "Annuler un commit"

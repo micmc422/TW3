@@ -115,12 +115,11 @@ npm run lint -- --fix // Corriger automatiquement`,
             point: 5,
             difficulty: "facile",
             codeSnippet: {
-                code: `# Initialiser un projet Node.js
+                code: `# Initialiser un projet
 npm init -y
 
-# Installer des dépendances
-npm install express
-npm install --save-dev typescript`,
+# Installer des packages
+npm install express typescript`,
                 language: "bash",
                 title: "npm init"
             }
@@ -142,15 +141,11 @@ npm install --save-dev typescript`,
             point: 5,
             difficulty: "facile",
             codeSnippet: {
-                code: `// Snippet personnalisé VSCode
+                code: `// Snippet personnalisé
 {
   "React Component": {
     "prefix": "rfc",
-    "body": [
-      "export default function \${1:Name}() {",
-      "  return <div>\${2:content}</div>;",
-      "}"
-    ]
+    "body": "export default function \${1:Name}() { return <div></div>; }"
   }
 }`,
                 language: "json",
@@ -227,12 +222,14 @@ npm install --save-dev typescript`,
             point: 10,
             difficulty: "intermédiaire",
             codeSnippet: {
-                code: `// Day.js : 35x plus léger que Moment.js (2KB vs 70KB)
+                code: `// Deux bibliothèques pour les dates
 import dayjs from 'dayjs';
 const date = dayjs().format('DD/MM/YYYY');
-const past = dayjs().subtract(7, 'day');`,
+
+import moment from 'moment';
+const date2 = moment().format('DD/MM/YYYY');`,
                 language: "javascript",
-                title: "Day.js vs Moment.js"
+                title: "Gestion des dates"
             }
         },
         {
@@ -252,13 +249,13 @@ const past = dayjs().subtract(7, 'day');`,
             point: 10,
             difficulty: "intermédiaire",
             codeSnippet: {
-                code: `// Bundler : regroupe et optimise pour la production
-// Avant : src/app.js + src/utils.js (2 fichiers)
-// Après : dist/bundle.min.js (1 fichier minifié)
+                code: `// Développement : plusieurs fichiers
+// src/app.js + src/utils.js
 
-// Avantages : moins de requêtes, code optimisé, tree-shaking`,
+// Production : après traitement
+// dist/bundle.min.js`,
                 language: "javascript",
-                title: "Rôle d'un bundler"
+                title: "Avant et après"
             }
         },
         {
@@ -278,19 +275,16 @@ const past = dayjs().subtract(7, 'day');`,
             point: 10,
             difficulty: "intermédiaire",
             codeSnippet: {
-                code: `// ESLint (Linter) : détecte erreurs logiques
-// ⚠️ Use === instead of ==
-// ⚠️ Prefer const over let
-
-// Prettier (Formatteur) : fixe le style
+                code: `// Outil A
 const x=1;if(x===1){console.log('ok');}
-// Devient après Prettier :
+
+// Après traitement :
 const x = 1;
 if (x === 1) {
   console.log('ok');
 }`,
                 language: "javascript",
-                title: "Linter vs Formatteur"
+                title: "Deux rôles différents"
             }
         },
         {

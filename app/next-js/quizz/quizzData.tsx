@@ -59,21 +59,20 @@ export const quiz: QuizData = {
             point: 10,
             difficulty: "facile",
             codeSnippet: {
-                code: `// Server Component (par défaut)
-async function ServerPage() {
+                code: `// Composant A (async, sans hooks)
+async function PageA() {
   const data = await fetch('https://api.example.com');
   return <div>{data.title}</div>;
 }
 
-// Client Component (hooks, événements)
+// Composant B (avec 'use client')
 'use client';
-import { useState } from 'react';
-export default function ClientPage() {
+export default function PageB() {
   const [count, setCount] = useState(0);
   return <button onClick={() => setCount(count + 1)}>{count}</button>;
 }`,
                 language: "tsx",
-                title: "Server vs Client Components"
+                title: "Lequel nécessite 'use client' ?"
             }
         },
         {
@@ -122,15 +121,13 @@ export async function generateMetadata({ params }) {
             point: 10,
             difficulty: "facile",
             codeSnippet: {
-                code: `// Optimisation automatique avec <Image />
+                code: `// Optimisation automatique
 import Image from 'next/image';
 
 <Image
   src="/photo.jpg"
-  alt="Photo"
   width={500}
   height={300}
-  priority  // Charge en priorité
 />`,
                 language: "tsx",
                 title: "Next.js Image"
@@ -153,19 +150,16 @@ import Image from 'next/image';
             point: 10,
             difficulty: "facile",
             codeSnippet: {
-                code: `// app/layout.tsx - Layout racine
+                code: `// app/layout.tsx
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr">
-      <body>
-        <header>Menu</header>
-        <main>{children}</main>
-      </body>
+    <html>
+      <body>{children}</body>
     </html>
   );
 }`,
                 language: "tsx",
-                title: "Layout global Next.js 13+"
+                title: "Layout racine"
             }
         },
         {

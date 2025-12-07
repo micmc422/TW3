@@ -127,40 +127,16 @@ import { myFunction } from './myModule.mjs';`,
             point: 15,
             difficulty: "intermédiaire",
             codeSnippet: {
-                code: `// ❌ Callback Hell
-fs.readFile('file1.txt', (err, data1) => {
-  if (err) return console.error(err);
-  fs.readFile('file2.txt', (err, data2) => {
-    if (err) return console.error(err);
-    fs.readFile('file3.txt', (err, data3) => {
-      if (err) return console.error(err);
-      console.log(data1, data2, data3);
-    });
-  });
+                code: `// Avec callbacks imbriqués
+fs.readFile('f1', (err, d1) => {
+  fs.readFile('f2', (err, d2) => { ... });
 });
 
-// ✅ Avec Promises (meilleur chaînage)
-const fs = require('fs').promises;
-
-fs.readFile('file1.txt')
-  .then(data1 => fs.readFile('file2.txt'))
-  .then(data2 => fs.readFile('file3.txt'))
-  .then(data3 => console.log(data3))
-  .catch(err => console.error(err));
-
-// ✅✅ Avec async/await (encore plus lisible)
-async function readFiles() {
-  try {
-    const data1 = await fs.readFile('file1.txt');
-    const data2 = await fs.readFile('file2.txt');
-    const data3 = await fs.readFile('file3.txt');
-    console.log(data1, data2, data3);
-  } catch (err) {
-    console.error(err);
-  }
-}`,
+// Avec Promises
+fs.promises.readFile('f1')
+  .then(d1 => fs.promises.readFile('f2'));`,
                 language: "javascript",
-                title: "Callbacks vs Promises vs async/await"
+                title: "Deux approches"
             }
         },
         {

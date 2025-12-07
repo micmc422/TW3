@@ -111,22 +111,13 @@ db.users.insertOne({
                 code: `// Récupérer tous les documents
 db.users.find()
 
-// Récupérer avec un filtre
-db.users.find({ age: { $gte: 18 } })
-
-// Récupérer avec projection (sélection de champs)
+// Avec filtre et projection
 db.users.find(
   { age: { $gte: 18 } },
-  { name: 1, email: 1, _id: 0 }
-)
-
-// Chaîner avec d'autres méthodes
-db.users.find()
-  .sort({ name: 1 })
-  .limit(10)
-  .skip(5)`,
+  { name: 1, email: 1 }
+)`,
                 language: "javascript",
-                title: "Utilisation de find() en MongoDB"
+                title: "find() avec filtre"
             }
         },
         {
@@ -241,17 +232,16 @@ db.users.find()
             point: 20,
             difficulty: "expert",
             codeSnippet: {
-                code: `// ❌ MAUVAIS : Embedding avec 1000+ commentaires (limite 16MB)
-{ title: "Article", comments: [/* 1000+ items */] }
+                code: `// Collection comments
+{ _id: ObjectId("..."), articleId: ObjectId("a1"), text: "..." }
 
-// ✅ BON : Referencing avec $lookup
-// Collection comments : { articleId: ObjectId("..."), text: "..." }
+// Récupérer article avec commentaires
 db.articles.aggregate([
   { $lookup: { from: "comments", localField: "_id", 
                foreignField: "articleId", as: "comments" }}
 ]);`,
                 language: "javascript",
-                title: "Embedding vs Referencing"
+                title: "Referencing avec $lookup"
             }
         }
     ]
