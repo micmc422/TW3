@@ -21,6 +21,11 @@ export const quiz: QuizData = {
             correctAnswer: [3],
             messageForCorrectAnswer: "Correct ! Git est bien un système de contrôle de version distribué.",
             messageForIncorrectAnswer: "Ces options sont incorrectes. Git est un outil spécifique pour la gestion de version.",
+            helpMessages: {
+                0: "💡 Git n'est pas une base de données ! C'est un système de contrôle de version qui suit l'historique des modifications. 📖 Voir le cours: /git/introduction",
+                1: "💡 Git n'est pas un IDE comme VS Code ! C'est un outil de gestion de versions qui s'intègre avec les IDEs. 📖 Voir: https://git-scm.com/book/fr/v2",
+                3: "💡 Git n'est pas un langage de programmation ! C'est un outil en ligne de commande pour gérer les versions de code. 📖 Voir le cours: /git/introduction"
+            },
             explanation: "Git est un système de contrôle de version distribué qui permet de suivre les modifications apportées à un projet au fil du temps.",
             point: 10,
             difficulty: "facile"
@@ -38,6 +43,11 @@ export const quiz: QuizData = {
             correctAnswer: [1],
             messageForCorrectAnswer: "Correct ! La commande git init initialise un nouveau dépôt Git local.",
             messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
+            helpMessages: {
+                1: "💡 'git create' n'existe pas ! Utilisez 'git init' pour initialiser un dépôt Git. 📖 Voir le cours: /git/commandes-base",
+                2: "💡 'git setup' n'existe pas ! La commande correcte est 'git init'. 📖 Voir: https://git-scm.com/docs/git-init",
+                3: "💡 'git initialize' n'existe pas ! La forme courte est 'git init'. 📖 Voir le cours: /git/commandes-base"
+            },
             explanation: "La commande git init crée un nouveau dépôt Git dans le dossier courant. Elle initialise un sous-dossier .git qui contient tous les fichiers nécessaires au suivi de la version.",
             point: 10,
             difficulty: "facile"
@@ -55,6 +65,11 @@ export const quiz: QuizData = {
             correctAnswer: [1],
             messageForCorrectAnswer: "Correct ! La commande git status affiche l'état actuel du dépôt.",
             messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
+            helpMessages: {
+                1: "💡 'git check' n'existe pas ! Utilisez 'git status' pour voir l'état du dépôt. 📖 Voir le cours: /git/commandes-base",
+                2: "💡 'git state' n'existe pas ! La commande correcte est 'git status'. 📖 Voir: https://git-scm.com/docs/git-status",
+                3: "💡 'git condition' n'existe pas ! Utilisez 'git status' pour afficher l'état. 📖 Voir le cours: /git/commandes-base"
+            },
             explanation: "La commande git status affiche l'état actuel du dépôt, montrant les fichiers modifiés, ajoutés ou supprimés.",
             point: 10,
             difficulty: "facile"
@@ -72,6 +87,11 @@ export const quiz: QuizData = {
             correctAnswer: [1],
             messageForCorrectAnswer: "Correct ! La commande git add ajoute des fichiers à la zone de staging.",
             messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
+            helpMessages: {
+                1: "💡 'git stage' n'est pas une commande standard ! Utilisez 'git add' pour ajouter des fichiers au staging. 📖 Voir le cours: /git/staging",
+                2: "💡 'git prepare' n'existe pas ! La commande pour préparer un commit est 'git add'. 📖 Voir: https://git-scm.com/docs/git-add",
+                3: "💡 'git ready' n'existe pas ! Utilisez 'git add' pour ajouter des fichiers au staging. 📖 Voir le cours: /git/staging"
+            },
             explanation: "La commande git add permet d'ajouter des fichiers à la zone de staging. On peut ajouter un fichier spécifique ou tous les fichiers modifiés avec git add .",
             point: 10,
             difficulty: "facile"
@@ -91,6 +111,11 @@ export const quiz: QuizData = {
             correctAnswer: [1],
             messageForCorrectAnswer: "Correct ! La commande git checkout -b crée une nouvelle branche et s'y déplace.",
             messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
+            helpMessages: {
+                1: "💡 'git branch' crée seulement la branche SANS s'y déplacer ! Ajoutez -b avec checkout ou utilisez switch -c. 📖 Voir le cours: /git/branches",
+                2: "💡 'git switch -c' est aussi correct (nouvelle syntaxe Git) ! Mais la réponse attendue est checkout -b (classique). 📖 Voir: https://git-scm.com/docs/git-switch",
+                3: "💡 'git create' n'existe pas ! Utilisez 'git checkout -b' ou 'git switch -c'. 📖 Voir le cours: /git/branches"
+            },
             explanation: "La commande git checkout -b nom_de_la_branche crée une nouvelle branche et s'y déplace immédiatement. C'est une forme courte de git branch nom_de_la_branche puis git checkout nom_de_la_branche. Note : git switch -c est aussi correcte avec les versions récentes de Git.",
             point: 15,
             difficulty: "intermédiaire"
@@ -108,6 +133,11 @@ export const quiz: QuizData = {
             correctAnswer: [1],
             messageForCorrectAnswer: "Correct ! La commande git merge fusionne une branche dans la branche active.",
             messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
+            helpMessages: {
+                1: "💡 'git join' n'existe pas ! Utilisez 'git merge' pour fusionner des branches. 📖 Voir le cours: /git/merge",
+                2: "💡 'git combine' n'existe pas ! La commande correcte est 'git merge'. 📖 Voir: https://git-scm.com/docs/git-merge",
+                3: "💡 'git blend' n'existe pas ! Utilisez 'git merge' pour fusionner. 📖 Voir le cours: /git/merge"
+            },
             explanation: "La commande git merge permet de fusionner une branche dans la branche active. Par exemple, git merge feature fusionnerait la branche 'feature' dans la branche actuelle.",
             point: 15,
             difficulty: "intermédiaire"
@@ -125,6 +155,11 @@ export const quiz: QuizData = {
             correctAnswer: [1],
             messageForCorrectAnswer: "Correct ! La commande git clone permet de cloner un dépôt distant.",
             messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
+            helpMessages: {
+                1: "💡 'git download' n'existe pas ! Utilisez 'git clone' pour copier un dépôt. 📖 Voir le cours: /git/remote",
+                2: "💡 'git fetch' récupère les modifications SANS cloner ! Pour cloner un dépôt complet, utilisez 'git clone'. 📖 Voir: https://git-scm.com/docs/git-clone",
+                3: "💡 'git pull' met à jour un dépôt existant ! Pour copier un nouveau dépôt, utilisez 'git clone'. 📖 Voir le cours: /git/remote"
+            },
             explanation: "La commande git clone permet de copier un dépôt existant vers un nouveau dossier. Elle crée une copie complète du dépôt, incluant toute l'histoire des commits.",
             point: 15,
             difficulty: "intermédiaire"
@@ -142,6 +177,11 @@ export const quiz: QuizData = {
             correctAnswer: [1],
             messageForCorrectAnswer: "Correct ! La commande git push envoie vos modifications vers un dépôt distant.",
             messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
+            helpMessages: {
+                1: "💡 'git send' n'existe pas ! Utilisez 'git push' pour envoyer des commits. 📖 Voir le cours: /git/remote",
+                2: "💡 'git upload' n'existe pas ! La commande correcte est 'git push'. 📖 Voir: https://git-scm.com/docs/git-push",
+                3: "💡 'git sync' n'est pas une commande Git standard ! Utilisez 'git push' pour publier vos commits. 📖 Voir le cours: /git/remote"
+            },
             explanation: "La commande git push permet d'envoyer vos commits locaux vers un dépôt distant. Par exemple, git push origin main enverrait vos commits de la branche main vers le dépôt distant nommé 'origin'.",
             point: 15,
             difficulty: "intermédiaire"
@@ -161,6 +201,11 @@ export const quiz: QuizData = {
             correctAnswer: [1],
             messageForCorrectAnswer: "Correct ! La commande git pull obtient les dernières modifications depuis un dépôt distant.",
             messageForIncorrectAnswer: "Ces options ne sont pas correctes. La commande correcte est différente.",
+            helpMessages: {
+                1: "💡 'git fetch' télécharge SANS fusionner ! git pull = git fetch + git merge automatique. 📖 Voir le cours: /git/pull-fetch",
+                2: "💡 'git get' n'existe pas ! Utilisez 'git pull' pour récupérer ET fusionner. 📖 Voir: https://git-scm.com/docs/git-pull",
+                3: "💡 'git receive' n'existe pas ! La commande correcte est 'git pull'. 📖 Voir le cours: /git/pull-fetch"
+            },
             explanation: "La commande git pull combine les actions de git fetch et git merge. Elle récupère les changements depuis le dépôt distant et les fusionne dans votre branche locale.",
             point: 20,
             difficulty: "expert"
@@ -178,6 +223,11 @@ export const quiz: QuizData = {
             correctAnswer: [2],
             messageForCorrectAnswer: "Parfait ! Vous comprenez la nuance entre fetch et pull.",
             messageForIncorrectAnswer: "Incorrect. Il y a une différence importante.",
+            helpMessages: {
+                0: "💡 C'est l'inverse ! fetch télécharge SANS fusionner, pull télécharge ET fusionne automatiquement. 📖 Voir le cours: /git/pull-fetch",
+                2: "💡 Il y a une différence cruciale ! fetch est plus sûr (télécharge sans modifier), pull fusionne automatiquement. 📖 Voir: https://git-scm.com/docs/git-fetch",
+                3: "💡 Tous deux travaillent sur les branches ! La différence est que fetch ne fusionne PAS, pull oui. 📖 Voir le cours: /git/pull-fetch"
+            },
             explanation: "git fetch récupère les changements du dépôt distant mais ne les fusionne pas automatiquement. git pull fait un fetch suivi d'un merge automatique. fetch est plus sûr pour inspecter les changements avant de les intégrer.",
             point: 20,
             difficulty: "expert"
@@ -195,6 +245,11 @@ export const quiz: QuizData = {
             correctAnswer: [2],
             messageForCorrectAnswer: "Excellent ! Vous maîtrisez les concepts avancés de Git.",
             messageForIncorrectAnswer: "Pas tout à fait. Le rebase est une opération plus sophistiquée.",
+            helpMessages: {
+                0: "💡 Créer une branche c'est 'git branch' ! rebase RÉAPPLIQUE vos commits sur une nouvelle base pour un historique linéaire. 📖 Voir le cours: /git/rebase",
+                2: "💡 rebase ne supprime rien ! Il RÉÉCRIT l'historique en rejouant vos commits sur une nouvelle base. 📖 Voir: https://git-scm.com/docs/git-rebase",
+                3: "💡 C'est le rôle de merge ! rebase crée un historique LINÉAIRE sans commit de fusion. 📖 Voir le cours: /git/rebase"
+            },
             explanation: "git rebase réapplique vos commits au-dessus d'une autre base (branche), créant un historique linéaire. Contrairement à merge, il ne crée pas de commit de fusion. Attention : ne jamais rebaser des commits déjà partagés publiquement.",
             point: 20,
             difficulty: "expert"
@@ -212,6 +267,11 @@ export const quiz: QuizData = {
             correctAnswer: [2],
             messageForCorrectAnswer: "Parfait ! Vous connaissez les options de reset.",
             messageForIncorrectAnswer: "Attention, certaines options peuvent faire perdre du travail.",
+            helpMessages: {
+                0: "💡 --hard SUPPRIME les modifications ! Utilisez --soft pour garder les changements en staging. 📖 Voir le cours: /git/reset",
+                2: "💡 revert crée un NOUVEAU commit inversé (bon pour l'historique public), mais reset --soft annule simplement le commit. 📖 Voir: https://git-scm.com/docs/git-reset",
+                3: "💡 'git undo' n'existe pas ! Utilisez 'git reset --soft HEAD~1' pour annuler sans perdre les modifications. 📖 Voir le cours: /git/reset"
+            },
             explanation: "git reset --soft HEAD~1 annule le dernier commit mais garde les modifications en zone de staging. --hard supprimerait les modifications (dangereux), et revert créerait un nouveau commit inversé (mieux pour l'historique public).",
             point: 20,
             difficulty: "expert"
