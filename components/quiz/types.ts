@@ -6,6 +6,15 @@ import { ReactNode } from "react";
 export type QuestionDifficulty = "facile" | "intermédiaire" | "expert";
 
 /**
+ * Structure d'un extrait de code dans une question
+ */
+export interface CodeSnippet {
+    code: string;
+    language: string;
+    title?: string;
+}
+
+/**
  * Structure d'une question de quiz
  */
 export interface QuizQuestion {
@@ -21,6 +30,8 @@ export interface QuizQuestion {
     explanation?: string;
     point: number;
     difficulty: QuestionDifficulty;
+    /** Extrait de code optionnel à afficher dans la question */
+    codeSnippet?: CodeSnippet;
 }
 
 /**

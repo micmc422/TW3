@@ -163,7 +163,26 @@ export const quiz: QuizData = {
             },
             explanation: "Le ^ (caret) accepte les changements qui ne modifient pas le premier chiffre non nul. Pour ^1.2.3, cela permet 1.2.3 à 1.x.x (< 2.0.0). C'est le comportement par défaut de npm install.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `{
+  "dependencies": {
+    "react": "^18.2.0",      // Accepte 18.2.0 à 18.x.x (< 19.0.0)
+    "lodash": "~4.17.21",    // Accepte 4.17.21 à 4.17.x (< 4.18.0)
+    "express": "4.18.2",     // Version EXACTE uniquement
+    "axios": ">=1.0.0 <2.0.0" // Plage explicite (équivalent à ^1.0.0)
+  }
+}
+
+// Exemples de versions acceptées :
+// ^18.2.0 accepte : 18.2.0, 18.2.1, 18.3.0, 18.99.99
+// ^18.2.0 refuse : 17.x.x, 19.0.0, 19.1.0
+
+// ~4.17.21 accepte : 4.17.21, 4.17.22, 4.17.99
+// ~4.17.21 refuse : 4.16.x, 4.18.0, 5.0.0`,
+                language: "json",
+                title: "Symboles de versioning dans package.json"
+            }
         },
         {
             question: "Quelle commande permet de vérifier les vulnérabilités de sécurité dans les dépendances ?",
@@ -185,7 +204,29 @@ export const quiz: QuizData = {
             },
             explanation: "npm audit analyse les dépendances pour détecter les vulnérabilités connues. npm audit fix tente de les corriger automatiquement en mettant à jour vers des versions sûres.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `# Analyser les vulnérabilités
+npm audit
+
+# Exemple de sortie :
+# found 2 vulnerabilities (1 moderate, 1 high)
+#   run 'npm audit fix' to fix them
+
+# Corriger automatiquement (versions mineures/patches)
+npm audit fix
+
+# Corriger en forçant les breaking changes si nécessaire
+npm audit fix --force
+
+# Voir les détails au format JSON
+npm audit --json
+
+# Voir uniquement les vulnérabilités critiques/élevées
+npm audit --audit-level=high`,
+                language: "bash",
+                title: "Utilisation de npm audit"
+            }
         },
         {
             question: "Quelle est la différence entre 'dependencies' et 'peerDependencies' dans package.json ?",
@@ -207,7 +248,33 @@ export const quiz: QuizData = {
             },
             explanation: "peerDependencies spécifie qu'un paquet nécessite une certaine version d'un autre paquet déjà installé par le projet parent (ex: un plugin React qui nécessite React). NPM v3+ affiche un warning si la peer dependency n'est pas satisfaite, mais ne l'installe pas automatiquement.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `// 📦 Plugin React (react-cool-plugin/package.json)
+{
+  "name": "react-cool-plugin",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "react": "^18.0.0",        // Le projet parent DOIT avoir React
+    "react-dom": "^18.0.0"     // Compatible avec React 18.x.x
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"       // Installé automatiquement
+  }
+}
+
+// 🚨 Si l'utilisateur installe le plugin sans React 18 :
+// npm WARN react-cool-plugin@1.0.0 requires a peer of react@^18.0.0
+// but none is installed. You must install peer dependencies yourself.
+
+// ✅ Cas d'usage typique : plugins React, ESLint configs, Babel presets
+// Le plugin nécessite que le projet parent ait déjà installé la bibliothèque de base
+
+// 💡 NPM 7+ installe automatiquement les peerDependencies par défaut
+// (peut être désactivé avec --legacy-peer-deps)`,
+                language: "javascript",
+                title: "peerDependencies vs dependencies"
+            }
         }
     ]
 };

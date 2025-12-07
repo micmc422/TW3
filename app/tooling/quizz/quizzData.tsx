@@ -71,9 +71,32 @@ export const quiz: QuizData = {
             answerSelectionType: "single",
             messageForCorrectAnswer: "Exact ! ESLint permet de vérifier et appliquer des règles de style.",
             messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Vérifier et appliquer des règles de style dans le code'.",
+            helpMessages: {
+                0: "💡 Pour déboguer, utilisez le debugger de VSCode ou Chrome DevTools ! ESLint analyse le CODE STATIQUE pour trouver des erreurs et problèmes de style. 📖 Voir le cours: /tooling/qualite",
+                2: "💡 Les icônes sont gérés par des extensions comme Material Icon Theme ! ESLint s'occupe de la QUALITÉ du code. 📖 Voir le cours: /tooling/qualite",
+                3: "💡 Pour surveiller la taille des dépendances, utilisez Import Cost ! ESLint vérifie la syntaxe et le style du code. 📖 Voir le cours: /tooling/qualite"
+            },
             explanation: "ESLint analyse le code JavaScript pour détecter les erreurs et les problèmes de style, et peut les corriger automatiquement.",
             point: 5,
-            difficulty: "facile"
+            difficulty: "facile",
+            codeSnippet: {
+                code: `// .eslintrc.json - Configuration ESLint
+{
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "rules": {
+    "no-console": "warn",           // Avertir sur console.log
+    "semi": ["error", "always"],    // Point-virgule obligatoire
+    "quotes": ["error", "single"],  // Guillemets simples uniquement
+    "no-unused-vars": "error"       // Erreur si variable non utilisée
+  }
+}
+
+// Commandes NPM
+npm run lint          // Vérifier les erreurs
+npm run lint -- --fix // Corriger automatiquement`,
+                language: "json",
+                title: "Configuration ESLint"
+            }
         },
         {
             question: "Quelle commande permet d'initialiser un projet Node.js ?",

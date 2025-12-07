@@ -87,9 +87,23 @@ export const quiz: QuizData = {
             correctAnswer: [4],
             messageForCorrectAnswer: "Excellent ! Vous connaissez la commande pour nettoyer les conteneurs inutilisés.",
             messageForIncorrectAnswer: "Pas tout à fait. Il existe une commande plus appropriée pour cela.",
+            helpMessages: {
+                0: "💡 Cette commande supprime TOUS les conteneurs (même en cours d'exécution avec -f). 'container prune' est plus sûr : il ne supprime que les conteneurs arrêtés. 📖 Voir le cours: /docker/commandes",
+                1: "💡 'docker rmi' supprime des IMAGES, pas des conteneurs ! Attention à ne pas confondre images et conteneurs. 📖 Voir: https://docs.docker.com/engine/reference/commandline/rmi/",
+                2: "💡 'docker system prune' est trop agressif ! Il supprime conteneurs arrêtés, images non utilisées, réseaux ET volumes. Utilisez 'container prune' pour cibler uniquement les conteneurs. 📖 Voir le cours: /docker/commandes"
+            },
             explanation: "La commande docker container prune supprime tous les conteneurs arrêtés. C'est une façon efficace de libérer de l'espace disque en éliminant les conteneurs non utilisés.",
             point: 15,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `# Supprimer uniquement les conteneurs arrêtés
+docker container prune
+
+# Voir les conteneurs arrêtés avant suppression
+docker ps -a --filter "status=exited"`,
+                language: "bash",
+                title: "Nettoyage des conteneurs"
+            }
         },
         {
             question: "Quel est l'avantage principal de l'utilisation de volumes 💾 Docker 🐳 ?",
@@ -104,9 +118,28 @@ export const quiz: QuizData = {
             correctAnswer: [2],
             messageForCorrectAnswer: "Bien joué ! Vous avez identifié l'un des avantages clés des volumes Docker.",
             messageForIncorrectAnswer: "Ce n'est pas l'avantage principal des volumes Docker.",
+            helpMessages: {
+                0: "💡 Les volumes n'améliorent pas directement les performances. Leur but principal est la PERSISTANCE des données au-delà du cycle de vie du conteneur. 📖 Voir le cours: /docker/volumes",
+                2: "💡 Les volumes ne réduisent pas la taille des images ! Les images restent immuables. Les volumes servent à persister les données générées par les conteneurs. 📖 Voir: https://docs.docker.com/storage/volumes/",
+                3: "💡 La gestion réseau utilise les réseaux Docker, pas les volumes ! Les volumes servent à stocker et persister les données. 📖 Voir le cours: /docker/volumes"
+            },
             explanation: "Les volumes Docker permettent de persister les données même lorsque le conteneur est arrêté ou supprimé. Cela facilite la sauvegarde et la récupération des données importantes.",
             point: 15,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `# Créer un volume nommé
+docker volume create mon-volume
+
+# Utiliser un volume avec un conteneur
+docker run -d \\
+  --name mon-app \\
+  -v mon-volume:/app/data \\
+  nginx
+
+# Les données dans /app/data persistent même si le conteneur est supprimé`,
+                language: "bash",
+                title: "Utilisation des volumes Docker"
+            }
         },
         {
             question: "Dans un Dockerfile, quelle instruction permet de définir le répertoire de travail du conteneur ?",
@@ -121,9 +154,24 @@ export const quiz: QuizData = {
             correctAnswer: [2],
             messageForCorrectAnswer: "Parfait ! WORKDIR est bien l'instruction pour définir le répertoire de travail.",
             messageForIncorrectAnswer: "Incorrect. WORKDIR est l'instruction appropriée.",
+            helpMessages: {
+                0: "💡 RUN cd /app ne persiste pas ! Chaque instruction RUN s'exécute dans un nouveau contexte. WORKDIR change le répertoire pour toutes les instructions suivantes. 📖 Voir le cours: /docker/dockerfile",
+                2: "💡 CD n'est pas une instruction Dockerfile ! C'est une commande shell. Utilisez WORKDIR pour définir le répertoire de travail. 📖 Voir: https://docs.docker.com/engine/reference/builder/#workdir",
+                3: "💡 DIR n'existe pas en Dockerfile ! L'instruction correcte est WORKDIR pour définir le répertoire de travail. 📖 Voir le cours: /docker/dockerfile"
+            },
             explanation: "L'instruction WORKDIR définit le répertoire de travail pour toutes les instructions RUN, CMD, ENTRYPOINT, COPY et ADD qui suivent dans le Dockerfile.",
             point: 15,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+CMD ["npm", "start"]`,
+                language: "dockerfile",
+                title: "Exemple de Dockerfile avec WORKDIR"
+            }
         },
         // 🔴 Questions expertes (1/3)
         {
@@ -139,9 +187,31 @@ export const quiz: QuizData = {
             correctAnswer: [2],
             messageForCorrectAnswer: "Excellent ! Vous maîtrisez les subtilités du Dockerfile.",
             messageForIncorrectAnswer: "Pas tout à fait. Ces deux instructions ont des rôles complémentaires.",
+            helpMessages: {
+                0: "💡 C'est l'inverse ! CMD peut être écrasé facilement (docker run image nouvelle-commande), mais ENTRYPOINT nécessite --entrypoint pour être modifié. 📖 Voir le cours: /docker/dockerfile",
+                2: "💡 Les deux s'exécutent au runtime ! Aucune instruction ne s'exécute pendant le build (sauf RUN). 📖 Voir: https://docs.docker.com/engine/reference/builder/#cmd",
+                3: "💡 Il y a une différence majeure ! ENTRYPOINT est difficile à écraser, CMD est facile à remplacer. On les combine souvent. 📖 Voir le cours: /docker/dockerfile"
+            },
             explanation: "ENTRYPOINT définit la commande principale qui sera toujours exécutée, tandis que CMD fournit des arguments par défaut qui peuvent être écrasés au runtime. Ils sont souvent utilisés ensemble.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `# Dockerfile avec ENTRYPOINT + CMD
+FROM python:3.11-slim
+ENTRYPOINT ["python", "app.py"]
+CMD ["--port", "8000"]
+
+# Exécution par défaut : python app.py --port 8000
+# docker run mon-image
+
+# Écraser CMD : python app.py --port 9000
+# docker run mon-image --port 9000
+
+# Écraser ENTRYPOINT (rare) :
+# docker run --entrypoint /bin/bash mon-image`,
+                language: "dockerfile",
+                title: "Différence entre ENTRYPOINT et CMD"
+            }
         },
         {
             question: "Quelle stratégie permet d'optimiser la taille d'une image Docker ?",
@@ -156,9 +226,38 @@ export const quiz: QuizData = {
             correctAnswer: [1, 2, 3],
             messageForCorrectAnswer: "Parfait ! Vous connaissez les meilleures pratiques d'optimisation.",
             messageForIncorrectAnswer: "Pas tout à fait. Plusieurs stratégies sont correctes.",
+            helpMessages: {
+                3: "💡 Au contraire ! Il FAUT nettoyer le cache apt (apt-get clean && rm -rf /var/lib/apt/lists/*) pour réduire la taille de l'image. 📖 Voir le cours: /docker/optimisation"
+            },
             explanation: "Pour optimiser la taille d'une image : utiliser des images de base légères (Alpine), combiner les commandes RUN pour réduire les layers, utiliser le multi-stage build pour exclure les outils de build, et nettoyer les caches.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `# ❌ Mauvaise pratique : plusieurs layers
+FROM node:18
+RUN npm install -g typescript
+RUN npm install -g webpack
+RUN apt-get update
+RUN apt-get install -y curl
+
+# ✅ Bonne pratique : un seul layer
+FROM node:18-alpine
+RUN npm install -g typescript webpack && \\
+    apk add --no-cache curl
+
+# ✅ Multi-stage build : image finale plus petite
+FROM node:18 AS builder
+WORKDIR /app
+COPY . .
+RUN npm ci && npm run build
+
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+CMD ["node", "dist/index.js"]`,
+                language: "dockerfile",
+                title: "Optimisation de la taille des images Docker"
+            }
         },
         {
             question: "Dans un environnement de production, quelle est la meilleure pratique pour gérer les secrets dans Docker ?",
@@ -173,9 +272,34 @@ export const quiz: QuizData = {
             correctAnswer: [3],
             messageForCorrectAnswer: "Bravo ! Vous comprenez les enjeux de sécurité avec Docker.",
             messageForIncorrectAnswer: "Attention, cette méthode n'est pas sécurisée.",
+            helpMessages: {
+                0: "💡 DANGER ! Les ENV dans le Dockerfile sont visibles dans l'historique de l'image (docker history). Les secrets doivent être injectés au runtime ! 📖 Voir le cours: /docker/securite",
+                1: "💡 DANGER ! Les ARG sont visibles dans l'historique du build et persistent dans l'image. Ne JAMAIS utiliser ARG pour des secrets ! 📖 Voir: https://docs.docker.com/engine/swarm/secrets/",
+                3: "💡 DANGER ! Les fichiers dans l'image sont visibles par quiconque y a accès. Les secrets doivent être injectés au runtime, jamais buildés dans l'image ! 📖 Voir le cours: /docker/securite"
+            },
             explanation: "Les secrets ne doivent jamais être inclus dans l'image (Dockerfile ou layers). En production, utilisez Docker Secrets (Swarm), Kubernetes Secrets, ou des variables d'environnement injectées au runtime depuis un gestionnaire de secrets.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `# ❌ MAUVAIS : secret dans le Dockerfile
+FROM node:18
+ENV DB_PASSWORD=supersecret123  # Visible dans l'image !
+
+# ❌ MAUVAIS : secret dans ARG
+ARG API_KEY=secret123  # Visible dans docker history !
+
+# ✅ BON : secret passé au runtime
+# docker run -e DB_PASSWORD=\${DB_PASSWORD} mon-app
+
+# ✅ MEILLEUR : Docker Secrets (Swarm)
+# echo "supersecret123" | docker secret create db_password -
+# docker service create --secret db_password mon-app
+
+# ✅ MEILLEUR : Variables d'environnement depuis un fichier
+# docker run --env-file .env mon-app  # .env est dans .gitignore`,
+                language: "dockerfile",
+                title: "Gestion sécurisée des secrets"
+            }
         }
     ]
 };
