@@ -54,6 +54,12 @@ export const quiz: QuizData = {
             answerSelectionType: "single",
             messageForCorrectAnswer: "Correct ! La simplicité n'est pas incluse dans la règle CRAP.",
             messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Simplicité'.",
+            helpMessages: {
+                0: "💡 Le Contraste FAIT partie de CRAP ! C'est le 'C' de l'acronyme (Contrast, Repetition, Alignment, Proximity). 📖 Voir le cours: /UX-UI/crap",
+                1: "💡 La Répétition FAIT partie de CRAP ! C'est le 'R' de l'acronyme. La simplicité, bien qu'importante, n'en fait pas partie. 📖 Voir le cours: /UX-UI/crap",
+                2: "💡 L'Alignement FAIT partie de CRAP ! C'est le 'A' de l'acronyme. La simplicité est un autre principe, mais pas dans CRAP. 📖 Voir le cours: /UX-UI/crap",
+                3: "💡 La Proximité FAIT partie de CRAP ! C'est le 'P' de l'acronyme. CRAP contient 4 principes, pas 5. 📖 Voir le cours: /UX-UI/crap"
+            },
             explanation: "CRAP signifie Contrast (Contraste), Repetition (Répétition), Alignment (Alignement), Proximity (Proximité). Ce sont les 4 principes fondamentaux du design visuel.",
             point: 10,
             difficulty: "facile"
@@ -71,6 +77,11 @@ export const quiz: QuizData = {
             answerSelectionType: "single",
             messageForCorrectAnswer: "Exact ! Figma est couramment utilisé pour le prototypage en UX/UI Design.",
             messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Figma'.",
+            helpMessages: {
+                1: "💡 Photoshop est excellent pour éditer des images, mais Figma est SPÉCIFIQUEMENT conçu pour le design UI/UX et le prototypage collaboratif. 📖 Voir le cours: /UX-UI/conception",
+                2: "💡 VS Code est un éditeur de CODE, pas un outil de design ! Pour le prototypage UI/UX, utilisez Figma, Sketch ou Adobe XD. 📖 Voir le cours: /UX-UI/conception",
+                3: "💡 WordPress est un CMS pour créer des sites web, pas un outil de prototypage ! Figma permet de designer des interfaces avant de les développer. 📖 Voir le cours: /UX-UI/conception"
+            },
             explanation: "Figma est un outil de design collaboratif basé sur le web, très populaire pour créer des maquettes, prototypes et systèmes de design.",
             point: 10,
             difficulty: "facile"
