@@ -1,25 +1,4 @@
-import { ReactNode } from "react";
-
-export type QuestionDifficulty = "facile" | "intermédiaire" | "expert";
-
-export interface QuizQuestion {
-    question: string;
-    questionType: "text" | "photo";
-    answerSelectionType: "single" | "multiple";
-    answers: string[];
-    correctAnswer: number[];
-    messageForCorrectAnswer?: string;
-    messageForIncorrectAnswer?: string;
-    explanation: string;
-    point: number;
-    difficulty: QuestionDifficulty;
-}
-
-export interface QuizData {
-    quizTitle: string;
-    quizSynopsis: ReactNode;
-    questions: QuizQuestion[];
-}
+import { QuizData } from "@/components/quiz/types";
 
 export const quiz: QuizData = {
     quizTitle: "📦 Quizz NPM",

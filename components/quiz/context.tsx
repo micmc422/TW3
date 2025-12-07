@@ -2,6 +2,7 @@
 
 import { createContext, ReactNode, useMemo, useState } from "react";
 import { Question, QuizStructure } from "react-quiz-component";
+import { QuizQuestion, QuizData } from "./types";
 
 type QuizzContextProps = {
     currentQuestion: number;
@@ -10,15 +11,15 @@ type QuizzContextProps = {
     userAnswers?: number[][];
     quizTitle?: ReactNode;
     quizSynopsis?: ReactNode;
-    questions?: Question[];
+    questions?: QuizQuestion[];
     nextQuestion?: () => void;
     handleAnswser?: (number) => void;
 }
 export const QuizzContext = createContext<QuizzContextProps>({ currentQuestion: 0, score: 0, totalScore: 0 })
 
-export default function QuizzRoot({ children, quizData }: { children: ReactNode, quizData: QuizStructure }) {
+export default function QuizzRoot({ children, quizData }: { children: ReactNode, quizData: QuizData }) {
     // currentQuestion est 0 pour permettre de savoir quand le quizz est commencé (0 == false)
-    const questions = quizData.questions || [[]]
+    const questions = quizData.questions || []
     const [currentQuestion, setCurrentQuestion] = useState<number>(0)
     // const [questions, setQuestions] = useState(quizData.questions || [])
     const [userAnswers, setUserAnswers] = useState<number[][]>(new Array(questions?.length || 0).fill([0]))

@@ -4,6 +4,7 @@ import { QuizNextBtn, QuizResetBtn, QuizTitle } from ".."
 import { Trash2Icon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { animate, AnimatePresence, motion } from "motion/react"
+import DifficultyIndicator from "./difficulty-indicator"
 
 
 
@@ -25,7 +26,7 @@ const itemVariant = {
 export default function Questions() {
     const ref = useRef(null)
     const { currentQuestion, questions, handleAnswser, userAnswers, score, totalScore } = useContext(QuizzContext);
-    const { question, answers } = questions[currentQuestion - 1] || {}
+    const { question, answers, difficulty } = questions[currentQuestion - 1] || {}
     useEffect(() => {
         updateSelectedClass()
     }, [userAnswers?.[currentQuestion - 1], currentQuestion])
@@ -58,6 +59,7 @@ export default function Questions() {
     if (currentQuestion === 0) return <></>
     return (
         <>
+            <DifficultyIndicator difficulty={difficulty} />
             <QuizTitle>{currentQuestion}/{questions.length} - {question}</QuizTitle>
             <motion.ul
                 initial={"initial"}
