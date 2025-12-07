@@ -63,7 +63,7 @@ export default function HelpMessage({ message, type }: HelpMessageProps) {
             <div className="flex-shrink-0 mt-0.5">
                 {style.icon}
             </div>
-            <p className="text-sm leading-relaxed" style={{ margin: 0 }}>
+            <p className="text-sm leading-relaxed m-0">
                 {message}
             </p>
         </motion.div>
