@@ -6,4 +6,4 @@ node_modules/
 public/_pagefind/
 public/sitemap*.xml
 tsconfig.tsbuildinfo
-
+package-lock.json
