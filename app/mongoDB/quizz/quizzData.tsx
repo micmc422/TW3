@@ -72,7 +72,17 @@ export const quiz: QuizData = {
             },
             explanation: "`insertOne()` insère un seul document, tandis que `insertMany()` en insère plusieurs.",
             point: 10,
-            difficulty: "facile"
+            difficulty: "facile",
+            codeSnippet: {
+                code: `// Insérer un document
+db.users.insertOne({
+  name: "Alice",
+  email: "alice@example.com",
+  age: 25
+});`,
+                language: "javascript",
+                title: "insertOne() dans MongoDB"
+            }
         },
 
         // 🟡 Questions intermédiaires (3 questions - 1/3)
@@ -229,7 +239,20 @@ db.users.find()
             },
             explanation: "Quand la relation contient beaucoup d'éléments, l'embedding peut créer des documents trop volumineux (limite 16MB). Le referencing avec des IDs et l'opérateur $lookup (équivalent de JOIN) est plus approprié pour éviter la croissance illimitée du document.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `// ❌ MAUVAIS : Embedding avec 1000+ commentaires (limite 16MB)
+{ title: "Article", comments: [/* 1000+ items */] }
+
+// ✅ BON : Referencing avec $lookup
+// Collection comments : { articleId: ObjectId("..."), text: "..." }
+db.articles.aggregate([
+  { $lookup: { from: "comments", localField: "_id", 
+               foreignField: "articleId", as: "comments" }}
+]);`,
+                language: "javascript",
+                title: "Embedding vs Referencing"
+            }
         }
     ]
 };

@@ -72,7 +72,16 @@ export const quiz: QuizData = {
             },
             explanation: "Pour importer un module personnalisé dans Node.js avec CommonJS, vous devez utiliser la fonction require(). Par exemple : const myModule = require('./monMod.js'). Note: Node.js supporte aussi les modules ES6 avec import.",
             point: 10,
-            difficulty: "facile"
+            difficulty: "facile",
+            codeSnippet: {
+                code: `// CommonJS (par défaut)
+const myModule = require('./myModule.js');
+
+// ES Modules (nécessite "type": "module" dans package.json)
+import { myFunction } from './myModule.mjs';`,
+                language: "javascript",
+                title: "CommonJS vs ES Modules"
+            }
         },
 
         // 🟡 Questions intermédiaires (3 questions - 1/3)
@@ -198,7 +207,17 @@ async function readFiles() {
             },
             explanation: "L'Event Loop est le mécanisme central de Node.js qui permet d'exécuter du code de manière non bloquante. Il surveille la Call Stack et la Callback Queue, exécutant les callbacks quand la Stack est vide. Cela permet à Node.js de gérer des milliers de connexions simultanées avec un seul thread.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `// Ordre d'exécution de l'Event Loop
+console.log('1. Synchrone');
+process.nextTick(() => console.log('2. Next Tick'));
+Promise.resolve().then(() => console.log('3. Promise'));
+setTimeout(() => console.log('4. Timeout'), 0);
+setImmediate(() => console.log('5. Immediate'));`,
+                language: "javascript",
+                title: "Phases de l'Event Loop"
+            }
         },
         {
             question: "Quelle est la différence entre process.nextTick() et setImmediate() ?",

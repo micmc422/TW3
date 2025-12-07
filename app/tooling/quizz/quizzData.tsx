@@ -113,7 +113,17 @@ npm run lint -- --fix // Corriger automatiquement`,
             messageForIncorrectAnswer: "Faux. La commande correcte est : 'npm init -y'.",
             explanation: "npm init -y crée un fichier package.json avec des valeurs par défaut, permettant de démarrer rapidement un projet.",
             point: 5,
-            difficulty: "facile"
+            difficulty: "facile",
+            codeSnippet: {
+                code: `# Initialiser un projet Node.js
+npm init -y
+
+# Installer des dépendances
+npm install express
+npm install --save-dev typescript`,
+                language: "bash",
+                title: "npm init"
+            }
         },
         {
             question: "Pourquoi utiliser des snippets dans un éditeur de code ?",
@@ -130,7 +140,22 @@ npm run lint -- --fix // Corriger automatiquement`,
             messageForIncorrectAnswer: "Faux. Les snippets servent à insérer rapidement des structures courantes de code.",
             explanation: "Les snippets sont des templates réutilisables qui accélèrent l'écriture du code en fournissant des structures prédéfinies.",
             point: 5,
-            difficulty: "facile"
+            difficulty: "facile",
+            codeSnippet: {
+                code: `// Snippet personnalisé VSCode
+{
+  "React Component": {
+    "prefix": "rfc",
+    "body": [
+      "export default function \${1:Name}() {",
+      "  return <div>\${2:content}</div>;",
+      "}"
+    ]
+  }
+}`,
+                language: "json",
+                title: "Custom snippet"
+            }
         },
         {
             question: "Quelle est la fonction principale de Git ?",
@@ -198,9 +223,17 @@ npm run lint -- --fix // Corriger automatiquement`,
             answerSelectionType: "single",
             messageForCorrectAnswer: "Exact ! Day.js est une alternative plus légère à Moment.js.",
             messageForIncorrectAnswer: "Incorrect. La bonne réponse est : 'Day.js'.",
-            explanation: "Day.js offre une API similaire à Moment.js mais avec une taille beaucoup plus petite (~2KB vs ~67KB), optimisant le bundle final.",
+            explanation: "Day.js offre une API similaire à Moment.js mais avec une taille bien plus petite (~2KB vs ~70KB), réduisant significativement la taille du bundle.",
             point: 10,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `// Day.js : 35x plus léger que Moment.js (2KB vs 70KB)
+import dayjs from 'dayjs';
+const date = dayjs().format('DD/MM/YYYY');
+const past = dayjs().subtract(7, 'day');`,
+                language: "javascript",
+                title: "Day.js vs Moment.js"
+            }
         },
         {
             question: "Qu'est-ce qu'un bundler en développement web ?",
@@ -217,7 +250,16 @@ npm run lint -- --fix // Corriger automatiquement`,
             messageForIncorrectAnswer: "Incorrect. Un bundler compile et optimise les assets.",
             explanation: "Les bundlers (Webpack, Vite, Rollup) regroupent les modules JavaScript, optimisent les assets et préparent le code pour la production.",
             point: 10,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `// Bundler : regroupe et optimise pour la production
+// Avant : src/app.js + src/utils.js (2 fichiers)
+// Après : dist/bundle.min.js (1 fichier minifié)
+
+// Avantages : moins de requêtes, code optimisé, tree-shaking`,
+                language: "javascript",
+                title: "Rôle d'un bundler"
+            }
         },
         {
             question: "Quelle est la différence entre un linter et un formatteur ?",
@@ -234,7 +276,22 @@ npm run lint -- --fix // Corriger automatiquement`,
             messageForIncorrectAnswer: "Incorrect. Ils ont des rôles complémentaires.",
             explanation: "ESLint (linter) analyse le code pour détecter les erreurs et mauvaises pratiques. Prettier (formatteur) reformate le code selon des règles de style cohérentes.",
             point: 10,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `// ESLint (Linter) : détecte erreurs logiques
+// ⚠️ Use === instead of ==
+// ⚠️ Prefer const over let
+
+// Prettier (Formatteur) : fixe le style
+const x=1;if(x===1){console.log('ok');}
+// Devient après Prettier :
+const x = 1;
+if (x === 1) {
+  console.log('ok');
+}`,
+                language: "javascript",
+                title: "Linter vs Formatteur"
+            }
         },
         {
             question: "Qu'est-ce que TypeScript apporte à JavaScript ?",

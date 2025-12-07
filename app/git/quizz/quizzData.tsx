@@ -161,7 +161,16 @@ git branch
             },
             explanation: "La commande git merge permet de fusionner une branche dans la branche active. Par exemple, git merge feature fusionnerait la branche 'feature' dans la branche actuelle.",
             point: 15,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `# Créer et fusionner une branche
+git checkout -b feature
+git commit -m "Ajout feature"
+git checkout main
+git merge feature  # Fusionne feature dans main`,
+                language: "bash",
+                title: "git merge"
+            }
         },
         {
             question: "Quelle commande permet de cloner un dépôt distant sur votre machine locale ?",
@@ -273,7 +282,15 @@ git branch
             },
             explanation: "git rebase réapplique vos commits au-dessus d'une autre base (branche), créant un historique linéaire. Contrairement à merge, il ne crée pas de commit de fusion. Attention : ne jamais rebaser des commits déjà partagés publiquement.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `# REBASE : historique linéaire (pas de commit de fusion)
+git checkout feature
+git rebase main  # Réapplique les commits de feature sur main
+# ⚠️ Ne JAMAIS rebaser des commits publics !`,
+                language: "bash",
+                title: "git rebase - historique linéaire"
+            }
         },
         {
             question: "Comment annuler le dernier commit sans perdre les modifications ?",
@@ -295,7 +312,19 @@ git branch
             },
             explanation: "git reset --soft HEAD~1 annule le dernier commit mais garde les modifications en zone de staging. --hard supprimerait les modifications (dangereux), et revert créerait un nouveau commit inversé (mieux pour l'historique public).",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `# reset --soft : garde les modifs en staging
+git reset --soft HEAD~1
+
+# reset --hard : ⚠️ SUPPRIME les modifications
+git reset --hard HEAD~1
+
+# revert : crée un commit inversé (historique public)
+git revert HEAD`,
+                language: "bash",
+                title: "Annuler un commit"
+            }
         }
     ]
 };

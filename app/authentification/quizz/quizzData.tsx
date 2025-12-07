@@ -50,7 +50,16 @@ export const quiz: QuizData = {
             },
             explanation: "L'encodage Base64 est réversible. Sans HTTPS, les identifiants peuvent être facilement interceptés et lus.",
             point: 10,
-            difficulty: "facile"
+            difficulty: "facile",
+            codeSnippet: {
+                code: `// En-tête HTTP Basic Auth
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+
+// Décoder (facile sans HTTPS !) :
+atob('dXNlcjpwYXNzd29yZA==')  // → "user:password"`,
+                language: "javascript",
+                title: "HTTP Basic Auth - Base64 réversible"
+            }
         },
         {
             question: "Pourquoi est-il critique d'utiliser HTTPS pour l'authentification ?",
@@ -96,7 +105,19 @@ export const quiz: QuizData = {
             },
             explanation: "OAuth 2.0 permet de donner des droits d'accès (scopes) à une application tierce sans partager ses identifiants.",
             point: 15,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `// Flux OAuth 2.0 : Autorisation sans partager mot de passe
+// 1. Rediriger vers Google pour obtenir un code
+window.location.href = 'https://accounts.google.com/oauth?...';
+// 2. Google renvoie un code → échanger contre access token
+// 3. Utiliser le token pour accéder aux ressources
+fetch('https://api.google.com/user', {
+  headers: { Authorization: 'Bearer ' + access_token }
+});`,
+                language: "javascript",
+                title: "OAuth 2.0 - Délégation d'accès"
+            }
         },
         {
             question: "À quoi sert l'attribut 'HttpOnly' sur un cookie de session ?",
@@ -230,7 +251,18 @@ app.use(session({
             },
             explanation: "Avec JWT, toutes les informations d'authentification sont dans le token (côté client). Le serveur n'a pas besoin de stocker d'état de session, ce qui facilite la scalabilité mais nécessite une gestion rigoureuse de la sécurité (signature, expiration, révocation).",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `// JWT (Stateless) - tout dans le token côté client
+const token = jwt.sign({ userId: 123 }, SECRET);
+jwt.verify(token, SECRET);  // Pas besoin de DB !
+
+// Session (Stateful) - données côté serveur
+req.session.userId = 123;  // Stocké en DB/Redis
+// Client a juste un cookie avec Session ID`,
+                language: "javascript",
+                title: "JWT (stateless) vs Sessions (stateful)"
+            }
         }
     ]
 };
