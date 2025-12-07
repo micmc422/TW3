@@ -81,14 +81,19 @@ function generateQuestionId(moduleId: string, questionIndex: number): number {
 
 /**
  * Convertit une question en format Moodle XML
+ * Ajoute le contexte du module au début de la question pour plus de clarté
  */
 function questionToMoodleXML(
   question: QuizQuestion,
   questionId: number,
-  categoryName: string
+  categoryName: string,
+  moduleName: string
 ): string {
   const isSingle = question.answerSelectionType === 'single';
-  const questionText = escapeXml(question.question);
+  
+  // Extraire le nom du module pour préfixer la question
+  const modulePrefix = `[${moduleName}] `;
+  const questionText = escapeXml(modulePrefix + question.question);
   
   // Construire le texte général de feedback
   let generalFeedback = '';
@@ -328,7 +333,7 @@ function generateMoodleXML(): string {
       // Ajouter les questions sélectionnées du module
       moduleQuestions.forEach(({ question, originalIndex }) => {
         const questionId = generateQuestionId(module.id, originalIndex);
-        questionsXML += questionToMoodleXML(question, questionId, categoryName) + '\n\n';
+        questionsXML += questionToMoodleXML(question, questionId, categoryName, module.name) + '\n\n';
       });
     }
   });

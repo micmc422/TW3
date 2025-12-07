@@ -17,7 +17,7 @@
       <text>TW3/Docker - Question 632000</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Qu&apos;est-ce que Docker 🐳 ?</p>]]></text>
+      <text><![CDATA[<p>[Docker] Qu&apos;est-ce que Docker 🐳 ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Docker est une plateforme qui permet de créer et de gérer des conteneurs, des unités légères et portables pour les applications logicielles.]]></text>
@@ -61,7 +61,7 @@
       <text>TW3/Docker - Question 632001</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle commande permet de lancer un nouveau conteneur 🚚 à partir d&apos;une image 📦 ?</p>]]></text>
+      <text><![CDATA[<p>[Docker] Quelle commande permet de lancer un nouveau conteneur 🚚 à partir d&apos;une image 📦 ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[La commande docker run permet de créer et de démarrer un nouveau conteneur à partir d&apos;une image spécifiée.]]></text>
@@ -105,7 +105,7 @@
       <text>TW3/Docker - Question 632002</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Que signifie le terme &apos;image&apos; 📦 dans le contexte de Docker 🐳 ?</p>]]></text>
+      <text><![CDATA[<p>[Docker] Que signifie le terme &apos;image&apos; 📦 dans le contexte de Docker 🐳 ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Dans Docker, une image est un modèle immuable utilisé pour créer des conteneurs. Elle contient le code de l&apos;application, ses dépendances et les configurations nécessaires.]]></text>
@@ -149,7 +149,7 @@
       <text>TW3/Docker - Question 632003</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle commande permet de supprimer tous les conteneurs 🚚 arrêtés ?</p>]]></text>
+      <text><![CDATA[<p>[Docker] Quelle commande permet de supprimer tous les conteneurs 🚚 arrêtés ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[La commande docker container prune supprime tous les conteneurs arrêtés. C&apos;est une façon efficace de libérer de l&apos;espace disque en éliminant les conteneurs non utilisés.]]></text>
@@ -193,7 +193,7 @@
       <text>TW3/Docker - Question 632004</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel est l&apos;avantage principal de l&apos;utilisation de volumes 💾 Docker 🐳 ?</p>]]></text>
+      <text><![CDATA[<p>[Docker] Quel est l&apos;avantage principal de l&apos;utilisation de volumes 💾 Docker 🐳 ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Les volumes Docker permettent de persister les données même lorsque le conteneur est arrêté ou supprimé. Cela facilite la sauvegarde et la récupération des données importantes.]]></text>
@@ -237,7 +237,7 @@
       <text>TW3/Docker - Question 632006</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle est la différence entre CMD et ENTRYPOINT dans un Dockerfile ?</p>]]></text>
+      <text><![CDATA[<p>[Docker] Quelle est la différence entre CMD et ENTRYPOINT dans un Dockerfile ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[ENTRYPOINT définit la commande principale qui sera toujours exécutée, tandis que CMD fournit des arguments par défaut qui peuvent être écrasés au runtime. Ils sont souvent utilisés ensemble.]]></text>
@@ -281,7 +281,7 @@
       <text>TW3/Docker - Question 632007</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle stratégie permet d&apos;optimiser la taille d&apos;une image Docker ?</p>]]></text>
+      <text><![CDATA[<p>[Docker] Quelle stratégie permet d&apos;optimiser la taille d&apos;une image Docker ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Pour optimiser la taille d&apos;une image : utiliser des images de base légères (Alpine), combiner les commandes RUN pour réduire les layers, utiliser le multi-stage build pour exclure les outils de build, et nettoyer les caches.]]></text>
@@ -334,10 +334,10 @@
       <text>TW3/React - Question 527000</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>React est principalement…</p>]]></text>
+      <text><![CDATA[<p>[React] Dans l&apos;écosystème JavaScript, React est principalement classé comme quoi ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
-      <text><![CDATA[React est une bibliothèque pour construire des UI (déclarative).]]></text>
+      <text><![CDATA[React est une bibliothèque JavaScript pour construire des interfaces utilisateur de manière déclarative, développée par Meta (Facebook).]]></text>
     </generalfeedback>
     <defaultgrade>5</defaultgrade>
     <penalty>0.3333333</penalty>
@@ -370,10 +370,10 @@
       <text>TW3/React - Question 527001</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Le Virtual DOM sert principalement à…</p>]]></text>
+      <text><![CDATA[<p>[React] Quel est le rôle principal du Virtual DOM dans React ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
-      <text><![CDATA[Le Virtual DOM permet à React de calculer les changements minimaux nécessaires avant de mettre à jour le DOM réel, optimisant ainsi les performances.]]></text>
+      <text><![CDATA[Le Virtual DOM est une représentation en mémoire du DOM réel. React l&apos;utilise pour calculer les changements minimaux nécessaires avant de mettre à jour le DOM réel, optimisant ainsi les performances.]]></text>
     </generalfeedback>
     <defaultgrade>5</defaultgrade>
     <penalty>0.3333333</penalty>
@@ -384,11 +384,11 @@
     <answernumbering>abc</answernumbering>
     <showstandardinstruction>1</showstandardinstruction>
       <answer fraction="0" format="html">
-        <text><![CDATA[Générer des routes]]></text>
+        <text><![CDATA[Générer des routes pour la navigation]]></text>
         
       </answer>
       <answer fraction="0" format="html">
-        <text><![CDATA[Minifier le code]]></text>
+        <text><![CDATA[Minifier automatiquement le code]]></text>
         
       </answer>
       <answer fraction="100" format="html">
@@ -396,7 +396,7 @@
         
       </answer>
       <answer fraction="0" format="html">
-        <text><![CDATA[Gérer l&apos;état global]]></text>
+        <text><![CDATA[Gérer l&apos;état global de l&apos;application]]></text>
         
       </answer>
   </question>
@@ -406,10 +406,10 @@
       <text>TW3/React - Question 527002</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Depuis React 16.8, quelle fonctionnalité permet aux fonctions d&apos;avoir un état ?</p>]]></text>
+      <text><![CDATA[<p>[React] Quelle fonctionnalité introduite dans React 16.8 permet aux composants fonctionnels d&apos;avoir un état local ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
-      <text><![CDATA[Les Hooks, introduits dans React 16.8, permettent d&apos;utiliser l&apos;état et d&apos;autres fonctionnalités React dans des composants fonctionnels.]]></text>
+      <text><![CDATA[Les Hooks, introduits dans React 16.8, permettent d&apos;utiliser l&apos;état et d&apos;autres fonctionnalités React (comme les effets de bord) dans des composants fonctionnels, sans avoir besoin de classes.]]></text>
     </generalfeedback>
     <defaultgrade>5</defaultgrade>
     <penalty>0.3333333</penalty>
@@ -420,19 +420,19 @@
     <answernumbering>abc</answernumbering>
     <showstandardinstruction>1</showstandardinstruction>
       <answer fraction="0" format="html">
-        <text><![CDATA[HOC]]></text>
+        <text><![CDATA[Higher-Order Components (HOC)]]></text>
         
       </answer>
       <answer fraction="100" format="html">
-        <text><![CDATA[Hooks]]></text>
+        <text><![CDATA[Les Hooks React]]></text>
         
       </answer>
       <answer fraction="0" format="html">
-        <text><![CDATA[Mixins]]></text>
+        <text><![CDATA[Les Mixins]]></text>
         
       </answer>
       <answer fraction="0" format="html">
-        <text><![CDATA[Classes]]></text>
+        <text><![CDATA[Les Classes]]></text>
         
       </answer>
   </question>
@@ -442,10 +442,10 @@
       <text>TW3/React - Question 527007</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>useMemo est utile pour…</p>]]></text>
+      <text><![CDATA[<p>[React] À quoi sert le Hook useMemo() dans un composant React ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
-      <text><![CDATA[useMemo mémorise le résultat d&apos;un calcul coûteux et le recalcule uniquement si les dépendances changent, optimisant ainsi les performances.]]></text>
+      <text><![CDATA[useMemo permet de mémoiser le résultat d&apos;un calcul coûteux et de ne le recalculer que si les dépendances changent, optimisant ainsi les performances en évitant des calculs inutiles.]]></text>
     </generalfeedback>
     <defaultgrade>10</defaultgrade>
     <penalty>0.3333333</penalty>
@@ -456,19 +456,19 @@
     <answernumbering>abc</answernumbering>
     <showstandardinstruction>1</showstandardinstruction>
       <answer fraction="0" format="html">
-        <text><![CDATA[Mémoïser des composants]]></text>
+        <text><![CDATA[À mémoïser des composants entiers]]></text>
         
       </answer>
       <answer fraction="100" format="html">
-        <text><![CDATA[Mémoïser des valeurs calculées coûteuses]]></text>
+        <text><![CDATA[À mémoïser des valeurs calculées coûteuses]]></text>
         
       </answer>
       <answer fraction="0" format="html">
-        <text><![CDATA[Créer un contexte]]></text>
+        <text><![CDATA[À créer un contexte React]]></text>
         
       </answer>
       <answer fraction="0" format="html">
-        <text><![CDATA[Gérer la navigation]]></text>
+        <text><![CDATA[À gérer la navigation entre pages]]></text>
         
       </answer>
   </question>
@@ -478,10 +478,10 @@
       <text>TW3/React - Question 527008</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>useCallback est utile pour…</p>]]></text>
+      <text><![CDATA[<p>[React] Quel est le cas d&apos;usage principal du Hook useCallback() ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
-      <text><![CDATA[useCallback retourne une version mémoïsée d&apos;une fonction, utile pour éviter de recréer des fonctions à chaque rendu et optimiser les composants enfants.]]></text>
+      <text><![CDATA[useCallback retourne une version mémoïsée d&apos;une fonction callback. C&apos;est utile pour éviter de recréer des fonctions à chaque rendu, notamment pour optimiser les composants enfants qui dépendent de cette fonction.]]></text>
     </generalfeedback>
     <defaultgrade>10</defaultgrade>
     <penalty>0.3333333</penalty>
@@ -492,19 +492,19 @@
     <answernumbering>abc</answernumbering>
     <showstandardinstruction>1</showstandardinstruction>
       <answer fraction="100" format="html">
-        <text><![CDATA[Mémoïser une fonction]]></text>
+        <text><![CDATA[Mémoïser une fonction pour éviter sa recréation]]></text>
         
       </answer>
       <answer fraction="0" format="html">
-        <text><![CDATA[Créer un reducer]]></text>
+        <text><![CDATA[Créer un reducer pour gérer l&apos;état]]></text>
         
       </answer>
       <answer fraction="0" format="html">
-        <text><![CDATA[Lire des params d&apos;URL]]></text>
+        <text><![CDATA[Lire les paramètres de l&apos;URL]]></text>
         
       </answer>
       <answer fraction="0" format="html">
-        <text><![CDATA[Suspension du rendu]]></text>
+        <text><![CDATA[Suspendre le rendu d&apos;un composant]]></text>
         
       </answer>
   </question>
@@ -514,10 +514,10 @@
       <text>TW3/React - Question 527014</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Pour le routage dans ce cours, on importe depuis…</p>]]></text>
+      <text><![CDATA[<p>[React] Pour implémenter le routage dans une application React web, de quel package doit-on importer les composants ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
-      <text><![CDATA[react-router-dom est le package pour les applications web React Router v6, incluant des composants comme BrowserRouter, Link et Routes.]]></text>
+      <text><![CDATA[react-router-dom est le package pour les applications web React Router v6. Il inclut des composants spécifiques au DOM comme BrowserRouter, Link et Routes. &apos;react-router&apos; contient uniquement le cœur partagé.]]></text>
     </generalfeedback>
     <defaultgrade>15</defaultgrade>
     <penalty>0.3333333</penalty>
@@ -550,10 +550,10 @@
       <text>TW3/React - Question 527015</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel composant déclare un conteneur de routes (v6) ?</p>]]></text>
+      <text><![CDATA[<p>[React] Dans React Router v6, quel composant remplace &lt;Switch&gt; pour déclarer un conteneur de routes ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
-      <text><![CDATA[React Router v6 utilise &lt;Routes&gt; (remplaçant &lt;Switch&gt; de v5) comme conteneur pour définir les routes de l&apos;application.]]></text>
+      <text><![CDATA[React Router v6 utilise &lt;Routes&gt; qui remplace &lt;Switch&gt; de v5. &lt;Routes&gt; offre une API plus simple et de meilleures performances pour déclarer les routes de l&apos;application.]]></text>
     </generalfeedback>
     <defaultgrade>15</defaultgrade>
     <penalty>0.3333333</penalty>
@@ -564,19 +564,19 @@
     <answernumbering>abc</answernumbering>
     <showstandardinstruction>1</showstandardinstruction>
       <answer fraction="0" format="html">
-        <text><![CDATA[Switch]]></text>
+        <text><![CDATA[&lt;Switch&gt;]]></text>
         
       </answer>
       <answer fraction="100" format="html">
-        <text><![CDATA[Routes]]></text>
+        <text><![CDATA[&lt;Routes&gt;]]></text>
         
       </answer>
       <answer fraction="0" format="html">
-        <text><![CDATA[RouteGroup]]></text>
+        <text><![CDATA[&lt;RouteGroup&gt;]]></text>
         
       </answer>
       <answer fraction="0" format="html">
-        <text><![CDATA[RouterView]]></text>
+        <text><![CDATA[&lt;RouterView&gt;]]></text>
         
       </answer>
   </question>
@@ -595,7 +595,7 @@
       <text>TW3/Authentification - Question 1711000</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle est la différence fondamentale entre l&apos;identification et l&apos;authentification ?</p>]]></text>
+      <text><![CDATA[<p>[Authentification] Quelle est la différence fondamentale entre l&apos;identification et l&apos;authentification ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[L&apos;identification répond à la question &apos;Qui êtes-vous ?&apos;, tandis que l&apos;authentification répond à &apos;Prouvez-le&apos;.]]></text>
@@ -639,7 +639,7 @@
       <text>TW3/Authentification - Question 1711001</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Dans le protocole HTTP Basic Auth, comment les identifiants sont-ils transmis ?</p>]]></text>
+      <text><![CDATA[<p>[Authentification] Dans le protocole HTTP Basic Auth, comment les identifiants sont-ils transmis ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[L&apos;encodage Base64 est réversible. Sans HTTPS, les identifiants peuvent être facilement interceptés et lus.]]></text>
@@ -683,7 +683,7 @@
       <text>TW3/Authentification - Question 1711002</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Pourquoi est-il critique d&apos;utiliser HTTPS pour l&apos;authentification ?</p>]]></text>
+      <text><![CDATA[<p>[Authentification] Pourquoi est-il critique d&apos;utiliser HTTPS pour l&apos;authentification ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Sans HTTPS, les mots de passe et les cookies de session circulent en clair sur le réseau et peuvent être volés par une attaque Man-in-the-Middle.]]></text>
@@ -727,7 +727,7 @@
       <text>TW3/Authentification - Question 1711003</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel est l&apos;objectif principal du protocole OAuth 2.0 ?</p>]]></text>
+      <text><![CDATA[<p>[Authentification] Quel est l&apos;objectif principal du protocole OAuth 2.0 ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[OAuth 2.0 permet de donner des droits d&apos;accès (scopes) à une application tierce sans partager ses identifiants.]]></text>
@@ -771,7 +771,7 @@
       <text>TW3/Authentification - Question 1711004</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>À quoi sert l&apos;attribut &apos;HttpOnly&apos; sur un cookie de session ?</p>]]></text>
+      <text><![CDATA[<p>[Authentification] À quoi sert l&apos;attribut &apos;HttpOnly&apos; sur un cookie de session ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Si un attaquant injecte du script malveillant (XSS), il ne pourra pas lire les cookies marqués HttpOnly, protégeant ainsi la session.]]></text>
@@ -815,7 +815,7 @@
       <text>TW3/Authentification - Question 1711006</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Dans une gestion de session côté serveur, qu&apos;est-ce qui est stocké côté client (navigateur) ?</p>]]></text>
+      <text><![CDATA[<p>[Authentification] Dans une gestion de session côté serveur, qu&apos;est-ce qui est stocké côté client (navigateur) ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Le Session ID permet au serveur de retrouver les données de session correspondantes stockées de son côté (mémoire, BDD, Redis...).]]></text>
@@ -859,7 +859,7 @@
       <text>TW3/Authentification - Question 1711007</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel attribut de cookie permet de se protéger contre les attaques CSRF (Cross-Site Request Forgery) ?</p>]]></text>
+      <text><![CDATA[<p>[Authentification] Quel attribut de cookie permet de se protéger contre les attaques CSRF (Cross-Site Request Forgery) ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[SameSite=Strict ou SameSite=Lax empêche l&apos;envoi automatique de cookies lors de requêtes provenant d&apos;autres sites, protégeant ainsi contre CSRF.]]></text>
@@ -912,7 +912,7 @@
       <text>TW3/Next.js - Question 713000</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel est l&apos;avantage principal de Next.js par rapport à React seul ?</p>]]></text>
+      <text><![CDATA[<p>[Next.js] Quel est l&apos;avantage principal de Next.js par rapport à React seul ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Next.js offre le rendu côté serveur (SSR) et le Static Site Generation (SSG), améliorant ainsi les performances et le SEO.]]></text>
@@ -956,7 +956,7 @@
       <text>TW3/Next.js - Question 713001</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel dossier contient le système de routage par défaut en Next.js 13+ ?</p>]]></text>
+      <text><![CDATA[<p>[Next.js] Quel dossier contient le système de routage par défaut en Next.js 13+ ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Avec Next.js 13+, le routage est basé sur le dossier `app/`, qui utilise le système de fichiers pour définir les routes.]]></text>
@@ -1000,7 +1000,7 @@
       <text>TW3/Next.js - Question 713002</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle directive permet de définir un Client Component en Next.js ?</p>]]></text>
+      <text><![CDATA[<p>[Next.js] Quelle directive permet de définir un Client Component en Next.js ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[En Next.js, `&apos;use client&apos;;` doit être placé au début d&apos;un fichier pour indiquer que c&apos;est un Client Component.]]></text>
@@ -1044,7 +1044,7 @@
       <text>TW3/Next.js - Question 713007</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Comment Next.js gère-t-il le rendu des pages pour améliorer les performances ?</p>]]></text>
+      <text><![CDATA[<p>[Next.js] Comment Next.js gère-t-il le rendu des pages pour améliorer les performances ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Next.js offre plusieurs modes de rendu : SSG, SSR et le streaming pour optimiser le chargement des pages.]]></text>
@@ -1088,7 +1088,7 @@
       <text>TW3/Next.js - Question 713008</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel hook React est souvent utilisé avec les Server Actions pour gérer les mises à jour optimistes ?</p>]]></text>
+      <text><![CDATA[<p>[Next.js] Quel hook React est souvent utilisé avec les Server Actions pour gérer les mises à jour optimistes ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Next.js propose `useOptimistic` pour améliorer l&apos;expérience utilisateur en appliquant immédiatement les mises à jour attendues.]]></text>
@@ -1132,7 +1132,7 @@
       <text>TW3/Next.js - Question 713014</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel est un avantage clé du streaming dans Next.js 14+ ?</p>]]></text>
+      <text><![CDATA[<p>[Next.js] Quel est un avantage clé du streaming dans Next.js 14+ ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Le streaming améliore les performances en affichant immédiatement le contenu statique, tout en chargeant progressivement les données dynamiques au fur et à mesure.]]></text>
@@ -1185,7 +1185,7 @@
       <text>TW3/NPM - Question 331000</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Qu&apos;est-ce que NPM et quel est son rôle principal ?</p>]]></text>
+      <text><![CDATA[<p>[NPM] Qu&apos;est-ce que NPM et quel est son rôle principal ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[NPM (Node Package Manager) est le gestionnaire de paquets officiel de Node.js. Il permet d&apos;installer, partager et gérer les dépendances JavaScript.]]></text>
@@ -1229,7 +1229,7 @@
       <text>TW3/NPM - Question 331001</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle commande permet d&apos;initialiser un nouveau projet Node.js et de créer un fichier package.json ?</p>]]></text>
+      <text><![CDATA[<p>[NPM] Quelle commande permet d&apos;initialiser un nouveau projet Node.js et de créer un fichier package.json ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[La commande npm init lance un assistant interactif pour créer un fichier package.json. Utilisez npm init -y pour accepter toutes les valeurs par défaut.]]></text>
@@ -1273,7 +1273,7 @@
       <text>TW3/NPM - Question 331002</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel fichier contient la liste des dépendances nécessaires à un projet Node.js ?</p>]]></text>
+      <text><![CDATA[<p>[NPM] Quel fichier contient la liste des dépendances nécessaires à un projet Node.js ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Le fichier package.json contient les métadonnées du projet, les dépendances, les scripts et la configuration NPM.]]></text>
@@ -1317,7 +1317,7 @@
       <text>TW3/NPM - Question 331003</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Comment installer un paquet en tant que dépendance de développement uniquement ?</p>]]></text>
+      <text><![CDATA[<p>[NPM] Comment installer un paquet en tant que dépendance de développement uniquement ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[npm install --save-dev (ou -D) installe le paquet dans devDependencies. Ces dépendances ne sont utilisées qu&apos;en développement (tests, build, etc.) et ne sont pas incluses en production.]]></text>
@@ -1361,7 +1361,7 @@
       <text>TW3/NPM - Question 331006</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Que signifie le symbole ^ (caret) devant une version dans package.json (ex: ^1.2.3) ?</p>]]></text>
+      <text><![CDATA[<p>[NPM] Que signifie le symbole ^ (caret) devant une version dans package.json (ex: ^1.2.3) ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Le ^ (caret) accepte les changements qui ne modifient pas le premier chiffre non nul. Pour ^1.2.3, cela permet 1.2.3 à 1.x.x (&lt; 2.0.0). C&apos;est le comportement par défaut de npm install.]]></text>
@@ -1414,7 +1414,7 @@
       <text>TW3/Tooling - Question 764000</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Qu&apos;est-ce que le tooling en développement web ?</p>]]></text>
+      <text><![CDATA[<p>[Tooling] Qu&apos;est-ce que le tooling en développement web ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Le tooling regroupe tous les outils (éditeurs, linters, bundlers, etc.) qui améliorent la productivité et la qualité du code.]]></text>
@@ -1458,7 +1458,7 @@
       <text>TW3/Tooling - Question 764001</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel est l&apos;objectif principal du tooling ?</p>]]></text>
+      <text><![CDATA[<p>[Tooling] Quel est l&apos;objectif principal du tooling ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Le tooling vise à automatiser les tâches répétitives, détecter les erreurs tôt et maintenir des standards de code cohérents.]]></text>
@@ -1502,7 +1502,7 @@
       <text>TW3/Tooling - Question 764002</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle extension est utilisée pour formater automatiquement le code dans VSCode ?</p>]]></text>
+      <text><![CDATA[<p>[Tooling] Quelle extension est utilisée pour formater automatiquement le code dans VSCode ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Prettier formate automatiquement le code selon des règles prédéfinies, assurant un style cohérent dans toute l&apos;équipe.]]></text>
@@ -1546,7 +1546,7 @@
       <text>TW3/Tooling - Question 764007</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel outil permet d&apos;analyser la taille des modules importés ?</p>]]></text>
+      <text><![CDATA[<p>[Tooling] Quel outil permet d&apos;analyser la taille des modules importés ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Import Cost affiche la taille des imports dans VSCode, permettant d&apos;identifier les dépendances lourdes qui impactent les performances.]]></text>
@@ -1590,7 +1590,7 @@
       <text>TW3/Tooling - Question 764013</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Qu&apos;est-ce qu&apos;un monorepo et pourquoi l&apos;utiliser ?</p>]]></text>
+      <text><![CDATA[<p>[Tooling] Qu&apos;est-ce qu&apos;un monorepo et pourquoi l&apos;utiliser ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Un monorepo (utilisé avec des outils comme Turborepo, Nx, pnpm workspaces) permet de gérer plusieurs projets dans un seul dépôt, facilitant le partage de code et la gestion des dépendances.]]></text>
@@ -1643,7 +1643,7 @@
       <text>TW3/MongoDB - Question 742000</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Que signifie l&apos;acronyme NoSQL ?</p>]]></text>
+      <text><![CDATA[<p>[MongoDB] Que signifie l&apos;acronyme NoSQL ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[NoSQL est une approche de gestion de données qui diffère des bases de données relationnelles traditionnelles.]]></text>
@@ -1687,7 +1687,7 @@
       <text>TW3/MongoDB - Question 742001</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quel format de données MongoDB utilise-t-il pour stocker les documents ?</p>]]></text>
+      <text><![CDATA[<p>[MongoDB] Quel format de données MongoDB utilise-t-il pour stocker les documents ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[BSON est une représentation binaire de documents JSON, permettant plus de types de données et une efficacité accrue.]]></text>
@@ -1731,7 +1731,7 @@
       <text>TW3/MongoDB - Question 742002</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle commande permet d&apos;insérer un seul document dans une collection ?</p>]]></text>
+      <text><![CDATA[<p>[MongoDB] Quelle commande permet d&apos;insérer un seul document dans une collection ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[`insertOne()` insère un seul document, tandis que `insertMany()` en insère plusieurs.]]></text>
@@ -1775,7 +1775,7 @@
       <text>TW3/MongoDB - Question 742003</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Comment récupérer tous les documents d&apos;une collection nommée &apos;users&apos; ?</p>]]></text>
+      <text><![CDATA[<p>[MongoDB] Comment récupérer tous les documents d&apos;une collection nommée &apos;users&apos; ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Sans arguments, `find()` retourne un curseur vers tous les documents de la collection.]]></text>
@@ -1819,7 +1819,7 @@
       <text>TW3/MongoDB - Question 742006</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle commande permet de lancer le shell MongoDB ?</p>]]></text>
+      <text><![CDATA[<p>[MongoDB] Quelle commande permet de lancer le shell MongoDB ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[`mongosh` est la nouvelle interface en ligne de commande pour interagir avec MongoDB.]]></text>
@@ -1872,7 +1872,7 @@
       <text>TW3/Git - Question 324000</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Qu&apos;est-ce que Git ?</p>]]></text>
+      <text><![CDATA[<p>[Git] Qu&apos;est-ce que Git ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Git est un système de contrôle de version distribué qui permet de suivre les modifications apportées à un projet au fil du temps.]]></text>
@@ -1916,7 +1916,7 @@
       <text>TW3/Git - Question 324001</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle commande permet d&apos;initialiser un nouveau dépôt Git local ?</p>]]></text>
+      <text><![CDATA[<p>[Git] Quelle commande permet d&apos;initialiser un nouveau dépôt Git local ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[La commande git init crée un nouveau dépôt Git dans le dossier courant. Elle initialise un sous-dossier .git qui contient tous les fichiers nécessaires au suivi de la version.]]></text>
@@ -1960,7 +1960,7 @@
       <text>TW3/Git - Question 324004</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle commande permet de créer une nouvelle branche et de s&apos;y déplacer immédiatement ?</p>]]></text>
+      <text><![CDATA[<p>[Git] Quelle commande permet de créer une nouvelle branche et de s&apos;y déplacer immédiatement ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[La commande git checkout -b nom_de_la_branche crée une nouvelle branche et s&apos;y déplace immédiatement. C&apos;est une forme courte de git branch nom_de_la_branche puis git checkout nom_de_la_branche. Note : git switch -c est aussi correcte avec les versions récentes de Git.]]></text>
@@ -2004,7 +2004,7 @@
       <text>TW3/Git - Question 324008</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quelle commande permet d&apos;obtenir les dernières modifications depuis un dépôt distant ?</p>]]></text>
+      <text><![CDATA[<p>[Git] Quelle commande permet d&apos;obtenir les dernières modifications depuis un dépôt distant ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[La commande git pull combine les actions de git fetch et git merge. Elle récupère les changements depuis le dépôt distant et les fusionne dans votre branche locale.]]></text>
@@ -2057,7 +2057,7 @@
       <text>TW3/Node.js - Question 689000</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Qu&apos;est-ce que Node.js ?</p>]]></text>
+      <text><![CDATA[<p>[Node.js] Qu&apos;est-ce que Node.js ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Node.js est un environnement d&apos;exécution JavaScript qui permet d&apos;exécuter du code JavaScript de manière asynchrone et non bloquante sur le serveur.]]></text>
@@ -2101,7 +2101,7 @@
       <text>TW3/Node.js - Question 689001</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Pourquoi utiliser Node.js ?</p>]]></text>
+      <text><![CDATA[<p>[Node.js] Pourquoi utiliser Node.js ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Node.js offre plusieurs avantages : il est non bloquant grâce à son architecture événementielle, utilise le moteur V8 JavaScript, et est particulièrement adapté pour les applications I/O intensives comme les APIs et les services temps réel.]]></text>
@@ -2145,7 +2145,7 @@
       <text>TW3/Node.js - Question 689003</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Quels sont les modules intégrés de Node.js ?</p>]]></text>
+      <text><![CDATA[<p>[Node.js] Quels sont les modules intégrés de Node.js ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[Node.js dispose de nombreux modules intégrés (core modules), dont http, fs, path, process, os, util, module, buffer, crypto, et bien d&apos;autres. Express, mongoose et react sont des packages NPM externes, pas des modules intégrés.]]></text>
@@ -2189,7 +2189,7 @@
       <text>TW3/Node.js - Question 689006</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Qu&apos;est-ce que l&apos;Event Loop dans Node.js ?</p>]]></text>
+      <text><![CDATA[<p>[Node.js] Qu&apos;est-ce que l&apos;Event Loop dans Node.js ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[L&apos;Event Loop est le mécanisme central de Node.js qui permet d&apos;exécuter du code de manière non bloquante. Il surveille la Call Stack et la Callback Queue, exécutant les callbacks quand la Stack est vide. Cela permet à Node.js de gérer des milliers de connexions simultanées avec un seul thread.]]></text>
