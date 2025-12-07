@@ -21,6 +21,11 @@ export const quiz: QuizData = {
             correctAnswer: [2],
             messageForCorrectAnswer: "Correct ! L'identification est la déclaration de l'identité (ex: login), et l'authentification est la preuve de cette identité (ex: mot de passe).",
             messageForIncorrectAnswer: "Incorrect. L'identification est la déclaration (je suis Alice), l'authentification est la vérification (voici mon mot de passe).",
+            helpMessages: {
+                0: "💡 C'est l'inverse ! L'identification ne vérifie rien, elle déclare juste l'identité (ex: 'Je suis Alice'). L'authentification prouve ensuite cette identité. 📖 Voir le cours: /authentification/fondamentaux",
+                2: "💡 Non, ce sont deux étapes distinctes ! L'identification c'est 'Qui êtes-vous ?' et l'authentification c'est 'Prouvez-le !'. 📖 Voir le cours: /authentification/fondamentaux",
+                3: "💡 L'ordre est crucial ! D'abord on s'identifie (déclarer qui on est), puis on s'authentifie (prouver qu'on est bien cette personne). 📖 Voir le cours: /authentification/fondamentaux"
+            },
             explanation: "L'identification répond à la question 'Qui êtes-vous ?', tandis que l'authentification répond à 'Prouvez-le'.",
             point: 10,
             difficulty: "facile"
@@ -38,6 +43,11 @@ export const quiz: QuizData = {
             correctAnswer: [3],
             messageForCorrectAnswer: "Exact ! Ils sont encodés en Base64, ce qui n'est pas un chiffrement sécurisé, d'où la nécessité du HTTPS.",
             messageForIncorrectAnswer: "Incorrect. Ils sont simplement encodés en Base64.",
+            helpMessages: {
+                0: "💡 Non, Basic Auth n'utilise pas de chiffrement AES. C'est un simple encodage Base64, très facile à décoder ! 📖 Voir: https://developer.mozilla.org/fr/docs/Web/HTTP/Authentication",
+                1: "💡 Heureusement non ! Les identifiants ne sont jamais dans l'URL avec Basic Auth. Ils sont dans l'en-tête HTTP 'Authorization'. 📖 Voir: https://developer.mozilla.org/fr/docs/Web/HTTP/Authentication",
+                3: "💡 Le hachage MD5 est utilisé pour stocker des mots de passe, pas pour les transmettre. Basic Auth utilise Base64 (réversible !). 📖 Voir le cours: /authentification/protocoles"
+            },
             explanation: "L'encodage Base64 est réversible. Sans HTTPS, les identifiants peuvent être facilement interceptés et lus.",
             point: 10,
             difficulty: "facile"
@@ -55,6 +65,11 @@ export const quiz: QuizData = {
             correctAnswer: [3],
             messageForCorrectAnswer: "Correct ! HTTPS chiffre le canal de communication.",
             messageForIncorrectAnswer: "Incorrect. HTTPS est vital pour la confidentialité et l'intégrité des données.",
+            helpMessages: {
+                0: "💡 Bien que HTTPS améliore le SEO, ce n'est qu'un effet secondaire. Le but principal est la SÉCURITÉ ! 📖 Voir le cours: /authentification/securite",
+                1: "💡 La compression n'est pas l'objectif de HTTPS. Le protocole SSL/TLS sert à CHIFFRER les communications pour les protéger. 📖 Voir: https://developer.mozilla.org/fr/docs/Glossary/HTTPS",
+                3: "💡 En fait, HTTPS peut parfois ralentir légèrement (overhead du chiffrement), mais c'est un prix négligeable pour la sécurité ! 📖 Voir le cours: /authentification/securite"
+            },
             explanation: "Sans HTTPS, les mots de passe et les cookies de session circulent en clair sur le réseau et peuvent être volés par une attaque Man-in-the-Middle.",
             point: 10,
             difficulty: "facile"
@@ -74,6 +89,11 @@ export const quiz: QuizData = {
             correctAnswer: [2],
             messageForCorrectAnswer: "Correct ! OAuth 2.0 est un protocole d'autorisation permettant à une application d'accéder aux ressources d'un utilisateur sur un autre service.",
             messageForIncorrectAnswer: "Incorrect. OAuth 2.0 est conçu pour l'autorisation. Pour l'authentification, on utilise souvent OpenID Connect par-dessus.",
+            helpMessages: {
+                0: "💡 OAuth 2.0 n'est PAS un protocole d'authentification ! Pour l'authentification, utilisez OpenID Connect (construit sur OAuth 2.0). 📖 Voir: https://oauth.net/2/",
+                2: "💡 OAuth 2.0 ne s'occupe pas du chiffrement des mots de passe. Son rôle est de déléguer des droits d'accès via des tokens. 📖 Voir le cours: /authentification/oauth",
+                3: "💡 La gestion de session est un concept différent. OAuth 2.0 délègue des autorisations via des tokens d'accès. 📖 Voir le cours: /authentification/oauth"
+            },
             explanation: "OAuth 2.0 permet de donner des droits d'accès (scopes) à une application tierce sans partager ses identifiants.",
             point: 15,
             difficulty: "intermédiaire"
@@ -91,6 +111,11 @@ export const quiz: QuizData = {
             correctAnswer: [2],
             messageForCorrectAnswer: "Bravo ! Cela protège le cookie contre les attaques XSS (Cross-Site Scripting).",
             messageForIncorrectAnswer: "Incorrect. HttpOnly empêche l'accès via JavaScript (`document.cookie`).",
+            helpMessages: {
+                0: "💡 C'est l'attribut 'Secure' qui force HTTPS, pas HttpOnly ! HttpOnly protège contre les scripts malveillants (XSS). 📖 Voir le cours: /authentification/cookies",
+                2: "💡 Ça c'est le rôle de l'attribut 'Domain' ! HttpOnly empêche JavaScript d'accéder au cookie via document.cookie. 📖 Voir: https://developer.mozilla.org/fr/docs/Web/HTTP/Cookies",
+                3: "💡 HttpOnly ne chiffre rien ! Il empêche simplement JavaScript de lire le cookie, protégeant ainsi contre le vol par XSS. 📖 Voir le cours: /authentification/cookies"
+            },
             explanation: "Si un attaquant injecte du script malveillant (XSS), il ne pourra pas lire les cookies marqués HttpOnly, protégeant ainsi la session.",
             point: 15,
             difficulty: "intermédiaire"
@@ -108,6 +133,11 @@ export const quiz: QuizData = {
             correctAnswer: [2],
             messageForCorrectAnswer: "Exact ! C'est une méthode exhaustive pour deviner un mot de passe.",
             messageForIncorrectAnswer: "Incorrect. C'est l'attaque par force brute.",
+            helpMessages: {
+                0: "💡 Le phishing est une attaque d'ingénierie sociale (faux emails/sites). La force brute teste automatiquement toutes les combinaisons. 📖 Voir le cours: /authentification/attaques",
+                2: "💡 L'injection SQL exploite des failles dans les requêtes de base de données, pas les mots de passe directement. 📖 Voir: https://owasp.org/www-community/attacks/SQL_Injection",
+                3: "💡 Le Man-in-the-Middle intercepte les communications. L'attaque par force brute teste systématiquement toutes les combinaisons possibles. 📖 Voir le cours: /authentification/attaques"
+            },
             explanation: "Les attaques par force brute testent systématiquement les combinaisons. On s'en protège en limitant les tentatives ou en utilisant des mots de passe longs et complexes.",
             point: 15,
             difficulty: "intermédiaire"
@@ -127,6 +157,11 @@ export const quiz: QuizData = {
             correctAnswer: [3],
             messageForCorrectAnswer: "Correct ! Le client ne garde que l'ID de session, généralement dans un cookie.",
             messageForIncorrectAnswer: "Incorrect. Seul l'identifiant de session est stocké côté client.",
+            helpMessages: {
+                0: "💡 Stocker toutes les données côté client serait très dangereux ! Seul un identifiant unique (Session ID) est conservé. 📖 Voir le cours: /authentification/sessions",
+                1: "💡 Jamais de mot de passe côté client ! Même chiffré, c'est un risque. Seul un Session ID aléatoire est stocké. 📖 Voir le cours: /authentification/securite",
+                3: "💡 Il y a bien quelque chose ! Le Session ID est nécessaire pour que le serveur reconnaisse l'utilisateur à chaque requête. 📖 Voir: https://developer.mozilla.org/fr/docs/Web/HTTP/Session"
+            },
             explanation: "Le Session ID permet au serveur de retrouver les données de session correspondantes stockées de son côté (mémoire, BDD, Redis...).",
             point: 20,
             difficulty: "expert"
@@ -144,6 +179,11 @@ export const quiz: QuizData = {
             correctAnswer: [3],
             messageForCorrectAnswer: "Exact ! L'attribut SameSite contrôle si les cookies sont envoyés avec les requêtes cross-site.",
             messageForIncorrectAnswer: "Incorrect. C'est l'attribut SameSite.",
+            helpMessages: {
+                0: "💡 'Secure' force HTTPS mais ne protège pas contre CSRF. Pour CSRF, c'est SameSite qui empêche l'envoi du cookie depuis un autre site. 📖 Voir le cours: /authentification/csrf",
+                1: "💡 'HttpOnly' protège contre XSS (vol de cookie), pas contre CSRF (requêtes forgées). C'est SameSite qui bloque les requêtes cross-site. 📖 Voir: https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+                3: "💡 'Domain' définit le domaine autorisé, mais n'empêche pas CSRF. SameSite=Strict ou Lax empêche l'envoi du cookie depuis un site tiers. 📖 Voir le cours: /authentification/csrf"
+            },
             explanation: "SameSite (avec les valeurs Strict ou Lax) empêche le navigateur d'envoyer le cookie lors de requêtes provenant d'un site tiers.",
             point: 20,
             difficulty: "expert"
@@ -161,6 +201,11 @@ export const quiz: QuizData = {
             correctAnswer: [2],
             messageForCorrectAnswer: "Parfait ! Vous comprenez l'architecture stateless vs stateful.",
             messageForIncorrectAnswer: "Incorrect. La différence clé est que JWT est stateless.",
+            helpMessages: {
+                0: "💡 C'est l'inverse ! JWT stocke tout dans le token côté client (stateless), les sessions stockent les données côté serveur. 📖 Voir le cours: /authentification/jwt",
+                2: "💡 JWT n'est pas moins sécurisé par nature, mais nécessite une gestion rigoureuse (signature, expiration, révocation). 📖 Voir: https://jwt.io/introduction",
+                3: "💡 Au contraire ! L'avantage de JWT est qu'il ne nécessite PAS de base de données (stateless). Tout est dans le token signé. 📖 Voir le cours: /authentification/jwt"
+            },
             explanation: "Avec JWT, toutes les informations d'authentification sont dans le token (côté client). Le serveur n'a pas besoin de stocker d'état de session, ce qui facilite la scalabilité mais nécessite une gestion rigoureuse de la sécurité (signature, expiration, révocation).",
             point: 20,
             difficulty: "expert"
