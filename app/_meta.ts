@@ -25,10 +25,6 @@ const meta: MetaRecord = {
     "title": "MongoDB",
     "type": "page"
   },
-  "graphQL": {
-    "title": "GraphQL",
-    "type": "page"
-  },
   "authentification": {
     "title": "Authentification",
     "type": "page"
@@ -51,11 +47,6 @@ const meta: MetaRecord = {
   },
   "UX-UI": {
     "title": "UX/UI",
-    "type": "page"
-  },
-  "webpack": {
-    "display": "hidden",
-    "title": "Webpack",
     "type": "page"
   }
 }
