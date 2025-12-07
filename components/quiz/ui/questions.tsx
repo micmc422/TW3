@@ -43,21 +43,22 @@ export default function Questions() {
         // Si toutes les réponses sont correctes
         if (incorrectAnswers.length === 0 && hasCorrectAnswer) {
             if (messageForCorrectAnswer) {
-                return [{ message: messageForCorrectAnswer, type: "correct" as const }]
+                return [{ message: messageForCorrectAnswer, type: "correct" as const, answerIndex: undefined }]
             }
             return []
         }
 
         // Si il y a au moins une réponse incorrecte
         if (incorrectAnswers.length > 0) {
-            const messages: Array<{ message: string; type: "incorrect" }> = []
+            const messages: Array<{ message: string; type: "incorrect"; answerIndex?: number }> = []
             
             // Récupérer tous les messages d'aide personnalisés pour chaque mauvaise réponse
             incorrectAnswers.forEach(incorrectAnswer => {
                 if (helpMessages && helpMessages[incorrectAnswer - 1]) {
                     messages.push({ 
                         message: helpMessages[incorrectAnswer - 1], 
-                        type: "incorrect" as const 
+                        type: "incorrect" as const,
+                        answerIndex: incorrectAnswer
                     })
                 }
             })
@@ -137,7 +138,7 @@ export default function Questions() {
             <AnimatePresence>
                 {displayMessages.map((displayMessage, index) => (
                     <HelpMessage 
-                        key={`help-${currentQuestion}-${index}`}
+                        key={`help-${currentQuestion}-${displayMessage.answerIndex ?? `generic-${index}`}`}
                         message={displayMessage.message} 
                         type={displayMessage.type} 
                     />
