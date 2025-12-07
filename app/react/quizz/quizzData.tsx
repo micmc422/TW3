@@ -177,7 +177,7 @@ export const quiz: QuizData = {
             answerSelectionType: "single",
             answers: ["react-router-dom", "react-router", "next/router", "history"],
             correctAnswer: [1],
-            explanation: "Le module du cours utilise react-router v6. react-router-dom est le package pour les applications web, incluant des composants comme BrowserRouter.",
+            explanation: "react-router-dom est le package pour les applications web React Router v6, incluant des composants comme BrowserRouter, Link et Routes.",
             point: 15,
             difficulty: "expert"
         },

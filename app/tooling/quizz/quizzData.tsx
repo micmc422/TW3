@@ -11,7 +11,7 @@ export interface QuizQuestion {
     messageForCorrectAnswer?: string;
     messageForIncorrectAnswer?: string;
     explanation?: string;
-    point: number | string;
+    point: number;
     difficulty: QuestionDifficulty;
 }
 
