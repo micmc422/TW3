@@ -5,6 +5,7 @@ import { Trash2Icon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { animate, AnimatePresence, motion } from "motion/react"
 import DifficultyIndicator from "./difficulty-indicator"
+import HelpMessage from "./help-message"
 
 
 
@@ -26,7 +27,43 @@ const itemVariant = {
 export default function Questions() {
     const ref = useRef(null)
     const { currentQuestion, questions, handleAnswser, userAnswers, score, totalScore } = useContext(QuizzContext);
-    const { question, answers, difficulty } = questions[currentQuestion - 1] || {}
+    const currentQuestionData = questions[currentQuestion - 1]
+    const { question = "", answers = [], difficulty = "facile", correctAnswer = [], helpMessages, messageForCorrectAnswer, messageForIncorrectAnswer } = currentQuestionData || {}
+    
+    // Déterminer quel message afficher en fonction des réponses de l'utilisateur
+    const displayMessage = useMemo(() => {
+        const userAnswer = userAnswers?.[currentQuestion - 1]
+        if (!userAnswer || userAnswer[0] === 0 || !currentQuestionData) return null
+
+        // Vérifier s'il y a des réponses correctes
+        const hasCorrectAnswer = userAnswer.some(ans => correctAnswer.includes(ans))
+        // Vérifier s'il y a des réponses incorrectes
+        const incorrectAnswers = userAnswer.filter(ans => !correctAnswer.includes(ans))
+
+        // Si toutes les réponses sont correctes
+        if (incorrectAnswers.length === 0 && hasCorrectAnswer) {
+            if (messageForCorrectAnswer) {
+                return { message: messageForCorrectAnswer, type: "correct" as const }
+            }
+            return null
+        }
+
+        // Si il y a au moins une réponse incorrecte
+        if (incorrectAnswers.length > 0) {
+            // Chercher un message d'aide personnalisé pour la première mauvaise réponse
+            const firstIncorrectAnswer = incorrectAnswers[0]
+            if (helpMessages && helpMessages[firstIncorrectAnswer - 1]) {
+                return { message: helpMessages[firstIncorrectAnswer - 1], type: "incorrect" as const }
+            }
+            // Sinon, utiliser le message générique
+            if (messageForIncorrectAnswer) {
+                return { message: messageForIncorrectAnswer, type: "incorrect" as const }
+            }
+        }
+
+        return null
+    }, [userAnswers, currentQuestion, correctAnswer, helpMessages, messageForCorrectAnswer, messageForIncorrectAnswer, currentQuestionData])
+
     useEffect(() => {
         updateSelectedClass()
     }, [userAnswers?.[currentQuestion - 1], currentQuestion])
@@ -85,6 +122,15 @@ export default function Questions() {
                     ))}
                 </AnimatePresence>
             </motion.ul>
+            <AnimatePresence>
+                {displayMessage && (
+                    <HelpMessage 
+                        key={`help-${currentQuestion}-${displayMessage.message}`}
+                        message={displayMessage.message} 
+                        type={displayMessage.type} 
+                    />
+                )}
+            </AnimatePresence>
             <ProgressBar />
             <div className="flex" style={{ gap: "1rem" }}>
                 <QuizNextBtn>Continuer</QuizNextBtn>

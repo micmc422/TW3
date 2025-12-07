@@ -20,6 +20,11 @@ export const quiz: QuizData = {
             correctAnswer: [3],
             messageForCorrectAnswer: "Correct ! Docker est bien une plateforme de conteneurisation.",
             messageForIncorrectAnswer: "Incorrect. Docker n'est pas ce que vous avez choisi.",
+            helpMessages: {
+                0: "💡 Docker n'est pas une base de données ! C'est une plateforme qui permet d'empaqueter des applications (qui peuvent inclure des bases de données) dans des conteneurs.",
+                1: "💡 Docker n'est pas un IDE comme VS Code ou IntelliJ. C'est un outil de conteneurisation qui peut être utilisé avec n'importe quel IDE.",
+                3: "💡 Docker n'est pas un langage de programmation. Il utilise des fichiers de configuration (Dockerfiles) mais reste une plateforme d'infrastructure."
+            },
             explanation: "Docker est une plateforme qui permet de créer et de gérer des conteneurs, des unités légères et portables pour les applications logicielles.",
             point: 10,
             difficulty: "facile"
@@ -37,6 +42,11 @@ export const quiz: QuizData = {
             correctAnswer: [1],
             messageForCorrectAnswer: "Exact ! La commande docker run lance un nouveau conteneur.",
             messageForIncorrectAnswer: "Non, ce n'est pas la bonne commande.",
+            helpMessages: {
+                1: "💡 `docker start` sert à redémarrer un conteneur existant qui est arrêté, pas à en créer un nouveau depuis une image.",
+                2: "💡 `docker create` crée un conteneur mais ne le démarre pas automatiquement. Il faudrait ensuite utiliser `docker start`.",
+                3: "💡 `docker launch` n'existe pas ! Les commandes Docker principales sont `run`, `start`, `stop`, `create`, etc."
+            },
             explanation: "La commande docker run permet de créer et de démarrer un nouveau conteneur à partir d'une image spécifiée.",
             point: 10,
             difficulty: "facile"
@@ -54,6 +64,11 @@ export const quiz: QuizData = {
             correctAnswer: [3],
             messageForCorrectAnswer: "Très bien ! Vous avez compris le concept d'image Docker.",
             messageForIncorrectAnswer: "Ce n'est pas tout à fait correct.",
+            helpMessages: {
+                0: "💡 Une image n'est pas un simple fichier de configuration. C'est un système de fichiers complet contenant tout le nécessaire pour exécuter une application.",
+                1: "💡 Attention ! Une image n'est PAS un conteneur en cours d'exécution. C'est le modèle (template) qui permet de CRÉER des conteneurs. Un conteneur est une instance d'une image.",
+                3: "💡 Un volume est différent d'une image ! Les volumes servent à persister les données, tandis qu'une image est un modèle pour créer des conteneurs."
+            },
             explanation: "Dans Docker, une image est un modèle immuable utilisé pour créer des conteneurs. Elle contient le code de l'application, ses dépendances et les configurations nécessaires.",
             point: 10,
             difficulty: "facile"
