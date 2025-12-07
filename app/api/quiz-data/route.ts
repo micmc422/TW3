@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { QuizData } from '@/components/quiz/types';
+import { isValidElement, ReactNode } from 'react';
 
 // Import all quiz data files (excluding UX-UI)
 import { quiz as dockerQuiz } from '@/app/docker/quizz/quizzData';
@@ -16,30 +17,30 @@ import { quiz as nodeQuiz } from '@/app/node.js/quizz/quizzData';
  * Convertit un ReactNode en string pour la sérialisation JSON
  * Pour les ReactElements, retourne une représentation textuelle simplifiée
  */
-function reactNodeToString(node: any): string {
+function reactNodeToString(node: ReactNode | ReactNode[]): string {
   if (!node) return '';
   if (typeof node === 'string') return node;
   if (typeof node === 'number') return node.toString();
   if (typeof node === 'boolean') return node.toString();
   
-  // Pour les objets React (éléments JSX)
-  if (typeof node === 'object') {
-    if (Array.isArray(node)) {
-      return node.map(reactNodeToString).join('');
+  // Pour les tableaux
+  if (Array.isArray(node)) {
+    return node.map(reactNodeToString).join('');
+  }
+  
+  // Pour les ReactElements validés
+  if (isValidElement(node)) {
+    // Pour les éléments self-closing comme <br />, remplacer par un espace ou newline
+    if (node.type === 'br') {
+      return '\n';
     }
-    // Si c'est un ReactElement
-    if (node.props !== undefined) {
-      // Pour les éléments self-closing comme <br />, remplacer par un espace ou newline
-      if (node.type === 'br') {
-        return '\n';
-      }
-      // Si l'élément a des enfants, les traiter récursivement
-      if (node.props.children !== undefined) {
-        return reactNodeToString(node.props.children);
-      }
-      // Élément sans enfants
-      return '';
+    // Si l'élément a des enfants, les traiter récursivement
+    const { children } = node.props as { children?: ReactNode };
+    if (children) {
+      return reactNodeToString(children);
     }
+    // Élément sans enfants
+    return '';
   }
   
   return '';
@@ -84,12 +85,7 @@ export async function GET() {
       'node.js': serializeQuizData(nodeQuiz)
     };
 
-    return NextResponse.json(allQuizData, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    return NextResponse.json(allQuizData);
   } catch (error) {
     console.error('Error generating quiz data:', error);
     return NextResponse.json(
