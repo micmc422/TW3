@@ -178,15 +178,37 @@ export const quiz: QuizData = {
             ],
             correctAnswer: [3],
             messageForCorrectAnswer: "Exact ! L'attribut SameSite contrôle si les cookies sont envoyés avec les requêtes cross-site.",
-            messageForIncorrectAnswer: "Incorrect. C'est l'attribut SameSite.",
+            messageForIncorrectAnswer: "Incorrect. SameSite est la réponse.",
             helpMessages: {
-                0: "💡 'Secure' force HTTPS mais ne protège pas contre CSRF. Pour CSRF, c'est SameSite qui empêche l'envoi du cookie depuis un autre site. 📖 Voir le cours: /authentification/csrf",
-                1: "💡 'HttpOnly' protège contre XSS (vol de cookie), pas contre CSRF (requêtes forgées). C'est SameSite qui bloque les requêtes cross-site. 📖 Voir: https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
-                3: "💡 'Domain' définit le domaine autorisé, mais n'empêche pas CSRF. SameSite=Strict ou Lax empêche l'envoi du cookie depuis un site tiers. 📖 Voir le cours: /authentification/csrf"
+                0: "💡 'Secure' garantit que le cookie n'est envoyé que via HTTPS, mais ne protège pas contre CSRF ! C'est 'SameSite' qui empêche l'envoi cross-site. 📖 Voir le cours: /authentification/cookies",
+                1: "💡 'HttpOnly' empêche JavaScript d'accéder au cookie (protection XSS), mais pas CSRF ! 'SameSite' contrôle l'envoi cross-site. 📖 Voir: https://developer.mozilla.org/fr/docs/Web/HTTP/Cookies",
+                3: "💡 'Domain' définit le domaine du cookie, mais ne protège pas contre CSRF ! 'SameSite' empêche l'envoi depuis d'autres sites. 📖 Voir le cours: /authentification/csrf"
             },
-            explanation: "SameSite (avec les valeurs Strict ou Lax) empêche le navigateur d'envoyer le cookie lors de requêtes provenant d'un site tiers.",
+            explanation: "SameSite=Strict ou SameSite=Lax empêche l'envoi automatique de cookies lors de requêtes provenant d'autres sites, protégeant ainsi contre CSRF.",
             point: 20,
-            difficulty: "expert"
+            difficulty: "expert",
+            codeSnippet: {
+                code: `// Configuration des cookies sécurisés en Express.js
+app.use(session({
+  name: 'sessionId',
+  secret: process.env.SESSION_SECRET,
+  cookie: {
+    httpOnly: true,     // Protection XSS : JS ne peut pas lire le cookie
+    secure: true,       // HTTPS uniquement
+    sameSite: 'strict', // Protection CSRF : pas d'envoi cross-site
+    maxAge: 3600000     // 1 heure
+  },
+  resave: false,
+  saveUninitialized: false
+}));
+
+// Valeurs possibles pour SameSite :
+// - 'strict' : Jamais envoyé en cross-site (même liens)
+// - 'lax' : Envoyé pour navigation (GET), pas pour POST cross-site
+// - 'none' : Toujours envoyé (nécessite Secure=true)`,
+                language: "javascript",
+                title: "Configuration sécurisée des cookies de session"
+            }
         },
         {
             question: "Quelle est la principale différence entre JWT (JSON Web Token) et les sessions traditionnelles ?",

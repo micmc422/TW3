@@ -142,9 +142,47 @@ export const quiz: QuizData = {
             correctAnswer: [1, 2, 4],
             messageForCorrectAnswer: "Correct ! Next.js supporte SSG, SSR et le streaming de composants.",
             messageForIncorrectAnswer: "Incorrect. Next.js ne se limite pas au rendu client uniquement.",
+            helpMessages: {
+                2: "💡 Next.js n'est PAS limité au rendu client ! Son avantage majeur est justement le SSG, SSR et streaming côté serveur. 📖 Voir le cours: /next-js/rendering"
+            },
             explanation: "Next.js offre plusieurs modes de rendu : SSG, SSR et le streaming pour optimiser le chargement des pages.",
             point: 15,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `// 1. SSG (Static Site Generation) - par défaut
+export default function StaticPage() {
+  return <h1>Page générée au build</h1>;
+}
+
+// 2. SSR (Server-Side Rendering) - dynamic
+export const dynamic = 'force-dynamic';
+
+export default async function DynamicPage() {
+  const data = await fetch('https://api.example.com/data');
+  return <h1>Rendu côté serveur à chaque requête</h1>;
+}
+
+// 3. ISR (Incremental Static Regeneration)
+export const revalidate = 60; // Régénérer toutes les 60s
+
+export default async function ISRPage() {
+  const data = await fetch('https://api.example.com/data');
+  return <h1>Statique avec mise à jour périodique</h1>;
+}
+
+// 4. Streaming avec Suspense
+import { Suspense } from 'react';
+
+export default function StreamingPage() {
+  return (
+    <Suspense fallback={<div>Chargement...</div>}>
+      <SlowComponent />
+    </Suspense>
+  );
+}`,
+                language: "tsx",
+                title: "Modes de rendu dans Next.js 13+"
+            }
         },
         {
             question: "Quel hook React est souvent utilisé avec les Server Actions pour gérer les mises à jour optimistes ?",

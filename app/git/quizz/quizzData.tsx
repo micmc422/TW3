@@ -118,7 +118,28 @@ export const quiz: QuizData = {
             },
             explanation: "La commande git checkout -b nom_de_la_branche crée une nouvelle branche et s'y déplace immédiatement. C'est une forme courte de git branch nom_de_la_branche puis git checkout nom_de_la_branche. Note : git switch -c est aussi correcte avec les versions récentes de Git.",
             point: 15,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `# Méthode classique en une commande
+git checkout -b ma-nouvelle-feature
+
+# Méthode en deux étapes (équivalent)
+git branch ma-nouvelle-feature
+git checkout ma-nouvelle-feature
+
+# Nouvelle syntaxe Git (2.23+)
+git switch -c ma-nouvelle-feature
+
+# Créer une branche depuis un commit spécifique
+git checkout -b hotfix abc1234
+
+# Vérifier sur quelle branche on est
+git branch
+# * ma-nouvelle-feature
+#   main`,
+                language: "bash",
+                title: "Création et changement de branche"
+            }
         },
         {
             question: "Quelle commande permet de fusionner une branche dans la branche active ?",

@@ -116,7 +116,43 @@ export const quiz: QuizData = {
             },
             explanation: "Les Promises offrent une meilleure gestion du code asynchrone avec le chaînage (.then(), .catch()) et évitent le 'callback hell'. Elles représentent une valeur future qui peut être résolue ou rejetée.",
             point: 15,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `// ❌ Callback Hell
+fs.readFile('file1.txt', (err, data1) => {
+  if (err) return console.error(err);
+  fs.readFile('file2.txt', (err, data2) => {
+    if (err) return console.error(err);
+    fs.readFile('file3.txt', (err, data3) => {
+      if (err) return console.error(err);
+      console.log(data1, data2, data3);
+    });
+  });
+});
+
+// ✅ Avec Promises (meilleur chaînage)
+const fs = require('fs').promises;
+
+fs.readFile('file1.txt')
+  .then(data1 => fs.readFile('file2.txt'))
+  .then(data2 => fs.readFile('file3.txt'))
+  .then(data3 => console.log(data3))
+  .catch(err => console.error(err));
+
+// ✅✅ Avec async/await (encore plus lisible)
+async function readFiles() {
+  try {
+    const data1 = await fs.readFile('file1.txt');
+    const data2 = await fs.readFile('file2.txt');
+    const data3 = await fs.readFile('file3.txt');
+    console.log(data1, data2, data3);
+  } catch (err) {
+    console.error(err);
+  }
+}`,
+                language: "javascript",
+                title: "Callbacks vs Promises vs async/await"
+            }
         },
         {
             question: "Quelle est la syntaxe pour utiliser async/await avec une Promise en Node.js ?",

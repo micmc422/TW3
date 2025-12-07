@@ -96,7 +96,28 @@ export const quiz: QuizData = {
             },
             explanation: "Sans arguments, `find()` retourne un curseur vers tous les documents de la collection.",
             point: 15,
-            difficulty: "intermédiaire"
+            difficulty: "intermédiaire",
+            codeSnippet: {
+                code: `// Récupérer tous les documents
+db.users.find()
+
+// Récupérer avec un filtre
+db.users.find({ age: { $gte: 18 } })
+
+// Récupérer avec projection (sélection de champs)
+db.users.find(
+  { age: { $gte: 18 } },
+  { name: 1, email: 1, _id: 0 }
+)
+
+// Chaîner avec d'autres méthodes
+db.users.find()
+  .sort({ name: 1 })
+  .limit(10)
+  .skip(5)`,
+                language: "javascript",
+                title: "Utilisation de find() en MongoDB"
+            }
         },
         {
             question: "Quelle méthode permet de limiter le nombre de résultats retournés par une requête ?",
