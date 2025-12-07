@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { animate, AnimatePresence, motion } from "motion/react"
 import DifficultyIndicator from "./difficulty-indicator"
 import HelpMessage from "./help-message"
+import CodeSnippet from "./code-snippet"
 
 
 
@@ -28,7 +29,7 @@ export default function Questions() {
     const ref = useRef(null)
     const { currentQuestion, questions, handleAnswser, userAnswers, score, totalScore } = useContext(QuizzContext);
     const currentQuestionData = questions[currentQuestion - 1]
-    const { question = "", answers = [], difficulty = "facile", correctAnswer = [], helpMessages, messageForCorrectAnswer, messageForIncorrectAnswer } = currentQuestionData || {}
+    const { question = "", answers = [], difficulty = "facile", correctAnswer = [], helpMessages, messageForCorrectAnswer, messageForIncorrectAnswer, codeSnippet } = currentQuestionData || {}
     
     // Déterminer quels messages afficher en fonction des réponses de l'utilisateur
     const displayMessages = useMemo(() => {
@@ -111,6 +112,7 @@ export default function Questions() {
         <>
             <DifficultyIndicator difficulty={difficulty} />
             <QuizTitle>{currentQuestion}/{questions.length} - {question}</QuizTitle>
+            {codeSnippet && <CodeSnippet snippet={codeSnippet} />}
             <motion.ul
                 initial={"initial"}
                 animate="animate"
