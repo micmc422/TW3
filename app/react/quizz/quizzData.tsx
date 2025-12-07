@@ -7,7 +7,7 @@ export const quiz: QuizData = {
     questions: [
         // 🟢 Questions faciles (7 questions - 1/3)
         {
-            question: "Dans l'écosystème JavaScript, React est principalement classé comme quoi ?",
+            question: "Dans l'écosystème JavaScript, comment est principalement classé React ?",
             questionType: "text",
             answerSelectionType: "single",
             answers: ["Un framework full-stack", "Une bibliothèque UI déclarative", "Un serveur Node.js", "Un outil de test"],

@@ -80,6 +80,12 @@ function generateQuestionId(moduleId: string, questionIndex: number): number {
 }
 
 /**
+ * Préfixe de module pour les questions dans le XML Moodle
+ * Format: [NomDuModule]
+ */
+const MODULE_PREFIX_FORMAT = (moduleName: string) => `[${moduleName}] `;
+
+/**
  * Convertit une question en format Moodle XML
  * Ajoute le contexte du module au début de la question pour plus de clarté
  */
@@ -91,8 +97,8 @@ function questionToMoodleXML(
 ): string {
   const isSingle = question.answerSelectionType === 'single';
   
-  // Extraire le nom du module pour préfixer la question
-  const modulePrefix = `[${moduleName}] `;
+  // Ajouter le préfixe du module pour contextualiser la question
+  const modulePrefix = MODULE_PREFIX_FORMAT(moduleName);
   const questionText = escapeXml(modulePrefix + question.question);
   
   // Construire le texte général de feedback

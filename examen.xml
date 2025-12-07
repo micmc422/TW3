@@ -334,7 +334,7 @@
       <text>TW3/React - Question 527000</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>[React] Dans l&apos;écosystème JavaScript, React est principalement classé comme quoi ?</p>]]></text>
+      <text><![CDATA[<p>[React] Dans l&apos;écosystème JavaScript, comment est principalement classé React ?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text><![CDATA[React est une bibliothèque JavaScript pour construire des interfaces utilisateur de manière déclarative, développée par Meta (Facebook).]]></text>
