@@ -224,7 +224,7 @@ function selectBalancedQuestions(modules: Array<{ id: string; quiz: QuizData; na
   };
   
   // Calculer les quotas (50 questions au total)
-  const TOTAL_QUESTIONS = 50;
+  const TOTAL_QUESTIONS = 150;
   const quotas = {
     facile: Math.round(TOTAL_QUESTIONS * 0.50),        // 50%
     intermédiaire: Math.round(TOTAL_QUESTIONS * 0.26), // 26%
