@@ -79,7 +79,7 @@ function AjouterEvenement() {
   );
 }
 ```
-> 📌 `useTransition` est un hook React 19 qui permet de marquer une mise à jour comme non urgente, tout en obtenant un booléen `isPending` pour afficher un état de chargement.
+> 📌 `useTransition` est un hook React 19 qui permet de marquer une mise à jour comme une transition, gardant l'interface réactive pendant les changements d'état, tout en obtenant un booléen `isPending` pour afficher un état de chargement.
 
 #### ⚡ Heuristique 1 — Réponse instantanée avec `useOptimistic`
 
@@ -126,7 +126,7 @@ function ListeParticipants({ participants }) {
   );
 }
 ```
-> 📌 `useOptimistic` est un hook React 19 qui permet de montrer un état temporaire optimiste pendant qu'une action asynchrone est en cours.
+> 📌 `useOptimistic` est un hook React 19 principalement utilisé avec les Server Actions pour afficher instantanément le résultat attendu d'une mutation avant sa confirmation serveur.
 
 #### 🛡️ Heuristique 5 — Prévention des erreurs avec validation Zod
 
@@ -142,6 +142,8 @@ function ListeParticipants({ participants }) {
 **✅ Après** : validation avec Zod + messages d'erreur clairs
 ```tsx copy
 import { z } from "zod";
+
+import { useState } from "react";
 
 const lieuSchema = z.object({
   libelle: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),

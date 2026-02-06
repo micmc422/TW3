@@ -103,9 +103,8 @@ function BoutonSauvegarde({ onSave }) {
     <button
       onClick={() => startTransition(() => onSave())}
       disabled={isPending}
-      className="flex items-center gap-2 px-4 py-2 rounded
-                 bg-blue-600 text-white hover:bg-blue-700
-                 disabled:opacity-50 transition-all duration-200"
+      className="flex items-center gap-2 px-4 py-2 rounded bg-blue-600 text-white
+                 hover:bg-blue-700 disabled:opacity-50 transition-all"
     >
       {isPending && <LoaderCircle className="animate-spin h-4 w-4" />}
       {isPending ? "Enregistrement..." : "Enregistrer"}
