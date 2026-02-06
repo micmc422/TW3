@@ -7,6 +7,7 @@ export default {
   "---": {
     "type": "separator"
   },
+  "TLDR": "TLDR",
   "exercices": "Exercices : Amélioration UX/UI d'un projet web",
   "quizz": "Quizz",
 }
