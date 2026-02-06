@@ -9,6 +9,8 @@ import { Figma } from "lucide-react"
 - 🧪 Explorer l’importance des tests utilisateurs et de l’itération  
 - 🛠️ Découvrir les outils clés pour la conception UX/UI  
 
+
+> ⚡ **TLDR** : Le processus UX/UI suit 5 étapes : **Recherche utilisateur** → **Définition des besoins** → **Wireframing** → **Prototypage** → **Tests utilisateurs**. Utilisez **Figma** pour le prototypage, **Balsamiq** pour les wireframes low-fi. Testez toujours avec de vrais utilisateurs et itérez.
 ---
 
 ## **🧭 De la recherche utilisateur au prototype : étapes clés**  
@@ -22,9 +24,21 @@ Un bon design UX/UI ne repose pas sur l’intuition mais sur une méthodologie r
    - 🗣️ Interviews, sondages, analyse de comportements  
    - 👤 Création de **personas** pour comprendre les besoins  
 
+> 📌 **Persona** : une représentation fictive d'un utilisateur type, basée sur des données réelles (interviews, analytics). Un persona inclut les objectifs, motivations, frustrations et comportements d'un segment d'utilisateurs pour guider les décisions de design.
+
 2. **🎯 Définition des besoins et objectifs**  
    - ❗ Identifier les **problèmes à résoudre**  
-   - 📊 Définir les **KPIs UX/UI** (ex. réduire le taux d’abandon)  
+   - 📊 Définir les **KPIs UX/UI** (indicateurs mesurables pour évaluer la qualité de l’expérience)
+
+> 📌 **KPIs UX/UI courants** :
+> | KPI | Ce qu’il mesure | Objectif type |
+> |-----|-----------------|---------------|
+> | **Taux de conversion** | % d’utilisateurs qui réalisent l’action souhaitée | Augmenter de X% |
+> | **Taux de rebond** | % d’utilisateurs qui quittent après une seule page | Réduire sous 40% |
+> | **Temps sur tâche** | Durée pour accomplir une action (ex. remplir un formulaire) | Réduire le temps moyen |
+> | **Taux d’erreur** | Nombre d’erreurs commises par les utilisateurs | Réduire à moins de 5% |
+> | **SUS (System Usability Scale)** | Score de satisfaction sur 100 (questionnaire standardisé) | Atteindre un score > 68 |
+> | **NPS (Net Promoter Score)** | Probabilité qu’un utilisateur recommande le produit (-100 à +100) | Score positif (> 0) |  
 
 3. **🧩 Idéation et wireframing**  
    - 💡 Brainstorming, esquisses, maquettes basse fidélité  
@@ -55,6 +69,64 @@ Un bon design UX/UI ne repose pas sur l’intuition mais sur une méthodologie r
 - ⚙️ **Mid-fi** : Figma, Adobe XD (grilles et blocs simples)  
 - ✨ **High-fi** : Figma, Sketch (avec couleurs et interactions)  
 
+### 💻 **Du wireframe au code — Exemple concret**
+
+Voici comment un wireframe de page d'accueil se traduit en code React dans le projet [ma-petite-compagnie](https://github.com/JalilArfaoui/ma-petite-compagnie) :
+
+**🦴 Wireframe** (structure seule) → **🎨 Code final** (avec UI)
+
+```tsx copy
+// src/app/page.tsx — ma-petite-compagnie
+import { Heading, Container, Stack, Text, Box, Button, Card } from "@/components/ui";
+
+export default function Home() {
+  return (
+    <Box bg="#FFFBEF">
+      <Container maxW="container.md" display="flex" flexDirection="column"
+                 justifyContent="center" alignItems="center">
+        {/* 🎯 Titre principal — hiérarchie visuelle claire */}
+        <Stack gap={4} textAlign="center">
+          <Heading as="h1">Gérez votre troupe</Heading>
+          <Heading as="h2">sans faire de drame.</Heading>
+
+          {/* 📝 Description concise — charge cognitive réduite */}
+          <Text fontSize="3xl" color="gray.600">
+            L'outil tout-en-un pour les compagnies de théâtre.
+          </Text>
+
+          {/* 🔘 CTA clairs — Loi de Hick (2 choix max) */}
+          <Box display="flex" gap="2em" justifyContent="center">
+            <Button w="320px" h="75px" fontSize="25px">Lever le rideau</Button>
+            <Button w="320px" h="75px" fontSize="25px" variant="outline">
+              Voir la bande annonce
+            </Button>
+          </Box>
+        </Stack>
+
+        {/* 🃏 Cards de fonctionnalités — Proximité (CRAP) */}
+        <Box display="flex" gap="4em" justifyContent="center">
+          <Card w="320px" h="250px"
+            title="Planning de répétition"
+            description="Gérez les disponibilités de vos comédiens." />
+          <Card w="320px" h="250px"
+            title="Production & Décors"
+            description="Suivez le budget costumes au centime près." />
+          <Card w="320px" h="250px"
+            title="Casting & Équipe"
+            description="Centralisez contacts et mensurations." />
+        </Box>
+      </Container>
+    </Box>
+  );
+}
+```
+
+> 📌 **Remarquez** comment chaque choix de code correspond à un principe UX/UI :
+> - **Hiérarchie** (h1 → h2 → Text) = Contraste CRAP
+> - **2 boutons CTA** = Loi de Hick (limiter les choix)
+> - **Cards groupées** = Principe de Proximité
+> - **Texte court** = Réduction de la charge cognitive
+
 ---
 
 ## **🧪🔁 Les tests utilisateurs et l’amélioration continue**  
@@ -63,14 +135,34 @@ Un bon design UX/UI ne repose pas sur l’intuition mais sur une méthodologie r
 Même une belle interface peut être inutilisable si elle ne répond pas aux attentes des utilisateurs.  
 
 ✅ **Méthodes de tests UX**  
-- 👀 **Test modéré** (en présence d’un observateur)  
-- 🌐 **Test non modéré** (via un outil comme Maze ou Hotjar)  
-- 🆚 **A/B Testing** (comparer deux versions pour voir laquelle performe le mieux)  
+- 👀 **Test modéré** (en présence d’un observateur) : l’évaluateur guide l’utilisateur et peut poser des questions en temps réel. Idéal pour comprendre le « pourquoi » derrière les actions.
+- 🌐 **Test non modéré** (via un outil comme Maze ou Hotjar) : l’utilisateur réalise les tâches seul, à son rythme. Permet de tester à grande échelle et à distance.
+- 🆚 **A/B Testing** (comparer deux versions) : on montre la version A à 50% des utilisateurs et la version B aux 50% restants, puis on compare les résultats sur un KPI précis.
+
+#### 📋 Comment conduire un test utilisateur ?
+
+**1. Préparer le test**  
+- 🎯 Définir les **tâches à tester** (ex. « Trouvez le bouton pour ajouter un article au panier »)
+- 📝 Préparer un **scénario réaliste** (contexte + objectif)
+- 👥 Recruter **5 participants minimum** (selon Nielsen, 5 utilisateurs suffisent pour détecter ~85% des problèmes d’utilisabilité). Prévoir jusqu’à 8 participants si l’interface s’adresse à des profils utilisateurs très différents
+
+**2. Pendant le test**  
+- 🗣️ Demander aux participants de **« penser à voix haute »** (méthode du think aloud)
+- 👀 **Observer sans intervenir** — ne pas aider l’utilisateur s’il est bloqué (noter le blocage)
+- 📹 **Enregistrer la session** (écran + audio) pour analyse ultérieure
+
+**3. Après le test**  
+- 📊 **Compiler les résultats** : taux de réussite, temps par tâche, erreurs, verbatim utilisateurs
+- 🏷️ **Classer les problèmes** par sévérité (critique / majeur / mineur / cosmétique)
+- 🔁 **Itérer** : corriger les problèmes critiques en priorité, puis re-tester
 
 📊 **Critères d’analyse UX/UI**  
-- ⏱️ Temps passé sur une tâche  
-- ❌ Nombre d’erreurs commises  
-- 🙂 Niveau de satisfaction utilisateur  
+| Métrique | Ce qu’on mesure | Seuil d’alerte |
+|----------|-----------------|-------------------|
+| ⏱️ **Temps sur tâche** | Durée pour accomplir un objectif | > 2x le temps attendu |
+| ✅ **Taux de réussite** | % d’utilisateurs qui terminent la tâche | < 80% |
+| ❌ **Taux d’erreur** | Nombre d’erreurs commises | > 1 erreur par tâche en moyenne |
+| 🙂 **Satisfaction** | Score subjectif (SUS, NPS) | SUS < 68/100 |
 
 ---
 
@@ -100,7 +192,7 @@ Même une belle interface peut être inutilisable si elle ne répond pas aux att
   <Cards.Card
     icon={<Figma />}
     title="Projet FIGMA"
-    href="https://www.figma.com/design/haboBlv9NcIUmSsXbfaQ1O/UX-UI-Champollion?node-id=2-2&t=r5ke47t23n54EsCr-1"
+    href="https://champollion-ux-ui.figma.site/"
   />
 </Cards>
 

@@ -10,6 +10,8 @@ import { Figma } from "lucide-react"
 - 🧠 Explorer des concepts de psychologie cognitive appliqués à l’UX  
 - ♿ Intégrer l’accessibilité et le design inclusif  
 
+
+> ⚡ **TLDR** : L'UX repose sur les **10 heuristiques de Nielsen** (visibilité, cohérence, prévention d'erreurs…), les **5 éléments de Garrett** (stratégie → surface), les **lois cognitives** (Fitts, Hick, Proximité) et l'**accessibilité** (contraste, navigation clavier, alt text). Voir aussi : [La règle CRAP](/UX-UI/crap) pour les principes visuels complémentaires.
 ---
 
 ## 📋 **Les 10 heuristiques de Nielsen**  
@@ -31,6 +33,150 @@ Les heuristiques de Nielsen sont des principes fondamentaux pour concevoir des i
 | 10 | Aide et documentation | Fournir une aide accessible en cas de besoin. |
 
 <Heuristiques />
+
+### 💻 **Exemples concrets en React — Heuristiques de Nielsen**
+
+Les exemples ci-dessous sont inspirés du projet [ma-petite-compagnie](https://github.com/JalilArfaoui/ma-petite-compagnie), une application Next.js de gestion de compagnies de théâtre.
+
+#### 🔄 Heuristique 1 — Visibilité de l'état du système avec `useTransition`
+
+L'utilisateur doit **toujours savoir** ce qui se passe. Lors d'une action asynchrone (envoi de formulaire, chargement), un feedback visuel est indispensable.
+
+**❌ Avant** : aucun feedback lors de la soumission
+```tsx copy
+function AjouterEvenement() {
+  async function handleSubmit(formData: FormData) {
+    await creerEvenement(formData); // ⏳ L'utilisateur ne sait pas si ça marche
+  }
+  return (
+    <form action={handleSubmit}>
+      <input name="nom" placeholder="Nom de l'événement" />
+      <button type="submit">Créer</button>
+    </form>
+  );
+}
+```
+
+**✅ Après** : `useTransition` informe l'utilisateur que l'action est en cours
+```tsx copy
+import { useTransition } from "react";
+
+function AjouterEvenement() {
+  const [isPending, startTransition] = useTransition();
+
+  function handleSubmit(formData: FormData) {
+    startTransition(async () => {
+      await creerEvenement(formData);
+    });
+  }
+  return (
+    <form action={handleSubmit}>
+      <input name="nom" placeholder="Nom de l'événement" />
+      <button type="submit" disabled={isPending}>
+        {isPending ? "⏳ Création en cours..." : "Créer"}
+      </button>
+    </form>
+  );
+}
+```
+> 📌 `useTransition` est un hook React 19 qui permet de marquer une mise à jour comme une transition, gardant l'interface réactive pendant les changements d'état, tout en obtenant un booléen `isPending` pour afficher un état de chargement.
+
+#### ⚡ Heuristique 1 — Réponse instantanée avec `useOptimistic`
+
+Pour les actions fréquentes (like, ajout à une liste), l'utilisateur attend une réponse **immédiate**. `useOptimistic` affiche le résultat avant même la confirmation serveur.
+
+**❌ Avant** : l'ajout d'un participant attend la réponse serveur
+```tsx copy
+function ListeParticipants({ participants }) {
+  async function ajouter(formData: FormData) {
+    await ajouterParticipant(formData); // ⏳ Latence visible
+  }
+  return (
+    <ul>
+      {participants.map(p => <li key={p.id}>{p.nom}</li>)}
+    </ul>
+  );
+}
+```
+
+**✅ Après** : l'ajout apparaît **instantanément** dans la liste
+```tsx copy
+import { useOptimistic } from "react";
+
+function ListeParticipants({ participants }) {
+  const [optimisticList, addOptimistic] = useOptimistic(
+    participants,
+    (state, nouveau) => [...state, { ...nouveau, id: "temp", pending: true }]
+  );
+
+  async function ajouter(formData: FormData) {
+    const nom = formData.get("nom");
+    addOptimistic({ nom }); // ✅ Ajout instantané dans l'UI
+    await ajouterParticipant(formData); // Confirmation serveur en arrière-plan
+  }
+
+  return (
+    <ul>
+      {optimisticList.map(p => (
+        <li key={p.id} style={{ opacity: p.pending ? 0.5 : 1 }}>
+          {p.nom} {p.pending && "⏳"}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+> 📌 `useOptimistic` est un hook React 19 principalement utilisé avec les Server Actions pour afficher instantanément le résultat attendu d'une mutation avant sa confirmation serveur.
+
+#### 🛡️ Heuristique 5 — Prévention des erreurs avec validation Zod
+
+**❌ Avant** : aucune validation côté client
+```tsx copy
+<form action={creerLieu}>
+  <input name="ville" />
+  <button type="submit">Enregistrer</button>
+  {/* L'utilisateur peut soumettre un formulaire vide ! */}
+</form>
+```
+
+**✅ Après** : validation avec Zod + messages d'erreur clairs
+```tsx copy
+import { z } from "zod";
+
+import { useState } from "react";
+
+const lieuSchema = z.object({
+  libelle: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
+  adresse: z.string().min(5, "Adresse trop courte"),
+  ville: z.string().min(2, "Ville requise"),
+});
+
+function FormulaireCreerLieu() {
+  const [errors, setErrors] = useState({});
+
+  function handleSubmit(formData: FormData) {
+    const result = lieuSchema.safeParse(Object.fromEntries(formData));
+    if (!result.success) {
+      setErrors(result.error.flatten().fieldErrors);
+      return; // ⛔ Empêche la soumission invalide
+    }
+    creerLieu(result.data);
+  }
+
+  return (
+    <form action={handleSubmit}>
+      <input name="libelle" placeholder="Nom du lieu" />
+      {errors.libelle && <p className="text-red-500">{errors.libelle}</p>}
+      <input name="adresse" placeholder="Adresse" />
+      {errors.adresse && <p className="text-red-500">{errors.adresse}</p>}
+      <input name="ville" placeholder="Ville" />
+      {errors.ville && <p className="text-red-500">{errors.ville}</p>}
+      <button type="submit">Enregistrer</button>
+    </form>
+  );
+}
+```
+
 ---
 
 ## 🏗️ **Les 5 éléments de l’UX (Jesse James Garrett)**  
@@ -56,18 +202,77 @@ Jesse James Garrett propose une approche structurée de la conception UX, divis�
 ## 🧠 **Psychologie de l’utilisateur**  
 
 **📌 Charge cognitive**  
-- 🧘 Moins un utilisateur doit réfléchir, plus l’expérience est fluide.  
-- 🚫 Éviter les interfaces surchargées et les choix complexes.  
+
+La **charge cognitive** correspond à l’effort mental nécessaire pour utiliser une interface. On distingue trois types :
+
+| Type | Définition | Exemple en UI |
+|------|-----------|---------------|
+| **Intrinsèque** | Complexité inhérente à la tâche | Remplir une déclaration fiscale reste complexe quel que soit le design |
+| **Extrinsèque** | Complexité ajoutée par un mauvais design | Un menu de navigation avec 20 liens non triés |
+| **Germane** (pertinente) | Effort utile qui aide à apprendre | Un tutoriel interactif qui guide pas à pas |
+
+✅ **L’objectif en UX** : réduire la charge **extrinsèque** (parasites) et maximiser la charge **germane** (apprentissage utile).
+
+💡 **Bonnes pratiques pour réduire la charge cognitive** :
+- 🧩 **Découper les tâches complexes** en étapes simples (ex. un formulaire en plusieurs étapes plutôt qu’une seule page)
+- 🏷️ **Utiliser des labels clairs** plutôt que des icônes ambiguës
+- 📐 **Limiter le nombre d’informations visibles** à un instant donné (la mémoire de travail retient environ **7 ± 2 éléments** — loi de Miller)
+- 🎯 **Hiérarchiser visuellement** pour guider l’œil vers l’essentiel en premier
 
 **📌 Affordances**  
-- Capacité d’un élément UI à suggérer son utilisation (ex. bouton cliquable, ascenseur sur une page).  
+
+Une **affordance** est la capacité d’un élément à **suggérer visuellement son usage**, sans explication.
+
+| Type d’affordance | Définition | Exemple |
+|---------------------|-----------|---------|
+| **Explicite** | L’élément montre clairement comment l’utiliser | Un bouton en relief avec un texte « Cliquer ici » |
+| **Implicite** (pattern) | L’utilisateur connaît le comportement par habitude | Un texte bleu souligné = lien cliquable |
+| **Métaphorique** | L’interface imite un objet du monde réel | L’icône poubelle 🗑️ = supprimer |
+| **Négative** | L’élément montre qu’il n’est **pas** interactif | Un bouton grisé/désactivé |
+
+💡 **Exemples concrets en web** :
+- Un champ de formulaire avec un **placeholder** (ex. « Entrez votre email ») → affordance explicite
+- Un **bouton désactivé** (`disabled`) en grisé → affordance négative : l’utilisateur comprend qu’il ne peut pas cliquer
+- Un **élément avec `cursor: pointer`** au survol → affordance implicite
+
+> 📌 Une bonne affordance réduit le besoin de documentation : l’utilisateur comprend **intuitivement** ce qu’il peut faire.
 
 **📌 Lois UX importantes**  
-| Loi | Explication |
-|------|------------|
-| **Fitts** | Plus une cible est petite ou éloignée, plus elle est difficile à atteindre. (Ex. taille des boutons) |
-| **Hick** | Plus il y a d'options, plus le temps de décision est long. (Ex. limiter les choix dans un menu) |
-| **Proximité** | Les éléments proches sont perçus comme liés. (Ex. regrouper les actions connexes) |
+
+#### ⚖️ Loi de Fitts — Taille et distance des cibles
+
+**Formule** : le temps pour atteindre une cible dépend de sa **taille** et de sa **distance**.  
+Plus un élément est **grand et proche**, plus il est **rapide et facile** à atteindre.
+
+💡 **Applications concrètes** :
+- 🔘 Les **boutons d’action principaux** (CTA) doivent être grands et positionnés dans des zones faciles à atteindre
+- 📱 Sur mobile, les **zones tactiles** doivent faire au minimum **44×44 px** (recommandation Apple/Google)
+- 🖥️ Les menus placés en **bord d’écran** sont plus faciles à atteindre (la cible devient « infinie » car le curseur s’arrête au bord)
+- ⚠️ À l’inverse, un petit bouton « Supprimer » éloigné du contenu réduit le risque de clic accidentel (utilisation défensive de la loi de Fitts)
+
+#### ⏱️ Loi de Hick — Nombre de choix et temps de décision
+
+**Formule** : le temps de décision augmente de façon **logarithmique** avec le nombre d’options.
+
+💡 **Applications concrètes** :
+- 🍔 Un menu de navigation avec **5-7 éléments max** est plus efficace qu’un menu avec 15 options
+- 🛒 Sur un site e-commerce, proposer **3 formules tarifaires** plutôt que 8 réduit le temps de décision
+- 🔎 Un moteur de recherche avec **autocomplétion** réduit les options en filtrant au fur et à mesure
+- 📋 Regrouper les options en **catégories** (ex. un mega menu organisé) aide l’utilisateur à scanner plus vite
+
+> 📌 **Attention** : la loi de Hick ne dit pas « moins de choix = mieux ». Elle dit que les choix doivent être **organisés et hiérarchisés** pour faciliter la prise de décision.
+
+#### 👁️ Lois de la Gestalt — Comment le cerveau organise les informations visuelles
+
+Les lois de la **Gestalt** (psychologie de la forme) décrivent comment notre cerveau **regroupe et interprète** les éléments visuels :
+
+| Loi | Principe | Exemple en UI |
+|-----|----------|---------------|
+| **Proximité** | Les éléments proches sont perçus comme liés | Un label placé juste au-dessus de son champ de formulaire |
+| **Similarité** | Les éléments similaires (couleur, forme) sont perçus comme un groupe | Tous les liens d’une même couleur dans une navigation |
+| **Continuité** | L’œil suit naturellement les lignes et les courbes | Un fil d’Ariane (breadcrumb) horizontal guide le regard |
+| **Fermeture** | Le cerveau « complète » les formes incomplètes | Un logo composé de formes ouvertes mais perçu comme un tout |
+| **Figure/fond** | Le cerveau distingue un élément principal d’un arrière-plan | Un modal (figure) qui assombrit le fond de la page |
 
 ---
 
@@ -78,7 +283,7 @@ Jesse James Garrett propose une approche structurée de la conception UX, divis�
 - Un bon design UX est accessible à tous (personnes malvoyantes, daltoniennes, dyslexiques…).  
 
 ✅ **Bonnes pratiques UX pour l’accessibilité**  
-- **Contraste suffisant** entre texte et fond.  
+- **Contraste suffisant** entre texte et fond (ratio minimum **4.5:1** pour le texte normal et **3:1** pour le texte large selon les **WCAG 2.1**, niveau AA).  
 - **Navigation clavier** et compatibilité avec les lecteurs d’écran.  
 - **Texte alternatif** pour les images.  
 - **Éviter le texte seul pour l’information** (utiliser icônes et couleurs complémentaires).  
@@ -87,7 +292,7 @@ Jesse James Garrett propose une approche structurée de la conception UX, divis�
   <Cards.Card
     icon={<Figma />}
     title="Projet FIGMA"
-    href="https://www.figma.com/design/haboBlv9NcIUmSsXbfaQ1O/UX-UI-Champollion?node-id=2-2&t=r5ke47t23n54EsCr-1"
+    href="https://champollion-ux-ui.figma.site/"
   />
 </Cards>
 

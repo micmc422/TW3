@@ -26,14 +26,20 @@ L’UI design se concentre sur l’apparence et l’interaction visuelle, notamm
 
 ### **Exemple visuel 🎨**  
 
+Comparaison d'un formulaire de contact : mauvais design (labels manquants, messages d'erreur vagues, espacement insuffisant) vs bonnes pratiques (labels clairs, validation en temps réel, espacement aéré).
+
 <Compare
         firstImage="/images/uxui/bad-ui.png"
         secondImage="/images/uxui/good-ui.png"
         firstImageClassName="object-cover object-left-top"
         secondImageClassname="object-cover object-left-top"
-        className="h-auto w-full aspect-[0.55] md:w-[625px] mt-4"
+        className="h-auto w-full aspect-[0.64] md:w-[625px] mt-4"
         slideMode="hover"
       />
+
+---
+
+> ⚡ **TLDR** : L'**UX** (User Experience) = comment l'utilisateur *ressent* le produit (ergonomie, navigation, satisfaction). L'**UI** (User Interface) = comment le produit *se présente* visuellement (couleurs, boutons, animations). Les deux sont complémentaires et essentiels pour un produit réussi.
 
 ---  
 ## 🔀 **Différences et complémentarités entre UX et UI**  
@@ -54,10 +60,10 @@ L’UI design se concentre sur l’apparence et l’interaction visuelle, notamm
 - 🧭 Une navigation fluide **réduit le taux de rebond**  
 - ♿ Une interface bien pensée **améliore l’accessibilité**  
 
-📊 **Exemple : Étude de cas d’un site e-commerce**  
-- Version A : mauvaise UX (processus d’achat compliqué)  
-- Version B : bonne UX/UI (parcours simplifié, CTA visibles)  
-➡️ Résultat : augmentation des ventes de +20%  
+📊 **Exemple : Impact de la navigation sur l’expérience utilisateur**  
+- Version A : navigation confuse (menus désorganisés, liens peu visibles, structure incohérente)  
+- Version B : navigation optimisée (menu clair, hiérarchie logique, accès rapide aux sections clés)  
+➡️ Résultat : une navigation bien pensée réduit le taux de rebond et augmente l’engagement.  
 
 ### **Exemple visuel 🎨**  
 <Compare
@@ -65,10 +71,48 @@ L’UI design se concentre sur l’apparence et l’interaction visuelle, notamm
         secondImage="/images/uxui/good-ui-checkout.png"
         firstImageClassName="object-cover object-left-top"
         secondImageClassname="object-cover object-left-top"
-        className="h-auto w-full aspect-[0.89] md:w-[625px] mt-4"
+        className="h-auto w-full aspect-[0.66] md:w-[625px] mt-4"
         slideMode="hover"
       />
 
+
+---
+
+## 💻 **Exemple concret : améliorer l'UX en quelques lignes de code**
+
+Dans un projet React/Next.js comme [ma-petite-compagnie](https://github.com/JalilArfaoui/ma-petite-compagnie), de petites améliorations de code peuvent avoir un **impact majeur** sur l'expérience utilisateur.
+
+#### Page 404 — Design inclusif et navigation claire
+
+**❌ Avant** : une page blanche avec un texte technique
+```tsx copy
+export default function NotFound() {
+  return <h1>404 - Not Found</h1>;
+}
+```
+
+**✅ Après** : un message clair, un bouton de retour et un design soigné
+```tsx copy
+import { Container, Heading, Text, Button, Stack, Link } from "@/components/ui";
+
+export default function NotFound() {
+  return (
+    <Container maxW="container.md" py={20}>
+      <Stack align="center" gap={6} textAlign="center">
+        <Heading size="4xl" color="#d00039">404</Heading>
+        <Text fontSize="xl" color="#43566b">
+          Oups ! La page que vous cherchez n'existe pas.
+        </Text>
+        <Link href="/">
+          <Button variant="solid">Retour à l'accueil</Button>
+        </Link>
+      </Stack>
+    </Container>
+  );
+}
+```
+
+> 📌 **Principes UX appliqués** : message en langage humain (heuristique 2), bouton de retour visible (heuristique 3), design minimaliste (heuristique 8).
 
 ---
 
@@ -78,6 +122,6 @@ L’UI design se concentre sur l’apparence et l’interaction visuelle, notamm
   <Cards.Card
     icon={<Figma />}
     title="Projet FIGMA"
-    href="https://www.figma.com/design/haboBlv9NcIUmSsXbfaQ1O/UX-UI-Champollion?node-id=2-2&t=r5ke47t23n54EsCr-1"
+    href="https://champollion-ux-ui.figma.site/"
   />
 </Cards>

@@ -10,6 +10,8 @@ import { Figma } from "lucide-react"
 - Explorer l’impact de la typographie et des couleurs  
 - Apprendre à améliorer l’expérience avec les micro-interactions et animations  
 
+
+> ⚡ **TLDR** : L'UI repose sur le **contraste**, la **hiérarchie visuelle** et l'**espace blanc**. Utilisez des **systèmes de design** (Material Design, Tailwind UI) pour la cohérence. Limitez-vous à **2 polices**, respectez les **normes WCAG** pour les couleurs, et ajoutez des **micro-interactions** subtiles pour guider l'utilisateur. Voir aussi : [La règle CRAP](/UX-UI/crap) et [Principes UX](/UX-UI/principes-UX).
 ---
 
 ## 🖼️ **Principes de design visuel**  
@@ -19,20 +21,56 @@ Un bon design visuel guide l’utilisateur sans effort et améliore l’expérie
 
 ✅ **Principes clés** :  
 
-1. 🌓 **Contraste** → Assurer une bonne lisibilité (ex. texte sombre sur fond clair).  
-2. 🏷️ **Hiérarchie visuelle** → Organiser les éléments selon leur importance (ex. titres plus gros que le texte).  
-3. 🏝️ **Espace blanc** → Aérer l’interface pour améliorer la lisibilité et l’attention.  
+#### 1. 🌓 **Contraste**
+Assurer une bonne lisibilité en différenciant clairement les éléments (texte sombre sur fond clair, bouton principal vs secondaire).
+
+> 📌 Le contraste ne concerne pas que les couleurs : il s’applique aussi à la **taille**, à la **typographie** (gras vs léger) et aux **formes** (arrondi vs angulaire).
+
+#### 2. 🏷️ **Hiérarchie visuelle**
+Organiser les éléments selon leur importance pour guider l’œil de l’utilisateur vers l’information essentielle en premier.
+
+Les outils de la hiérarchie visuelle :
+
+| Outil | Effet | Exemple |
+|-------|-------|---------|
+| **Taille** | Les éléments plus grands attirent l’œil en premier | Un titre h1 plus grand que le texte courant |
+| **Couleur** | Les couleurs vives/saturées captent l’attention | Un bouton CTA rouge sur fond blanc |
+| **Position** | Les éléments en haut à gauche sont vus en premier (en lecture LTR) | Le logo et la navigation en haut de page |
+| **Contraste** | Les éléments à fort contraste se démarquent | Un texte noir sur fond jaune |
+| **Espacement** | Un élément isolé attire l’attention | Un CTA seul avec beaucoup d’espace autour |
+
+📖 **Patterns de lecture** — Les utilisateurs ne lisent pas une page web de haut en bas : ils la **scannent** selon des patterns prévisibles :
+- **Pattern en F** : sur les pages de contenu textuel, l’œil suit deux lignes horizontales en haut, puis descend verticalement à gauche
+- **Pattern en Z** : sur les landing pages avec peu de texte, l’œil se déplace en zigzag (haut gauche → haut droit → bas gauche → bas droit)
+
+> 💡 Positionnez vos **éléments les plus importants** (logo, CTA, titre) sur ces lignes de scan naturelles.
+
+#### 3. 🏝️ **Espace blanc (whitespace)**
+L’espace blanc (ou négatif) est l’espace vide **entre** et **autour** des éléments d’une interface.
+
+| Type | Définition | Exemple |
+|------|-----------|---------|
+| **Micro** | Espace entre les petits éléments (lettres, lignes, icônes) | `line-height: 1.5` pour aérer le texte |
+| **Macro** | Espace entre les grandes sections de la page | Marge entre le header et le contenu principal |
+
+💡 **Pourquoi c’est crucial** :
+- 📖 **Améliore la lisibilité** : un texte avec un `line-height` de 1.5 est plus facile à lire qu’un texte serré
+- 🎯 **Dirige l’attention** : un élément entouré d’espace vide attire naturellement le regard
+- 🧘 **Réduit la charge cognitive** : moins de densité visuelle = moins d’effort mental
+- 💎 **Perception de qualité** : les marques premium (Apple, Aesop) utilisent beaucoup d’espace blanc
+
+> 📌 L’espace blanc n’est pas de l’espace « perdu » — c’est un **élément de design actif** qui structure et hiérarchise l’information.
 
 🎨 **Un cas concret**
 
-Un site réaliser directement par le client via un service en ligne :
+Comparaison d'une mise en page de cards : mauvais design (gauche) vs bonnes pratiques (droite) :
 
 <Compare
         firstImage="/images/uxui/enduitsancien.png"
         secondImage="/images/uxui/enduitsancien_v2.png"
         firstImageClassName="object-cover object-left-top"
         secondImageClassname="object-cover object-left-top"
-        className="h-auto w-full aspect-[0.63] md:w-[625px] mt-4"
+        className="h-auto w-full aspect-[0.55] md:w-[625px] mt-4"
         slideMode="hover"
 />
 
@@ -41,7 +79,7 @@ Un site réaliser directement par le client via un service en ligne :
 ## 🧩 **Systèmes de design et composants UI**  
 
 📌 **Définition**  
-Un système de design est un ensemble de règles et composants réutilisables pour assurer cohérence et efficacité dans un projet.  
+Un **Design System** (système de design) est un ensemble de composants, règles et standards réutilisables pour assurer la cohérence d'un produit. Il inclut des composants UI, des guidelines de design, des principes et des tokens de design, permettant d'accélérer le développement tout en maintenant une expérience utilisateur uniforme.  
 
 ✅ **Exemples populaires** :  
 - **[Material Design (Google)](https://m3.material.io)** → Guideline complète avec composants UI prêts à l’emploi.  
@@ -59,7 +97,7 @@ Un système de design est un ensemble de règles et composants réutilisables po
 
 🎨 **Couleurs**  
 - 🎨 **Palette de couleurs** → 1 couleur principale, 1 secondaire, 2-3 couleurs d’accent.  
-- 🌓 **Contraste suffisant** → Respecter les normes WCAG pour l’accessibilité.  
+- 🌓 **Contraste suffisant** → Respecter les normes WCAG 2.1 pour l’accessibilité (ratio minimum **4.5:1** pour le texte normal, **3:1** pour le texte large, niveau AA).  
 - 🟢 **Signification des couleurs** → Ex. rouge pour erreurs, vert pour validation.  
 
 
@@ -78,6 +116,100 @@ Un système de design est un ensemble de règles et composants réutilisables po
 - 🧭 **Utiliser pour guider** → Indiquer un changement d’état (ex. chargement, succès, erreur).  
 - 📏 **Respecter les standards UX** → Ne pas perturber l’expérience utilisateur.  
 
+### 💻 **Exemples concrets de micro-interactions en React**
+
+Les exemples suivants sont inspirés du projet [ma-petite-compagnie](https://github.com/JalilArfaoui/ma-petite-compagnie) (Next.js / React 19).
+
+#### 🔘 Bouton avec feedback de chargement
+
+**❌ Avant** : un bouton statique, l’utilisateur ne sait pas si l’action est en cours
+```tsx copy
+<button onClick={handleSave}>Enregistrer</button>
+```
+
+**✅ Après** : le bouton affiche un état de chargement et se désactive
+```tsx copy
+import { useTransition } from "react";
+import { LoaderCircle } from "lucide-react";
+
+function BoutonSauvegarde({ onSave }) {
+  const [isPending, startTransition] = useTransition();
+
+  return (
+    <button
+      onClick={() => startTransition(() => onSave())}
+      disabled={isPending}
+      className="flex items-center gap-2 px-4 py-2 rounded bg-blue-600 text-white
+                 hover:bg-blue-700 disabled:opacity-50 transition-all"
+    >
+      {isPending && <LoaderCircle className="animate-spin h-4 w-4" />}
+      {isPending ? "Enregistrement..." : "Enregistrer"}
+    </button>
+  );
+}
+```
+
+#### 🎨 Toast de confirmation après une action
+
+**❌ Avant** : aucun retour après une action réussie
+```tsx copy
+async function supprimerEvenement(id: number) {
+  await fetch(`/api/evenements/${id}`, { method: "DELETE" });
+  // 😶 L'utilisateur ne sait pas si ça a marché
+}
+```
+
+**✅ Après** : un toast informe l’utilisateur du résultat (cf. composant `Toaster` de ma-petite-compagnie)
+```tsx copy
+import { toast } from "sonner"; // ou tout système de toast
+
+async function supprimerEvenement(id: number) {
+  try {
+    await fetch(`/api/evenements/${id}`, { method: "DELETE" });
+    toast.success("Événement supprimé avec succès ✅");
+  } catch {
+    toast.error("Erreur lors de la suppression ❌");
+  }
+}
+```
+
+#### 🧩 Design System — Cohérence des composants
+
+Le projet ma-petite-compagnie illustre la construction d’un **Design System** avec des composants réutilisables (Button, Card, Alert, Input…) exportés depuis un fichier central :
+
+```tsx copy
+export { Button } from "./Button";
+export { Card } from "./Card";
+export { Alert } from "./Alert";
+export { Input } from "./Input";
+export { Heading } from "./Heading";
+export { Text } from "./Text";
+export { Stack } from "./Stack";
+// ... tous les composants partagent les mêmes tokens de design
+```
+
+Cela permet d’utiliser les composants de façon **cohérente** dans toute l’application :
+```tsx copy
+import { Card, Button, Stack, Heading, Text } from "@/components/ui";
+
+function CarteEvenement({ evenement }) {
+  return (
+    <Card title={evenement.nom}>
+      <Card.Body>
+        <Stack gap={2}>
+          <Text>{evenement.lieu}</Text>
+          <Text color="gray.600">{evenement.date}</Text>
+        </Stack>
+      </Card.Body>
+      <Card.Footer>
+        <Button variant="solid">Voir détails</Button>
+        <Button variant="outline">Modifier</Button>
+      </Card.Footer>
+    </Card>
+  );
+}
+```
+
 ---
 
 ### **💡 Mini-atelier pratique (10 min)**  
@@ -91,7 +223,7 @@ Sur Figma, étudier le fonctionnement des prototypes sur figma :
   <Cards.Card
     icon={<Figma />}
     title="Projet FIGMA"
-    href="https://www.figma.com/design/haboBlv9NcIUmSsXbfaQ1O/UX-UI-Champollion?node-id=2-2&t=r5ke47t23n54EsCr-1"
+    href="https://champollion-ux-ui.figma.site/"
   />
 </Cards>
 
