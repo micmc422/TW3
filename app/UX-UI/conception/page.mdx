@@ -28,7 +28,17 @@ Un bon design UX/UI ne repose pas sur l’intuition mais sur une méthodologie r
 
 2. **🎯 Définition des besoins et objectifs**  
    - ❗ Identifier les **problèmes à résoudre**  
-   - 📊 Définir les **KPIs UX/UI** (ex. réduire le taux d’abandon)  
+   - 📊 Définir les **KPIs UX/UI** (indicateurs mesurables pour évaluer la qualité de l’expérience)
+
+> 📌 **KPIs UX/UI courants** :
+> | KPI | Ce qu’il mesure | Objectif type |
+> |-----|-----------------|---------------|
+> | **Taux de conversion** | % d’utilisateurs qui réalisent l’action souhaitée | Augmenter de X% |
+> | **Taux de rebond** | % d’utilisateurs qui quittent après une seule page | Réduire sous 40% |
+> | **Temps sur tâche** | Durée pour accomplir une action (ex. remplir un formulaire) | Réduire le temps moyen |
+> | **Taux d’erreur** | Nombre d’erreurs commises par les utilisateurs | Réduire à moins de 5% |
+> | **SUS (System Usability Scale)** | Score de satisfaction sur 100 (questionnaire standardisé) | Atteindre un score > 68 |
+> | **NPS (Net Promoter Score)** | Probabilité qu’un utilisateur recommande le produit (-100 à +100) | Score positif (> 0) |  
 
 3. **🧩 Idéation et wireframing**  
    - 💡 Brainstorming, esquisses, maquettes basse fidélité  
@@ -125,14 +135,34 @@ export default function Home() {
 Même une belle interface peut être inutilisable si elle ne répond pas aux attentes des utilisateurs.  
 
 ✅ **Méthodes de tests UX**  
-- 👀 **Test modéré** (en présence d’un observateur)  
-- 🌐 **Test non modéré** (via un outil comme Maze ou Hotjar)  
-- 🆚 **A/B Testing** (comparer deux versions pour voir laquelle performe le mieux)  
+- 👀 **Test modéré** (en présence d’un observateur) : l’évaluateur guide l’utilisateur et peut poser des questions en temps réel. Idéal pour comprendre le « pourquoi » derrière les actions.
+- 🌐 **Test non modéré** (via un outil comme Maze ou Hotjar) : l’utilisateur réalise les tâches seul, à son rythme. Permet de tester à grande échelle et à distance.
+- 🆚 **A/B Testing** (comparer deux versions) : on montre la version A à 50% des utilisateurs et la version B aux 50% restants, puis on compare les résultats sur un KPI précis.
+
+#### 📋 Comment conduire un test utilisateur ?
+
+**1. Préparer le test**  
+- 🎯 Définir les **tâches à tester** (ex. « Trouvez le bouton pour ajouter un article au panier »)
+- 📝 Préparer un **scénario réaliste** (contexte + objectif)
+- 👥 Recruter **5 à 8 participants** (selon Nielsen, 5 utilisateurs suffisent pour détecter ~85% des problèmes d’utilisabilité)
+
+**2. Pendant le test**  
+- 🗣️ Demander aux participants de **« penser à voix haute »** (méthode du think aloud)
+- 👀 **Observer sans intervenir** — ne pas aider l’utilisateur s’il est bloqué (noter le blocage)
+- 📹 **Enregistrer la session** (écran + audio) pour analyse ultérieure
+
+**3. Après le test**  
+- 📊 **Compiler les résultats** : taux de réussite, temps par tâche, erreurs, verbatim utilisateurs
+- 🏷️ **Classer les problèmes** par sévérité (critique / majeur / mineur / cosmétique)
+- 🔁 **Itérer** : corriger les problèmes critiques en priorité, puis re-tester
 
 📊 **Critères d’analyse UX/UI**  
-- ⏱️ Temps passé sur une tâche  
-- ❌ Nombre d’erreurs commises  
-- 🙂 Niveau de satisfaction utilisateur  
+| Métrique | Ce qu’on mesure | Seuil d’alerte |
+|----------|-----------------|-------------------|
+| ⏱️ **Temps sur tâche** | Durée pour accomplir un objectif | > 2x le temps attendu |
+| ✅ **Taux de réussite** | % d’utilisateurs qui terminent la tâche | < 80% |
+| ❌ **Taux d’erreur** | Nombre d’erreurs commises | > 1 erreur par tâche en moyenne |
+| 🙂 **Satisfaction** | Score subjectif (SUS, NPS) | SUS < 68/100 |
 
 ---
 
