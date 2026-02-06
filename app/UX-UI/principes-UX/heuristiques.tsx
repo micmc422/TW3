@@ -48,7 +48,7 @@ export default function Heuristiques() {
     return <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 max-w-xl mx-auto p-8 bg-foreground/20 rounded-lg mt-8">
             <h2 className="text-2xl font-black">🎨Formulaire d'exemple</h2>
-            <p className="text-foreground/70">Le formulaire ne sert qu'a présenter les principes fondamentaux de L'UX. Aucune données n'est stocker, aucune action ne sera enregistré.</p>
+            <p className="text-foreground/70">Le formulaire ne sert qu'à présenter les principes fondamentaux de l'UX. Aucune donnée n'est stockée, aucune action ne sera enregistrée.</p>
             <FormField
                 control={form.control}
                 name="username"
@@ -70,12 +70,12 @@ export default function Heuristiques() {
                 name="email"
                 render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Nom</FormLabel>
+                        <FormLabel>Email</FormLabel>
                         <FormControl>
                             <Input placeholder="Votre Email" {...field} />
                         </FormControl>
                         <FormDescription>
-                            Nom qui sera affiché.
+                            Adresse email de contact.
                         </FormDescription>
                         <FormMessage />
                     </FormItem>
@@ -100,7 +100,7 @@ export default function Heuristiques() {
             <div>
                 <Button type="submit" disabled={loading}>{loading && <LoaderCircle className='animate-spin' />} Envoyer</Button>
             </div>
-            {success && <p className="text-green-600">Message envoyé, nous ne vous répondront pas c'est un exercice.</p>}
+            {success && <p className="text-green-600">Message envoyé, nous ne vous répondrons pas, c'est un exercice.</p>}
         </form>
     </Form>
 }
