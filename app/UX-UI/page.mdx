@@ -76,6 +76,44 @@ L’UI design se concentre sur l’apparence et l’interaction visuelle, notamm
 
 ---
 
+## 💻 **Exemple concret : améliorer l'UX en quelques lignes de code**
+
+Dans un projet React/Next.js comme [ma-petite-compagnie](https://github.com/JalilArfaoui/ma-petite-compagnie), de petites améliorations de code peuvent avoir un **impact majeur** sur l'expérience utilisateur.
+
+#### Page 404 — Design inclusif et navigation claire
+
+**❌ Avant** : une page blanche avec un texte technique
+```tsx copy
+export default function NotFound() {
+  return <h1>404 - Not Found</h1>;
+}
+```
+
+**✅ Après** : un message clair, un bouton de retour et un design soigné
+```tsx copy
+import { Container, Heading, Text, Button, Stack, Link } from "@/components/ui";
+
+export default function NotFound() {
+  return (
+    <Container maxW="container.md" py={20}>
+      <Stack align="center" gap={6} textAlign="center">
+        <Heading size="4xl" color="#d00039">404</Heading>
+        <Text fontSize="xl" color="#43566b">
+          Oups ! La page que vous cherchez n'existe pas.
+        </Text>
+        <Link href="/">
+          <Button variant="solid">Retour à l'accueil</Button>
+        </Link>
+      </Stack>
+    </Container>
+  );
+}
+```
+
+> 📌 **Principes UX appliqués** : message en langage humain (heuristique 2), bouton de retour visible (heuristique 3), design minimaliste (heuristique 8).
+
+---
+
 ## 💡 **Mini-atelier pratique (10 min)**  
 **Objectif :** Sur Figma, modifier l'exemple "base CTA" en une version optimisée selon les principes UX/UI.
 <Cards>

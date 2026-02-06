@@ -80,6 +80,101 @@ Un **Design System** (système de design) est un ensemble de composants, règles
 - 🧭 **Utiliser pour guider** → Indiquer un changement d’état (ex. chargement, succès, erreur).  
 - 📏 **Respecter les standards UX** → Ne pas perturber l’expérience utilisateur.  
 
+### 💻 **Exemples concrets de micro-interactions en React**
+
+Les exemples suivants sont inspirés du projet [ma-petite-compagnie](https://github.com/JalilArfaoui/ma-petite-compagnie) (Next.js / React 19).
+
+#### 🔘 Bouton avec feedback de chargement
+
+**❌ Avant** : un bouton statique, l’utilisateur ne sait pas si l’action est en cours
+```tsx copy
+<button onClick={handleSave}>Enregistrer</button>
+```
+
+**✅ Après** : le bouton affiche un état de chargement et se désactive
+```tsx copy
+import { useTransition } from "react";
+import { LoaderCircle } from "lucide-react";
+
+function BoutonSauvegarde({ onSave }) {
+  const [isPending, startTransition] = useTransition();
+
+  return (
+    <button
+      onClick={() => startTransition(() => onSave())}
+      disabled={isPending}
+      className="flex items-center gap-2 px-4 py-2 rounded
+                 bg-blue-600 text-white hover:bg-blue-700
+                 disabled:opacity-50 transition-all duration-200"
+    >
+      {isPending && <LoaderCircle className="animate-spin h-4 w-4" />}
+      {isPending ? "Enregistrement..." : "Enregistrer"}
+    </button>
+  );
+}
+```
+
+#### 🎨 Toast de confirmation après une action
+
+**❌ Avant** : aucun retour après une action réussie
+```tsx copy
+async function supprimerEvenement(id: number) {
+  await fetch(`/api/evenements/${id}`, { method: "DELETE" });
+  // 😶 L'utilisateur ne sait pas si ça a marché
+}
+```
+
+**✅ Après** : un toast informe l’utilisateur du résultat (cf. composant `Toaster` de ma-petite-compagnie)
+```tsx copy
+import { toast } from "sonner"; // ou tout système de toast
+
+async function supprimerEvenement(id: number) {
+  try {
+    await fetch(`/api/evenements/${id}`, { method: "DELETE" });
+    toast.success("Événement supprimé avec succès ✅");
+  } catch {
+    toast.error("Erreur lors de la suppression ❌");
+  }
+}
+```
+
+#### 🧩 Design System — Cohérence des composants
+
+Le projet ma-petite-compagnie illustre la construction d’un **Design System** avec des composants réutilisables (Button, Card, Alert, Input…) exportés depuis un fichier central :
+
+```tsx copy
+export { Button } from "./Button";
+export { Card } from "./Card";
+export { Alert } from "./Alert";
+export { Input } from "./Input";
+export { Heading } from "./Heading";
+export { Text } from "./Text";
+export { Stack } from "./Stack";
+// ... tous les composants partagent les mêmes tokens de design
+```
+
+Cela permet d’utiliser les composants de façon **cohérente** dans toute l’application :
+```tsx copy
+import { Card, Button, Stack, Heading, Text } from "@/components/ui";
+
+function CarteEvenement({ evenement }) {
+  return (
+    <Card title={evenement.nom}>
+      <Card.Body>
+        <Stack gap={2}>
+          <Text>{evenement.lieu}</Text>
+          <Text color="gray.600">{evenement.date}</Text>
+        </Stack>
+      </Card.Body>
+      <Card.Footer>
+        <Button variant="solid">Voir détails</Button>
+        <Button variant="outline">Modifier</Button>
+      </Card.Footer>
+    </Card>
+  );
+}
+```
+
 ---
 
 ### **💡 Mini-atelier pratique (10 min)**  

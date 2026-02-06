@@ -59,6 +59,64 @@ Un bon design UX/UI ne repose pas sur l’intuition mais sur une méthodologie r
 - ⚙️ **Mid-fi** : Figma, Adobe XD (grilles et blocs simples)  
 - ✨ **High-fi** : Figma, Sketch (avec couleurs et interactions)  
 
+### 💻 **Du wireframe au code — Exemple concret**
+
+Voici comment un wireframe de page d'accueil se traduit en code React dans le projet [ma-petite-compagnie](https://github.com/JalilArfaoui/ma-petite-compagnie) :
+
+**🦴 Wireframe** (structure seule) → **🎨 Code final** (avec UI)
+
+```tsx copy
+// src/app/page.tsx — ma-petite-compagnie
+import { Heading, Container, Stack, Text, Box, Button, Card } from "@/components/ui";
+
+export default function Home() {
+  return (
+    <Box bg="#FFFBEF">
+      <Container maxW="container.md" display="flex" flexDirection="column"
+                 justifyContent="center" alignItems="center">
+        {/* 🎯 Titre principal — hiérarchie visuelle claire */}
+        <Stack gap={4} textAlign="center">
+          <Heading as="h1">Gérez votre troupe</Heading>
+          <Heading as="h2">sans faire de drame.</Heading>
+
+          {/* 📝 Description concise — charge cognitive réduite */}
+          <Text fontSize="3xl" color="gray.600">
+            L'outil tout-en-un pour les compagnies de théâtre.
+          </Text>
+
+          {/* 🔘 CTA clairs — Loi de Hick (2 choix max) */}
+          <Box display="flex" style={{ gap: "2em", justifyContent: "center" }}>
+            <Button w="320px" h="75px" fontSize="25px">Lever le rideau</Button>
+            <Button w="320px" h="75px" fontSize="25px" variant="outline">
+              Voir la bande annonce
+            </Button>
+          </Box>
+        </Stack>
+
+        {/* 🃏 Cards de fonctionnalités — Proximité (CRAP) */}
+        <Box display="flex" style={{ gap: "4em", justifyContent: "center" }}>
+          <Card w="320px" h="250px"
+            title="Planning de répétition"
+            description="Gérez les disponibilités de vos comédiens." />
+          <Card w="320px" h="250px"
+            title="Production & Décors"
+            description="Suivez le budget costumes au centime près." />
+          <Card w="320px" h="250px"
+            title="Casting & Équipe"
+            description="Centralisez contacts et mensurations." />
+        </Box>
+      </Container>
+    </Box>
+  );
+}
+```
+
+> 📌 **Remarquez** comment chaque choix de code correspond à un principe UX/UI :
+> - **Hiérarchie** (h1 → h2 → Text) = Contraste CRAP
+> - **2 boutons CTA** = Loi de Hick (limiter les choix)
+> - **Cards groupées** = Principe de Proximité
+> - **Texte court** = Réduction de la charge cognitive
+
 ---
 
 ## **🧪🔁 Les tests utilisateurs et l’amélioration continue**  

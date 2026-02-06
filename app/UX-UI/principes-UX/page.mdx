@@ -33,6 +33,148 @@ Les heuristiques de Nielsen sont des principes fondamentaux pour concevoir des i
 | 10 | Aide et documentation | Fournir une aide accessible en cas de besoin. |
 
 <Heuristiques />
+
+### 💻 **Exemples concrets en React — Heuristiques de Nielsen**
+
+Les exemples ci-dessous sont inspirés du projet [ma-petite-compagnie](https://github.com/JalilArfaoui/ma-petite-compagnie), une application Next.js de gestion de compagnies de théâtre.
+
+#### 🔄 Heuristique 1 — Visibilité de l'état du système avec `useTransition`
+
+L'utilisateur doit **toujours savoir** ce qui se passe. Lors d'une action asynchrone (envoi de formulaire, chargement), un feedback visuel est indispensable.
+
+**❌ Avant** : aucun feedback lors de la soumission
+```tsx copy
+function AjouterEvenement() {
+  async function handleSubmit(formData: FormData) {
+    await creerEvenement(formData); // ⏳ L'utilisateur ne sait pas si ça marche
+  }
+  return (
+    <form action={handleSubmit}>
+      <input name="nom" placeholder="Nom de l'événement" />
+      <button type="submit">Créer</button>
+    </form>
+  );
+}
+```
+
+**✅ Après** : `useTransition` informe l'utilisateur que l'action est en cours
+```tsx copy
+import { useTransition } from "react";
+
+function AjouterEvenement() {
+  const [isPending, startTransition] = useTransition();
+
+  function handleSubmit(formData: FormData) {
+    startTransition(async () => {
+      await creerEvenement(formData);
+    });
+  }
+  return (
+    <form action={handleSubmit}>
+      <input name="nom" placeholder="Nom de l'événement" />
+      <button type="submit" disabled={isPending}>
+        {isPending ? "⏳ Création en cours..." : "Créer"}
+      </button>
+    </form>
+  );
+}
+```
+> 📌 `useTransition` est un hook React 19 qui permet de marquer une mise à jour comme non urgente, tout en obtenant un booléen `isPending` pour afficher un état de chargement.
+
+#### ⚡ Heuristique 1 — Réponse instantanée avec `useOptimistic`
+
+Pour les actions fréquentes (like, ajout à une liste), l'utilisateur attend une réponse **immédiate**. `useOptimistic` affiche le résultat avant même la confirmation serveur.
+
+**❌ Avant** : l'ajout d'un participant attend la réponse serveur
+```tsx copy
+function ListeParticipants({ participants }) {
+  async function ajouter(formData: FormData) {
+    await ajouterParticipant(formData); // ⏳ Latence visible
+  }
+  return (
+    <ul>
+      {participants.map(p => <li key={p.id}>{p.nom}</li>)}
+    </ul>
+  );
+}
+```
+
+**✅ Après** : l'ajout apparaît **instantanément** dans la liste
+```tsx copy
+import { useOptimistic } from "react";
+
+function ListeParticipants({ participants }) {
+  const [optimisticList, addOptimistic] = useOptimistic(
+    participants,
+    (state, nouveau) => [...state, { ...nouveau, id: "temp", pending: true }]
+  );
+
+  async function ajouter(formData: FormData) {
+    const nom = formData.get("nom");
+    addOptimistic({ nom }); // ✅ Ajout instantané dans l'UI
+    await ajouterParticipant(formData); // Confirmation serveur en arrière-plan
+  }
+
+  return (
+    <ul>
+      {optimisticList.map(p => (
+        <li key={p.id} style={{ opacity: p.pending ? 0.5 : 1 }}>
+          {p.nom} {p.pending && "⏳"}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+> 📌 `useOptimistic` est un hook React 19 qui permet de montrer un état temporaire optimiste pendant qu'une action asynchrone est en cours.
+
+#### 🛡️ Heuristique 5 — Prévention des erreurs avec validation Zod
+
+**❌ Avant** : aucune validation côté client
+```tsx copy
+<form action={creerLieu}>
+  <input name="ville" />
+  <button type="submit">Enregistrer</button>
+  {/* L'utilisateur peut soumettre un formulaire vide ! */}
+</form>
+```
+
+**✅ Après** : validation avec Zod + messages d'erreur clairs
+```tsx copy
+import { z } from "zod";
+
+const lieuSchema = z.object({
+  libelle: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
+  adresse: z.string().min(5, "Adresse trop courte"),
+  ville: z.string().min(2, "Ville requise"),
+});
+
+function FormulaireCreerLieu() {
+  const [errors, setErrors] = useState({});
+
+  function handleSubmit(formData: FormData) {
+    const result = lieuSchema.safeParse(Object.fromEntries(formData));
+    if (!result.success) {
+      setErrors(result.error.flatten().fieldErrors);
+      return; // ⛔ Empêche la soumission invalide
+    }
+    creerLieu(result.data);
+  }
+
+  return (
+    <form action={handleSubmit}>
+      <input name="libelle" placeholder="Nom du lieu" />
+      {errors.libelle && <p className="text-red-500">{errors.libelle}</p>}
+      <input name="adresse" placeholder="Adresse" />
+      {errors.adresse && <p className="text-red-500">{errors.adresse}</p>}
+      <input name="ville" placeholder="Ville" />
+      {errors.ville && <p className="text-red-500">{errors.ville}</p>}
+      <button type="submit">Enregistrer</button>
+    </form>
+  );
+}
+```
+
 ---
 
 ## 🏗️ **Les 5 éléments de l’UX (Jesse James Garrett)**  
