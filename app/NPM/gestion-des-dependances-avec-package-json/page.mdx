@@ -3,7 +3,7 @@ description: "Le fichier package.json est au cœur de tout projet Node.js. Il co
 ---
 # 📦 Gestion des dépendances avec `package.json`
 
-Le fichier `package.json` est au cœur de tout projet Node.js. Il contient des métadonnées importantes sur le projet, notamment son nom, sa version, ses scripts et, surtout, ses dépendances. Ce fichier permet de gérer efficacement les bibliothèques nécessaires au bon fonctionnement du projet, ainsi que celles utilisées uniquement lors du développement.
+Le fichier `package.json` est au cœur de tout projet <Term word="Node.js">Node.js</Term>. Il contient des métadonnées importantes sur le projet, notamment son nom, sa version, ses scripts et, surtout, ses dépendances. Ce fichier permet de gérer efficacement les bibliothèques nécessaires au bon fonctionnement du projet, ainsi que celles utilisées uniquement lors du développement.
 
 ## 🗂️ Structure du fichier `package.json`
 Voici un exemple basique de fichier `package.json` :
@@ -39,7 +39,7 @@ La section **`dependencies`** contient les paquets nécessaires à l'exécution 
   }
 }
 ```
-Dans cet exemple, **Express** est une dépendance qui sera installée pour faire fonctionner l'application.
+Dans cet exemple, **<Term word="Express">Express</Term>** est une dépendance qui sera installée pour faire fonctionner l'application.
 
 - **Installation** 📦 : Les dépendances sont ajoutées à cette section lorsque vous exécutez la commande :
   ```bash copy
@@ -73,7 +73,7 @@ Dans `package.json`, vous remarquerez des symboles tels que `^` ou `~` avant les
   - Par exemple, `"express": "~4.17.1"` autorise toute version `4.17.x`, mais pas `4.18.x`.
 
 ## 🛠️ **Installation des dépendances**
-Lorsque vous récupérez un projet Node.js (par exemple, en clonant un dépôt Git), il vous suffit de lancer la commande :
+Lorsque vous récupérez un projet Node.js (par exemple, en clonant un dépôt <Term word="Git">Git</Term>), il vous suffit de lancer la commande :
 ```bash copy
 npm install
 ```

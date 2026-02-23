@@ -1,6 +1,6 @@
 # 🧠 State et cycle de vie des composants (explications approfondies)
 
-Le state est la donnée locale propre à un composant React. Quand le state change, React re-renderise le composant (et ses enfants si nécessaire) pour mettre à jour l'interface.
+Le <Term word="state">state</Term> est la donnée locale propre à un <Term word="composant">composant</Term> <Term word="React">React</Term>. Quand le state change, React re-renderise le composant (et ses enfants si nécessaire) pour mettre à jour l'interface.
 
 Cette page explique :
 - comment utiliser `useState` et `useReducer` pour gérer l'état ;
@@ -135,7 +135,7 @@ useEffect(() => {
 ```
 
 Points clés sur `useEffect` :
-- L'effet s'exécute après le rendu (commit) ; n'y mettez pas de code bloquant.
+- L'effet s'exécute après le rendu (<Term word="commit">commit</Term>) ; n'y mettez pas de code bloquant.
 - Le tableau des dépendances indique quand ré-exécuter l'effet.
 - Toujours déclarer toutes les dépendances nécessaires (ou documenter pourquoi vous les omettez).
 

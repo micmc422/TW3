@@ -1,10 +1,10 @@
 ## 🪝 **Hooks Natifs**
 
-Voici des exemples fonctionnels pour chaque Hook natif de React :
+Voici des exemples fonctionnels pour chaque Hook natif de <Term word="React">React</Term> :
 
 ### 🧠 useState
 
-Le Hook `useState` permet d'ajouter un état local à un composant fonctionnel. Il retourne un tableau avec deux éléments : la valeur actuelle de l'état et une fonction pour la mettre à jour.
+Le Hook `useState` permet d'ajouter un état local à un <Term word="composant">composant</Term> fonctionnel. Il retourne un tableau avec deux éléments : la valeur actuelle de l'état et une fonction pour la mettre à jour.
 
 ```jsx copy
 import React, { useState } from 'react';
@@ -103,7 +103,7 @@ export default Counter;
 ➡️ **Bonne pratique :** Toujours utiliser `setCount(prev => prev + 1)` quand la mise à jour dépend de l'état précédent ! �
 ### ⏱️ useEffect
 
-Le Hook `useEffect` permet d'effectuer des effets secondaires dans les composants fonctionnels. Il peut être utilisé pour des opérations telles que les requêtes réseau, les abonnements, les manipulations du DOM, etc.
+Le Hook `useEffect` permet d'effectuer des effets secondaires dans les composants fonctionnels. Il peut être utilisé pour des opérations telles que les requêtes réseau, les abonnements, les manipulations du <Term word="DOM">DOM</Term>, etc.
 
 ```jsx copy
 import React, { useState, useEffect } from 'react';
@@ -165,7 +165,7 @@ export default Timer;
 La fonction de nettoyage est utile dans plusieurs cas :
 1. **Éviter les fuites de mémoire** (ex. `setInterval`, `setTimeout`).
 2. **Désabonner un écouteur d’événement (`addEventListener`).**
-3. **Annuler une requête HTTP ou une WebSocket.**
+3. **Annuler une requête <Term word="HTTP">HTTP</Term> ou une WebSocket.**
 
 ---
 
@@ -240,7 +240,7 @@ useEffect(() => {
 2. Il est indispensable pour :
    - **`setInterval()` / `setTimeout()`** → (`clearInterval()` / `clearTimeout()`)
    - **Écouteurs d’événements (`addEventListener`)** → (`removeEventListener`)
-   - **WebSockets ou requêtes API** → (`abort()`)
+   - **WebSockets ou requêtes <Term word="API">API</Term>** → (`abort()`)
 3. **Sans ce nettoyage, on risque des fuites mémoire ou des comportements indésirables.**  
 
 ➡️ **Règle d’or :** **Si un effet met en place quelque chose de persistant (timer, écouteur...), il doit être nettoyé avec `return` !** ✅
@@ -368,7 +368,7 @@ Dans cet exemple, `memoizedCallback` est une version mémorisée de la fonction 
 
 ### 🆔 useId
 
-Le Hook `useId` (React 18+) génère des identifiants stables et uniques, utiles pour lier des `label` à des `input` ou pour éviter les collisions d'ID lorsqu'on compose des composants réutilisables. Il est également adapté au rendu côté serveur (SSR) pour éviter les mismatches.
+Le Hook `useId` (React 18+) génère des identifiants stables et uniques, utiles pour lier des `label` à des `input` ou pour éviter les collisions d'ID lorsqu'on compose des composants réutilisables. Il est également adapté au rendu côté serveur (<Term word="SSR">SSR</Term>) pour éviter les mismatches.
 
 ```jsx copy
 import { useId } from 'react';

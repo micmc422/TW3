@@ -1,6 +1,6 @@
 # 🚀 **Création d’une Server Action pour gérer un formulaire dans Next.js 13+**  
 
-Les **Server Actions** permettent d’envoyer directement des données à un serveur **sans API Route**, ce qui simplifie la gestion des formulaires.  
+Les **Server Actions** permettent d’envoyer directement des données à un serveur **sans <Term word="API">API</Term> Route**, ce qui simplifie la gestion des formulaires.  
 
 ---  
 
@@ -102,7 +102,7 @@ export default function ContactPage() {
 
 ✅ **Explication** :
 - Le formulaire est **côté client** (`"use client"`).
-- La Server Action **`sendMessage`** est appelée directement **dans `handleSubmit`**.
+- La <Term word="Server Action">Server Action</Term> **`sendMessage`** est appelée directement **dans `handleSubmit`**.
 - On affiche **un message de confirmation** après l’envoi.
 
 ---
@@ -152,7 +152,7 @@ export async function sendMessage(formData: FormData) {
 
 | 🔹 Méthode | Server Action (`"use server"`) | API Route (`app/api/contact/route.ts`) |
 |------------|----------------|----------------|
-| 🏗️ **Complexité** | Plus simple (directement dans le composant) | Nécessite une route séparée |
+| 🏗️ **Complexité** | Plus simple (directement dans le <Term word="composant">composant</Term>) | Nécessite une route séparée |
 | ⚡ **Performance** | Moins d’allers-retours réseau | Requiert un `fetch()` |
 | 🔒 **Sécurité** | Non exposé côté client | Peut être accédé via `fetch()` |
 | 🔄 **Exécution** | Directe via `form action={}` | Via `fetch()` dans un `useEffect` ou `onSubmit` |

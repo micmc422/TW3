@@ -1,6 +1,6 @@
 # 📷 **Gestion des images avec `next/image` dans Next.js 13+**  
 
-Next.js propose un composant **optimisé** pour l’affichage des images : [`next/image`](https://nextjs.org/docs/pages/api-reference/components/image). Il améliore les performances en :  
+<Term word="Next.js">Next.js</Term> propose un <Term word="composant">composant</Term> **optimisé** pour l’affichage des images : [`next/image`](https://nextjs.org/docs/pages/api-reference/components/image). Il améliore les performances en :  
 
 ✅ **Optimisant automatiquement** les images (compression, WebP/AVIF).  
 ✅ **Lazy-loading** natif (chargement différé pour améliorer le temps de rendu).  
@@ -51,7 +51,7 @@ module.exports = {
 };
 ```
 
-🛠 **Utilisation d’une image distante**  
+🛠 **Utilisation d’une <Term word="image">image</Term> distante**  
 ```tsx copy
 <Image 
   src="https://cdn.example.com/image.jpg" 
@@ -67,7 +67,7 @@ module.exports = {
 
 ## **3️⃣ Gestion des images responsives (`fill`)**  
 
-Next.js permet d’adapter automatiquement les images à la taille du conteneur.  
+Next.js permet d’adapter automatiquement les images à la taille du <Term word="conteneur">conteneur</Term>.  
 
 🛠 **Exemple avec `fill` et un conteneur en `relative`**  
 ```tsx copy
@@ -83,7 +83,7 @@ Next.js permet d’adapter automatiquement les images à la taille du conteneur.
 
 ✅ **Explication** :  
 - `fill` : L’image **remplit** son parent (`w-64 h-64`).  
-- `object-cover` (avec Tailwind) : Garde le ratio de l’image sans déformation.  
+- `object-cover` (avec <Term word="Tailwind">Tailwind</Term>) : Garde le ratio de l’image sans déformation.  
 
 ---
 
@@ -100,7 +100,7 @@ Aucune configuration n’est nécessaire ! 🎉
 
 ## **5️⃣ Charger dynamiquement une image (`loader`)**  
 
-Pour des cas spécifiques (CDN externe, transformations d’image...), on peut utiliser un **loader personnalisé**.  
+Pour des cas spécifiques (<Term word="CDN">CDN</Term> externe, transformations d’image...), on peut utiliser un **loader personnalisé**.  
 
 🛠 **Exemple avec Cloudinary**  
 ```tsx copy
@@ -127,5 +127,5 @@ const cloudinaryLoader = ({ src, width, quality }) => {
 
 🚀 **Avec `next/image`, on obtient** :  
 ✅ Des images **compressées et optimisées automatiquement**.  
-✅ Un **lazy loading** natif pour de meilleures performances.  
+✅ Un **<Term word="lazy loading">lazy loading</Term>** natif pour de meilleures performances.  
 ✅ Une **gestion facile** des images locales et distantes.  

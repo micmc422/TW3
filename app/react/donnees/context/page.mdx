@@ -1,10 +1,10 @@
 # 🔌 Utilisation du Context API pour Partager des Données Globales
 
-Le Context API est une fonctionnalité de React qui permet de partager des données globales entre plusieurs composants sans avoir à les passer explicitement à travers les props. C'est particulièrement utile pour les données qui sont nécessaires dans de nombreux composants à différents niveaux de l'arbre de composants.
+Le Context <Term word="API">API</Term> est une fonctionnalité de <Term word="React">React</Term> qui permet de partager des données globales entre plusieurs composants sans avoir à les passer explicitement à travers les <Term word="props">props</Term>. C'est particulièrement utile pour les données qui sont nécessaires dans de nombreux composants à différents niveaux de l'arbre de composants.
 
 ## 🔌 Création du Contexte
 
-La première étape consiste à créer un contexte. Un contexte est simplement un objet vide qui sert de conteneur pour les données que vous souhaitez partager. Vous pouvez créer un contexte en utilisant la fonction `createContext()` de React.
+La première étape consiste à créer un contexte. Un contexte est simplement un objet vide qui sert de <Term word="conteneur">conteneur</Term> pour les données que vous souhaitez partager. Vous pouvez créer un contexte en utilisant la fonction `createContext()` de React.
 
 ```jsx copy
 // Création du contexte
@@ -15,7 +15,7 @@ const MyContext = createContext();
 
 ## 🔌 Fourniture du Contexte
 
-Une fois que vous avez créé un contexte, vous pouvez le fournir à vos composants en utilisant le `Provider` du contexte. Le `Provider` est un composant spécial qui accepte une prop `value` et la rend disponible à tous les composants enfants.
+Une fois que vous avez créé un contexte, vous pouvez le fournir à vos composants en utilisant le `Provider` du contexte. Le `Provider` est un <Term word="composant">composant</Term> spécial qui accepte une prop `value` et la rend disponible à tous les composants enfants.
 
 ```jsx copy
 import { createContext } from 'react';
@@ -38,7 +38,7 @@ Dans cet exemple, le composant `ParentComponent` fournit le contexte `MyContext`
 
 ## 🔌 Consommation du Contexte
 
-Pour consommer le contexte dans un composant enfant, vous pouvez utiliser le hook `useContext()`. Ce hook accepte un objet de contexte (c'est-à-dire l'objet retourné par `createContext()`) et renvoie la valeur actuelle du contexte.
+Pour consommer le contexte dans un composant enfant, vous pouvez utiliser le <Term word="hook">hook</Term> `useContext()`. Ce hook accepte un objet de contexte (c'est-à-dire l'objet retourné par `createContext()`) et renvoie la valeur actuelle du contexte.
 
 ```jsx copy
 import { useContext } from 'react';

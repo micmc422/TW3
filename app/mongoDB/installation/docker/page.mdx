@@ -3,15 +3,15 @@ description: "Étapes d'Installation avec Docker."
 ---
 # 🐳 Étapes d'Installation avec Docker
 
-1.  **Installation de Docker :** Assurez-vous que Docker est installé sur les postes universitaires. Vous pouvez télécharger Docker depuis [le site officiel de Docker](https://www.docker.com/get-started).
+1.  **Installation de <Term word="Docker">Docker</Term> :** Assurez-vous que Docker est installé sur les postes universitaires. Vous pouvez télécharger Docker depuis [le site officiel de Docker](https://www.docker.com/get-started).
     
-2.  **Téléchargement de l'Image MongoDB :** Dans un terminal, utilisez la commande suivante pour télécharger l'image officielle MongoDB depuis Docker Hub :
+2.  **Téléchargement de l'Image <Term word="MongoDB">MongoDB</Term> :** Dans un terminal, utilisez la commande suivante pour télécharger l'<Term word="image">image</Term> officielle MongoDB depuis Docker Hub :
        
     ```bash copy
     docker pull mongo
     ``` 
     
-3.  **Création d'un Conteneur MongoDB :** Une fois l'image téléchargée, créez un conteneur avec la commande suivante. Assurez-vous de remplacer `/monchemin` par le chemin sur le système hôte où vous souhaitez stocker les données MongoDB :
+3.  **Création d'un Conteneur MongoDB :** Une fois l'image téléchargée, créez un <Term word="conteneur">conteneur</Term> avec la commande suivante. Assurez-vous de remplacer `/monchemin` par le chemin sur le système hôte où vous souhaitez stocker les données MongoDB :
     
     ```bash copy
     docker run -d -p 27017:27017 --name mon-container-mongodb -v /monchemin:/data/db mongo
@@ -20,7 +20,7 @@ description: "Étapes d'Installation avec Docker."
     -   `-d` : Lance le conteneur en arrière-plan.
     -   `-p 27017:27017` : Mappe le port 27017 du conteneur sur le port 27017 du système hôte.
     -   `--name mon-container-mongodb` : Donne un nom au conteneur pour une gestion plus facile.
-    -   `-v /monchemin:/data/db` : Montre un volume pour stocker les données MongoDB.
+    -   `-v /monchemin:/data/db` : Montre un <Term word="volume">volume</Term> pour stocker les données MongoDB.
 4.  **Vérification du Conteneur :** Vérifiez que le conteneur MongoDB fonctionne correctement avec la commande :
     
     ```bash copy

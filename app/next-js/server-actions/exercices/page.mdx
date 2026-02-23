@@ -1,10 +1,10 @@
 # 📌 **Travail Pratique : Server Actions & Optimistic UI avec Next.js 14+**
 
 ## ⚡ **Objectifs**
-1. Implémenter un **formulaire de contact** utilisant une **Server Action** pour envoyer des données sans passer par un appel `fetch()` explicite.
+1. Implémenter un **formulaire de contact** utilisant une **<Term word="Server Action">Server Action</Term>** pour envoyer des données sans passer par un appel `fetch()` explicite.
 2. Créer un bouton **"Like"** qui met à jour instantanément l'affichage (optimistic UI) grâce à `useOptimistic()` et `useTransition()`.
 
-> **Note :** Dans Next.js 14+, les Server Actions permettent d’attacher directement une fonction serveur à l'attribut `action` d’un formulaire. Assurez-vous que les fichiers respectent la convention « `"use server";` en tête de fichier d’action ».
+> **Note :** Dans <Term word="Next.js">Next.js</Term> 14+, les Server Actions permettent d’attacher directement une fonction serveur à l'attribut `action` d’un formulaire. Assurez-vous que les fichiers respectent la convention « `"use server";` en tête de fichier d’action ».
 
 🔗 **Code source :** [📂 GitHub](https://github.com/micmc422/my-next-app.git) 🚀
 
@@ -53,7 +53,7 @@ export async function sendContactMessage(formData: FormData) {
 
 ### ⚡ **Étape 2 : Créer le formulaire côté client**
 
-Créez ou modifiez le fichier `app/contact/page.tsx` pour utiliser la Server Action directement via l'attribut `action` du formulaire. Comme l'interactivité est gérée côté client (affichage des messages, gestion de l'état), le composant doit être un Client Component (déclaré avec `"use client"`).
+Créez ou modifiez le fichier `app/contact/page.tsx` pour utiliser la Server Action directement via l'attribut `action` du formulaire. Comme l'interactivité est gérée côté client (affichage des messages, gestion de l'état), le <Term word="composant">composant</Term> doit être un Client Component (déclaré avec `"use client"`).
 
 ```tsx filename="app/contact/page.tsx" copy
 "use client";
@@ -124,7 +124,7 @@ export default function ContactPage() {
 ```
 
 > **Explication :**  
-> - Le hook `useTransition()` permet de lancer la fonction sans bloquer l'interface.  
+> - Le <Term word="hook">hook</Term> `useTransition()` permet de lancer la fonction sans bloquer l'interface.  
 > - L'état `feedback` affiche un message de succès ou d'erreur après l'envoi.
 
 ---

@@ -1,11 +1,11 @@
 # 🧱 Routes Dynamiques & Paramètres
 
-Les **routes dynamiques** permettent d'afficher un contenu en fonction de segments variables de l'URL (ex: `/produits/A1`, `/users/42`). On utilise la syntaxe `:param` dans le chemin et le hook `useParams()` pour récupérer les valeurs.
+Les **routes dynamiques** permettent d'afficher un contenu en fonction de segments variables de l'<Term word="URL">URL</Term> (ex: `/produits/A1`, `/users/42`). On utilise la syntaxe `:param` dans le chemin et le <Term word="hook">hook</Term> `useParams()` pour récupérer les valeurs.
 
 ## 🧠 Fondamentaux
-Une route dynamique = chemin avec segment paramétré `:id` + composant qui lit la valeur. Avantages :
+Une route dynamique = chemin avec segment paramétré `:id` + <Term word="composant">composant</Term> qui lit la valeur. Avantages :
 1. URL sémantiques et partageables
-2. Navigation côté client rapide (SPA)
+2. Navigation côté client rapide (<Term word="SPA">SPA</Term>)
 3. Chargement ciblé de données (fetch selon ID)
 
 ### 📦 Exemple minimal
@@ -39,7 +39,7 @@ function Item() {
 ```
 
 ### 🕸️ Recherche (Query string)
-Les paramètres d'URL ne couvrent pas tout. Pour une pagination ou un tri : utiliser l'API `URLSearchParams` sur `window.location.search` ou `useSearchParams()`.
+Les paramètres d'URL ne couvrent pas tout. Pour une pagination ou un tri : utiliser l'<Term word="API">API</Term> `URLSearchParams` sur `window.location.search` ou `useSearchParams()`.
 ```jsx copy
 import { useSearchParams } from 'react-router';
 
@@ -111,7 +111,7 @@ function Product() {
 ```
 
 ### 💤 Lazy + paramètre
-Combiner lazy loading pour vues spécialisées.
+Combiner <Term word="lazy loading">lazy loading</Term> pour vues spécialisées.
 ```jsx copy
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';

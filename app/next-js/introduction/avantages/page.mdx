@@ -2,7 +2,7 @@ import { Callout } from 'nextra/components'
 
 # **🚀 Avantages de l’architecture `app/` (Next.js 13+)**  
 
-L’architecture `app/` de Next.js 13+ repose sur plusieurs améliorations majeures, notamment **les Server Components**, qui optimisent le rendu et les performances globales des applications web. Voici un aperçu des principaux avantages :  
+L’architecture `app/` de <Term word="Next.js">Next.js</Term> 13+ repose sur plusieurs améliorations majeures, notamment **les Server Components**, qui optimisent le rendu et les performances globales des applications web. Voici un aperçu des principaux avantages :  
 
 ---
 
@@ -41,12 +41,12 @@ export default async function Dashboard() {
 
 ## **2️⃣ Une meilleure performance et gestion du rendu**  
 
-| Fonctionnalité           | Pages Router (`pages/`) | App Router (`app/`) |
+| Fonctionnalité           | Pages Router (`pages/`) | <Term word="App Router">App Router</Term> (`app/`) |
 |-------------------------|------------------------|----------------------|
 | **JavaScript envoyé au client** | Plus important | Réduit grâce aux Server Components |
 | **Re-renders client**  | Plus fréquents | Moins fréquents |
-| **Gestion des données** | Nécessite API Routes | Fetching natif dans Server Components |
-| **Streaming**          | Complexe | Facile via React Suspense |
+| **Gestion des données** | Nécessite <Term word="API">API</Term> Routes | Fetching natif dans Server Components |
+| **Streaming**          | Complexe | Facile via <Term word="React">React</Term> Suspense |
 
 ✅ **Optimisation automatique** : Next.js ne charge que le JavaScript nécessaire.  
 ✅ **Streaming** : Permet d’afficher progressivement le contenu, améliorant l’expérience utilisateur.  
@@ -77,7 +77,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 ## **4️⃣ Métadonnées et SEO intégrés (`generateMetadata`)**  
 
 ✅ Plus besoin d’utiliser `<Head>` partout comme dans `pages/`.  
-✅ Gestion **simplifiée et dynamique** des balises SEO.  
+✅ Gestion **simplifiée et dynamique** des balises <Term word="SEO">SEO</Term>.  
 
 🧪 Exemple d’une métadonnée dynamique dans `app/` : 
 
@@ -96,7 +96,7 @@ export async function generateMetadata({ params }) {
 ## **5️⃣ Server Actions : API Routes simplifiées**  
 
 📌 Dans `app/`, plus besoin de créer des **API routes (`pages/api/*`)**.  
-✅ On peut directement appeler des fonctions serveur depuis un composant.  
+✅ On peut directement appeler des fonctions serveur depuis un <Term word="composant">composant</Term>.  
 
 🧪 Exemple : **Un formulaire qui enregistre des données en base**  
 

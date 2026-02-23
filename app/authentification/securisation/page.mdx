@@ -35,7 +35,7 @@ L'attaquant utilise une liste précompilée de mots de passe courants (ex. : `12
 ## 🍪 **Vol de Session (Session Hijacking)**
 
 **Définition :**  
-Le vol de session (Session Hijacking) consiste à s'emparer du **Session ID** d'un utilisateur légitime pour accéder à ses ressources. Ce type d'attaque peut se produire lorsque :
+Le vol de <Term word="session">session</Term> (Session Hijacking) consiste à s'emparer du **Session ID** d'un utilisateur légitime pour accéder à ses ressources. Ce type d'attaque peut se produire lorsque :
 - Les cookies de session sont interceptés via un réseau non sécurisé (ex. : Wi-Fi public).
 - Une application ne sécurise pas correctement ses cookies ou tokens.
 
@@ -43,11 +43,11 @@ Le vol de session (Session Hijacking) consiste à s'emparer du **Session ID** d'
 - L’attaquant agit en tant qu’utilisateur authentifié, sans avoir besoin de ses identifiants.
 
 **Stratégies de Prévention :**
-1. **HTTPS obligatoire :**  
+1. **<Term word="HTTPS">HTTPS</Term> obligatoire :**  
    - Toutes les communications doivent passer par HTTPS pour éviter l’interception des cookies.
 2. **Cookies sécurisés :**  
    - Utiliser les options `HttpOnly`, `Secure`, et `SameSite` pour protéger les cookies :
-     - **HttpOnly :** Empêche l'accès au cookie via JavaScript (protection contre les attaques XSS).
+     - **HttpOnly :** Empêche l'accès au <Term word="cookie">cookie</Term> via JavaScript (protection contre les attaques XSS).
      - **Secure :** Envoie le cookie uniquement sur des connexions HTTPS.
      - **SameSite :** Limite l’envoi des cookies aux requêtes provenant du même domaine.
 3. **Expiration et rotation des sessions :**  
@@ -79,7 +79,7 @@ Dans une attaque XSS, l'attaquant injecte un script malveillant dans une applica
 3. **Cookies HttpOnly :**  
    - Empêche JavaScript d'accéder aux cookies, même en cas de XSS.
 4. **Frameworks sécurisés :**  
-   - Utiliser des frameworks modernes (comme React ou Angular) qui échappent automatiquement les données affichées.
+   - Utiliser des frameworks modernes (comme <Term word="React">React</Term> ou Angular) qui échappent automatiquement les données affichées.
 
 ---
 
@@ -106,7 +106,7 @@ Une attaque CSRF force un utilisateur authentifié à exécuter des actions non 
    - Configurer les cookies avec l’option `SameSite=Strict` pour empêcher leur envoi dans les requêtes intersites.
 3. **Validation des origines :**  
    - Vérifier l'en-tête `Referer` ou `Origin` des requêtes sensibles.
-4. **Limitation des méthodes HTTP :**  
+4. **Limitation des méthodes <Term word="HTTP">HTTP</Term> :**  
    - Autoriser uniquement les requêtes POST pour les actions critiques (ne pas accepter GET pour les actions modifiables).
 
 ---

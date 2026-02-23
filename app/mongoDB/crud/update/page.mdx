@@ -4,7 +4,7 @@ description: "La mise à jour de données, souvent désignée par le terme Updat
 
 # 🔁 Mise à Jour de Données dans MongoDB
 
-La mise à jour de données, souvent désignée par le terme "Update", est une étape cruciale pour maintenir la cohérence et l'exactitude des informations stockées dans une collection MongoDB. Ce chapitre explore les diverses méthodes et meilleures pratiques pour mettre à jour efficacement des documents, en mettant l'accent sur la flexibilité offerte par MongoDB dans la modification de données existantes.
+La mise à jour de données, souvent désignée par le terme "Update", est une étape cruciale pour maintenir la cohérence et l'exactitude des informations stockées dans une <Term word="collection">collection</Term> <Term word="MongoDB">MongoDB</Term>. Ce chapitre explore les diverses méthodes et meilleures pratiques pour mettre à jour efficacement des documents, en mettant l'accent sur la flexibilité offerte par MongoDB dans la modification de données existantes.
 
 ## 🍃 Méthodes de Mise à Jour
 
@@ -25,7 +25,7 @@ La mise à jour de données, souvent désignée par le terme "Update", est une �
     db.ma_collection.update({ "nom": "Jane Doe" }, { $set: { "age": 31 } });
     ```
 
-3. **`replaceOne()` :** Cette méthode remplace entièrement un document qui correspond à un critère donné. Elle est utile lorsque vous souhaitez remplacer un document existant par un nouveau.
+3. **`replaceOne()` :** Cette méthode remplace entièrement un <Term word="document">document</Term> qui correspond à un critère donné. Elle est utile lorsque vous souhaitez remplacer un document existant par un nouveau.
 
     ```javascript copy
     // Exemple de remplacement d'un document

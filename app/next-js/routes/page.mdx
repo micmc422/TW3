@@ -3,9 +3,9 @@ icon: "▶"
 ---
 # 🚀 **Routing basé sur le système de fichiers dans Next.js (`app/` vs `pages/`)**  
 
-Next.js propose deux systèmes de routing basés sur l’arborescence des fichiers :  
+<Term word="Next.js">Next.js</Term> propose deux systèmes de routing basés sur l’arborescence des fichiers :  
 -  **Le Pages Router (`pages/`)** (jusqu'à Next.js 12 et optionnel dans Next.js 13+).  
--  **Le App Router (`app/`)** (introduit dans Next.js 13 et par défaut à partir de Next.js 14).  
+-  **Le <Term word="App Router">App Router</Term> (`app/`)** (introduit dans Next.js 13 et par défaut à partir de Next.js 14).  
 
 Voyons les différences et avantages de ces deux approches.  
 
@@ -34,7 +34,7 @@ pages/
 ### **✅ Avantages de `pages/` :**  
 ✔ **Facile à comprendre et rapide à mettre en place**.  
 ✔ **Compatible avec Next.js 12 et inférieur**.  
-✔ **Fonctionne bien avec les API Routes (`pages/api/`)**.  
+✔ **Fonctionne bien avec les <Term word="API">API</Term> Routes (`pages/api/`)**.  
 
 ### **❌ Inconvénients de `pages/` :**  
 ❌ **Layouts difficiles à gérer** → il faut dupliquer le code ou utiliser `_app.js`.  
@@ -105,7 +105,7 @@ export default function BlogPost() {
   return <h1>Article {id}</h1>;
 }
 ```
-💡 **Utilisation de `useRouter()` pour récupérer l’ID de l’URL**.  
+💡 **Utilisation de `useRouter()` pour récupérer l’ID de l’<Term word="URL">URL</Term>**.  
 
 ---
 

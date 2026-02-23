@@ -1,6 +1,6 @@
 # 🔑 **Authentification avec NextAuth.js et gestion des sessions dans Next.js 13+**  
 
-NextAuth.js est une solution d’authentification **simple et sécurisée** pour Next.js. Il prend en charge plusieurs fournisseurs (**OAuth, Credentials, JWT, etc.**) et s’intègre parfaitement avec l’architecture **App Router (`app/`)** de Next.js 13+.  
+NextAuth.js est une solution d’authentification **simple et sécurisée** pour <Term word="Next.js">Next.js</Term>. Il prend en charge plusieurs fournisseurs (**<Term word="OAuth">OAuth</Term>, Credentials, <Term word="JWT">JWT</Term>, etc.**) et s’intègre parfaitement avec l’architecture **<Term word="App Router">App Router</Term> (`app/`)** de Next.js 13+.  
 
 ---
 
@@ -18,7 +18,7 @@ npm install next-auth
 
 ### **📌 Définition du routeur d’authentification (`/app/api/auth/[...nextauth]/route.ts`)**  
 
-NextAuth.js fonctionne via une API route qui gère l’authentification.  
+NextAuth.js fonctionne via une <Term word="API">API</Term> route qui gère l’authentification.  
 
 ```tsx filename="app/api/auth/[...nextauth]/route.ts" copy
 import NextAuth from "next-auth";
@@ -46,7 +46,7 @@ export { handler as GET, handler as POST };
 
 ✅ **Explication** :  
 - Déclare **Google** comme fournisseur OAuth.  
-- Utilise `callbacks.session` pour stocker l'ID utilisateur dans la session.  
+- Utilise `callbacks.session` pour stocker l'ID utilisateur dans la <Term word="session">session</Term>.  
 - Définit l'API route `auth/` qui gère la connexion et la déconnexion.  
 
 ---
@@ -107,7 +107,7 @@ export default function AuthButton() {
 ## **5️⃣ Protection des pages (Middleware & Server Components)**  
 
 ### **🔹 Middleware : Protéger l’ensemble du site**  
-Si vous voulez restreindre l’accès aux pages aux utilisateurs connectés, utilisez un **middleware**.  
+Si vous voulez restreindre l’accès aux pages aux utilisateurs connectés, utilisez un **<Term word="middleware">middleware</Term>**.  
 
 🛠 **Fichier : `middleware.ts`**  
 ```ts filename="middleware.ts" copy

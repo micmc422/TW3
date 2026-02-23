@@ -2,7 +2,7 @@ import { Callout } from 'nextra/components'
 
 # ⚡ **Comparatif entre `app/` et `pages/` dans Next.js**
 
-Depuis Next.js 13, un **nouveau système de routage** appelé **App Router (`app/`)** est introduit, en remplacement progressif du **Pages Router (`pages/`)**. Voici un comparatif détaillé entre ces deux approches, basé sur la gestion des fichiers et des fonctionnalités.  
+Depuis <Term word="Next.js">Next.js</Term> 13, un **nouveau système de routage** appelé **<Term word="App Router">App Router</Term> (`app/`)** est introduit, en remplacement progressif du **Pages Router (`pages/`)**. Voici un comparatif détaillé entre ces deux approches, basé sur la gestion des fichiers et des fonctionnalités.  
 
 ---
 
@@ -61,8 +61,8 @@ Avec `app/`, le routing est **basé sur les dossiers**, et l’utilisation des *
 
 ✅ **Meilleures performances** grâce aux **Server Components** (moins de JavaScript envoyé au client).  
 ✅ **Layouts plus flexibles** (possibilité d’avoir des layouts imbriqués par dossier).  
-✅ **SEO et métadonnées simplifiés** avec `generateMetadata()`.  
-✅ **Suppression des API Routes** au profit des **Server Actions**, qui permettent d’interagir directement avec une base de données depuis un composant.  
+✅ **<Term word="SEO">SEO</Term> et métadonnées simplifiés** avec `generateMetadata()`.  
+✅ **Suppression des <Term word="API">API</Term> Routes** au profit des **Server Actions**, qui permettent d’interagir directement avec une base de données depuis un <Term word="composant">composant</Term>.  
 ✅ **Gestion simplifiée des erreurs et du chargement** (`loading.tsx` et `error.tsx` par dossier).  
 
 ---

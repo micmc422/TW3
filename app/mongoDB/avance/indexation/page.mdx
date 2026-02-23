@@ -5,11 +5,11 @@ description: "L'indexation dans MongoDB repose sur le principe des structures de
 # ⚡ Indexation : Maximiser les Performances
 
 
-L'indexation dans MongoDB repose sur le principe des structures de données appelées B-trees (arbres B). Ces arbres sont utilisés pour organiser les valeurs d'index de manière hiérarchique, ce qui permet d'accéder rapidement aux données en réduisant le nombre d'opérations de recherche nécessaires.
+L'indexation dans <Term word="MongoDB">MongoDB</Term> repose sur le principe des structures de données appelées B-trees (arbres B). Ces arbres sont utilisés pour organiser les valeurs d'index de manière hiérarchique, ce qui permet d'accéder rapidement aux données en réduisant le nombre d'opérations de recherche nécessaires.
 
 Voici une explication simplifiée des mécanismes d'indexation :
 
-1. **Création de l'Index :** Lorsque vous créez un index sur un champ spécifique, MongoDB analyse les valeurs de ce champ dans chaque document de la collection et construit une structure d'arbre B basée sur ces valeurs.
+1. **Création de l'Index :** Lorsque vous créez un index sur un champ spécifique, MongoDB analyse les valeurs de ce champ dans chaque <Term word="document">document</Term> de la <Term word="collection">collection</Term> et construit une structure d'arbre B basée sur ces valeurs.
 
 2. **Hiérarchisation des Valeurs :** Les valeurs d'index sont hiérarchisées dans l'arbre B en fonction de leur ordre. Chaque nœud de l'arbre contient plusieurs valeurs, et chaque nœud a un lien vers des nœuds enfants. Cela crée une hiérarchie qui permet une recherche efficace.
 

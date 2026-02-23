@@ -5,7 +5,7 @@ import { Steps } from 'nextra/components'
 
 # 🚀 Cas Pratique : Réseau Docker
 
-Dans ce cas pratique, nous allons explorer le fonctionnement des réseaux Docker à travers un exemple concret de deux conteneurs Docker qui communiquent entre eux via un réseau **bridge**.
+Dans ce cas pratique, nous allons explorer le fonctionnement des réseaux <Term word="Docker">Docker</Term> à travers un exemple concret de deux conteneurs Docker qui communiquent entre eux via un réseau **bridge**.
 
 ## 🎯 Objectif
 
@@ -17,7 +17,7 @@ Nous allons :
 <Steps>
 ### 🌐 Créer un Réseau Docker
 
-Docker fournit plusieurs types de réseaux, mais nous allons utiliser un réseau de type **bridge** personnalisé. Par défaut, Docker attribue à chaque conteneur un réseau privé isolé, mais nous allons créer un réseau commun pour que nos conteneurs puissent communiquer entre eux.
+Docker fournit plusieurs types de réseaux, mais nous allons utiliser un réseau de type **bridge** personnalisé. Par défaut, Docker attribue à chaque <Term word="conteneur">conteneur</Term> un réseau privé isolé, mais nous allons créer un réseau commun pour que nos conteneurs puissent communiquer entre eux.
 
 Créez un réseau Docker en utilisant la commande suivante :
 
@@ -45,7 +45,7 @@ Explications :
 - **`-d`** : Lance le conteneur en mode détaché (en arrière-plan).
 - **`--name my-nginx`** : Nom du conteneur (facilitera la communication).
 - **`--network my-custom-network`** : Connecte le conteneur au réseau personnalisé `my-custom-network`.
-- **`nginx`** : Utilise l'image Nginx officielle.
+- **`nginx`** : Utilise l'<Term word="image">image</Term> Nginx officielle.
 
 Vérifiez que le conteneur est en cours d'exécution avec :
 
@@ -55,7 +55,7 @@ docker ps
 
 ### 🖥️ Lancer un Conteneur Client (Curl)
 
-Pour tester la communication, nous allons lancer un second conteneur contenant **Curl**, un utilitaire en ligne de commande pour effectuer des requêtes HTTP, afin d’accéder au serveur Nginx.
+Pour tester la communication, nous allons lancer un second conteneur contenant **Curl**, un utilitaire en ligne de commande pour effectuer des requêtes <Term word="HTTP">HTTP</Term>, afin d’accéder au serveur Nginx.
 
 ```bash copy
 docker run -it --network my-custom-network curlimages/curl curl my-nginx

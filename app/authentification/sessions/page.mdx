@@ -3,7 +3,7 @@ description: "La gestion des sessions et des cookies est essentielle dans le fon
 ---
 # 🍪 **Sessions et Cookies**
 
-La gestion des sessions et des cookies est essentielle dans le fonctionnement des systèmes web modernes, en particulier pour maintenir une expérience utilisateur cohérente et sécurisée. Ces mécanismes permettent de suivre l'état d'un utilisateur entre les différentes requêtes HTTP, qui sont intrinsèquement stateless (sans état).
+La gestion des sessions et des cookies est essentielle dans le fonctionnement des systèmes web modernes, en particulier pour maintenir une expérience utilisateur cohérente et sécurisée. Ces mécanismes permettent de suivre l'état d'un utilisateur entre les différentes requêtes <Term word="HTTP">HTTP</Term>, qui sont intrinsèquement stateless (sans état).
 
 ---
 
@@ -12,8 +12,8 @@ La gestion des sessions et des cookies est essentielle dans le fonctionnement de
 Les sessions côté serveur consistent à stocker des informations utilisateur directement sur le serveur pour permettre une authentification continue ou suivre l’état d’une interaction.  
 
 **Principe :**
-- Lorsqu'un utilisateur se connecte, une session est créée côté serveur. Cette session contient des données spécifiques, comme l'identifiant de l'utilisateur, ses permissions ou d'autres paramètres.
-- Un identifiant unique de session (**Session ID**) est généré pour l'utilisateur et envoyé au navigateur sous forme de cookie.
+- Lorsqu'un utilisateur se connecte, une <Term word="session">session</Term> est créée côté serveur. Cette session contient des données spécifiques, comme l'identifiant de l'utilisateur, ses permissions ou d'autres paramètres.
+- Un identifiant unique de session (**Session ID**) est généré pour l'utilisateur et envoyé au navigateur sous forme de <Term word="cookie">cookie</Term>.
 - Lors de chaque requête ultérieure, le navigateur renvoie le cookie contenant le **Session ID**, permettant au serveur de récupérer les informations associées.
 
 **Étapes typiques :**
@@ -46,7 +46,7 @@ Voici les principales options de sécurité pour les cookies :
      ```
 
 2. **Secure :**
-   - Les cookies marqués comme `Secure` ne sont envoyés qu’au serveur via des connexions HTTPS, ce qui protège contre l’interception des données (attaque de type man-in-the-middle).
+   - Les cookies marqués comme `Secure` ne sont envoyés qu’au serveur via des connexions <Term word="HTTPS">HTTPS</Term>, ce qui protège contre l’interception des données (attaque de type man-in-the-middle).
    - Exemple d’utilisation :
      ```http copy
      Set-Cookie: session_id=abc123; Secure
@@ -85,7 +85,7 @@ Voici les principales options de sécurité pour les cookies :
 
 ## 🧪 **Exemple Pratique (Node.js avec Express)**
 
-Voici comment configurer une session sécurisée en Node.js avec des cookies.
+Voici comment configurer une session sécurisée en <Term word="Node.js">Node.js</Term> avec des cookies.
 
 **Installer les dépendances :**
 ```bash copy

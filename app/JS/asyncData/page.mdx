@@ -28,7 +28,7 @@ export default async function getContent(pathArray: string[]) {
 ### 📘 **a) Objectif de la fonction**
 La fonction `getContent` :
 1. **Construit dynamiquement un chemin de fichier** en utilisant les éléments d’un tableau (`pathArray`).
-2. **Charge des modules TypeScript dynamiques** situés dans ce chemin (ex. `seo.ts`, `cards.ts`, etc.).
+2. **Charge des modules <Term word="TypeScript">TypeScript</Term> dynamiques** situés dans ce chemin (ex. `seo.ts`, `cards.ts`, etc.).
 3. Renvoie un objet consolidé contenant les données de ces modules sous forme de **promesse**.
 
 ---
@@ -45,7 +45,7 @@ La fonction `getContent` :
 
 2. **Chargement dynamique avec `import()`**
    Les fichiers suivants sont importés dynamiquement :
-   - `seo.ts` : supposé contenir des métadonnées SEO.
+   - `seo.ts` : supposé contenir des métadonnées <Term word="SEO">SEO</Term>.
    - `cards.ts` : supposé contenir une liste de cartes.
    - `services.ts` : supposé contenir des informations sur les services.
    - `hero.ts` : supposé contenir des données pour la section héroïque.  
@@ -127,4 +127,4 @@ Ce type de fonction est utile dans les contextes suivants :
 **Attention** :  
 - Assurez-vous que le dossier cible existe et contient les fichiers nécessaires.  
 - Les fichiers doivent être exportés correctement avec les noms prévus (ex. `export const seo = ...`).  
-- `import()` est une méthode asynchrone, compatible avec ES6+ et certaines versions de Node.js.
+- `import()` est une méthode asynchrone, compatible avec ES6+ et certaines versions de <Term word="Node.js">Node.js</Term>.

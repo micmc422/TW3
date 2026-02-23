@@ -7,13 +7,13 @@ description: "Bien qu’OAuth 2.0 et OpenID Connect soient étroitement liés, i
 
 ## 🔒 **Authentification Utilisateur : OAuth 2.0 vs OpenID Connect (OIDC)**
 
-Bien qu’OAuth 2.0 et OpenID Connect soient étroitement liés, ils servent des objectifs différents lorsqu’il s’agit de gérer l’authentification utilisateur. Voici une comparaison de leurs utilisations :
+Bien qu’<Term word="OAuth">OAuth</Term> 2.0 et OpenID Connect soient étroitement liés, ils servent des objectifs différents lorsqu’il s’agit de gérer l’authentification utilisateur. Voici une comparaison de leurs utilisations :
 
 | **Aspect**                   | **OAuth 2.0**                                 | **OpenID Connect (OIDC)**                          |
 |------------------------------|-----------------------------------------------|---------------------------------------------------|
 | **Objectif Principal**       | **Autorisation.** Permet à une application tierce d’accéder à une ressource au nom d’un utilisateur. | **Authentification.** Vérifie l’identité d’un utilisateur en plus de l’autoriser. |
 | **Usage Typique**            | Accès délégué à des ressources (par exemple, permettre à une app de lire vos fichiers Google Drive). | Connexion à une application via un fournisseur d’identité (par exemple, "Se connecter avec Google"). |
-| **Jetons utilisés**           | - Jeton d’accès (**Access Token**) pour accéder aux API.  - Aucun moyen intégré de vérifier l’identité de l’utilisateur. | - Jeton d’accès (**Access Token**) pour les ressources.  - **ID Token** (format JWT) pour authentifier l’utilisateur. |
+| **Jetons utilisés**           | - Jeton d’accès (**Access Token**) pour accéder aux <Term word="API">API</Term>.  - Aucun moyen intégré de vérifier l’identité de l’utilisateur. | - Jeton d’accès (**Access Token**) pour les ressources.  - **ID Token** (format <Term word="JWT">JWT</Term>) pour authentifier l’utilisateur. |
 | **Sécurité utilisateur**     | Dépend de la manière dont l'application gère les jetons. Ne garantit pas directement l’identité de l’utilisateur. | Garantie de l’identité grâce au **ID Token**, contenant des informations vérifiables sur l’utilisateur. |
 | **Complexité d'Implémentation** | Moins complexe, mais nécessite des extensions pour l’authentification. | Plus simple à implémenter pour l’authentification, avec des bibliothèques dédiées. |
 
@@ -36,7 +36,7 @@ Les fournisseurs d’identité (IdPs) comme **Google**, **Facebook**, ou **Micro
 |-----------------------------|-------------------------------------------------|------------------------------------------------|
 | **Type de Protocole**       | API-friendly (conçu pour les applications web modernes et mobiles). | Basé sur XML, adapté aux besoins d’entreprise. |
 | **Fournisseurs courants**   | Google, Facebook, Microsoft, GitHub, Okta, Auth0. | Active Directory, Okta, Ping Identity.         |
-| **Flexibilité**             | Conçu pour les applications web, API REST, et mobiles modernes. | Idéal pour les grandes entreprises, moins flexible pour des applications modernes. |
+| **Flexibilité**             | Conçu pour les applications web, API <Term word="REST">REST</Term>, et mobiles modernes. | Idéal pour les grandes entreprises, moins flexible pour des applications modernes. |
 | **Exemple d’utilisation**  | Se connecter avec Google, Facebook ou Microsoft dans une application web ou mobile. | Authentification pour des systèmes internes d’entreprise via SSO. |
 
 ---

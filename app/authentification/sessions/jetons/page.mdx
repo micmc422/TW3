@@ -3,7 +3,7 @@ description: "Les JSON Web Tokens (JWT) sont une méthode moderne et populaire p
 ---
 # 🔒 **Jetons JWT (JSON Web Tokens)**
 
-Les **JSON Web Tokens (JWT)** sont une méthode moderne et populaire pour gérer l’authentification et la transmission sécurisée de données entre différentes parties dans une application web.  
+Les **<Term word="JSON">JSON</Term> Web Tokens (<Term word="JWT">JWT</Term>)** sont une méthode moderne et populaire pour gérer l’authentification et la transmission sécurisée de données entre différentes parties dans une application web.  
 
 ---
 
@@ -56,7 +56,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
    - Les JWT ne nécessitent pas de stockage côté serveur ; toutes les informations sont incluses dans le token.  
 
 2. **Transport facile :**  
-   - Les JWT sont encodés en base64 et peuvent être facilement transmis via les headers HTTP, les URL, ou les cookies.
+   - Les JWT sont encodés en base64 et peuvent être facilement transmis via les headers <Term word="HTTP">HTTP</Term>, les <Term word="URL">URL</Term>, ou les cookies.
 
 3. **Interopérabilité :**  
    - Ils fonctionnent indépendamment des technologies et des langages.  
@@ -96,9 +96,9 @@ Les **cookies** et les **JWT** sont utilisés pour maintenir l’état d’un ut
 | **Transport**             | Transmis automatiquement via les requêtes HTTP (headers Cookie). | Transmis via headers HTTP (Authorization), cookies, ou directement dans les requêtes. |
 | **Dépendance au Serveur** | Nécessitent un stockage côté serveur pour associer les sessions. | Stateless : toutes les informations sont incluses dans le token. |
 | **Sécurité des Données**  | Les cookies peuvent être protégés par `HttpOnly`, `Secure`, et `SameSite`. | Le payload du JWT n'est pas chiffré par défaut, mais peut être chiffré séparément si nécessaire. |
-| **Revocation**            | Révocation facile via la suppression ou l'invalidation de la session côté serveur. | Révocation difficile : nécessite des listes noires ou une rotation de clés. |
+| **Revocation**            | Révocation facile via la suppression ou l'invalidation de la <Term word="session">session</Term> côté serveur. | Révocation difficile : nécessite des listes noires ou une rotation de clés. |
 | **Expiration**            | Non incluse nativement ; nécessite une implémentation côté serveur. | Intégrée dans le token (`exp`). |
-| **Interopérabilité**      | Principalement utilisé pour des applications web traditionnelles. | Fonctionne bien avec des APIs REST, des microservices et des systèmes distribués. |
+| **Interopérabilité**      | Principalement utilisé pour des applications web traditionnelles. | Fonctionne bien avec des APIs <Term word="REST">REST</Term>, des <Term word="microservices">microservices</Term> et des systèmes distribués. |
 
 ---
 

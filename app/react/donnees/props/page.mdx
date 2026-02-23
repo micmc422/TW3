@@ -1,6 +1,6 @@
 # 🔁 Passer des données via les Props
 
-Passer des données via les props est l'une des manières les plus courantes de partager des données entre les composants dans une application React. Les props sont des arguments passés à un composant lors de son rendu. Ils sont immuables, ce qui signifie qu'un composant ne peut pas modifier ses propres props.
+Passer des données via les <Term word="props">props</Term> est l'une des manières les plus courantes de partager des données entre les composants dans une application <Term word="React">React</Term>. Les props sont des arguments passés à un <Term word="composant">composant</Term> lors de son rendu. Ils sont immuables, ce qui signifie qu'un composant ne peut pas modifier ses propres props.
 
 Voici un exemple de base de la façon dont les props sont utilisées pour passer des données d'un composant parent à un composant enfant :
 
@@ -16,4 +16,4 @@ function ChildComponent(props) {
 
 Dans cet exemple, le composant `ParentComponent` passe une prop `message` au composant `ChildComponent`. Le composant `ChildComponent` peut ensuite accéder à cette prop via son argument `props`.
 
-Il est important de noter que les props sont unidirectionnelles, ce qui signifie que les données ne peuvent être passées que du composant parent au composant enfant. Si vous devez passer des données dans l'autre sens (du composant enfant au composant parent), vous devrez utiliser une autre méthode, comme les callbacks ou le Context API.
+Il est important de noter que les props sont unidirectionnelles, ce qui signifie que les données ne peuvent être passées que du composant parent au composant enfant. Si vous devez passer des données dans l'autre sens (du composant enfant au composant parent), vous devrez utiliser une autre méthode, comme les callbacks ou le Context <Term word="API">API</Term>.

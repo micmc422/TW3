@@ -2,7 +2,7 @@
 ---
 # 🚀 **Déploiement d’une application Next.js 13+ sur Vercel, OVH et autres plateformes**  
 
-Une fois votre projet Next.js prêt, il est temps de le mettre en ligne ! Voici comment déployer votre application sur **Vercel**, **OVH**, et d'autres solutions d'hébergement.
+Une fois votre projet <Term word="Next.js">Next.js</Term> prêt, il est temps de le mettre en ligne ! Voici comment déployer votre application sur **Vercel**, **OVH**, et d'autres solutions d'hébergement.
 
 ---
 
@@ -29,7 +29,7 @@ vercel
 ```
 Vercel détecte automatiquement le projet et vous pose quelques questions :  
 - Nom du projet  
-- Lien avec un dépôt Git  
+- Lien avec un dépôt <Term word="Git">Git</Term>  
 - Configuration de l’environnement (`.env.local`)  
 
 ### **🔹 Étape 4 : Configuration des variables d’environnement**  
@@ -41,7 +41,7 @@ Ou via l’interface web de Vercel : **Settings → Environment Variables**.
 
 ✅ **Avantages de Vercel** :  
 - Déploiement **automatique depuis GitHub**.  
-- Optimisé pour **Next.js** (SSR, ISR, etc.).  
+- Optimisé pour **Next.js** (<Term word="SSR">SSR</Term>, ISR, etc.).  
 - **Domaines gratuits** en `.vercel.app`.  
 
 ---
@@ -62,7 +62,7 @@ npm run export
 ```
 
 Ensuite, transférez le contenu du dossier `out/` via **FTP** ou **SFTP** sur OVH.  
-Mais ⚠️ : **Pas de SSR, pas d’API routes, uniquement du statique !**  
+Mais ⚠️ : **Pas de SSR, pas d’<Term word="API">API</Term> routes, uniquement du statique !**  
 
 ---
 
@@ -70,7 +70,7 @@ Mais ⚠️ : **Pas de SSR, pas d’API routes, uniquement du statique !**
 Sur un **VPS OVH**, vous pouvez déployer une instance complète de Next.js.
 
 ### **📌 Étape 1 : Choisir un VPS**  
-📌 **Prérequis** : Un serveur avec **Ubuntu 22.04** et **Node.js** installé.  
+📌 **Prérequis** : Un serveur avec **Ubuntu 22.04** et **<Term word="Node.js">Node.js</Term>** installé.  
 Si Node.js n'est pas installé :  
 ```sh copy
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -

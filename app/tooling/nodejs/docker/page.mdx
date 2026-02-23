@@ -1,7 +1,7 @@
 
 # 🐳 Docker
 
-Docker est un outil puissant qui permet de créer, déployer et exécuter des applications dans des conteneurs. Cette section explique comment utiliser Docker avec Node.js.
+<Term word="Docker">Docker</Term> est un outil puissant qui permet de créer, déployer et exécuter des applications dans des conteneurs. Cette section explique comment utiliser Docker avec <Term word="Node.js">Node.js</Term>.
 
 ## 🛠️ Installation
 
@@ -23,7 +23,7 @@ CMD ["npm", "start"]
 
 ## 🟩 Construction de l'image
 
-Pour construire l'image Docker, exécutez la commande suivante :
+Pour construire l'<Term word="image">image</Term> Docker, exécutez la commande suivante :
 
 ``` sh copy
 docker build -t mon-app-nodejs .
@@ -31,7 +31,7 @@ docker build -t mon-app-nodejs .
 
 ## 🟩 Exécution du conteneur
 
-Pour démarrer votre application dans un conteneur :
+Pour démarrer votre application dans un <Term word="conteneur">conteneur</Term> :
 
 ``` sh copy
 docker run -p 3000:3000 mon-app-nodejs
@@ -39,7 +39,7 @@ docker run -p 3000:3000 mon-app-nodejs
 
 ## 🧪 Bonnes pratiques
 
-1. Utilisez une version spécifique de Node.js dans votre Dockerfile
+1. Utilisez une version spécifique de Node.js dans votre <Term word="Dockerfile">Dockerfile</Term>
 2. Optimisez la taille de l'image en utilisant .dockerignore
 3. Utilisez des images multi-stage pour la production
 4. Gérez correctement les variables d'environnement
@@ -47,7 +47,7 @@ docker run -p 3000:3000 mon-app-nodejs
 
 ## 🟩 Docker Compose
 
-Pour les applications plus complexes, utilisez Docker Compose :
+Pour les applications plus complexes, utilisez <Term word="Docker Compose">Docker Compose</Term> :
 
 ```docker copy
 version: '3'
@@ -66,7 +66,7 @@ Pour déployer votre application conteneurisée :
 
 1. Poussez votre image vers un registre Docker
 2. Configurez votre environnement de production
-3. Utilisez des outils d'orchestration comme Kubernetes si nécessaire
+3. Utilisez des outils d'<Term word="orchestration">orchestration</Term> comme <Term word="Kubernetes">Kubernetes</Term> si nécessaire
 
 ## 🟩 Dépannage
 

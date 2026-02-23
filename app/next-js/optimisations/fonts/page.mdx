@@ -2,9 +2,9 @@ import { Callout } from 'nextra/components'
 
 # 🎨 **Gestion des polices avec `next/font` dans Next.js 13+**  
 
-Next.js 13+ simplifie l’intégration des polices grâce à `next/font`. Cette API optimise les polices pour de meilleures performances :  
+<Term word="Next.js">Next.js</Term> 13+ simplifie l’intégration des polices grâce à `next/font`. Cette <Term word="API">API</Term> optimise les polices pour de meilleures performances :  
 
-✅ Chargement optimisé des polices (lazy loading, sous-ensembles automatiques).  
+✅ Chargement optimisé des polices (<Term word="lazy loading">lazy loading</Term>, sous-ensembles automatiques).  
 ✅ Hébergement local sans dépendance externe.  
 ✅ Moins de FOUT (Flash of Unstyled Text).  
 
@@ -103,7 +103,7 @@ export default function RootLayout({ children }) {
 
 ## **4️⃣ Appliquer une police via Tailwind CSS**  
 
-Si vous utilisez Tailwind, ajoutez la police dans `tailwind.config.js` :  
+Si vous utilisez <Term word="Tailwind">Tailwind</Term>, ajoutez la police dans `tailwind.config.js` :  
 
 ```js filename="tailwind.config.js" copy
 const { fontFamily } = require("tailwindcss/defaultTheme");
@@ -147,7 +147,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-🛠 **Utilisation dans un composant**  
+🛠 **Utilisation dans un <Term word="composant">composant</Term>**  
 ```tsx filename="monCoponent.tsx" copy
 export default function Home() {
   return <h1 className="font-inter">Bienvenue sur Next.js</h1>;

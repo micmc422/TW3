@@ -5,7 +5,7 @@ import { FileTree } from 'nextra/components'
 
 # 🚀 Création d'une Image Docker : Un Cas Concret
 
-Dans cet exemple, nous allons empaqueter une application web simple en Node.js dans une image Docker afin de l'exécuter dans un conteneur. L'objectif est de standardiser le déploiement en encapsulant l'application et toutes ses dépendances dans une image reproductible.
+Dans cet exemple, nous allons empaqueter une application web simple en <Term word="Node.js">Node.js</Term> dans une <Term word="image">image</Term> <Term word="Docker">Docker</Term> afin de l'exécuter dans un <Term word="conteneur">conteneur</Term>. L'objectif est de standardiser le déploiement en encapsulant l'application et toutes ses dépendances dans une image reproductible.
 
 ---
 
@@ -54,7 +54,7 @@ app.listen(3000, () => {
 
 ## 🔧 Écriture du Dockerfile
 
-Le **Dockerfile** est la "recette" qui permet de construire l'image Docker. Voici un exemple de Dockerfile pour notre application Node.js :
+Le **<Term word="Dockerfile">Dockerfile</Term>** est la "recette" qui permet de construire l'image Docker. Voici un exemple de Dockerfile pour notre application Node.js :
 
 ```Dockerfile copy
 # Étape 1 : Utiliser une image de base légère avec Node.js

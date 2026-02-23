@@ -136,3 +136,37 @@
     @apply bg-background text-foreground;
     }
 }
+
+/* 📘 Glossary tooltip */
+.glossary-term {
+  position: relative;
+  display: inline;
+}
+
+.glossary-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.5rem);
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 20rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  z-index: 50;
+  pointer-events: none;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  background: var(--popover);
+  color: var(--popover-foreground);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.glossary-term:hover .glossary-tooltip,
+.glossary-term:focus-within .glossary-tooltip {
+  visibility: visible;
+  opacity: 1;
+}

@@ -3,7 +3,7 @@ description: "Pour garantir la sécurité des systèmes d’authentification, il
 ---
 # 🔒 **Bonnes Pratiques de Sécurisation dans les Systèmes d'Authentification**
 
-Pour garantir la sécurité des systèmes d’authentification, il est essentiel d’adopter des pratiques reconnues pour protéger les données sensibles, prévenir les attaques, et renforcer la confiance des utilisateurs. Deux domaines fondamentaux à maîtriser sont le stockage sécurisé des mots de passe et l’utilisation de headers HTTP pour durcir les applications.
+Pour garantir la sécurité des systèmes d’authentification, il est essentiel d’adopter des pratiques reconnues pour protéger les données sensibles, prévenir les attaques, et renforcer la confiance des utilisateurs. Deux domaines fondamentaux à maîtriser sont le stockage sécurisé des mots de passe et l’utilisation de headers <Term word="HTTP">HTTP</Term> pour durcir les applications.
 
 ---
 
@@ -19,12 +19,12 @@ Si une base de données contenant des mots de passe non hachés est compromise, 
 **a. Utiliser des Algorithmes de Hachage Sécurisés**  
 Le hachage consiste à transformer un mot de passe en une chaîne illisible. Toutefois, les algorithmes doivent être adaptés aux exigences de sécurité modernes.
 
-1. **bcrypt :**
+1. **<Term word="Bcrypt">bcrypt</Term> :**
    - Algorithme populaire pour le hachage des mots de passe.
    - Inclut un **"salt"** (valeur aléatoire ajoutée) pour protéger contre les attaques par tables de hachage pré-calculées (rainbow tables).
    - Possibilité de configurer le "coût" pour ralentir le calcul du hachage, rendant les attaques par force brute moins efficaces.
 
-   **Exemple (Node.js) :**
+   **Exemple (<Term word="Node.js">Node.js</Term>) :**
    ```javascript copy
    const bcrypt = require('bcrypt');
    const saltRounds = 10;
@@ -91,7 +91,7 @@ Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.goog
 ---
 
 **b. HTTP Strict Transport Security (HSTS)**  
-Le header `Strict-Transport-Security` force le navigateur à n’accepter que des connexions sécurisées (HTTPS), même si l'utilisateur tente d'accéder au site via HTTP.
+Le header `Strict-Transport-Security` force le navigateur à n’accepter que des connexions sécurisées (<Term word="HTTPS">HTTPS</Term>), même si l'utilisateur tente d'accéder au site via HTTP.
 
 **Exemple :**
 ```http copy
@@ -152,7 +152,7 @@ Referrer-Policy: no-referrer-when-downgrade
 | **Forcer HTTPS**             | HTTP Strict Transport Security (HSTS)     | Sécurisation des connexions réseau.             |
 | **Éviter le clickjacking**   | X-Frame-Options                           | Empêche les attaques par iframe malveillantes.  |
 | **Limiter les types MIME**   | X-Content-Type-Options                    | Prévention contre les interprétations incorrectes. |
-| **Contrôler les données de référents** | Referrer-Policy                          | Protection de la vie privée et des URL sensibles. |
+| **Contrôler les données de référents** | Referrer-Policy                          | Protection de la vie privée et des <Term word="URL">URL</Term> sensibles. |
 
 ---
 
