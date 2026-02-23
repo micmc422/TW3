@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode } from "react";
+import { type ReactNode, useRef, useCallback } from "react";
 
 const glossary: Record<string, string> = {
   // 🌐 Web fondamentaux
@@ -103,9 +103,51 @@ interface GlossaryTermProps {
 
 export function GlossaryTerm({ word, children }: GlossaryTermProps) {
   const definition = glossary[word] || "Définition non trouvée.";
+  const tooltipRef = useRef<HTMLSpanElement>(null);
+
+  const adjustPosition = useCallback(() => {
+    const tooltip = tooltipRef.current;
+    if (!tooltip) return;
+
+    // Reset to default CSS position before measuring
+    tooltip.style.left = "";
+    tooltip.style.top = "";
+    tooltip.style.bottom = "";
+
+    const rect = tooltip.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const pad = 8;
+
+    // Horizontal clamping
+    if (rect.left < pad) {
+      tooltip.style.left = `calc(50% + ${pad - rect.left}px)`;
+    } else if (rect.right > vw - pad) {
+      tooltip.style.left = `calc(50% - ${rect.right - (vw - pad)}px)`;
+    }
+
+    // Vertical: if overflows top, show below instead
+    if (rect.top < pad) {
+      tooltip.style.bottom = "auto";
+      tooltip.style.top = `calc(100% + 0.5rem)`;
+    }
+  }, []);
+
+  const resetPosition = useCallback(() => {
+    const tooltip = tooltipRef.current;
+    if (!tooltip) return;
+    tooltip.style.left = "";
+    tooltip.style.top = "";
+    tooltip.style.bottom = "";
+  }, []);
 
   return (
-    <span className="glossary-term">
+    <span
+      className="glossary-term"
+      onMouseEnter={adjustPosition}
+      onFocus={adjustPosition}
+      onMouseLeave={resetPosition}
+      onBlur={resetPosition}
+    >
       <span
         className="underline decoration-dotted decoration-primary/50 underline-offset-2 cursor-help"
         tabIndex={0}
@@ -117,6 +159,7 @@ export function GlossaryTerm({ word, children }: GlossaryTermProps) {
         role="tooltip"
         id={`glossary-${word}`}
         className="glossary-tooltip"
+        ref={tooltipRef}
       >
         <strong>{word}</strong>
         <br />
