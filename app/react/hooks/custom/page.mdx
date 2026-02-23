@@ -1,10 +1,10 @@
 # 🪝 Hooks Personnalisés en React
 
-Les hooks personnalisés sont une fonctionnalité puissante de React qui permet aux développeurs de réutiliser l'état et d'autres fonctionnalités de React sans avoir à écrire des composants. Ils sont essentiellement des fonctions qui commencent par le mot-clé `use` et peuvent être utilisés pour encapsuler la logique de l'état ou du cycle de vie dans des fonctions réutilisables.
+Les hooks personnalisés sont une fonctionnalité puissante de <Term word="React">React</Term> qui permet aux développeurs de réutiliser l'état et d'autres fonctionnalités de React sans avoir à écrire des composants. Ils sont essentiellement des fonctions qui commencent par le mot-clé `use` et peuvent être utilisés pour encapsuler la logique de l'état ou du cycle de vie dans des fonctions réutilisables.
 
 ## 📱 useMediaQuery
 
-Un exemple courant de hook personnalisé est `useMediaQuery`, qui est utilisé pour détecter si une certaine requête média est satisfaite. Par exemple, vous pouvez utiliser `useMediaQuery` pour vérifier si l'appareil de l'utilisateur est un appareil mobile ou un ordinateur de bureau.
+Un exemple courant de <Term word="hook">hook</Term> personnalisé est `useMediaQuery`, qui est utilisé pour détecter si une certaine requête média est satisfaite. Par exemple, vous pouvez utiliser `useMediaQuery` pour vérifier si l'appareil de l'utilisateur est un appareil mobile ou un ordinateur de bureau.
 
 Voici comment vous pouvez créer un hook personnalisé `useMediaQuery`:
 
@@ -30,7 +30,7 @@ const useMediaQuery = (query) => {
 };
 ```
 
-Dans cet exemple, nous utilisons l'API `window.matchMedia` pour écouter les changements de requête média. Lorsque la requête média change, nous mettons à jour l'état `matches` avec la nouvelle valeur. Nous retournons ensuite cette valeur, ce qui signifie que nous pouvons utiliser notre hook personnalisé comme ceci:
+Dans cet exemple, nous utilisons l'<Term word="API">API</Term> `window.matchMedia` pour écouter les changements de requête média. Lorsque la requête média change, nous mettons à jour l'état `matches` avec la nouvelle valeur. Nous retournons ensuite cette valeur, ce qui signifie que nous pouvons utiliser notre hook personnalisé comme ceci:
 
 ```javascript copy
 const isMobile = useMediaQuery('(max-width: 600px)');

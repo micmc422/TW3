@@ -1,6 +1,6 @@
 # 🧩 Comprendre les Composants React
 
-Voici un exemple minimaliste d'un composant fonctionnel React :
+Voici un exemple minimaliste d'un <Term word="composant">composant</Term> fonctionnel <Term word="React">React</Term> :
 
 ```jsx copy filename="mon-composant.js"
 // Avec le nouveau JSX transform (React 17+),
@@ -10,7 +10,7 @@ export default function HelloWorld({ text = 'world' }) {
 }
 ```
 
-Dans cet exemple, nous avons défini un composant fonctionnel appelé `HelloWorld`. Ce composant retourne un élément JSX qui représente un titre de niveau 1 (`<h1>`) avec le texte "Hello, world!".
+Dans cet exemple, nous avons défini un composant fonctionnel appelé `HelloWorld`. Ce composant retourne un élément <Term word="JSX">JSX</Term> qui représente un titre de niveau 1 (`<h1>`) avec le texte "Hello, world!".
 
 Ensuite, nous exportons le composant `HelloWorld` pour pouvoir l'utiliser dans d'autres parties de notre application.
 ```jsx copy filename="utilisation-du-composant.js"
@@ -30,5 +30,5 @@ export default function Page() {
 
 Notez que les composants React doivent toujours retourner un seul élément racine. Dans cet exemple, l'élément racine est `<h1>`. Si vous voulez retourner plusieurs éléments, vous pouvez les envelopper dans un élément parent, comme un `<div>` ou un `<React.Fragment>`.
 
-Note : avec le nouveau JSX transform, l'import explicite `import React from 'react'` n'est plus nécessaire dans la plupart des projets modernes (Babel/TypeScript/Vite/Create React App le gèrent). Vous pouvez néanmoins l'ajouter si votre configuration le requiert.
+Note : avec le nouveau JSX transform, l'import explicite `import React from 'react'` n'est plus nécessaire dans la plupart des projets modernes (Babel/<Term word="TypeScript">TypeScript</Term>/Vite/Create React App le gèrent). Vous pouvez néanmoins l'ajouter si votre configuration le requiert.
 

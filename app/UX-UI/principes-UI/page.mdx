@@ -11,7 +11,7 @@ import { Figma } from "lucide-react"
 - Apprendre à améliorer l’expérience avec les micro-interactions et animations  
 
 
-> ⚡ **TLDR** : L'UI repose sur le **contraste**, la **hiérarchie visuelle** et l'**espace blanc**. Utilisez des **systèmes de design** (Material Design, Tailwind UI) pour la cohérence. Limitez-vous à **2 polices**, respectez les **normes WCAG** pour les couleurs, et ajoutez des **micro-interactions** subtiles pour guider l'utilisateur. Voir aussi : [La règle CRAP](/UX-UI/crap) et [Principes UX](/UX-UI/principes-UX).
+> ⚡ **TLDR** : L'UI repose sur le **contraste**, la **hiérarchie visuelle** et l'**espace blanc**. Utilisez des **systèmes de design** (Material Design, <Term word="Tailwind">Tailwind</Term> UI) pour la cohérence. Limitez-vous à **2 polices**, respectez les **normes WCAG** pour les couleurs, et ajoutez des **micro-interactions** subtiles pour guider l'utilisateur. Voir aussi : [La règle CRAP](/UX-UI/crap) et [Principes UX](/UX-UI/principes-UX).
 ---
 
 ## 🖼️ **Principes de design visuel**  
@@ -118,7 +118,7 @@ Un **Design System** (système de design) est un ensemble de composants, règles
 
 ### 💻 **Exemples concrets de micro-interactions en React**
 
-Les exemples suivants sont inspirés du projet [ma-petite-compagnie](https://github.com/JalilArfaoui/ma-petite-compagnie) (Next.js / React 19).
+Les exemples suivants sont inspirés du projet [ma-petite-compagnie](https://github.com/JalilArfaoui/ma-petite-compagnie) (<Term word="Next.js">Next.js</Term> / <Term word="React">React</Term> 19).
 
 #### 🔘 Bouton avec feedback de chargement
 
@@ -159,7 +159,7 @@ async function supprimerEvenement(id: number) {
 }
 ```
 
-**✅ Après** : un toast informe l’utilisateur du résultat (cf. composant `Toaster` de ma-petite-compagnie)
+**✅ Après** : un toast informe l’utilisateur du résultat (cf. <Term word="composant">composant</Term> `Toaster` de ma-petite-compagnie)
 ```tsx copy
 import { toast } from "sonner"; // ou tout système de toast
 

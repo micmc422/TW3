@@ -1,6 +1,6 @@
 # 🚀 **Ajout de Métadonnées Dynamiques avec `generateMetadata` dans Next.js**  
 
-Dans Next.js 13+, `generateMetadata` permet de **générer dynamiquement** les métadonnées d’une page en fonction de paramètres (ex : un `slug` d’article de blog) ou d’une requête à une API.  
+Dans <Term word="Next.js">Next.js</Term> 13+, `generateMetadata` permet de **générer dynamiquement** les métadonnées d’une page en fonction de paramètres (ex : un `slug` d’article de blog) ou d’une requête à une <Term word="API">API</Term>.  
 
 ---
 
@@ -70,8 +70,8 @@ export default function BlogPost({ params }: Props) {
 ✅ **Effet** :  
 - Si on visite `/blog/nextjs-guide`, la page aura :  
   - **title** : *Guide Next.js 13+ : Tout savoir*  
-  - **description** : *Découvrez toutes les nouveautés de Next.js 13 avec App Router.*  
-  - **og:image** : `/nextjs-guide.jpg`  
+  - **description** : *Découvrez toutes les nouveautés de Next.js 13 avec <Term word="App Router">App Router</Term>.*  
+  - **og:<Term word="image">image</Term>** : `/nextjs-guide.jpg`  
 
 ---
 
@@ -120,7 +120,7 @@ export default async function ProductPage({ params }: Props) {
 ```
 ✅ **Effet** :  
 - Pour `/product/1`, la page affiche les métadonnées du produit récupérées via API.  
-- Optimisation SEO et réseaux sociaux (`og:title`, `og:image`).  
+- Optimisation <Term word="SEO">SEO</Term> et réseaux sociaux (`og:title`, `og:image`).  
 
 ---
 

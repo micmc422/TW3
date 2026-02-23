@@ -2,11 +2,11 @@ import { Callout } from 'nextra/components'
 
 # 🪝 Règles des Hooks en React
 
-React a introduit les Hooks dans sa version 16.8 pour permettre aux développeurs d'utiliser l'état et d'autres fonctionnalités de React sans avoir à écrire des classes. Cependant, il y a certaines règles strictes que vous devez suivre lors de l'utilisation des Hooks. Voici ces règles:
+<Term word="React">React</Term> a introduit les Hooks dans sa version 16.8 pour permettre aux développeurs d'utiliser l'état et d'autres fonctionnalités de React sans avoir à écrire des classes. Cependant, il y a certaines règles strictes que vous devez suivre lors de l'utilisation des Hooks. Voici ces règles:
 
 ## 🪝 1. Ne pas appeler les Hooks à l'intérieur des boucles, des conditions ou des fonctions imbriquées
 
-**Il est important de toujours appeler les Hooks au niveau supérieur de vos fonctions de composant ou de vos fonctions personnalisées.** Vous ne devez jamais les appeler à l'intérieur des boucles, des conditions ou des fonctions imbriquées. Cela garantit que les Hooks sont appelés dans le même ordre chaque fois qu'un composant est rendu, ce qui permet à React de maintenir correctement l'état entre plusieurs appels de Hooks.
+**Il est important de toujours appeler les Hooks au niveau supérieur de vos fonctions de <Term word="composant">composant</Term> ou de vos fonctions personnalisées.** Vous ne devez jamais les appeler à l'intérieur des boucles, des conditions ou des fonctions imbriquées. Cela garantit que les Hooks sont appelés dans le même ordre chaque fois qu'un composant est rendu, ce qui permet à React de maintenir correctement l'état entre plusieurs appels de Hooks.
 Voici deux exemples :  
 
 ### ✅ **Exemple Valide** (Respecte les règles des Hooks)  

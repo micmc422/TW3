@@ -3,7 +3,7 @@ description: "Voici une liste des commandes CLI Docker les plus courantes, class
 ---
 # 🐳 Liste des Commandes CLI Docker
 
-Voici une sélection des commandes Docker les plus courantes, classées par catégories pour une utilisation efficace au quotidien.
+Voici une sélection des commandes <Term word="Docker">Docker</Term> les plus courantes, classées par catégories pour une utilisation efficace au quotidien.
 
 ---
 
@@ -19,7 +19,7 @@ Voici une sélection des commandes Docker les plus courantes, classées par cat�
 
 ## 🚀 Gestion des Conteneurs
 - **`docker run [OPTIONS] IMAGE [COMMAND] [ARG...]`**  
-  Lance un nouveau conteneur à partir d'une image.  
+  Lance un nouveau <Term word="conteneur">conteneur</Term> à partir d'une <Term word="image">image</Term>.  
   *Exemple :* `docker run -d -p 80:80 --name mon-serveur-web nginx`
 - **`docker ps`**  
   Liste les conteneurs en cours d'exécution.
@@ -44,7 +44,7 @@ Voici une sélection des commandes Docker les plus courantes, classées par cat�
 - **`docker pull IMAGE`**  
   Télécharge une image depuis un registre (par défaut Docker Hub).
 - **`docker build -t TAG PATH`**  
-  Crée une nouvelle image à partir d'un Dockerfile situé dans le répertoire spécifié.
+  Crée une nouvelle image à partir d'un <Term word="Dockerfile">Dockerfile</Term> situé dans le répertoire spécifié.
 - **`docker images`**  
   Liste toutes les images locales.
 - **`docker rmi IMAGE`**  
@@ -56,7 +56,7 @@ Voici une sélection des commandes Docker les plus courantes, classées par cat�
 
 ## 💾 Gestion des Volumes
 - **`docker volume create VOLUME`**  
-  Crée un volume Docker pour le stockage de données persistantes.
+  Crée un <Term word="volume">volume</Term> Docker pour le stockage de données persistantes.
 - **`docker volume ls`**  
   Liste tous les volumes Docker.
 - **`docker volume rm VOLUME`**  
@@ -82,7 +82,7 @@ Voici une sélection des commandes Docker les plus courantes, classées par cat�
 - **`docker-compose up`**  
   Démarre les services définis dans le fichier `docker-compose.yml`.
 - **`docker-compose down`**  
-  Arrête et supprime les conteneurs et réseaux créés par Docker Compose.
+  Arrête et supprime les conteneurs et réseaux créés par <Term word="Docker Compose">Docker Compose</Term>.
 - **`docker-compose ps`**  
   Liste les services en cours d'exécution gérés par Docker Compose.
 - **`docker-compose logs`**  

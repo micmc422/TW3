@@ -9,7 +9,7 @@ Les protocoles d’authentification jouent un rôle crucial dans la sécurisatio
 
 ## 🔒 **HTTP basic auth et digest auth**
 
-**HTTP basic auth :**  
+**<Term word="HTTP">HTTP</Term> basic auth :**  
 - **Fonctionnement :**  
   Ce protocole repose sur l'envoi des identifiants utilisateur (nom d’utilisateur et mot de passe) dans l'en-tête HTTP Authorization. Ces informations sont encodées en Base64 mais **non chiffrées**.  
   Exemple d’en-tête :  
@@ -22,7 +22,7 @@ Les protocoles d’authentification jouent un rôle crucial dans la sécurisatio
   - Supporté nativement par les serveurs web et les navigateurs.  
 
 - **Inconvénients :**  
-  - **Pas sécurisé** sans HTTPS (les identifiants peuvent être interceptés).  
+  - **Pas sécurisé** sans <Term word="HTTPS">HTTPS</Term> (les identifiants peuvent être interceptés).  
   - Nécessite une gestion prudente des sessions pour éviter les vulnérabilités.
 
 ---
@@ -43,7 +43,7 @@ Les protocoles d’authentification jouent un rôle crucial dans la sécurisatio
 
 ## 🔒 **OAuth 2.0 et OpenID Connect**
 
-**OAuth 2.0 :**  
+**<Term word="OAuth">OAuth</Term> 2.0 :**  
 - **Fonctionnement :**  
   OAuth 2.0 est un protocole d'autorisation permettant à une application tierce d'accéder aux ressources d'un utilisateur sans lui demander ses identifiants. L'utilisateur autorise l'accès, et un **jeton d'accès (access token)** est émis pour l'application tierce.  
 
@@ -93,7 +93,7 @@ Les protocoles d’authentification jouent un rôle crucial dans la sécurisatio
 
 - **Inconvénients :**  
   - Complexité élevée (XML lourd, gestion des certificats).  
-  - Moins flexible que OAuth ou OpenID Connect pour les API modernes.
+  - Moins flexible que OAuth ou OpenID Connect pour les <Term word="API">API</Term> modernes.
 
 ---
 

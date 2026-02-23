@@ -1,6 +1,6 @@
 # 🚀 **Utilisation des Loading States (`loading.tsx`) dans Next.js**  
 
-L'App Router de Next.js permet d'afficher des **états de chargement** (`loading.tsx`) de manière **native et optimisée**, sans avoir besoin de gérer manuellement un `useState` ou `useEffect` côté client.  
+L'<Term word="App Router">App Router</Term> de <Term word="Next.js">Next.js</Term> permet d'afficher des **états de chargement** (`loading.tsx`) de manière **native et optimisée**, sans avoir besoin de gérer manuellement un `useState` ou `useEffect` côté client.  
 
 ---
 
@@ -25,7 +25,7 @@ export default function Loading() {
   );
 }
 ```
-💡 **Ce composant est automatiquement affiché** lorsque **n'importe quelle page** met du temps à charger.  
+💡 **Ce <Term word="composant">composant</Term> est automatiquement affiché** lorsque **n'importe quelle page** met du temps à charger.  
 
 ---
 
@@ -78,8 +78,8 @@ export default async function DashboardPage() {
 
 | **Méthode** | ✅ **`loading.tsx` (Server)** | ❌ `useState` (Client) |
 |------------|-----------------------------|------------------------|
-| Gestion automatique du state | ✅ Oui | ❌ Non |
-| Optimisé pour le SSR | ✅ Oui | ❌ Non |
+| Gestion automatique du <Term word="state">state</Term> | ✅ Oui | ❌ Non |
+| Optimisé pour le <Term word="SSR">SSR</Term> | ✅ Oui | ❌ Non |
 | Bloque le rendu côté serveur | ✅ Oui | ❌ Non |
 | Besoin de gérer `useState` / `useEffect` | ❌ Non | ✅ Oui |
 

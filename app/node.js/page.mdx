@@ -10,7 +10,7 @@ import ListOfChild from "@/components/list-of-child"
 
 > Un Environnement d'exécution JavaScript côté serveur
 
-Node.js est un environnement d'exécution permettant d'exécuter du code JavaScript côté serveur. Contrairement à son utilisation traditionnelle dans les navigateurs web, Node.js permet d'utiliser JavaScript pour des tâches côté serveur, telles que le développement d'API, la gestion de bases de données, et l'interaction avec les fichiers. Node.js utilise le moteur JavaScript V8 de Google pour exécuter du code JavaScript avec une grande performance.
+<Term word="Node.js">Node.js</Term> est un environnement d'exécution permettant d'exécuter du code JavaScript côté serveur. Contrairement à son utilisation traditionnelle dans les navigateurs web, Node.js permet d'utiliser JavaScript pour des tâches côté serveur, telles que le développement d'<Term word="API">API</Term>, la gestion de bases de données, et l'interaction avec les fichiers. Node.js utilise le moteur JavaScript V8 de Google pour exécuter du code JavaScript avec une grande performance.
 
 ### 🤔 Pourquoi utiliser Node.js ? (Non-bloquant, asynchrone, performant)
 Node.js se distingue par sa gestion non-bloquante et asynchrone des opérations d'entrée/sortie (I/O), telles que les lectures/écritures de fichiers, ou les appels réseau. Voici pourquoi ces caractéristiques sont cruciales :
@@ -33,13 +33,13 @@ Node.js a été créé par **Ryan Dahl** en 2009. Dahl a développé Node.js en 
 ## ⚙️ Fonctionnement de Node.js
 
 ### 🧩 Architecture orientée événements et modèle I/O non-bloquant
-Node.js repose sur une **architecture orientée événements**, où le serveur attend de recevoir des événements (comme des requêtes HTTP) et réagit en conséquence. Chaque opération d'entrée/sortie (I/O) dans Node.js est asynchrone et non-bloquante, ce qui signifie que le serveur peut traiter d'autres requêtes pendant que les opérations sont en cours.
+Node.js repose sur une **architecture orientée événements**, où le serveur attend de recevoir des événements (comme des requêtes <Term word="HTTP">HTTP</Term>) et réagit en conséquence. Chaque opération d'entrée/sortie (I/O) dans Node.js est asynchrone et non-bloquante, ce qui signifie que le serveur peut traiter d'autres requêtes pendant que les opérations sont en cours.
 
 Dans un environnement traditionnel, lorsqu'une requête est effectuée, le serveur attend la fin du traitement (comme la lecture d'un fichier ou l'accès à une base de données) avant de passer à la suivante. Node.js, grâce à son **modèle non-bloquant**, évite ce problème en utilisant des **callbacks**, des **promesses**, ou la syntaxe **async/await** pour gérer les résultats d'opérations sans bloquer l'exécution du code.
 
 ### 🔄 Différence entre Node.js et un serveur traditionnel (par exemple, PHP)
 Les serveurs traditionnels, tels que ceux utilisant **PHP**, sont généralement **bloquants**, ce qui signifie que chaque requête doit être terminée avant que le serveur ne passe à la suivante. Cette approche est suffisante pour des charges modérées, mais devient inefficace lorsque le serveur est confronté à un grand nombre de connexions simultanées.
 
-Node.js, en revanche, gère les connexions de manière asynchrone. Plutôt que de créer un nouveau thread pour chaque requête (comme le fait PHP), Node.js utilise un **seul thread principal** pour toutes les requêtes et délègue les opérations lourdes (telles que les lectures de fichiers ou les accès réseau) à des **workers** internes. Cela permet à Node.js de gérer efficacement des milliers de connexions simultanées tout en minimisant l'utilisation des ressources serveur.
+Node.js, en revanche, gère les connexions de manière asynchrone. Plutôt que de créer un nouveau <Term word="thread">thread</Term> pour chaque requête (comme le fait PHP), Node.js utilise un **seul thread principal** pour toutes les requêtes et délègue les opérations lourdes (telles que les lectures de fichiers ou les accès réseau) à des **workers** internes. Cela permet à Node.js de gérer efficacement des milliers de connexions simultanées tout en minimisant l'utilisation des ressources serveur.
 
 <ListOfChild path={"/node.js"} />

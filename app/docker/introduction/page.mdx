@@ -16,10 +16,10 @@ import { Callout } from 'nextra/components'
 - 💾 **Volumes**
 
 
-Une image 📦 permet de créer un conteneur 🚚 **normalisé et indépendant**, qui utilise des données issues d’un volume 💾.
+Une <Term word="image">image</Term> 📦 permet de créer un <Term word="conteneur">conteneur</Term> 🚚 **normalisé et indépendant**, qui utilise des données issues d’un <Term word="volume">volume</Term> 💾.
 
 > 🎯 **Fini le "ça marche sur mon poste !"**  
-> Docker normalise l’environnement d’exécution et réduit la consommation de ressources matérielles.
+> <Term word="Docker">Docker</Term> normalise l’environnement d’exécution et réduit la consommation de ressources matérielles.
 
 ---
 
@@ -39,7 +39,7 @@ Les **conteneurs** sont des environnements d’exécution **légers et autonomes
 ### 📦 Images
 Les **images Docker** sont des modèles immuables servant à créer des conteneurs 🚚.
 
-- 🔹 **Construites avec un Dockerfile** : Décrit toutes les étapes de création.
+- 🔹 **Construites avec un <Term word="Dockerfile">Dockerfile</Term>** : Décrit toutes les étapes de création.
 - 🔹 **Stockables et partageables** : Via un registre Docker (Docker Hub, GitHub Container Registry…).
 - 🔹 **Optimisées** : Utilisent un système de couches pour minimiser l’espace et le temps de build.
 
@@ -59,7 +59,7 @@ Les **volumes** permettent de gérer le **stockage persistant** des données.
 
 | 🖥️ Virtualisation Traditionnelle (VM) | 🐳 Virtualisation Docker |
 |--------------------------------------|------------------------|
-| **Hyperviseur** (VMware, VirtualBox, Hyper-V) | **Conteneurs** légers |
+| **<Term word="Hyperviseur">Hyperviseur</Term>** (VMware, VirtualBox, Hyper-V) | **Conteneurs** légers |
 | Chaque VM **inclut un OS complet** | **Partage du noyau** de l’OS hôte |
 | **Isolation forte**, mais consomme **beaucoup de ressources** | **Isolation efficace**, tout en étant **plus léger** |
 | **Démarrage lent** ⏳ | **Démarrage instantané** ⚡ |

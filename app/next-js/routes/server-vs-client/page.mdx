@@ -1,6 +1,6 @@
 # 🚀 **Server Components vs Client Components dans Next.js**  
 
-Avec l’introduction du **App Router (`app/`)**, Next.js 13+ repose sur une architecture hybride basée sur **Server Components** et **Client Components**. Cette approche optimise le rendu, améliore les performances et réduit la quantité de JavaScript envoyée au client.  
+Avec l’introduction du **<Term word="App Router">App Router</Term> (`app/`)**, <Term word="Next.js">Next.js</Term> 13+ repose sur une architecture hybride basée sur **Server Components** et **Client Components**. Cette approche optimise le rendu, améliore les performances et réduit la quantité de JavaScript envoyée au client.  
 
 ---
 
@@ -38,9 +38,9 @@ export default async function Home() {
 
 ## **2️⃣ Qu’est-ce qu’un Client Component ? (`'use client'`)**  
 
-📌 Un **Client Component** est un composant React classique qui s’exécute dans le navigateur.  
+📌 Un **Client Component** est un <Term word="composant">composant</Term> <Term word="React">React</Term> classique qui s’exécute dans le navigateur.  
 📌 ⚡ **Nécessaire si** :  
-- Le composant utilise un **state (`useState`)** ou un effet (`useEffect`).  
+- Le composant utilise un **<Term word="state">state</Term> (`useState`)** ou un effet (`useEffect`).  
 - Il y a des **interactions utilisateur** (clicks, formulaires…).  
 - Il utilise des **events handlers** (`onClick`, `onChange`, etc.).  
 
@@ -97,7 +97,7 @@ export default function Home() {
 | Peut utiliser `useState` et `useEffect` ? | ❌ Non | ✅ Oui |
 | Peut appeler directement une base de données ? | ✅ Oui | ❌ Non |
 | Peut contenir des events (`onClick`, `onChange`) ? | ❌ Non | ✅ Oui |
-| Rendu optimisé | ✅ Oui (SSR & streaming) | ❌ Non (hydration côté client) |
+| Rendu optimisé | ✅ Oui (<Term word="SSR">SSR</Term> & <Term word="streaming">streaming</Term>) | ❌ Non (hydration côté client) |
 
 ---
 
@@ -105,7 +105,7 @@ export default function Home() {
 
 ✅ **Utiliser des Server Components quand** :  
 - On veut **éviter d’envoyer du JavaScript au client**.  
-- On récupère des **données dynamiques** (API, base de données).  
+- On récupère des **données dynamiques** (<Term word="API">API</Term>, base de données).  
 - On veut bénéficier du **streaming** pour afficher progressivement le contenu.  
 
 ✅ **Utiliser des Client Components quand** :  

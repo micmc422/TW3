@@ -5,7 +5,7 @@ import { Steps } from 'nextra/components'
 
 # 🔒 **Activité Pratique : Implémentation d’une Authentification OAuth 2.0 avec Google**
 
-Dans cette activité, nous allons mettre en place une authentification OAuth 2.0 en utilisant **Google** comme fournisseur d'identité (IdP). L'application permettra aux utilisateurs de se connecter avec leur compte Google.  
+Dans cette activité, nous allons mettre en place une authentification <Term word="OAuth">OAuth</Term> 2.0 en utilisant **Google** comme fournisseur d'identité (IdP). L'application permettra aux utilisateurs de se connecter avec leur compte Google.  
 
 <Steps>
 
@@ -18,7 +18,7 @@ Dans cette activité, nous allons mettre en place une authentification OAuth 2.0
    - Cliquez sur **"Créer un projet"**. Donnez-lui un nom, puis cliquez sur **"Créer"**.
 
 ### 🛠️ **Configurer l’OAuth Consent Screen (écran de consentement OAuth) :**
-   - Allez dans **"API & Services" → "Consentement OAuth"**.  
+   - Allez dans **"<Term word="API">API</Term> & Services" → "Consentement OAuth"**.  
    - Choisissez **type externe** si vous souhaitez permettre à d'autres utilisateurs d'utiliser votre application.  
    - Remplissez les champs requis, comme le nom de l'application et votre email.  
    - Enregistrez.
@@ -26,7 +26,7 @@ Dans cette activité, nous allons mettre en place une authentification OAuth 2.0
 ### 🔒 **Créer des identifiants OAuth 2.0 :**
    - Rendez-vous dans **"Identifiants" → "Créer des identifiants" → "Identifiants OAuth 2.0"**.  
    - Sélectionnez **Application web** comme type.  
-   - Configurez les **URI de redirection** (callback URL) :  
+   - Configurez les **URI de redirection** (callback <Term word="URL">URL</Term>) :  
      Par exemple :  
      ```
      http://localhost:3000/auth/google/callback
@@ -159,11 +159,11 @@ app.listen(PORT, () => {
 
 ## 🔐 **Explications Techniques**
 **Passport.js :**  
-   - Un middleware d’authentification pour Node.js.  
+   - Un <Term word="middleware">middleware</Term> d’authentification pour <Term word="Node.js">Node.js</Term>.  
    - La stratégie `passport-google-oauth20` est utilisée pour intégrer OAuth 2.0 avec Google.
 
-**Sessions avec Express :**  
-   - Les informations utilisateur sont stockées dans une session pour persister entre les requêtes.
+**Sessions avec <Term word="Express">Express</Term> :**  
+   - Les informations utilisateur sont stockées dans une <Term word="session">session</Term> pour persister entre les requêtes.
 
 **Callback URL :**  
    - Le point d’entrée où Google redirige après l’authentification.  

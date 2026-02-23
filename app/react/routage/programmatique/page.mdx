@@ -1,6 +1,6 @@
 # 🔄 Navigation Programmatique avec React Router
 
-La navigation programmatique déclenche un changement de route par le code (hook ou API) plutôt que par un lien `<Link>`. Utile pour : redirection post‑authentification, retour après annulation, étape suivante d’un wizard, gestion d’erreurs.
+La navigation programmatique déclenche un changement de route par le code (<Term word="hook">hook</Term> ou <Term word="API">API</Term>) plutôt que par un lien `<Link>`. Utile pour : redirection post‑authentification, retour après annulation, étape suivante d’un wizard, gestion d’erreurs.
 
 ## 🧠 Fondamentaux
 `useNavigate()` retourne une fonction `navigate(to, options?)` qui pousse une entrée dans l’historique (par défaut). Options clés : `{ replace: true, state: any }`.
@@ -27,7 +27,7 @@ navigate('/dashboard', { replace: true });
 ```
 
 ### 📦 Passer un état de navigation
-Transmettre des données éphémères sans polluer l’URL.
+Transmettre des données éphémères sans polluer l’<Term word="URL">URL</Term>.
 ```jsx copy filename="State de navigation"
 navigate('/checkout', { state: { fromCart: true, total: 42.9 } });
 ```
@@ -75,7 +75,7 @@ try {
 ```
 
 ### 🛡️ Accessibilité
-Après navigation programmée vers une vue structurée, placer le focus sur un titre ou un conteneur.
+Après navigation programmée vers une vue structurée, placer le focus sur un titre ou un <Term word="conteneur">conteneur</Term>.
 ```jsx copy filename="Focus après navigation"
 useEffect(() => { document.getElementById('page-title')?.focus(); }, []);
 ```
@@ -133,8 +133,8 @@ export default function App() {
 
 ## 📚 Ressources
 - API navigate : https://reactrouter.com/en/main/hooks/use-navigate
-- Location & state : https://reactrouter.com/en/main/hooks/use-location
-- Accessibilité focus SPA : https://www.w3.org/WAI/ARIA/apg/practices/landmarks/
+- Location & <Term word="state">state</Term> : https://reactrouter.com/en/main/hooks/use-location
+- Accessibilité focus <Term word="SPA">SPA</Term> : https://www.w3.org/WAI/ARIA/apg/practices/landmarks/
 
 ---
 

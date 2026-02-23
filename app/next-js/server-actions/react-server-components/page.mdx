@@ -2,7 +2,7 @@ import { Callout } from 'nextra/components'
 
 # 🚀 **Utilisation des Server Actions avec les React Server Components (RSC)**  
 
-Les **React Server Components (RSC)** sont un élément clé de l’architecture de Next.js 13+ avec le dossier `app/`.  
+Les **<Term word="React">React</Term> Server Components (RSC)** sont un élément clé de l’architecture de <Term word="Next.js">Next.js</Term> 13+ avec le dossier `app/`.  
 Ils permettent d'exécuter du code **côté serveur** par défaut, réduisant le JavaScript envoyé au client et améliorant les performances.  
 <Callout type='info' emoji={"👉"}>
 **Les Server Actions sont parfaitement intégrées aux RSC**, offrant une interaction fluide entre le serveur et le client.  
@@ -24,7 +24,7 @@ Ils permettent d'exécuter du code **côté serveur** par défaut, réduisant le
 
 ## **2️⃣ Utilisation des Server Actions dans un Server Component**  
 
-Nous allons créer une page **Server Component** qui affiche des données venant d’une base et permet d'ajouter un élément via une **Server Action**.  
+Nous allons créer une page **Server Component** qui affiche des données venant d’une base et permet d'ajouter un élément via une **<Term word="Server Action">Server Action</Term>**.  
 
 ```tsx filename="app/actions/todos.ts" copy
 "use server";
@@ -115,9 +115,9 @@ export default function AddTodoForm() {
 ```
 
 ✅ **Explication** :
-- `"use client"` rend le composant **interactif**.  
+- `"use client"` rend le <Term word="composant">composant</Term> **interactif**.  
 - `handleSubmit` appelle **directement** la Server Action `addTodo`.  
-- Pas besoin de `fetch()` ni d'API externe.  
+- Pas besoin de `fetch()` ni d'<Term word="API">API</Term> externe.  
 
 ---
 
@@ -157,7 +157,7 @@ Dès qu’une tâche est ajoutée, **Next.js rafraîchit automatiquement la page
 | 🔹 Méthode | Server Actions (`use server`) | API Route (`app/api/todos/route.ts`) |
 |------------|----------------|----------------|
 | 🏗️ **Complexité** | Plus simple, pas de `fetch()` | Nécessite `fetch()` et API Route |
-| ⚡ **Performance** | Moins d’allers-retours réseau | Requiert un appel HTTP |
+| ⚡ **Performance** | Moins d’allers-retours réseau | Requiert un appel <Term word="HTTP">HTTP</Term> |
 | 🔒 **Sécurité** | Code non exposé côté client | Accessible via `fetch()` |
 | 🔄 **Rafraîchissement** | Automatique avec `revalidatePath` | Doit être géré côté client |
 | 🏆 **Cas d'usage** | Idéal pour **formulaires et interactions simples** | Utile pour **APIs publiques et webhooks** |
@@ -170,6 +170,6 @@ Dès qu’une tâche est ajoutée, **Next.js rafraîchit automatiquement la page
 
 ✅ **Avantages** :
 - Code **plus simple** et optimisé.
-- **Moins de JavaScript côté client**, meilleur SEO et performances.
+- **Moins de JavaScript côté client**, meilleur <Term word="SEO">SEO</Term> et performances.
 - **Pas besoin d’API Routes ou de `fetch()`** pour charger les données.
 - **Mise à jour automatique** avec `revalidatePath()`.

@@ -1,6 +1,6 @@
 ## 🚀 Déploiement d'une application React (rappel rapide)
 
-Avant de déployer, assurez‑vous d'avoir un script `build` dans votre `package.json`. Pour une application créée avec Create React App :
+Avant de déployer, assurez‑vous d'avoir un script `build` dans votre `package.json`. Pour une application créée avec Create <Term word="React">React</Term> App :
 
 ```bash copy
 npm run build
@@ -43,12 +43,12 @@ Exemple minimal `vercel.json` pour forcer les routes vers `index.html` (SPA) :
 
 ## 📦 Déploiement sur Netlify (static SPA)
 
-Netlify est très simple pour les apps statiques. Dans le tableau de bord Netlify, choisissez "New site from Git", connectez votre dépôt et configurez :
+Netlify est très simple pour les apps statiques. Dans le tableau de bord Netlify, choisissez "New site from <Term word="Git">Git</Term>", connectez votre dépôt et configurez :
 
 - Build command : `npm run build` (ou `pnpm build` / `yarn build`)
 - Publish directory : `build`
 
-Règle importante pour les SPA (routing côté client) : créez un fichier `_redirects` à la racine du dossier `public/` (ou dans `build/` après le build) contenant :
+Règle importante pour les <Term word="SPA">SPA</Term> (routing côté client) : créez un fichier `_redirects` à la racine du dossier `public/` (ou dans `build/` après le build) contenant :
 
 ```
 /*    /index.html   200
@@ -62,7 +62,7 @@ Variables d'environnement : configurez-les dans Site settings → Build & deploy
 
 ## 🔧 Conseils communs et bonnes pratiques
 
-- Compression & cache : configurez headers de cache et compression (gzip/brotli) côté hébergeur ou CDN.
+- Compression & cache : configurez headers de cache et compression (gzip/brotli) côté hébergeur ou <Term word="CDN">CDN</Term>.
 - Analyser le bundle : installez `source-map-explorer` et générez un rapport pour identifier les dépendances lourdes.
 
 ```bash copy
