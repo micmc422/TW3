@@ -238,6 +238,8 @@ components/
 
 ```tsx copy
 // components/ui/button.tsx — Composant utilisant les tokens
+import { cn } from "@/lib/utils";
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
