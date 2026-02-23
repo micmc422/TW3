@@ -19,6 +19,10 @@ const glossary: Record<string, string> = {
   SEO: "Search Engine Optimization – ensemble de techniques pour améliorer la visibilité d'un site dans les moteurs de recherche.",
   CDN: "Content Delivery Network – réseau de serveurs distribués pour diffuser du contenu rapidement.",
 
+  "lazy loading": "Chargement différé – technique qui retarde le chargement d'une ressource (image, composant, module) jusqu'à ce qu'elle soit réellement nécessaire.",
+  "code splitting": "Découpage du code JavaScript en plusieurs fichiers (chunks) chargés à la demande, pour réduire le temps de chargement initial.",
+  streaming: "Technique de rendu progressif côté serveur permettant d'envoyer le HTML au navigateur par morceaux au fur et à mesure qu'il est généré.",
+
   // ⚛️ React
   React: "Bibliothèque JavaScript créée par Meta pour construire des interfaces utilisateur à base de composants.",
   JSX: "JavaScript XML – syntaxe permettant d'écrire du HTML directement dans du JavaScript, utilisée par React.",
@@ -35,6 +39,7 @@ const glossary: Record<string, string> = {
   "App Router": "Système de routage de Next.js basé sur le dossier `app/`, supportant layouts et Server Components.",
 
   // 📦 Node.js & npm
+  "event loop": "Boucle d'événements – mécanisme central de Node.js qui gère les opérations asynchrones en exécutant les callbacks quand les tâches I/O sont terminées.",
   "Node.js": "Environnement d'exécution JavaScript côté serveur, basé sur le moteur V8 de Chrome.",
   npm: "Node Package Manager – gestionnaire de paquets par défaut de Node.js.",
   Express: "Framework minimaliste pour Node.js facilitant la création de serveurs web et d'API.",
@@ -48,6 +53,13 @@ const glossary: Record<string, string> = {
   volume: "Mécanisme Docker permettant de persister des données en dehors du cycle de vie d'un conteneur.",
   "Docker Compose": "Outil permettant de définir et gérer des applications multi-conteneurs via un fichier YAML.",
 
+  // 🐳 Docker – écosystème
+  virtualisation: "Technologie qui permet de créer des versions virtuelles de ressources matérielles (serveurs, stockage, réseau) sur une même machine physique.",
+  Kubernetes: "Plateforme open source d'orchestration de conteneurs, automatisant le déploiement, la mise à l'échelle et la gestion d'applications conteneurisées.",
+  orchestration: "Gestion automatisée du déploiement, de la mise à l'échelle et de la coordination de plusieurs conteneurs ou services.",
+  microservices: "Architecture logicielle découpant une application en petits services indépendants, chacun responsable d'une fonctionnalité spécifique et communiquant via des API.",
+  scalabilité: "Capacité d'un système à gérer une augmentation de charge (utilisateurs, données, requêtes) en ajoutant des ressources sans perte de performance.",
+
   // 🗄️ MongoDB
   MongoDB: "Base de données NoSQL orientée documents, stockant les données au format BSON (JSON binaire).",
   NoSQL: "Famille de bases de données non relationnelles, adaptées aux données non structurées ou semi-structurées.",
@@ -55,6 +67,7 @@ const glossary: Record<string, string> = {
   document: "Enregistrement dans MongoDB, stocké au format BSON (similaire à JSON).",
   schéma: "Structure définissant la forme attendue des données dans une collection (via Mongoose par exemple).",
   Mongoose: "Bibliothèque ODM (Object Document Mapping) pour MongoDB et Node.js.",
+  BSON: "Binary JSON – format binaire utilisé par MongoDB pour stocker les documents, plus compact et rapide que le JSON texte.",
 
   // 🔀 Git
   Git: "Système de contrôle de version distribué pour suivre les modifications du code source.",
@@ -68,6 +81,7 @@ const glossary: Record<string, string> = {
   OAuth: "Protocole d'autorisation permettant à une application d'accéder aux ressources d'un utilisateur sans connaître son mot de passe.",
   session: "Mécanisme côté serveur pour maintenir l'état d'un utilisateur connecté entre les requêtes.",
   cookie: "Petit fichier stocké dans le navigateur, utilisé pour conserver des données entre les requêtes HTTP.",
+  Bcrypt: "Algorithme de hachage de mots de passe conçu pour être lent et résistant aux attaques par force brute.",
 
   // 🖥️ Système & architecture
   Hyperviseur: "Logiciel (VMware, VirtualBox, Hyper-V) qui crée et gère des machines virtuelles en partageant les ressources matérielles d'un hôte.",
