@@ -69,6 +69,11 @@ const glossary: Record<string, string> = {
   session: "Mécanisme côté serveur pour maintenir l'état d'un utilisateur connecté entre les requêtes.",
   cookie: "Petit fichier stocké dans le navigateur, utilisé pour conserver des données entre les requêtes HTTP.",
 
+  // 🖥️ Système & architecture
+  Hyperviseur: "Logiciel (VMware, VirtualBox, Hyper-V) qui crée et gère des machines virtuelles en partageant les ressources matérielles d'un hôte.",
+  thread: "Fil d'exécution – unité de traitement la plus petite qu'un processeur peut planifier, permettant l'exécution parallèle au sein d'un même processus.",
+  Heuristique: "Méthode de résolution de problèmes basée sur des règles empiriques ou l'expérience, utilisée quand une solution optimale est trop coûteuse à calculer.",
+
   // 🧰 Outils & formats
   MDX: "Format combinant Markdown et composants React, utilisé pour la documentation interactive.",
   TypeScript: "Sur-ensemble typé de JavaScript qui ajoute un système de types statiques.",
