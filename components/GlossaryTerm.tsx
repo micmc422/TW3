@@ -53,7 +53,7 @@ const glossary: Record<string, string> = {
   volume: "Mécanisme Docker permettant de persister des données en dehors du cycle de vie d'un conteneur.",
   "Docker Compose": "Outil permettant de définir et gérer des applications multi-conteneurs via un fichier YAML.",
 
-  // 🐳 Docker – écosystème
+  // 🏗️ Infrastructure & architecture
   virtualisation: "Technologie qui permet de créer des versions virtuelles de ressources matérielles (serveurs, stockage, réseau) sur une même machine physique.",
   Kubernetes: "Plateforme open source d'orchestration de conteneurs, automatisant le déploiement, la mise à l'échelle et la gestion d'applications conteneurisées.",
   orchestration: "Gestion automatisée du déploiement, de la mise à l'échelle et de la coordination de plusieurs conteneurs ou services.",
