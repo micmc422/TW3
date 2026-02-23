@@ -1,0 +1,313 @@
+import { Cards } from 'nextra/components'
+import { Figma, Palette, Code, Eye, Layers } from "lucide-react"
+
+# 🔧 **Outils pour l'UX/UI et les Design Systems**
+
+**🎯 Objectifs du chapitre**
+- 🧰 Découvrir les outils essentiels pour améliorer l'UX/UI d'un projet
+- 🧩 Comprendre comment mettre en œuvre un **Design System** avec les bons outils
+- �� Connaître les ressources pour les couleurs, la typographie et l'accessibilité
+- 💻 Savoir intégrer ces outils dans un workflow de développement <Term word="React">React</Term> / <Term word="Next.js">Next.js</Term>
+
+> ⚡ **TLDR** : Utilisez **Figma** pour le design, **Storybook** pour documenter vos composants, **Tailwind CSS** ou **Shadcn/ui** pour implémenter votre Design System en code. Vérifiez l'accessibilité avec **Lighthouse** et **axe**. Choisissez vos couleurs avec **Coolors** et vos polices avec **Google Fonts**. Voir aussi : [Principes UI](/UX-UI/principes-UI) et [Processus de conception](/UX-UI/conception).
+---
+
+## 🎨 **Outils de design et prototypage**
+
+📌 **Pourquoi utiliser un outil de design ?**
+Un outil de design permet de concevoir, prototyper et tester des interfaces avant de coder, réduisant ainsi les allers-retours coûteux entre design et développement.
+
+| Outil | Usage principal | Points forts | Tarif |
+|-------|----------------|--------------|-------|
+| **[Figma](https://www.figma.com)** | Design et prototypage collaboratif | Temps réel, plugins, Dev Mode | Gratuit (starter) |
+| **[Penpot](https://penpot.app)** | Alternative open source à Figma | Auto-hébergeable, gratuit, SVG natif | Gratuit |
+| **[Adobe XD](https://www.adobe.com/products/xd.html)** | Design et prototypage | Intégration Adobe Suite | Payant |
+| **[Balsamiq](https://balsamiq.com)** | Wireframes low-fi | Simplicité, focus sur la structure | Payant |
+
+> 💡 **Recommandation** : **Figma** est aujourd'hui le standard de l'industrie pour le design UI/UX. **Penpot** est une excellente alternative open source.
+
+---
+
+## 🧩 **Outils pour créer un Design System**
+
+📌 **Qu'est-ce qu'un Design System ?**
+Un Design System est un ensemble de **composants réutilisables**, de **règles de design** et de **tokens** (couleurs, espacements, typographies) qui garantissent la **cohérence** d'un produit. Voir [Principes UI — Systèmes de design](/UX-UI/principes-UI).
+
+### 📚 Bibliothèques de composants UI
+
+| Bibliothèque | Technologie | Approche | Personnalisation |
+|--------------|-------------|----------|-----------------|
+| **[Shadcn/ui](https://ui.shadcn.com)** | React + Tailwind | Composants copiés dans votre projet | Totale |
+| **[Radix UI](https://www.radix-ui.com)** | React | Primitives headless (sans style) | Totale |
+| **[HeroUI](https://www.heroui.com)** | React + Tailwind | Composants prêts à l'emploi | Bonne |
+| **[Material UI (MUI)](https://mui.com)** | React | Implémentation de Material Design | Moyenne |
+| **[Ant Design](https://ant.design)** | React | Design system complet orienté entreprise | Moyenne |
+| **[Chakra UI](https://chakra-ui.com)** | React | Composants accessibles par défaut | Bonne |
+
+> 💡 **Pour un projet Next.js** : la combinaison **Shadcn/ui + Tailwind CSS + Radix UI** est aujourd'hui très populaire car elle offre une personnalisation totale tout en fournissant des composants accessibles.
+
+### 🏗️ Documentation et développement de composants
+
+| Outil | Rôle | Pourquoi l'utiliser |
+|-------|------|---------------------|
+| **[Storybook](https://storybook.js.org)** | Documentation interactive de composants | Visualiser, tester et documenter chaque composant en isolation |
+| **[Chromatic](https://www.chromatic.com)** | Tests visuels automatisés | Détecter les régressions visuelles entre versions |
+
+**Exemple — Lancer Storybook dans un projet Next.js :**
+
+```bash copy
+npx storybook@latest init
+npm run storybook
+```
+
+---
+
+## 🎨 **Outils pour les couleurs**
+
+📌 **Choisir une palette de couleurs cohérente** est essentiel pour transmettre l'identité visuelle et garantir l'accessibilité.
+
+| Outil | Usage |
+|-------|-------|
+| **[Coolors](https://coolors.co)** | Générateur de palettes de couleurs harmonieuses |
+| **[Adobe Color](https://color.adobe.com)** | Roue chromatique et exploration de palettes |
+| **[Realtime Colors](https://www.realtimecolors.com)** | Visualiser une palette appliquée à un site en temps réel |
+| **[Contrast Checker (WebAIM)](https://webaim.org/resources/contrastchecker/)** | Vérifier le ratio de contraste WCAG |
+| **[Happy Hues](https://www.happyhues.co)** | Palettes de couleurs appliquées à des mises en page réelles |
+
+> 📌 Rappel : le ratio de contraste minimum est de **4.5:1** pour le texte normal et **3:1** pour le texte large (WCAG 2.1 niveau AA). Voir [Principes UX — Accessibilité](/UX-UI/principes-UX).
+
+### 💻 Implémenter des tokens de couleurs avec Tailwind CSS
+
+```js copy
+// tailwind.config.js — Tokens de couleurs
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: '#eff6ff',
+          500: '#3b82f6',
+          700: '#1d4ed8',
+          900: '#1e3a5f',
+        },
+        accent: '#f59e0b',
+        success: '#10b981',
+        error: '#ef4444',
+      },
+    },
+  },
+}
+```
+
+Utilisation dans un composant :
+
+```tsx copy
+<button className="bg-primary-500 hover:bg-primary-700 text-white px-4 py-2 rounded">
+  Action principale
+</button>
+```
+
+---
+
+## 🔤 **Outils pour la typographie**
+
+| Outil | Usage |
+|-------|-------|
+| **[Google Fonts](https://fonts.google.com)** | Catalogue de polices gratuites et optimisées pour le web |
+| **[Fontjoy](https://fontjoy.com)** | Générer des combinaisons de polices harmonieuses par IA |
+| **[Type Scale](https://typescale.com)** | Calculer une échelle typographique cohérente |
+| **[Font Pair](https://www.fontpair.co)** | Trouver des paires de polices qui fonctionnent ensemble |
+
+> 💡 **Bonne pratique** : limitez-vous à **2 polices maximum** — une pour les titres, une pour le texte courant. Utilisez une **échelle typographique** (ratio 1.25 ou 1.333) pour des tailles harmonieuses.
+
+---
+
+## ♿ **Outils d'accessibilité (a11y)**
+
+📌 **L'accessibilité n'est pas optionnelle** — c'est une obligation légale dans de nombreux pays et un pilier de l'UX Design.
+
+| Outil | Type | Usage |
+|-------|------|-------|
+| **[Lighthouse](https://developer.chrome.com/docs/lighthouse)** | Audit intégré Chrome | Score d'accessibilité, performance, SEO |
+| **[axe DevTools](https://www.deque.com/axe/devtools/)** | Extension navigateur | Détecter les problèmes d'accessibilité en temps réel |
+| **[WAVE](https://wave.webaim.org)** | Outil en ligne | Évaluation visuelle de l'accessibilité d'une page |
+| **[eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y)** | Plugin ESLint | Vérifier l'accessibilité dans le code React |
+
+**Exemple — Ajouter le linting accessibilité à un projet React :**
+
+```bash copy
+npm install eslint-plugin-jsx-a11y --save-dev
+```
+
+```js copy
+// eslint.config.js — Activer les règles a11y
+import jsxA11y from 'eslint-plugin-jsx-a11y'
+
+export default [
+  jsxA11y.flatConfigs.recommended,
+  // ... autres configurations
+]
+```
+
+---
+
+## 🖼️ **Icônes et ressources visuelles**
+
+| Ressource | Type | Licence |
+|-----------|------|---------|
+| **[Lucide](https://lucide.dev)** | Icônes SVG open source | MIT |
+| **[Heroicons](https://heroicons.com)** | Icônes par l'équipe Tailwind | MIT |
+| **[Phosphor Icons](https://phosphoricons.com)** | Icônes flexibles et cohérentes | MIT |
+| **[Undraw](https://undraw.co)** | Illustrations SVG personnalisables | Gratuit |
+| **[Storyset](https://storyset.com)** | Illustrations animées | Gratuit (attribution) |
+
+> 💡 **Conseil** : choisissez **une seule** bibliothèque d'icônes par projet pour garantir la cohérence visuelle. Ce projet utilise [Lucide](https://lucide.dev).
+
+---
+
+## 🧪 **Outils de test UX et feedback**
+
+| Outil | Usage |
+|-------|-------|
+| **[Maze](https://maze.co)** | Tests utilisateurs non modérés sur prototypes |
+| **[Hotjar](https://www.hotjar.com)** | Heatmaps, enregistrements de sessions, sondages |
+| **[Vercel Analytics](https://vercel.com/analytics)** | Web Vitals et performance en production |
+| **[PageSpeed Insights](https://pagespeed.web.dev)** | Analyse de performance et UX par Google |
+
+---
+
+## 💻 **Mettre en œuvre un Design System en code**
+
+📌 **Un Design System n'est pas seulement un fichier Figma** — il doit être implémenté en code pour être réellement utile aux développeurs.
+
+### 🧱 Les briques essentielles
+
+| Brique | Rôle | Exemple |
+|--------|------|---------|
+| **Tokens de design** | Variables partagées (couleurs, tailles, espacements) | Variables CSS, config Tailwind |
+| **Composants UI** | Éléments réutilisables (Button, Card, Input…) | Shadcn/ui, composants custom |
+| **Documentation** | Guide d'utilisation pour les développeurs | Storybook, Nextra |
+| **Tests visuels** | Vérifier la cohérence entre versions | Chromatic, Playwright |
+
+### 💻 Exemple — Structure d'un Design System dans un projet Next.js
+
+```text copy
+components/
+├── ui/                    # Composants de base du Design System
+│   ├── button.tsx
+│   ├── card.tsx
+│   ├── input.tsx
+│   ├── label.tsx
+│   └── index.ts           # Export centralisé
+├── styles/
+│   └── tokens.css         # Tokens CSS (couleurs, espacements)
+└── stories/               # Stories Storybook (optionnel)
+    ├── button.stories.tsx
+    └── card.stories.tsx
+```
+
+### 💻 Exemple — Définir des tokens CSS et les utiliser
+
+```css copy
+/* components/styles/tokens.css */
+:root {
+  /* Couleurs */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #1d4ed8;
+  --color-accent: #f59e0b;
+  --color-error: #ef4444;
+  --color-success: #10b981;
+
+  /* Espacements */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  /* Typographie */
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+
+  /* Rayons de bordure */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+}
+```
+
+```tsx copy
+// components/ui/button.tsx — Composant utilisant les tokens
+import { cn } from "@/lib/utils";
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg";
+}
+
+export function Button({ variant = "primary", size = "md", ...props }: ButtonProps) {
+  return (
+    <button
+      className={cn(
+        "rounded font-medium transition-colors",
+        variant === "primary" && "bg-primary-500 hover:bg-primary-700 text-white",
+        variant === "outline" && "border border-primary-500 text-primary-500 hover:bg-primary-50",
+        variant === "ghost" && "text-primary-500 hover:bg-primary-50",
+        size === "sm" && "px-3 py-1.5 text-sm",
+        size === "md" && "px-4 py-2 text-base",
+        size === "lg" && "px-6 py-3 text-lg",
+      )}
+      {...props}
+    />
+  );
+}
+```
+
+---
+
+## ✅ **Checklist — Choisir ses outils UX/UI**
+
+Voici une checklist pour sélectionner les bons outils selon votre projet :
+
+- 🎨 **Design** : Figma ou Penpot pour le prototypage
+- 🧩 **Composants** : une bibliothèque UI adaptée (Shadcn/ui, MUI, HeroUI…)
+- 🎨 **Couleurs** : une palette validée avec un contrast checker
+- 🔤 **Typographie** : 2 polices max avec une échelle cohérente
+- ♿ **Accessibilité** : Lighthouse + axe DevTools dans le workflow
+- 🖼️ **Icônes** : une seule bibliothèque cohérente
+- 📚 **Documentation** : Storybook pour les composants partagés
+- 🧪 **Tests** : tests visuels et tests utilisateurs réguliers
+
+---
+
+## 📚 **Ressources complémentaires**
+
+<Cards>
+  <Cards.Card
+    icon={<Figma />}
+    title="Figma — Outil de design"
+    href="https://www.figma.com"
+  />
+  <Cards.Card
+    icon={<Layers />}
+    title="Shadcn/ui — Composants React"
+    href="https://ui.shadcn.com"
+  />
+  <Cards.Card
+    icon={<Code />}
+    title="Storybook — Documentation de composants"
+    href="https://storybook.js.org"
+  />
+  <Cards.Card
+    icon={<Palette />}
+    title="Coolors — Palettes de couleurs"
+    href="https://coolors.co"
+  />
+  <Cards.Card
+    icon={<Eye />}
+    title="WebAIM — Contrast Checker"
+    href="https://webaim.org/resources/contrastchecker/"
+  />
+</Cards>
+
+---
