@@ -4,6 +4,7 @@ export default {
   "principes-UX": "Principes fondamentaux de l’UX Design",
   "principes-UI": "Principes fondamentaux de l’UI Design",
   "conception": "Processus de conception UX/UI",
+  "outils": "Outils UX/UI et Design Systems",
   "---": {
     "type": "separator"
   },
